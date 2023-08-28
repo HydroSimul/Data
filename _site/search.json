@@ -2,21 +2,147 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "HS_Data",
+    "title": "Welcom Page",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Welcome to HydroSimul: Your Gateway to Understanding Hydrological Simulation\nWe’re thrilled to have you at HydroSimul, your premier resource for delving into the realm of hydrological simulation. Here, we curate a vast collection of datasets and offer cutting-edge techniques to empower your exploration.\nAt HydroSimul, we believe in the power of collaboration. If you want to share your knowledge, experience, and skills in the field, please contact us at hydro.simul@gmail.com. We also welcome your advice.\nOur website serves as a comprehensive hub for your hydrological journey:"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "index.html#dataset-collection",
+    "href": "index.html#dataset-collection",
+    "title": "Welcom Page",
+    "section": "1. Dataset Collection:",
+    "text": "1. Dataset Collection:\nNumerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide direct links to the datasets but also present essential information in a standardized format, simplifying your dataset selection process. Additionally, we strive to establish connections with research papers that have utilized these datasets and offer valuable feedback gleaned from these sources."
+  },
+  {
+    "objectID": "index.html#data-processing",
+    "href": "index.html#data-processing",
+    "title": "Welcom Page",
+    "section": "2. Data Processing:",
+    "text": "2. Data Processing:\nOn this page, we provide you with a wealth of data processing tools and techniques. Discover how to adeptly clean, preprocess, and convert raw hydrological data into a valuable format suitable for analysis and modeling."
+  },
+  {
+    "objectID": "index.html#data-analysis",
+    "href": "index.html#data-analysis",
+    "title": "Welcom Page",
+    "section": "3. Data Analysis:",
+    "text": "3. Data Analysis:\nUncover concealed statistical insights and trends within your data. Our comprehensive guides and tutorials are designed to empower you with the skills to effectively analyze hydrological data."
+  },
+  {
+    "objectID": "index.html#hydrological-modeling",
+    "href": "index.html#hydrological-modeling",
+    "title": "Welcom Page",
+    "section": "4. Hydrological Modeling:",
+    "text": "4. Hydrological Modeling:\nTake your understanding to the next level with hydrological modeling. Explore various models and model frameworks and acquire hands-on experience in simulating complex hydrological processes. Additionally, we provide extensive resources on calibration algorithms and strategies to significantly improve your modeling outcomes."
+  },
+  {
+    "objectID": "3_modelling.html",
+    "href": "3_modelling.html",
+    "title": "Modelling",
     "section": "",
     "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "about.html#h2",
-    "href": "about.html#h2",
-    "title": "About",
+    "objectID": "3_modelling.html#h2",
+    "href": "3_modelling.html#h2",
+    "title": "Modelling",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1_dataset.html",
+    "href": "1_dataset.html",
+    "title": "Dataset",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1_dataset.html#h2",
+    "href": "1_dataset.html#h2",
+    "title": "Dataset",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1.2_hydro.html",
+    "href": "1.2_hydro.html",
+    "title": "Data-processing",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1.2_hydro.html#h2",
+    "href": "1.2_hydro.html#h2",
+    "title": "Data-processing",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1.1_meteo.html",
+    "href": "1.1_meteo.html",
+    "title": "Data-processing",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1.1_meteo.html#h2",
+    "href": "1.1_meteo.html#h2",
+    "title": "Data-processing",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1.3_geoph.html",
+    "href": "1.3_geoph.html",
+    "title": "Data-processing",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1.3_geoph.html#h2",
+    "href": "1.3_geoph.html#h2",
+    "title": "Data-processing",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "2_preprocess.html",
+    "href": "2_preprocess.html",
+    "title": "A Title",
+    "section": "",
+    "text": "Turn off alarm\nGet out of bed\n\n\n\n\n\nGet in bed\nCount sheep"
+  },
+  {
+    "objectID": "2_preprocess.html#getting-up",
+    "href": "2_preprocess.html#getting-up",
+    "title": "A Title",
+    "section": "",
+    "text": "Turn off alarm\nGet out of bed"
+  },
+  {
+    "objectID": "2_preprocess.html#going-to-sleep",
+    "href": "2_preprocess.html#going-to-sleep",
+    "title": "A Title",
+    "section": "",
+    "text": "Get in bed\nCount sheep"
+  },
+  {
+    "objectID": "2_preprocess.html#portfolio",
+    "href": "2_preprocess.html#portfolio",
+    "title": "A Title",
+    "section": "Portfolio",
+    "text": "Portfolio\nLet’s do this computation in python…..\ndf_Hydro &lt;- read.csv(\"PEQ_566010.csv\")\ndf_Hydro &lt;- df_Hydro[,c(2,1,3)]\nmean_PEQ &lt;- colMeans(df_Hydro)\nsd_PEQ &lt;- apply(df_Hydro, 2, sd)\ndf_Hydro_Norm &lt;- cbind(P_mm = (df_Hydro[,1] - mean_PEQ[1]) / sd_PEQ[1], \n                       E_mm = (df_Hydro[,2] - mean_PEQ[2]) / sd_PEQ[2],\n                       Q_mm = (df_Hydro[,3] - mean_PEQ[3]) / sd_PEQ[3])"
+  },
+  {
+    "objectID": "4_postprocess.html",
+    "href": "4_postprocess.html",
+    "title": "Post-Processing",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "4_postprocess.html#h2",
+    "href": "4_postprocess.html#h2",
+    "title": "Post-Processing",
     "section": "",
     "text": "About this site test2\n\n1 + 1\n\n[1] 2"
   }

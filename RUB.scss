@@ -71,6 +71,14 @@ $h6-font-size:                .75rem !default;
 $headings-font-weight:        600 !default;
 $headings-color:              $RUB-green !default;
 
+/* Define the style for the custom text */
+strong, #bold {
+    color: $RUB-blue; /* Set the text color to green */
+    font-weight: bold; /* Make the text bold */
+    text-decoration: underline 3pt $RUB-green; /* Add an underline to the text */
+}
+
+
 // Tables
 
 $table-border-color:          rgba(0, 0, 0, .05) !default;
@@ -177,6 +185,18 @@ $web-font-path: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;6
   margin-right: 2rem;
 }
 
+// Sidebar
+.sidebar {
+  font-weight: 400;
+  color: $RUB-blue !important;
+      .active {
+        font-weight: bold !important;
+      color: $TUD-green !important;
+    }
+
+}
+
+
 // Buttons
 
 .btn {
@@ -225,7 +245,8 @@ $web-font-path: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;6
 // Typography
 
 body {
-  font-weight: 200;
+  font-weight: 300;
+  color: $RUB-blue;
   letter-spacing: 1px;
 }
 

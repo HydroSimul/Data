@@ -2,13 +2,29 @@ project:
   type: website
 
 website:
-  title: "HS_Data"
+  title: "HydroSimul"
   favicon: "Kan.svg"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - 1_dataset.qmd
+      - 2_preprocess.qmd
+      - 3_modelling.qmd
+      - 4_postprocess.qmd
+  sidebar:
+    style: "docked"
+    search: true
+    contents: 
+      - section: 1_dataset.qmd
+        contents:
+          - 1.1_meteo.qmd
+      - section: 2_preprocess.qmd
+        contents:
+          - 1.2_hydro.qmd
+      - section: 3_modelling.qmd
+        contents:
+          - 1.3_geoph.qmd
 
 format:
   html:
@@ -16,6 +32,11 @@ format:
     - lux
     - RUB.scss
     toc: true
+    grid:
+      sidebar-width: 300px
+      body-width: 800px
+      margin-width: 400px
+      gutter-width: 1.5rem    
 
 editor: visual
 
