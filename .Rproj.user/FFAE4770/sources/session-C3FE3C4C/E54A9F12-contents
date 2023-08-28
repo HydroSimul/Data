@@ -3,6 +3,7 @@ project:
 
 website:
   title: "HS_Data"
+  favicon: "Kan.svg"
   navbar:
     left:
       - href: index.qmd
@@ -11,8 +12,9 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: 
+    - lux
+    - RUB.scss
     toc: true
 
 editor: visual

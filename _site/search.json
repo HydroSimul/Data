@@ -11,6 +11,13 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "about.html#h2",
+    "href": "about.html#h2",
+    "title": "About",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
   }
 ]
