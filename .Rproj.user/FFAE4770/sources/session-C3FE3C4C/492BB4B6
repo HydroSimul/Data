@@ -16,7 +16,9 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "2:0"
+        "rmdVisualModeLocation": "2:0",
+        "cursorPosition": "11,0",
+        "scrollLine": "0"
     },
     "folds": "",
     "lastKnownWriteTime": 1693155030,
