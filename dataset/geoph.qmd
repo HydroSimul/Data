@@ -1,5 +1,5 @@
 ---
-title: "Data-processing"
+title: "Geophysical"
 sidebar:
   contents: auto
 ---

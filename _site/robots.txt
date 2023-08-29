@@ -1,1 +1,1 @@
-Sitemap: https://HydroSimul.github.io/Data/sitemap.xml
+Sitemap: https://HydroSimul.github.io/Web/sitemap.xml

@@ -4,27 +4,37 @@ project:
 website:
   title: "HydroSimul"
   favicon: "Kan.svg"
+  page-navigation: true   
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - 1_dataset.qmd
-      - 2_preprocess.qmd
-      - 3_modelling.qmd
-      - 4_postprocess.qmd
+      - text: "Home"
+        href: index.qmd
+      - text: "Dataset"
+        href: dataset/index.qmd
+      - text: "Dataprocess"
+        href: dataprocess/index.qmd
+        
+  
   sidebar:
-    style: "docked"
-    search: true
-    contents: 
-      - section: 1_dataset.qmd
-        contents:
-          - 1.1_meteo.qmd
-      - section: 2_preprocess.qmd
-        contents:
-          - 1.2_hydro.qmd
-      - section: 3_modelling.qmd
-        contents:
-          - 1.3_geoph.qmd
+    - id: dataset
+      collapse-level: 1
+      contents:
+        - TEXT: "Overview"
+          href: dataset/index.qmd
+        - dataset/meteo.qmd      
+        - dataset/hydro.qmd      
+        - dataset/geoph.qmd      
+    - id: dataprocess
+      collapse-level: 1
+      contents:
+        - section: "Overview"
+          href: dataprocess/index.qmd
+        - section: "Data Manipulate"
+          contents:
+            - dataprocess/basic_format.qmd      
+            - dataprocess/NetCDF.qmd      
+            - dataprocess/spatial_data.qmd      
+
 
 format:
   html:

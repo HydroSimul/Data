@@ -6,29 +6,26 @@ Welcome to **HydroSimul**: Your Gateway to Understanding Hydrological Simulation
 
 We're thrilled to have you at HydroSimul, your premier resource for delving into the realm of hydrological simulation. Here, we curate a vast collection of datasets and offer cutting-edge techniques to empower your exploration.
 
-At **HydroSimul**, we believe in the power of collaboration. If you want to share your knowledge, experience, and skills in the field, please contact us at [hydro.simul@gmail.com](mailto:hydro.simul@gmail.com). We also welcome your advice.
-
+At **HydroSimul**, we believe in the power of collaboration. If you want to share your knowledge, experience, and skills in the field, please contact us at [hydro.simul\@gmail.com](mailto:hydro.simul@gmail.com). We also welcome your advice.
 
 Our website serves as a comprehensive hub for your hydrological journey:
 
-## 1. Dataset Collection: 
+## 1. Dataset Collection:
 
 Numerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide **direct links** to the datasets but also present **essential information in a standardized format**, simplifying your dataset selection process. Additionally, we strive to establish connections with **research papers** that have utilized these datasets and offer valuable feedback gleaned from these sources.
 
-
-## 2. Data Processing: 
+## 2. Data Processing:
 
 On this page, we provide you with a wealth of data processing tools and techniques. Discover how to adeptly **clean**, **preprocess**, and **convert** raw hydrological data into a valuable format suitable for analysis and modeling.
 
-## 3. Data Analysis: 
+## 3. Data Analysis:
 
 Uncover concealed **statistical insights** and **trends** within your data. Our comprehensive guides and tutorials are designed to empower you with the skills to effectively analyze hydrological data.
 
-## 4. Hydrological Modeling: 
+## 4. Hydrological Modeling:
 
 Take your understanding to the next level with hydrological modeling. Explore various **models** and **model frameworks** and acquire hands-on experience in simulating complex hydrological processes. Additionally, we provide extensive resources on **calibration algorithms and strategies** to significantly improve your modeling outcomes.
 
-# 5. Data Postprocessing: 
+# 5. Data Postprocessing:
 
 Once you've run your simulations, discover how to postprocess the results to extract meaningful conclusions and visualize your findings.
-

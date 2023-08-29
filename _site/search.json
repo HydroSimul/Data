@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "Postprocess/PP_0.html",
+    "href": "Postprocess/PP_0.html",
+    "title": "Post-Processing",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "Postprocess/PP_0.html#h2",
+    "href": "Postprocess/PP_0.html#h2",
+    "title": "Post-Processing",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcom Page",
@@ -35,114 +49,121 @@
     "text": "4. Hydrological Modeling:\nTake your understanding to the next level with hydrological modeling. Explore various models and model frameworks and acquire hands-on experience in simulating complex hydrological processes. Additionally, we provide extensive resources on calibration algorithms and strategies to significantly improve your modeling outcomes."
   },
   {
-    "objectID": "3_modelling.html",
-    "href": "3_modelling.html",
+    "objectID": "dataset/index.html",
+    "href": "dataset/index.html",
+    "title": "Dataset",
+    "section": "",
+    "text": "Numerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide direct links to the datasets but also present essential information in a standardized format, simplifying your dataset selection process. Additionally, we strive to establish connections with research papers that have utilized these datasets and offer valuable feedback gleaned from these sources."
+  },
+  {
+    "objectID": "dataset/geoph.html",
+    "href": "dataset/geoph.html",
+    "title": "Geophysical",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/geoph.html#h2",
+    "href": "dataset/geoph.html#h2",
+    "title": "Geophysical",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataprocess/NetCDF.html",
+    "href": "dataprocess/NetCDF.html",
+    "title": "NetCDF",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataprocess/NetCDF.html#h2",
+    "href": "dataprocess/NetCDF.html#h2",
+    "title": "NetCDF",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataprocess/basic_format.html",
+    "href": "dataprocess/basic_format.html",
+    "title": "Basicalformat",
+    "section": "",
+    "text": "In hydrological modeling, various data formats are used to represent and manage different types of data. The choice of data format depends on the nature of the data, the modeling software being used, and specific project requirements. Here are some common data formats used in hydrological modeling, along with their key features:"
+  },
+  {
+    "objectID": "dataprocess/basic_format.html#ascii",
+    "href": "dataprocess/basic_format.html#ascii",
+    "title": "Basicalformat",
+    "section": "ASCII",
+    "text": "ASCII\nASCII (American Standard Code for Information Interchange) is a plain text format, making it human-readable.\n\nAdvantages\n\nHuman-Readable: Users can easily view, understand, and edit the data directly in a text editor.\nWidespread Support, Ease of Import/Export: ASCII is universally supported. Most programming languages, data analysis tools, and software applications can read and write ASCII files, ensuring high compatibility.\nLightweight: ASCII files are typically lightweight and do not consume excessive storage space, making them suitable for large datasets.\nSimple Structure: ASCII files have a straightforward structure, often using lines of text with fields separated by delimiters. This simplicity aids in data extraction and manipulation.\n\n\n\nDisadvantages\n\nLimited Data Types: ASCII primarily handles text-based data and is not suitable for complex data types such as images, multimedia, or hierarchical data.\nNo Inherent Data Validation: ASCII files lack built-in mechanisms for data validation or integrity checks, requiring users to ensure data conformity.\nLack of Compression: ASCII files do not inherently support data compression, potentially resulting in larger file sizes compared to binary formats.\nLimited Metadata: ASCII format lacks standardized metadata structures common in other formats, making comprehensive data documentation challenging.\nSlower Reading/Writing: Reading and writing data in ASCII format may be slower, especially for large datasets, due to additional parsing required to interpret text-based data.\n\n\n\nfile format for ASCII data\n\n.txt: This is the most generic and widely used file extension for plain text files. It doesn’t imply any specific format or structure; it’s just a simple text file.\n.csv (Comma-Separated Values): While CSV files contain data separated by commas, they are still considered ASCII files because they use plain text characters to represent data values. Each line in a CSV file typically represents a record, with values separated by commas."
+  },
+  {
+    "objectID": "dataprocess/basic_format.html#binary",
+    "href": "dataprocess/basic_format.html#binary",
+    "title": "Basicalformat",
+    "section": "Binary",
+    "text": "Binary\n\nAdvantages of Binary Formats\n\nEfficiency: Binary formats are highly efficient for data storage and transmission because they represent data in a compact binary form. This can significantly reduce storage space and data transfer times, making them ideal for large datasets.\nData Integrity: Binary formats often include built-in mechanisms for data integrity and error checking. This helps ensure that data remains intact and accurate during storage and transmission.\nComplex Data: Binary formats can represent complex data structures, including images, multimedia, and hierarchical data, in a way that maintains data integrity and structure. This makes them suitable for a wide range of data types.\nFaster I/O: Reading and writing data in binary format is generally faster than text-based formats like ASCII. This efficiency is particularly important for applications that require high-speed data processing.\nSecurity: Binary formats can provide a level of data security because they are not easily human-readable. This can be advantageous when dealing with sensitive information.\n\n\n\nDisadvantages of Binary Formats\n\nLack of Human-Readability: Binary formats are not human-readable, making it difficult to view or edit the data directly. This can be a disadvantage when data inspection or manual editing is required.\nCompatibility: Binary formats may not be universally compatible across different software platforms and programming languages. This can lead to issues when sharing or accessing data in various environments.\nLimited Metadata: Binary formats may not include comprehensive metadata structures, making it challenging to document and describe the data effectively.\nVersion Compatibility: Changes in the binary format’s structure or encoding can lead to compatibility issues when working with data created using different versions of software or hardware.\nDebugging and Troubleshooting: Debugging and troubleshooting binary data can be more challenging compared to human-readable formats like ASCII. Detecting and resolving issues may require specialized tools and expertise.\nPlatform Dependence: Binary formats can be platform-dependent, meaning they may not be easily transferable between different operating systems or hardware architectures.\n\nBinary formats are a valuable choice for certain applications, particularly when efficiency, data integrity, and complex data types are crucial. However, they may not be suitable for all scenarios, especially when human readability, compatibility, or ease of data inspection is essential.\n\n\nNectCDF\nNetCDF (Network Common Data Form) is a versatile data format widely used in scientific and environmental applications. It is primarily a binary data format, but it includes structured elements for efficient data storage and management. Here are some key characteristics of NetCDF:\n\nBinary Representation: NetCDF data files are primarily stored in binary format, which enables efficient storage and handling of numerical data, particularly floating-point numbers.\nSelf-Describing: NetCDF files are self-describing, meaning they include metadata alongside the data. This metadata provides essential information about the data’s structure, dimensions, units, and other attributes.\nHierarchical Structure: NetCDF supports a hierarchical structure capable of representing complex data types, including multi-dimensional arrays and groups of data variables.\nData Compression: NetCDF allows for data compression, which can reduce the storage space required for large datasets while maintaining data integrity.\nPlatform-Independent: NetCDF files are designed to be platform-independent, ensuring compatibility across various operating systems and hardware architectures.\nLanguage Support: NetCDF libraries and tools are available for multiple programming languages, making it accessible to a wide range of scientific and data analysis applications.\n\nNetCDF’s combination of binary efficiency and structured metadata makes it an invaluable choice for storing and sharing scientific data, particularly in fields such as meteorology, oceanography, and environmental science.\n\n\nOther row data from"
+  },
+  {
+    "objectID": "dataprocess/index.html",
+    "href": "dataprocess/index.html",
+    "title": "Dataset",
+    "section": "",
+    "text": "Numerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide direct links to the datasets but also present essential information in a standardized format, simplifying your dataset selection process. Additionally, we strive to establish connections with research papers that have utilized these datasets and offer valuable feedback gleaned from these sources."
+  },
+  {
+    "objectID": "dataprocess/spatial_data.html",
+    "href": "dataprocess/spatial_data.html",
+    "title": "spatial data",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataprocess/spatial_data.html#h2",
+    "href": "dataprocess/spatial_data.html#h2",
+    "title": "spatial data",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/hydro.html",
+    "href": "dataset/hydro.html",
+    "title": "Hydro",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/hydro.html#h2",
+    "href": "dataset/hydro.html#h2",
+    "title": "Hydro",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/meteo.html",
+    "href": "dataset/meteo.html",
+    "title": "Meteological",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/meteo.html#h2",
+    "href": "dataset/meteo.html#h2",
+    "title": "Meteological",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "Modelling/HM_0.html",
+    "href": "Modelling/HM_0.html",
     "title": "Modelling",
     "section": "",
     "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "3_modelling.html#h2",
-    "href": "3_modelling.html#h2",
+    "objectID": "Modelling/HM_0.html#h2",
+    "href": "Modelling/HM_0.html#h2",
     "title": "Modelling",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "1_dataset.html",
-    "href": "1_dataset.html",
-    "title": "Dataset",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "1_dataset.html#h2",
-    "href": "1_dataset.html#h2",
-    "title": "Dataset",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "1.2_hydro.html",
-    "href": "1.2_hydro.html",
-    "title": "Data-processing",
-    "section": "",
-    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "1.2_hydro.html#h2",
-    "href": "1.2_hydro.html#h2",
-    "title": "Data-processing",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "1.1_meteo.html",
-    "href": "1.1_meteo.html",
-    "title": "Data-processing",
-    "section": "",
-    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "1.1_meteo.html#h2",
-    "href": "1.1_meteo.html#h2",
-    "title": "Data-processing",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "1.3_geoph.html",
-    "href": "1.3_geoph.html",
-    "title": "Data-processing",
-    "section": "",
-    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "1.3_geoph.html#h2",
-    "href": "1.3_geoph.html#h2",
-    "title": "Data-processing",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "2_preprocess.html",
-    "href": "2_preprocess.html",
-    "title": "A Title",
-    "section": "",
-    "text": "Turn off alarm\nGet out of bed\n\n\n\n\n\nGet in bed\nCount sheep"
-  },
-  {
-    "objectID": "2_preprocess.html#getting-up",
-    "href": "2_preprocess.html#getting-up",
-    "title": "A Title",
-    "section": "",
-    "text": "Turn off alarm\nGet out of bed"
-  },
-  {
-    "objectID": "2_preprocess.html#going-to-sleep",
-    "href": "2_preprocess.html#going-to-sleep",
-    "title": "A Title",
-    "section": "",
-    "text": "Get in bed\nCount sheep"
-  },
-  {
-    "objectID": "2_preprocess.html#portfolio",
-    "href": "2_preprocess.html#portfolio",
-    "title": "A Title",
-    "section": "Portfolio",
-    "text": "Portfolio\nLet’s do this computation in python…..\ndf_Hydro &lt;- read.csv(\"PEQ_566010.csv\")\ndf_Hydro &lt;- df_Hydro[,c(2,1,3)]\nmean_PEQ &lt;- colMeans(df_Hydro)\nsd_PEQ &lt;- apply(df_Hydro, 2, sd)\ndf_Hydro_Norm &lt;- cbind(P_mm = (df_Hydro[,1] - mean_PEQ[1]) / sd_PEQ[1], \n                       E_mm = (df_Hydro[,2] - mean_PEQ[2]) / sd_PEQ[2],\n                       Q_mm = (df_Hydro[,3] - mean_PEQ[3]) / sd_PEQ[3])"
-  },
-  {
-    "objectID": "4_postprocess.html",
-    "href": "4_postprocess.html",
-    "title": "Post-Processing",
-    "section": "",
-    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "4_postprocess.html#h2",
-    "href": "4_postprocess.html#h2",
-    "title": "Post-Processing",
     "section": "",
     "text": "About this site test2\n\n1 + 1\n\n[1] 2"
   }

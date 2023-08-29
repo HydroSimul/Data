@@ -1,10 +1,12 @@
 ---
-title: "Dataset"
+title: "NetCDF"
+sidebar:
+  contents: auto
 ---
 
 # H1
 
-About this site test2
+About this site test1
 
 ```{r}
 1 + 1

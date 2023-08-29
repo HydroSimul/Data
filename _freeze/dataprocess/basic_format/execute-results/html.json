@@ -1,0 +1,14 @@
+{
+  "hash": "77ca0ac5a7bb1d24480a08a89c24d35f",
+  "result": {
+    "markdown": "---\ntitle: \"Basicalformat\"\nsidebar:\n  contents: auto\n---\n\n\n# H1\n\nAbout this site test1\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n\n\n## H2\n\nAbout this site test2\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
