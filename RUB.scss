@@ -50,6 +50,7 @@ $link-hover-color: $TUD-green; //green
 $select-color: $TUD-green;
 $min-contrast-ratio:   2.3 !default;
 
+
 // Options
 
 $enable-rounded:            false !default;
@@ -70,6 +71,7 @@ $h5-font-size:                1rem !default;
 $h6-font-size:                .75rem !default;
 $headings-font-weight:        600 !default;
 $headings-color:              $RUB-green !default;
+
 
 /* Define the style for the custom text */
 strong, #bold {
@@ -257,6 +259,7 @@ h4,
 h5,
 h6 {
   text-transform: capitalize;
+  color: $RUB-green;
   letter-spacing: 3px;
 }
 
@@ -323,7 +326,7 @@ th {
   .h4,
   .h5,
   .h6 {
-    color: inherit;
+    color: $RUB-green;
   }
 }
 

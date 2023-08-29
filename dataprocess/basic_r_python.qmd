@@ -1,0 +1,693 @@
+---
+title: "R & Python Basic"
+number-sections: true
+---
+
+More Details of R in [R for Data Science (2e)](https://r4ds.hadley.nz/workflow-basics) and [Advanced R](https://adv-r.hadley.nz/index.html)
+
+More Details of Python in [W3 School Python](https://www.w3schools.com/python/default.asp)
+
+This article serves as a **brief introduction** to the fundamental coding aspects of both R and Python. 
+It provides a first impression of these scripting languages. For a more comprehensive understanding and in-depth techniques related to both languages, you are encouraged to explore the website mentioned above. The content here is primarily a condensed compilation of information from the provided links, aimed at facilitating a comparison between R and Python.
+
+
+**Data** and **Functions** are the two essential components of every programming language, especially in the context of data science and data processing. They can be likened to nouns and verbs in natural languages. **Data** describes information, while **Functions** define actions for manipulating that data.
+
+This article is divided into two main sections: **Data** (@sec-data) and **Coding** (@sec-coding).
+
+
+In the Data section, we will explore:
+
+- Basic **data types**, such as numbers, characters, and booleans.
+- **Data structures** for organizing groups of values, such as vectors and lists.
+
+
+In the Coding section, we will delve into three key aspects:
+
+1. Fundamental **mathematics**.
+2. Control flow, including decision-making (**choices**) and **looping**.
+3. Creating and invoking **functions**.
+
+The above five elements can be considered as the most fundamental elements of every scripting language. Additionally, we will explore **object creation and naming** in a section called 'New Objects' (@sec-naming). Objects can encompass functions and variables, further enriching our understanding of scripting.
+
+This article will provide a solid introduction to the core concepts in programming, laying the groundwork for further exploration in both R and Python.
+
+
+# Data {#sec-data}
+
+## Datatype
+
+## Data Structure
+
+# Coding {#sec-coding}
+
+## math calculations 
+
+- '+' '-' '*' '/'
+- Exponent, Logarithm
+- Trigonometric functions
+- Linear algebra, Matrix multiplication
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+1 / 200 * 30
+(59 + 73 - 2) / 3
+3^2
+sin(pi / 2) # pi as Const number in R
+
+```
+
+## Python
+
+```{python}
+print(1 / 200 * 30)
+print((59 + 73 - 2) / 3)
+print(3**2)
+
+import math
+print(math.sin(math.pi/2))
+
+```
+
+:::
+
+## Control flow
+
+There are two primary tools of control flow: choices and loops. 
+
+- **Choices**, like `if` statements calls, allow you to run different code **depending on the input**. 
+- **Loops**, like for and while, allow you to **repeatedly** run code, typically with changing options.
+
+### choices 
+
+#### Basic If-Else
+
+::: {.panel-tabset}
+
+## R
+
+The basic form of an if statement in R is as follows:
+
+```{r}
+#| eval: false
+if (condition) true_action
+if (condition) true_action else false_action
+```
+
+If `condition` is `TRUE`, `true_action` is evaluated; if `condition` is `FALSE`, the optional `false_action` is evaluated. 
+
+Typically the actions are compound statements contained within `{`:
+
+`if` returns a value so that you can assign the results:
+
+```{r}
+a <- 6
+b <- 8
+
+if (b > a) {
+  cat("b is greater than a\n")
+} else if (a == b) {
+  cat("a and b are equal\n")
+} else {
+  cat("a is greater than b\n")
+}
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+# if statements
+if condition: 
+  true_action
+  
+# if-else
+if condition: 
+  true_action 
+else: 
+  false_action
+
+
+# if-ifel-else
+if condition1: 
+  true_action1 
+elif condition2: 
+  true_action2 
+else: 
+  false_action
+
+```
+
+
+```{python}
+a = 6
+b = 8
+if b > a:
+  print("b is greater than a")
+elif a == b:
+  print("a and b are equal")
+else:
+  print("a is greater than b")
+
+```
+
+:::
+
+
+#### switch
+
+::: {.panel-tabset}
+
+## R
+
+Closely related to `if` is the `switch()`-statement. It's a compact, special purpose equivalent that lets you replace code like:
+
+```{r}
+x_option <- function(x) {
+  if (x == "a") {
+    "option 1"
+  } else if (x == "b") {
+    "option 2" 
+  } else if (x == "c") {
+    "option 3"
+  } else {
+    stop("Invalid `x` value")
+  }
+}
+```
+
+with the more succinct:
+
+```{r}
+x_option <- function(x) {
+  switch(x,
+    a = "option 1",
+    b = "option 2",
+    c = "option 3",
+    stop("Invalid `x` value")
+  )
+}
+x_option("b")
+```
+
+The last component of a `switch()` should always throw an error, otherwise unmatched inputs will invisibly return `NULL`:
+
+
+## Python
+
+```{python}
+#| eval: false
+
+match subject:
+    case <pattern_1>:
+        <action_1>
+    case <pattern_2>:
+        <action_2>
+    case <pattern_3>:
+        <action_3>
+    case _:
+        <action_wildcard>
+```
+
+```{python}
+def x_option(x):
+    options = {
+        "a": "option 1",
+        "b": "option 2",
+        "c": "option 3"
+    }
+    return options.get(x, "Invalid `x` value")
+
+print(x_option("b"))
+
+```
+
+:::
+
+
+#### Vectorised if
+
+::: {.panel-tabset}
+
+## R
+
+Given that `if` only works with a single `TRUE` or `FALSE`, you might wonder what to do if you have a vector of logical values. Handling vectors of values is the job of `ifelse()`: a vectorised function with `test`, `yes`, and `no` vectors (that will be recycled to the same length):
+
+```{r}
+x <- 1:10
+ifelse(x %% 5 == 0, "XXX", as.character(x))
+
+ifelse(x %% 2 == 0, "even", "odd")
+```
+
+Note that missing values will be propagated into the output.
+
+I recommend using `ifelse()` only when the `yes` and `no` vectors are the same type as it is otherwise hard to predict the output type. See <https://vctrs.r-lib.org/articles/stability.html#ifelse> for additional discussion.
+
+
+## Python
+
+:::
+
+
+### Loops
+
+#### `for`-Loops
+
+A for loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string).
+For each item in `vector`, `perform_action` is called once; updating the value of `item` each time.
+
+::: {.panel-tabset}
+
+## R
+
+In R, `for` loops are used to iterate over items in a vector. They have the following basic form:
+
+```{r}
+#| eval: false
+
+for (item in vector) perform_action
+```
+
+
+
+```{r}
+for (i in 1:3) {
+  print(i)
+}
+```
+
+
+## Python
+```{python}
+#| eval: false
+
+for item in vector 
+  perform_action
+```
+
+```{python}
+for i in range(1, 3):
+  print(i)
+
+```
+
+
+:::
+
+#### `while`-Loops
+
+With the while loop we can execute a set of statements as long as a condition is `TRUE`:
+
+::: {.panel-tabset}
+
+## R
+
+
+```{r}
+i <- 1
+while (i < 6) {
+  print(i)
+  i <- i + 1
+}
+```
+
+
+## Python
+
+```{python}
+i = 1
+while i < 6:
+  print(i)
+  i += 1
+
+```
+
+
+:::
+
+
+#### terminate 
+
+::: {.panel-tabset}
+
+## R
+
+There are two ways to terminate a `for` loop early:
+
+* `next` exits the current iteration.
+* `break` exits the entire `for` loop.
+
+```{r}
+for (i in 1:10) {
+  if (i < 3) 
+    next
+
+  print(i)
+  
+  if (i >= 5)
+    break
+}
+```
+
+
+## Python
+
+```{python}
+for i in range(1, 10):
+    if i < 3:
+        continue
+    
+    print(i)
+    
+    if i >= 5:
+        break
+
+```
+
+
+:::
+
+## Function
+
+More details of in [Advanced R Chapter 6](https://adv-r.hadley.nz/functions.html)
+
+A function is a block of code which only runs when it is called.
+It can be broken down into three components:
+
+* The `formals()`, the list of **arguments** that control how you call the function.
+  
+* The `body()`, the **code** inside the function.
+
+* The `environment()`, the data structure that determines how the function **finds** 
+the values associated with the **names**.
+
+While the formals and body are specified explicitly when you create a function, the environment is specified implicitly, based on _where_ you defined the function. This location could be within another package or within the workspace (global environment).
+
+::: {.panel-tabset}
+
+## R
+
+The function environment always exists, but it is only printed when the function isn't defined in the global environment.
+
+```{r}
+f02 <- function(x, y) {
+  # A comment
+  x + y
+}
+
+formals(f02)
+
+body(f02)
+
+environment(f02)
+```
+
+## Python
+
+
+:::
+
+
+### Calling
+
+::: {.panel-tabset}
+
+## R
+
+Calling Syntax:
+
+```{r}
+#| eval: false
+
+function_name(argument1 = value1, argument2 = value2, ...)
+```
+
+
+Try using `seq()`, which makes regular **seq**uences of numbers:
+
+```{r}
+seq(from = 1, to = 10)
+```
+
+We often omit the names of the first several arguments in function calls, so we can rewrite this as follows:
+
+```{r}
+seq(1, 10)
+```
+
+We can also check the arguments and other information with:
+
+```{.r}
+?seq
+```
+
+The "help" windows shows as:
+
+![](../images/r-help.png)
+
+## Python
+
+
+```{python}
+sequence = list(range(1, 11))
+print(sequence)
+
+```
+
+
+:::
+
+### Creating 
+
+::: {.panel-tabset}
+
+## R
+
+Use the function() keyword:
+
+```{r}
+my_add1 <- function(x) {
+  x + 1
+}
+```
+
+calling the function `my_add1`:
+
+```{r}
+my_add1(2)
+```
+
+::: {.callout-tip}
+In R, the return statement is not essential for a function to yield a value as its result. By default, R will return the result of the last command within the function as its output.
+:::
+
+
+## Python
+
+In Python a function is defined using the `def` keyword:
+
+```{python}
+def my_add(x):
+  return x + 1
+
+```
+
+calling the function `my_add1`:
+
+```{python}
+print(my_add(2))
+
+```
+
+
+::: {.callout-warning}
+The `return` statement is essential for a function to yield a value as its result.
+
+:::
+:::
+
+
+# New objects {#sec-naming}
+
+
+::: {.panel-tabset}
+
+## R
+
+Create new objects with the assignment operator `<-`:
+
+```{r}
+# "<-" special in R 
+
+a <- 1 / 200 * 30
+b <- a + 1
+```
+
+## Python
+
+```{python}
+a = 1 / 200 * 30
+b = a + 1
+
+print(a)
+print(b)
+
+```
+
+
+:::
+
+## Naming rules
+
+
+::: {.panel-tabset}
+
+## R
+
+- must start with a letter
+- can only contain letters, numbers, underscores `_`, and dot `.`
+- case-sensitive (age, Age and AGE are three different variables)
+- cannot be any of the Reserved Words
+  - `TRUE` `FALSE`
+  - `NULL` `Inf` `NaN` `NA` `NA_real` `NA_complex_` `NA_character_`
+  - `if` `else`
+  - `for` `while` `repeat` 
+  - `next` `break`
+  - `function` 
+  - `in`
+
+
+:::: {.columns}
+
+::: {.column width="48%"}
+::: {.callout-tip}
+## Legal 
+
+i_use_snake_case
+
+otherPeopleUseCamelCase
+
+some.people.use.periods
+
+aFew.People_RENOUNCEconvention6
+:::
+
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+::: {.callout-warning}
+## Illegal 
+
+_start_with_underscores
+
+1_start_with_number
+
+if
+
+contain sapce
+
+contain-other+charater
+
+:::
+
+:::
+
+::::
+
+more Reserved Words in:
+
+```{.r}
+help("reserved")
+```
+
+
+## Python
+
+- must start with a letter or the **underscore character `_`**
+- can only contain letters, numbers, and underscores `_` 
+- case-sensitive (age, Age and AGE are three different variables)
+- cannot be any of the Python keywords (35 keywors in Python 3.8)
+  - `True` `False`
+  - `None` 
+  - `if` `else` `elif`
+  - `for` `while` `repeat` 
+  - `try` `break` `continue` `finally`
+  - `def`
+  - `in` `and` `or` `not`
+  - `return`
+
+:::: {.columns}
+
+::: {.column width="48%"}
+::: {.callout-tip}
+## Legal 
+
+i_use_snake_case
+
+_start_with_underscores
+
+otherPeopleUseCamelCase
+
+
+aFew_People_RENOUNCEconvention6
+:::
+
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+::: {.callout-warning}
+## Illegal 
+
+want.contain.dot
+
+1_start_with_number
+
+if
+
+contain sapce
+
+contain-other+charater
+
+:::
+
+:::
+
+::::
+
+More Keywords in:
+
+```{python}
+#| eval: false
+
+help("keywords")
+
+```
+
+:::
+
+## Naming Conventions 
+
+- **Camel Case**
+  - Each word, except the first, starts with a capital letter:
+  - `myVariableName` 
+- **Pascal Case**
+  - Each word starts with a capital letter:
+  - `MyVariableName` 
+- **Snake Case**
+  - Each word is separated by an underscore character:
+  - `my_variable_name` 
+
+
+
+

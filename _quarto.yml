@@ -27,13 +27,17 @@ website:
     - id: dataprocess
       collapse-level: 1
       contents:
-        - section: "Overview"
+        - section: "Dataprocess"
           href: dataprocess/index.qmd
-        - section: "Data Manipulate"
-          contents:
-            - dataprocess/basic_format.qmd      
-            - dataprocess/NetCDF.qmd      
-            - dataprocess/spatial_data.qmd      
+          contents: 
+            - section: "Data Format"
+              contents:
+                - dataprocess/basic_format.qmd      
+                - dataprocess/NetCDF.qmd      
+                - dataprocess/spatial_data.qmd      
+            - section: "Processing with Skript"
+              contents:
+                - dataprocess/basic_r_python.qmd      
 
 
 format:

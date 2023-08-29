@@ -1,5 +1,5 @@
 ---
-title: "Basicalformat"
+title: "Basic format"
 sidebar:
   contents: auto
 ---
