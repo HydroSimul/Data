@@ -3,9 +3,9 @@ title: "R & Python Basic"
 number-sections: true
 ---
 
-More Details of R in [R for Data Science (2e)](https://r4ds.hadley.nz/workflow-basics) and [Advanced R](https://adv-r.hadley.nz/index.html)
+More Details of R in [R for Data Science (2e)](https://r4ds.hadley.nz/index.html) and [Advanced R](https://adv-r.hadley.nz/index.html)
 
-More Details of Python in [W3 School Python](https://www.w3schools.com/python/default.asp)
+More Details of Python in [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) and [W3 School Python](https://www.w3schools.com/python/default.asp)
 
 This article serves as a **brief introduction** to the fundamental coding aspects of both R and Python. 
 It provides a first impression of these scripting languages. For a more comprehensive understanding and in-depth techniques related to both languages, you are encouraged to explore the website mentioned above. The content here is primarily a condensed compilation of information from the provided links, aimed at facilitating a comparison between R and Python.
@@ -35,13 +35,747 @@ This article will provide a solid introduction to the core concepts in programmi
 
 # Data {#sec-data}
 
+
+In programming, the concept of data types is fundamental. It forms the basis for how we handle and manipulate information in software.
+
+The most basic data types, such as integers, numerics, booleans, characters, and bytes, are supported by all programming languages. 
+Additionally, there are more complex data types built upon these basics, like strings, which are sequences of characters, and dates, which can be represented as variables of integers and more.
+
+Data structures are equally important, as they determine the organization of data, whether it involves the same data types in multiple dimensions or combinations of different types. 
+Data types and structures are intertwined, serving as the cornerstone for our programming endeavors.
+
+Variables play a pivotal role in storing data of different types. 
+The choice of data type and structure is critical, as different types and structures enable various operations and functionalities. 
+Therefore, understanding data types and structures is paramount before embarking on data manipulation tasks.
+
+
+
 ## Datatype
+
+A data type of a variable specifies the type of data that is stored inside that variable. In this context, we will just discuss Atomic Variables, which represent fundamental data types. There are six basic atomic data types:
+
+1. **Logical** (boolean data type)
+    - can only have two values: `TRUE` and `FALSE`
+2. **Numeric** (double, float, lang)
+    - represents all real numbers with or without decimal values.
+3. **Integer** 
+    - specifies real values without decimal points.
+4. **Complex** 
+    - is used to specify purely imaginary values
+5. **Character** (string)
+    - data type is used to specify character or string values in a variable
+6. **Raw** (bytes)
+    - specifies values as raw bytes
+
+
+::: {.panel-tabset}
+
+## R
+
+In R, variables do not require explicit declaration with a particular data type. Instead, R is dynamically typed, allowing variables to adapt to the data they contain. You can use the following techniques to work with data types in R:
+
+- **Checking Data Types:** To determine the data type of a variable, you can use the `class()` function. 
+
+- **Type Conversion:** When needed, you can change the data type of a variable using R's conversion functions, typically prefixed with `as.`. 
+
+R's flexibility in data type handling simplifies programming tasks and allows for efficient data manipulation without the need for explicit type declarations.
+
+
+```{r}
+# Numeric
+x <- 10.5
+class(x)
+
+# Integer
+x <- 1000L
+class(x)
+
+# Complex
+x <- 9i + 3
+class(x)
+
+# Character/String
+x <- "R is exciting"
+class(x)
+
+# Logical/Boolean
+x <- TRUE
+class(x)
+
+# Convert
+y <- as.numeric(x)
+class(y)
+
+# Raw (bytes)
+x <- charToRaw("A")
+x
+class(x)
+```
+
+## Python
+
+In Python, variables also do not require explicit declaration with a particular data type. Python is dynamically typed, allowing variables to adapt to the data they contain. You can use the following techniques to work with data types in Python:
+
+- **Checking Data Types:** To determine the data type of a variable, you can use the `type()` function. It allows you to inspect the current data type of a variable.
+
+- **Type Conversion:** When needed, you can change the data type of a variable in Python using various conversion functions, like `float()`. 
+
+Python's flexibility in data type handling simplifies programming tasks and allows for efficient data manipulation without the need for explicit type declarations.
+
+
+```{python}
+# Numeric
+x = 10.5
+print(type(x))
+
+# Integer
+x = 1000
+print(type(x))
+
+# Complex
+x = 9j + 3
+print(type(x))
+
+# Character/String
+x = "Python is exciting"
+print(type(x))
+
+# Logical/Boolean
+x = True
+print(type(x))
+
+# Convert to Numeric
+y = float(x)
+print(type(y))
+
+# Raw (bytes)
+x = b'A'
+print(x)
+print(type(x))
+
+```
+
+:::
+
 
 ## Data Structure
 
+Comparatively, data structures between R and Python tend to exhibit more differences than their data types. However, by incorporating additional libraries like NumPy and pandas, we can access shared data structures which play a vital role in the field of data science.
+
+1. **Vector:** A set of multiple values (items)
+   - Contains items of the same data type or structure
+   - Indexed: Allows you to get and change items using indices
+   - Allows duplicates
+   - Changeable: You can modify, add, and remove items after creation
+
+2. **Array:** A multi-dimensional extension of a vector
+    - **Matrix**: two dimensions
+
+3. **List:** A set of multiple values (items)
+   - Contains items of different data types or structures
+   - Indexed: Allows you to get and change items using indices
+   - Allows duplicates
+   - Changeable: You can modify, add, and remove items after creation
+
+4. **Table (Data Frame):** Tabular data structure
+   - Two-dimensional objects with rows and columns
+   - Contains elements of several types
+   - Each column has the same data type
+
+::: {.panel-tabset}
+
+## R
+
+The structure of R variable can be checked with `str()`ucture:
+
+```{r}
+# Create a vector
+vct_Test <- c(1,5,7)
+# View the structure
+str(vct_Test)
+
+# Create a array
+ary_Test <- array(1:24, c(2,3,4))
+# View the structure
+str(ary_Test)
+
+# Create a matrix
+mat_Test <- matrix(1:24, 6, 4)
+mat_Test
+# View the structure
+str(mat_Test)
+
+# Create a list
+lst_Test <- list(c(1,3,5), "abc", FALSE)
+# View the structure
+str(lst_Test)
+
+# Create a table (data frame)
+df_Test <- data.frame(name = c("Bob", "Tom"), age = c(12, 13))
+df_Test
+# View the structure
+str(df_Test)
+
+```
+
+## Python
+
+In Python, the structure of a variable is treated as the data type, and you can confirm it using the `type()` function.
+
+It's important to note that some of the most commonly used data structures, such as arrays and data frames (tables), are not part of the core Python language itself. Instead, they are provided by two popular libraries: `numpy` and `pandas`.
+
+```{python}
+import numpy as np
+import pandas as pd
+
+# Create a vector (list in Python)
+vct_Test = [1, 5, 7]
+# View the structure
+print(type(vct_Test))
+
+# Create a 3D array (NumPy ndarray)
+ary_Test = np.arange(1, 25).reshape((2, 3, 4))
+# View the structure
+print(type(ary_Test))
+
+# Create a matrix (NumPy ndarray)
+mat_Test = np.arange(1, 25).reshape((6, 4))
+print(type(mat_Test))
+
+# Create a list
+lst_Test = [[1, 3, 5], "abc", False]
+# View the structure
+print(type(lst_Test))
+
+# Create a table (pandas DataFrame)
+df_Test = pd.DataFrame({"name": ["Bob", "Tom"], "age": [12, 13]})
+print(type(df_Test))
+print(df_Test)
+```
+
+Python offers several original data structures, including:
+
+1. **Tuples:** Tuples are ordered collections of elements, similar to lists, but unlike lists, they are immutable, meaning their elements cannot be changed after creation. Tuples are often used to represent fixed collections of items.
+
+2. **Sets:** Sets are unordered collections of unique elements. They are valuable for operations that require uniqueness, such as finding unique values in a dataset or performing set-based operations like unions and intersections.
+
+3. **Dictionaries:** Dictionaries, also known as dicts, are collections of key-value pairs. They are used to store data in a structured and efficient manner, allowing quick access to values using their associated keys.
+
+While these data structures may not be as commonly used in data manipulation and calculations as arrays and data frames, they have unique features and use cases that can be valuable in various programming scenarios.
+
+:::
+
+
+## Index & subset
+
+Additionally, **subsetting** plays a crucial role in data manipulation. Subsetting allows you to extract specific subsets of data based on conditions, criteria, or filters. 
+
+
+::: {.panel-tabset}
+
+## R
+
+
+
+More Details in [Advanced R: 4 Subsetting](https://adv-r.hadley.nz/subsetting.html).
+
+R's subsetting operators are fast and powerful. Mastering them allows you to succinctly perform complex operations in a way that few other languages can match. Subsetting in R is easy to learn but hard to master because you need to internalise a number of interrelated concepts:
+
+* There are six ways to subset atomic vectors.
+
+* There are three subsetting operators, `[[`, `[`, and `$`.
+
+* Subsetting operators interact differently with different vector 
+  types (e.g., atomic vectors, lists, factors, matrices, and data frames).
+
+Subsetting is a natural complement to `str()`. While `str()` shows you all the pieces of any object (its structure).
+
+## Python
+
+::: {.callout-tip}
+
+In Python, indexing starts from 0, not 1.
+
+:::
+
+:::
+
+
+### Vector
+
+::: {.panel-tabset}
+
+## R
+
+
+*   __Positive integers__ return elements at the specified positions: 
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+
+# One value
+x[1]
+
+# More values
+x[c(1:2, 4)]
+
+# Duplicate indices will duplicate values
+x[c(1, 1)]
+
+# Real numbers are silently truncated to integers
+x[c(2.1, 2.9)]
+
+```
+
+*   __Negative integers__ exclude elements at the specified positions:
+
+```{r}
+# Exclude elements
+x[-c(3, 1)]
+
+```
+
+::: {.callout-important}
+
+## Error 
+
+Note that you can't mix positive and negative integers in a single subset:
+
+:::
+
+
+```{r, error = TRUE}
+x[c(-1, 2)]
+```
+
+
+## Python
+
+
+
+*   __Positive integers__ return elements at the specified positions: 
+
+```{python}
+import numpy as np
+import pandas as pd
+
+# Create a NumPy array
+x = np.array([2.1, 4.2, 3.3, 5.4])
+
+# One value
+print(x[0])
+
+# More values
+print(x[np.array([0, 1, 3])])
+
+# Duplicate indices will duplicate values
+print(x[np.array([0, 0])])
+
+
+```
+* __egative indexing__ to access an array from the end:
+
+```{python}
+# One value
+print(x[-1])
+
+# More values
+print(x[-np.array([1, 3])])
+
+```
+
+
+:::
+
+
+### Matrices and arrays 
+
+::: {.panel-tabset}
+
+## R
+
+The most common way of subsetting matrices (2D) and arrays (>2D) is a simple generalisation of 1D subsetting: supply a 1D index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
+
+```{r}
+# Create a NumPy matrix
+a2 <- matrix(1:9, nrow = 3)
+# Rename the columns (equivalent to colnames in R)
+colnames(a2) <- c("A", "B", "C")
+# Access a specific element using column name
+a2[1, "A"]
+# Select specific rows with all columns
+a2[1:2, ]
+# columns which are excluded 
+a2[0, -2]
+
+# Create a 3D array
+a3 <- array(1:24, c(2,3,4))
+# Access a specific element(s), in different dimensions
+a3[1,2,2]
+a3[1,2,]
+a3[1,,]
+```
+
+## Python
+
+In Python, the `:` symbol is used to indicate all elements of a particular dimension or slice. It allows you to select or reference all items along that dimension in a sequence, array, or data structure.
+
+
+```{python}
+import numpy as np
+
+# Create a NumPy matrix
+a2 = np.array([[1, 2, 3],
+               [4, 5, 6],
+               [7, 8, 9]])
+
+# Rename the columns (equivalent to colnames in R)
+colnames = ["A", "B", "C"]
+
+# Access a specific element using column name
+print(a2[0, colnames.index("A")])
+
+# Select the first two rows
+print(a2[0:2, :])
+
+
+# Create a NumPy 3D array
+a3 = np.arange(1, 25).reshape((2, 3, 4))
+
+# Access a specific element in the 3D array
+print(a3[0, 1, 1])
+print(a3[0, 1, :])
+print(a3[0, :, :])
+
+```
+
+:::
+
+
+### Data frames
+
+::: {.panel-tabset}
+
+## R
+
+Data frames have the characteristics of both lists and matrices: 
+
+* When subsetting with a single index, they behave like lists and index 
+  the columns, so `df[1:2]` selects the first two columns.
+  
+* When subsetting with two indices, they behave like matrices, so
+  `df[1:3, ]` selects the first three _rows_ (and all the columns)[^python-dims].
+
+```{r}
+# Create a DataFrame
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+
+# Select rows
+df[df$x == 2, ]
+df[c(1, 3), ]
+
+# There are two ways to select columns from a data frame
+# Like a list
+df[c("x", "z")]
+# Like a matrix
+df[, c("x", "z")]
+
+# There's an important difference if you select a single 
+# column: matrix subsetting simplifies by default, list 
+# subsetting does not.
+str(df["x"])
+str(df[, "x"])
+
+```
+
+## Python
+
+More detail about Function `pandas.Seies.iloc()` and `pandas.Seies.loc()` in [pandas document](https://pandas.pydata.org/docs/reference/api/pandas.Series.iloc.html)
+
+- `loc` gets rows (and/or columns) with particular **labels**.
+
+- `iloc` gets rows (and/or columns) at **integer** locations.
+
+
+```{python}
+import pandas as pd
+
+# Create a DataFrame
+df = pd.DataFrame({'x': range(1, 4), 'y': range(3, 0, -1), 'z': list('abc')})
+
+# Select rows
+print(df[df['x'] == 2])
+print(df.iloc[[0, 2]])
+
+# Select columns
+print(df[['x', 'z']])
+
+# Select columns like a DataFrame
+print(df.loc[:, ['x', 'z']])
+
+# Select a single column as a Series (simplifies by default)
+print(df['x'])
+
+# Select a single column as a DataFrame (does not simplify)
+print(df[['x']])
+
+```
+
+:::
+
+### List
+
+::: {.panel-tabset}
+
+## R
+
+There are two other subsetting operators: `[[` and `$`. `[[` is used for extracting single items, while `x$y` is a useful shorthand for `x[["y"]]`.
+
+`[[` is most important when working with lists because subsetting a list with `[` always returns a smaller list. To help make this easier to understand we can use a metaphor:
+
+`[[` can return only a single item, you must use it with either a single positive integer or a single string.
+
+```{r}
+x <- list(a = 1:3, b = "a", d = 4:6)
+
+# Get the subset 
+x[1]
+str(x[1])
+x[1:2]
+
+# Get the element
+x[[1]]
+str(x[1])
+
+# with Label
+x$a
+x[["a"]]
+
+```
+
+## Python
+
+In Python there are no effectiv ways to create a items named list. It can always get the element of the list but not a subset of the list.
+
+In Python, there are no effective ways to create items with named elements in a list. While you can access individual elements by their positions, there isn't a straightforward method to create a subset of the list with named elements. 
+
+```{python}
+# Create a Python list with nested lists
+x = [list(range(1, 4)), "a", list(range(4, 7))]
+
+# Get the subset (Python list slice)
+print([x[0]])
+
+# Get the element using list indexing
+print(x[0])
+print(type(x[0]))
+
+```
+
+However, dictionaries in Python excel in this regard, as they allow you to assign and access elements using user-defined keys, providing a more efficient way to work with named elements and subsets of data.
+
+```{python}
+# Create a dictionary with labels
+x = {"a": list(range(1, 4)), "b": "a", "d": list(range(4, 7))}
+
+
+# Get the element using dictionary indexing
+print(x["a"])
+
+# Access an element with a label
+print(x["a"])
+print(x.get("a"))
+print(type(x["a"]))
+
+```
+
+:::
+
+## Data CRUD
+
+Data manipulation is the art and science of transforming raw data into a more structured and useful format for analysis, interpretation, and decision-making. It's a fundamental process in data science, analytics, and database management.
+
+Operations for creating and managing persistent data elements can be summarized as CRUD:
+
+1. **Create (Add):** The creation of new data elements or records.
+
+2. **Read:** The retrieval and access of existing data elements for analysis or presentation.
+
+3. **Update:** The modification or editing of data elements to reflect changes or corrections.
+
+4. **Delete:** The removal or elimination of data elements that are no longer needed or relevant.
+
+Combining CRUD operations with subsetting provides a powerful toolkit for working with data, ensuring its accuracy, relevance, and utility in various applications, from database management to data analysis.
+
+### Add
+
+### Read 
+
+The **read** process is essentially a form of subsetting, where you access specific elements or subsets of data using their indexes. The crucial aspect of this operation is how to obtain and utilize these indexes effectively.
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# Create a DataFrame
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+
+# Access using integer index 
+df[1,2]
+
+# Access using names index
+df[,"z"]
+df$z
+
+# Access with a value condition
+idx <- which(df$x > 1)
+df[idx,]
+df[idx, "z"]
+
+idx <- which(df$z == "a")
+df[idx,]
+df[idx, 1:2]
+
+```
+
+## Python
+
+```{python}
+import pandas as pd
+
+# Create a pandas DataFrame
+df = pd.DataFrame({'x': range(1, 4), 'y': range(3, 0, -1), 'z': list('abc')})
+
+# Access using integer index (iloc)
+print(df.iloc[0, 1])
+
+# Access using column label
+print(df['z'])
+print(df.z)
+
+# Access with a value condition
+idx = df['x'] > 1
+print(df[idx])
+
+print(df[df['z'] == 'a'])
+
+print(df[df['z'] == 'a'][['x', 'y']])
+
+```
+
+:::
+
+### Update
+
+The **update** operation builds upon the principles of reading. It involves replacing an existing value with a new one, but with certain constraints. The new value must have the same data type, size, and structure as the original value. This ensures data consistency and integrity when modifying data elements. About "data type" it is not so strength, somtimes it is chanable if you replace the whol e.g. colums in data frame.
+
+It's important to note that the concept of 'data type' isn't always rigid. There are cases where data types can change, particularly when replacing entire columns in a data frame, for instance. While data types typically define the expected format and behavior of data, specific operations and transformations may lead to changes in data types to accommodate new values or structures.
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# Create a DataFrame
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df
+# Update using integer index 
+df[1,2] <- 0
+df
+# Update using names index
+df[2,"z"] <- "lk"
+df
+# Update with a value condition
+idx <- which(df$x > 1)
+df[idx, "z"] <- "bg1"
+df
+idx <- which(df$z == "a")
+df[idx,] <- c(-1, -5, "new_a")
+df
+
+```
+
+## Python
+
+```{python}
+import pandas as pd
+
+# Create a pandas DataFrame
+df = pd.DataFrame({'x': range(1, 4), 'y': range(3, 0, -1), 'z': list('abc')})
+print(df)
+
+# Update using integer index
+df.iat[0, 1] = 0
+print(df)
+
+# Update using column label and row index
+df.at[1, 'z'] = "lk"
+print(df)
+
+# Update with a value condition
+idx_x_gt_1 = df['x'] > 1
+df.loc[idx_x_gt_1, 'z'] = "bg1"
+print(df)
+
+idx_z_eq_a = df['z'] == 'a'
+df.loc[idx_z_eq_a] = [-1, -5, "new_a"]
+print(df)
+
+```
+
+:::
+
+
+
+### Delete
+
+::: {.panel-tabset}
+
+## R
+
+Deletion in R can be accomplished relatively easily using methods like specifying negative integer indices or setting elements to `NULL` within a list. However, it's essential to recognize that there are limitations to deletion operations. For instance, when dealing with multi-dimensional arrays, you cannot delete a single element in the same straightforward manner; instead, you can only delete entire sub-dimensions. 
+
+
+```{r}
+# Create a DataFrame
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df
+# Delete using negative integer index 
+df[,-2]
+df[-2,]
+
+# Setting elements to `NULL`
+df$y <- NULL
+df
+
+```
+
+## Python
+
+In Python is to use the `.drop()` command to delete the elemnts in datatframe. More details in [pandas document](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html)
+
+```{python}
+df = pd.DataFrame({'x': range(1, 4), 'y': range(3, 0, -1), 'z': list('abc')})
+print(df)
+
+# Drop columns
+print(df.drop(['x', 'z'], axis=1))
+
+print(df.drop(columns=['x', 'y']))
+
+# Drop a row by index
+print(df.drop([0, 1]))
+
+```
+
+:::
+
+
+
 # Coding {#sec-coding}
 
-## math calculations 
+## Math 
 
 - '+' '-' '*' '/'
 - Exponent, Logarithm
@@ -505,14 +1239,14 @@ print(my_add(2))
 ```
 
 
-::: {.callout-warning}
+::: {.callout-important}
 The `return` statement is essential for a function to yield a value as its result.
 
 :::
 :::
 
 
-# New objects {#sec-naming}
+# New & Naming {#sec-naming}
 
 
 ::: {.panel-tabset}
@@ -583,7 +1317,7 @@ aFew.People_RENOUNCEconvention6
 :::
 
 ::: {.column width="48%"}
-::: {.callout-warning}
+::: {.callout-important}
 ## Illegal 
 
 _start_with_underscores
@@ -646,7 +1380,7 @@ aFew_People_RENOUNCEconvention6
 :::
 
 ::: {.column width="48%"}
-::: {.callout-warning}
+::: {.callout-important}
 ## Illegal 
 
 want.contain.dot
