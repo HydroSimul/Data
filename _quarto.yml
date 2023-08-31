@@ -38,6 +38,7 @@ website:
             - section: "Processing with Skript"
               contents:
                 - dataprocess/basic_r_python.qmd      
+                - dataprocess/data_load.qmd      
 
 
 format:

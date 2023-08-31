@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HydroSimul - Basic format</title>
+<title>HydroSimul - load data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../dataprocess/NetCDF.html" rel="next">
-<link href="../dataprocess/index.html" rel="prev">
+<link href="../dataprocess/basic_r_python.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -106,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/basic_format.html">Data Format</a></li><li class="breadcrumb-item"><a href="../dataprocess/basic_format.html">Basic format</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/basic_r_python.html">Processing with Skript</a></li><li class="breadcrumb-item"><a href="../dataprocess/data_load.html">load data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -129,16 +162,16 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Data Format</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataprocess/basic_format.html" class="sidebar-item-text sidebar-link active">
+  <a href="../dataprocess/basic_format.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Basic format</span></a>
   </div>
 </li>
@@ -158,13 +191,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Processing with Skript</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/basic_r_python.html" class="sidebar-item-text sidebar-link">
@@ -173,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataprocess/data_load.html" class="sidebar-item-text sidebar-link">
+  <a href="../dataprocess/data_load.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">load data</span></a>
   </div>
 </li>
@@ -191,23 +224,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-file-format" id="toc-data-file-format" class="nav-link active" data-scroll-target="#data-file-format">Data File Format</a>
+  <li><a href="#plain-text-file" id="toc-plain-text-file" class="nav-link active" data-scroll-target="#plain-text-file">Plain text File</a>
   <ul class="collapse">
-  <li><a href="#ascii" id="toc-ascii" class="nav-link" data-scroll-target="#ascii">ASCII</a>
+  <li><a href="#example-file" id="toc-example-file" class="nav-link" data-scroll-target="#example-file">Example File</a></li>
+  <li><a href="#r-library-and-functions" id="toc-r-library-and-functions" class="nav-link" data-scroll-target="#r-library-and-functions">R library and functions</a></li>
+  <li><a href="#metadata-handel" id="toc-metadata-handel" class="nav-link" data-scroll-target="#metadata-handel">Metadata Handel</a>
   <ul class="collapse">
-  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages">Advantages</a></li>
-  <li><a href="#disadvantages" id="toc-disadvantages" class="nav-link" data-scroll-target="#disadvantages">Disadvantages</a></li>
-  <li><a href="#file-format-for-ascii-data" id="toc-file-format-for-ascii-data" class="nav-link" data-scroll-target="#file-format-for-ascii-data">file format for ASCII data</a></li>
-  </ul></li>
-  <li><a href="#binary" id="toc-binary" class="nav-link" data-scroll-target="#binary">Binary</a>
-  <ul class="collapse">
-  <li><a href="#advantages-of-binary-formats" id="toc-advantages-of-binary-formats" class="nav-link" data-scroll-target="#advantages-of-binary-formats">Advantages of Binary Formats</a></li>
-  <li><a href="#disadvantages-of-binary-formats" id="toc-disadvantages-of-binary-formats" class="nav-link" data-scroll-target="#disadvantages-of-binary-formats">Disadvantages of Binary Formats</a></li>
-  <li><a href="#nectcdf" id="toc-nectcdf" class="nav-link" data-scroll-target="#nectcdf">NectCDF</a></li>
-  <li><a href="#other-row-data-from" id="toc-other-row-data-from" class="nav-link" data-scroll-target="#other-row-data-from">Other row data from</a></li>
+  <li><a href="#directly-ignore-use-grguments-skip" id="toc-directly-ignore-use-grguments-skip" class="nav-link" data-scroll-target="#directly-ignore-use-grguments-skip">Directly Ignore use grguments <code>skip</code></a></li>
+  <li><a href="#read-metadata-as-table" id="toc-read-metadata-as-table" class="nav-link" data-scroll-target="#read-metadata-as-table">read metadata as table</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#data-type" id="toc-data-type" class="nav-link" data-scroll-target="#data-type">Data Type</a></li>
+  <li><a href="#sec-string" id="toc-sec-string" class="nav-link" data-scroll-target="#sec-string">Text &amp; String</a></li>
   </ul>
 </nav>
     </div>
@@ -216,7 +243,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Basic format</h1>
+<h1 class="title">load data</h1>
 </div>
 
 
@@ -231,130 +258,140 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>In hydrological modeling, various data formats are used to represent and manage different types of data. The choice of data format depends on the nature of the data, the modeling software being used, and specific project requirements. Here are some common data formats used in hydrological modeling, along with their key features:</p>
-<section id="data-file-format" class="level1">
-<h1>Data File Format</h1>
-<section id="ascii" class="level2">
-<h2 class="anchored" data-anchor-id="ascii">ASCII</h2>
-<p>ASCII (American Standard Code for Information Interchange) is a <strong>plain text</strong> format, making it human-readable.</p>
-<section id="advantages" class="level3">
-<h3 class="anchored" data-anchor-id="advantages">Advantages</h3>
-<ol type="1">
-<li><p><strong>Human-Readable:</strong> Users can easily view, understand, and edit the data directly in a text editor.</p></li>
-<li><p><strong>Widespread Support, Ease of Import/Export:</strong> ASCII is universally supported. Most programming languages, data analysis tools, and software applications can read and write ASCII files, ensuring high compatibility.</p></li>
-<li><p><strong>Lightweight:</strong> ASCII files are typically lightweight and <strong>do not consume excessive storage space</strong>, making them suitable for large datasets.</p></li>
-<li><p><strong>Simple Structure:</strong> ASCII files have a straightforward structure, often using lines of text with fields separated by delimiters. This simplicity aids in data extraction and manipulation.</p></li>
-</ol>
+<p>This Aritcl will show the process to load data from other files. I t will divide into four paties: plain text (read able ASCII), Excel, NetCDF and spatial data.</p>
+<section id="plain-text-file" class="level1">
+<h1>Plain text File</h1>
+<p>For more details about date (file) format, you can refer to the article titled <a href="../dataprocess/basic_format.html">Basic Data &amp; File Format</a>.</p>
+<section id="example-file" class="level2">
+<h2 class="anchored" data-anchor-id="example-file">Example File</h2>
+<p>Let’s start with an example CSV file named <code>Bachum_2763190000100.csv</code>. This file contains pegel discharge data and is sourced from open data available at <a href="https://www.elwasweb.nrw.de/elwas-web/index.xhtml">ELWAS-WEB NRW</a>. You can also access it directly from the internet via <a href="https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv">Github</a>, just like you would access a local file.</p>
+<p>Take a look:</p>
+<p><img src="../images/bachum.png" class="img-fluid"></p>
 </section>
-<section id="disadvantages" class="level3">
-<h3 class="anchored" data-anchor-id="disadvantages">Disadvantages</h3>
-<ol type="1">
-<li><p><strong>Limited Data Types:</strong> ASCII primarily handles text-based data and is not suitable for complex data types such as images, multimedia, or hierarchical data.</p></li>
-<li><p><strong>No Inherent Data Validation:</strong> ASCII files lack built-in mechanisms for data validation or integrity checks, requiring users to ensure data conformity.</p></li>
-<li><p><strong>Lack of Compression:</strong> ASCII files do not inherently support data compression, potentially resulting in larger file sizes compared to binary formats.</p></li>
-<li><p><strong>Limited Metadata:</strong> ASCII format lacks standardized metadata structures common in other formats, making comprehensive data documentation challenging.</p></li>
-<li><p><strong>Slower Reading/Writing:</strong> Reading and writing data in ASCII format may be slower, especially for large datasets, due to additional parsing required to interpret text-based data.</p></li>
-</ol>
-</section>
-<section id="file-format-for-ascii-data" class="level3">
-<h3 class="anchored" data-anchor-id="file-format-for-ascii-data">file format for ASCII data</h3>
-<p>When it comes to plain text formats, there is no universal standard, and it’s highly adaptable to specific needs. The initial step in loading a plain text table is to analyze the structure of the file.</p>
-<p>Typically, a text table can store 2D data, comprising columns and rows or a matrix. However, above the data body, there’s often metadata that describes the data. Metadata can vary widely between data body.</p>
-<p>Dividing rows is usually straightforward and can be achieved by identifying row-end characters. However, dividing columns within each row presents multiple possibilities, such as spaces, tabs, commas, or semicolons.</p>
-<p>In .txt files, any of these separators can be used, but in .csv files, commas or semicolons are commonly employed as separator characters.</p>
+<section id="r-library-and-functions" class="level2">
+<h2 class="anchored" data-anchor-id="r-library-and-functions">R library and functions</h2>
+<p>First, we need to load the necessary library <code>tidyverse</code>. This library collection includes <code>readr</code> for reading files and <code>dplyr</code> for data manipulation, among others.</p>
+<p>And, we set the URL address as the file path (including the file name).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fn_Bachum <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The documentation for the <code>readr</code> library is available online and can be accessed at <a href="https://readr.tidyverse.org">https://readr.tidyverse.org</a>.</p>
+<p>Of particular interest are the following functions:</p>
 <ul>
-<li><p><strong>.txt</strong>: This is the most generic and widely used file extension for plain text files. It doesn’t imply any specific format or structure; it’s just a simple text file.</p></li>
-<li><p><strong>.csv</strong> (Comma-Separated Values): While CSV files contain data separated by commas, they are still considered ASCII files because they use plain text characters to represent data values. Each line in a CSV file typically represents a record, with values separated by commas.</p></li>
+<li><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></li>
+<li><a href="https://readr.tidyverse.org/reference/read_table.html">readr::read_table()</a></li>
 </ul>
+<p>We can observe that the CSV file is divided by semicolons. Therefore, it’s more appropriate to use <code>read_csv2()</code> rather than <code>read_csv()</code>.</p>
 </section>
-</section>
-<section id="binary" class="level2">
-<h2 class="anchored" data-anchor-id="binary">Binary</h2>
-<section id="advantages-of-binary-formats" class="level3">
-<h3 class="anchored" data-anchor-id="advantages-of-binary-formats">Advantages of Binary Formats</h3>
+<section id="metadata-handel" class="level2">
+<h2 class="anchored" data-anchor-id="metadata-handel">Metadata Handel</h2>
+<p>Metadata can vary widely between datasets, so it’s handled separately from the data body.</p>
+<p>There are three ways to deal with metadata:</p>
 <ol type="1">
-<li><p><strong>Efficiency:</strong> Binary formats are highly efficient for data storage and transmission because they represent data in a compact binary form. This can significantly reduce storage space and data transfer times, making them ideal for large datasets.</p></li>
-<li><p><strong>Data Integrity:</strong> Binary formats often include built-in mechanisms for data integrity and error checking. This helps ensure that data remains intact and accurate during storage and transmission.</p></li>
-<li><p><strong>Complex Data:</strong> Binary formats can represent complex data structures, including images, multimedia, and hierarchical data, in a way that maintains data integrity and structure. This makes them suitable for a wide range of data types.</p></li>
-<li><p><strong>Faster I/O:</strong> Reading and writing data in binary format is generally faster than text-based formats like ASCII. This efficiency is particularly important for applications that require high-speed data processing.</p></li>
-<li><p><strong>Security:</strong> Binary formats can provide a level of data security because they are not easily human-readable. This can be advantageous when dealing with sensitive information.</p></li>
+<li><p><strong>Directly Ignore:</strong> This approach involves ignoring metadata when it’s redundant or readily available from other data sources, such as file names or external references.</p></li>
+<li><p><strong>Extract from Text:</strong> When metadata is crucial but not in table form, you can extract information from text strings. For more information, refer to the section on string manipulation <a href="#sec-string">Section&nbsp;2</a>.</p></li>
+<li><p><strong>Read as a Second Table:</strong> If metadata is well-organized in a tabular format, it can be read as a separate table to facilitate its use.</p></li>
 </ol>
+<p>In the <code>Bachum_2763190000100.csv</code> file, you will find that there are 10 lines of metadata, which are well-organized in a tabular format. However, it’s important to note that the consistency in values column varies.</p>
+<section id="directly-ignore-use-grguments-skip" class="level3">
+<h3 class="anchored" data-anchor-id="directly-ignore-use-grguments-skip">Directly Ignore use grguments <code>skip</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">10</span>, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   X1            X2
+   &lt;chr&gt;      &lt;dbl&gt;
+ 1 01.01.1990  20.6
+ 2 02.01.1990  19.0
+ 3 03.01.1990  17.9
+ 4 04.01.1990  16.8
+ 5 05.01.1990  16.0
+ 6 06.01.1990  14.8
+ 7 07.01.1990  14.3
+ 8 08.01.1990  14.0
+ 9 09.01.1990  14.4
+10 10.01.1990  14.5</code></pre>
+</div>
+</div>
 </section>
-<section id="disadvantages-of-binary-formats" class="level3">
-<h3 class="anchored" data-anchor-id="disadvantages-of-binary-formats">Disadvantages of Binary Formats</h3>
-<ol type="1">
-<li><p><strong>Lack of Human-Readability:</strong> Binary formats are not human-readable, making it difficult to view or edit the data directly. This can be a disadvantage when data inspection or manual editing is required.</p></li>
-<li><p><strong>Compatibility:</strong> Binary formats may not be universally compatible across different software platforms and programming languages. This can lead to issues when sharing or accessing data in various environments.</p></li>
-<li><p><strong>Limited Metadata:</strong> Binary formats may not include comprehensive metadata structures, making it challenging to document and describe the data effectively.</p></li>
-<li><p><strong>Version Compatibility:</strong> Changes in the binary format’s structure or encoding can lead to compatibility issues when working with data created using different versions of software or hardware.</p></li>
-<li><p><strong>Debugging and Troubleshooting:</strong> Debugging and troubleshooting binary data can be more challenging compared to human-readable formats like ASCII. Detecting and resolving issues may require specialized tools and expertise.</p></li>
-<li><p><strong>Platform Dependence:</strong> Binary formats can be platform-dependent, meaning they may not be easily transferable between different operating systems or hardware architectures.</p></li>
-</ol>
-<p>Binary formats are a valuable choice for certain applications, particularly when efficiency, data integrity, and complex data types are crucial. However, they may not be suitable for all scenarios, especially when human readability, compatibility, or ease of data inspection is essential.</p>
-</section>
-<section id="nectcdf" class="level3">
-<h3 class="anchored" data-anchor-id="nectcdf">NectCDF</h3>
-<p>NetCDF (Network Common Data Form) is a versatile data format widely used in scientific and environmental applications. It is primarily a binary data format, but it includes structured elements for efficient data storage and management. Here are some key characteristics of NetCDF:</p>
+<section id="read-metadata-as-table" class="level3">
+<h3 class="anchored" data-anchor-id="read-metadata-as-table">read metadata as table</h3>
+<p>To read the first 10 lines of metadata, you can use the <code>n_max</code> setting with a value of <code>n_max = 10</code> in the <code>read_csv2()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   X1                          X2             
+   &lt;chr&gt;                       &lt;chr&gt;          
+ 1 "Name"                      "Bachum"       
+ 2 "Pegelnummer"               "2763190000100"
+ 3 "Gew\xe4sser"               "Ruhr"         
+ 4 "Datum von"                 "01.01.1990"   
+ 5 "Datum bis"                 "31.12.2022"   
+ 6 "Parameter"                 "Abfluss"      
+ 7 "Q Einheit"                 "m\xb3/s"      
+ 8 "Tagesmittelwerte"           &lt;NA&gt;          
+ 9 "Pegelnullpunkt [m\xfcNHN]" "146,83"       
+10 "Einzugsgebiet [km\xb2]"    "1.532,02"     </code></pre>
+</div>
+</div>
+<p>When directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:</p>
 <ul>
-<li><p><strong>Binary Representation:</strong> NetCDF data files are primarily stored in binary format, which enables efficient storage and handling of numerical data, particularly floating-point numbers.</p></li>
-<li><p><strong>Self-Describing:</strong> NetCDF files are self-describing, meaning they include metadata alongside the data. This metadata provides essential information about the data’s structure, dimensions, units, and other attributes.</p></li>
-<li><p><strong>Hierarchical Structure:</strong> NetCDF supports a hierarchical structure capable of representing complex data types, including multi-dimensional arrays and groups of data variables.</p></li>
-<li><p><strong>Data Compression:</strong> NetCDF allows for data compression, which can reduce the storage space required for large datasets while maintaining data integrity.</p></li>
-<li><p><strong>Platform-Independent:</strong> NetCDF files are designed to be platform-independent, ensuring compatibility across various operating systems and hardware architectures.</p></li>
-<li><p><strong>Language Support:</strong> NetCDF libraries and tools are available for multiple programming languages, making it accessible to a wide range of scientific and data analysis applications.</p></li>
+<li>Numeric: Examples include <code>Pegelnullpunkt</code> and <code>Einzugsgebiet</code>.</li>
+<li>String: This category covers fields like <code>Name</code>, <code>Pegelnummer</code>, and others.</li>
+<li>Date: Date values are present in columns like <code>Datum von</code> and <code>Datum bis</code>.</li>
 </ul>
-<p>NetCDF’s combination of binary efficiency and structured metadata makes it an invaluable choice for storing and sharing scientific data, particularly in fields such as meteorology, oceanography, and environmental science.</p>
-</section>
-<section id="other-row-data-from" class="level3">
-<h3 class="anchored" data-anchor-id="other-row-data-from">Other row data from</h3>
-</section>
-</section>
-</section>
-<section id="data-type" class="level1">
-<h1>Data Type</h1>
-<ol start="2" type="1">
-<li><strong>NetCDF (Network Common Data Form):</strong>
-<ul>
-<li>Designed for efficient storage and retrieval of large multidimensional datasets.</li>
-<li>Supports data compression and chunking for handling big data.</li>
-<li>Commonly used for gridded meteorological and hydrological data.</li>
-<li>Includes metadata capabilities for documenting data attributes.</li>
-</ul></li>
-<li><strong>Excel (XLSX):</strong>
-<ul>
-<li>Familiar spreadsheet format.</li>
-<li>Suitable for small to medium-sized datasets.</li>
-<li>Supports various data types, including numerical, text, and date/time.</li>
-<li>May lack advanced data management features compared to specialized formats.</li>
-</ul></li>
-<li><strong>Spatial Data Formats (e.g., Shapefile, GeoTIFF, NetCDF with spatial attributes):</strong>
-<ul>
-<li>Designed for representing geospatial information.</li>
-<li>Shapefiles store vector data along with attribute data.</li>
-<li>GeoTIFF is a common format for georeferenced raster data.</li>
-<li>NetCDF with spatial attributes extends NetCDF for geospatial data.</li>
-</ul></li>
-<li><strong>Hydrological Model Input/Output Formats (e.g., HEC-HMS, SWMM, MODFLOW):</strong>
-<ul>
-<li>Specific to hydrological modeling software.</li>
-<li>Input files define model parameters and conditions.</li>
-<li>Output files contain simulation results (e.g., streamflow, groundwater levels).</li>
-<li>Format varies by modeling software.</li>
-</ul></li>
-<li><strong>Database Systems (e.g., SQL databases, NoSQL databases):</strong>
-<ul>
-<li>Suitable for managing large and structured datasets.</li>
-<li>Enable efficient querying and retrieval of data.</li>
-<li>Often used for storing long-term observational data and model outputs.</li>
-</ul></li>
-<li><strong>JSON (JavaScript Object Notation) and XML (eXtensible Markup Language):</strong>
-<ul>
-<li>Flexible and structured data interchange formats.</li>
-<li>Often used for metadata and configuration files.</li>
-<li>XML is suitable for hierarchical data, while JSON is lightweight and widely supported.</li>
-</ul></li>
+<p>In a data frame (tibble), columns must have the same data type. Consequently, R will automatically convert them to a single data type, which is typically string.</p>
+<p>To address this situation, you should specify the data type you want to read. For example, to read the date values in lines 4 and 5, you can use the following settings: 1. <code>skip = 3</code> to skip the first three lines of metadata. 2. <code>n_max = 2</code> to read the next two lines (lines 4 and 5) as date values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  X1        X2        
+  &lt;chr&gt;     &lt;chr&gt;     
+1 Datum von 01.01.1990
+2 Datum bis 31.12.2022</code></pre>
+</div>
+</div>
+<p>Unfortunately, R may not always recognize date values correctly, so you may need to perform additional steps for conversion:</p>
+<ol type="1">
+<li><p><strong>After Reading:</strong> This involves transforming the data from its initial format to the desired date format within your R environment.</p></li>
+<li><p><strong>Set the Data Type by Reading:</strong> Another approach is to set the data type while reading the data.</p></li>
 </ol>
-<p>The choice of data format should consider factors such as data size, complexity, compatibility with modeling software, and the need for geospatial information. Additionally, adherence to data standards and conventions is essential for data interoperability in hydrological modeling projects.</p>
+<p>To address the issue of date recognition, you can set the <code>col_types</code> parameter to <code>"cD"</code> when reading the data. This informs the function that the first column contains <code>c</code>haracters (<code>c</code>) and the second column contains <code>D</code>ates (<code>D</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">col_types =</span> <span class="st">"cD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  X1        X2    
+  &lt;chr&gt;     &lt;date&gt;
+1 Datum von NA    
+2 Datum bis NA    </code></pre>
+</div>
+</div>
+<p>Unfortunately, the default date format in R may not work for German-style dates like “d.m.Y,” as R primarily recognizes the “Y-m-d” format. To handle this, you can convert the dates using function <code>as.Date()</code> and specify the date format using the <code>format</code> argument, such as <code>format = "%d.%m.%Y"</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_Date <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_Date<span class="sc">$</span>X2 <span class="ot">&lt;-</span> df_Date<span class="sc">$</span>X2 <span class="sc">|&gt;</span> <span class="fu">as.Date</span>(<span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_Date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  X1        X2        
+  &lt;chr&gt;     &lt;date&gt;    
+1 Datum von 1990-01-01
+2 Datum bis 2022-12-31</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="sec-string" class="level1">
+<h1>Text &amp; String</h1>
+<p>more details</p>
 
 
 </section>
@@ -595,14 +632,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../dataprocess/index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Dataprocess</span>
+      <a href="../dataprocess/basic_r_python.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R &amp; Python Basic</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../dataprocess/NetCDF.html" class="pagination-link">
-        <span class="nav-page-text">NetCDF</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

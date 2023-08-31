@@ -39,6 +39,14 @@ ASCII (American Standard Code for Information Interchange) is a **plain text** f
 
 ### file format for ASCII data
 
+When it comes to plain text formats, there is no universal standard, and it's highly adaptable to specific needs. The initial step in loading a plain text table is to analyze the structure of the file.
+
+Typically, a text table can store 2D data, comprising columns and rows or a matrix. However, above the data body, there's often metadata that describes the data. Metadata can vary widely between data body.
+
+Dividing rows is usually straightforward and can be achieved by identifying row-end characters. However, dividing columns within each row presents multiple possibilities, such as spaces, tabs, commas, or semicolons. 
+
+In .txt files, any of these separators can be used, but in .csv files, commas or semicolons are commonly employed as separator characters.
+
 - **.txt**: This is the most generic and widely used file extension for plain text files. It doesn't imply any specific format or structure; it's just a simple text file.
 
 - **.csv** (Comma-Separated Values): While CSV files contain data separated by commas, they are still considered ASCII files because they use plain text characters to represent data values. Each line in a CSV file typically represents a record, with values separated by commas.
