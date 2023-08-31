@@ -18,8 +18,8 @@ This article is divided into two main sections: **Data** (@sec-data) and **Codin
 
 In the Data section, we will explore:
 
-- Basic **data types**, such as numbers, characters, and booleans.
-- **Data structures** for organizing groups of values, such as vectors and lists.
+1. Basic **datatypes & structures**, such as datatypes with numbers, characters, and booleans, data structures with list or data frame.
+2. Fundamentals of **CRUD (Create, Read, Update, Delete)** operations.
 
 
 In the Coding section, we will delve into three key aspects:
@@ -35,24 +35,33 @@ This article will provide a solid introduction to the core concepts in programmi
 
 # Data {#sec-data}
 
+In the data section, we will explore various aspects of data, including:
 
-In programming, the concept of data types is fundamental. It forms the basis for how we handle and manipulate information in software.
+- Understanding basic **data types and structures**: We'll delve into how data is stored and organized, laying the foundation for data manipulation.
 
-The most basic data types, such as integers, numerics, booleans, characters, and bytes, are supported by all programming languages. 
-Additionally, there are more complex data types built upon these basics, like strings, which are sequences of characters, and dates, which can be represented as variables of integers and more.
+- Mastering **indexing and subsetting**: We'll investigate indexing methods across different programming languages and learn how to extract subsets from various data structures.
 
-Data structures are equally important, as they determine the organization of data, whether it involves the same data types in multiple dimensions or combinations of different types. 
+- Navigating **CRUD** operations: We'll cover the fundamentals of **CRUD (Create, Read, Update, Delete)** operations, essential for data manipulation and management, among other topics.
+
+
+
+
+## Datatypes & Structure
+
+In programming, the concept of datatypes is fundamental. It forms the basis for how we handle and manipulate information in software.
+The most basic data types, such as **integers**, **numerics**, **booleans**, **characters**, and **bytes**, are supported by almost all programming languages. 
+Additionally, there are more complex data types built upon these basics, like **strings**, which are sequences of characters, and dates, which can be represented as variables of integers and more.
+
+Data structures are equally important, as they determine the organization of data, whether it involves the same data types in **multiple dimensions** or **combinations of different types**. 
 Data types and structures are intertwined, serving as the cornerstone for our programming endeavors.
 
 Variables play a pivotal role in storing data of different types. 
 The choice of data type and structure is critical, as different types and structures enable various operations and functionalities. 
 Therefore, understanding data types and structures is paramount before embarking on data manipulation tasks.
 
+### Datatypes
 
-
-## Datatype
-
-A data type of a variable specifies the type of data that is stored inside that variable. In this context, we will just discuss Atomic Variables, which represent fundamental data types. There are six basic atomic data types:
+A data type of a variable specifies the type of data that is stored inside that variable. In this context, we will just discuss **Atomic Variables**, which represent fundamental data types. There are six basic atomic data types:
 
 1. **Logical** (boolean data type)
     - can only have two values: `TRUE` and `FALSE`
@@ -158,7 +167,7 @@ print(type(x))
 :::
 
 
-## Data Structure
+### Data Structure
 
 Comparatively, data structures between R and Python tend to exhibit more differences than their data types. However, by incorporating additional libraries like NumPy and pandas, we can access shared data structures which play a vital role in the field of data science.
 
@@ -337,7 +346,7 @@ x[-c(3, 1)]
 
 ::: {.callout-important}
 
-## Error 
+## NOTE 
 
 Note that you can't mix positive and negative integers in a single subset:
 
@@ -397,7 +406,7 @@ print(x[-np.array([1, 3])])
 The most common way of subsetting matrices (2D) and arrays (>2D) is a simple generalisation of 1D subsetting: supply a 1D index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
 
 ```{r}
-# Create a NumPy matrix
+# Create a matrix
 a2 <- matrix(1:9, nrow = 3)
 # Rename the columns (equivalent to colnames in R)
 colnames(a2) <- c("A", "B", "C")
@@ -607,7 +616,137 @@ Operations for creating and managing persistent data elements can be summarized 
 
 Combining CRUD operations with subsetting provides a powerful toolkit for working with data, ensuring its accuracy, relevance, and utility in various applications, from database management to data analysis.
 
-### Add
+### Create & Add
+
+Most of the original data we work with is often loaded from external data sources or files. This process will be discussed in detail in the article titled [Data Load](data_load.qmd). 
+
+In this section, we will focus on the fundamental aspects of creating and adding data, which may have already been mentioned several times in the preceding text.
+
+
+::: {.panel-tabset}
+
+## R
+
+Creating new objects in R is commonly done using the assignment operator `<-`. 
+
+
+When it comes to vectors or list, there are two primary methods to append new elements:
+
+- `c()`: allows you to combine the original vector with a new vector or element, effectively extending the vector.
+
+- `append()`: enables you to append a new vector or element at a specific location within the original vector.
+
+
+```{r}
+# Automic value
+a <- 1 / 200 * 30
+
+# vector
+x_v <- c(2.1, 4.2, 3.3, 5.4)
+# List
+x_l <- list(a = 1:3, b = "a", d = 4:6)
+# add new elements
+c(x_v, c(-1,-5.6))
+c(x_l, list(e = c(TRUE, FALSE)))
+# append after 2. Element
+append(x_v, c(-1,-5.6), 2)
+append(x_l, list(e = c(TRUE, FALSE)), 2)
+
+```
+
+When working with 2D matrices or data frames in R, you can use the following functions to add new elements in the row or column dimensions:
+
+- `cbind()`: to combine data frames or matrices by adding new columns.
+
+- `rbind()`: to combine data frames or matrices by adding new rows.
+
+```{r}
+# Create a matrix
+x_m <- matrix(1:9, nrow = 3)
+# data frame
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+# append in colum dimension
+cbind(x_m, -1:-3)
+cbind(df, k = -1:-3)
+
+# append in row dimension
+rbind(x_m, -1:-3)
+rbind(df, list(-1, -2, "z")) # try with rbind(df, c(-1, -2, "z"))
+
+```
+
+Additionally, for both lists and data frames in R, you can use the `$ <- ` operator to add new elements:
+
+
+```{r}
+# Data frame
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+cbind(df, k = -1:-3)
+df$k <- -1:-3 # same to df[['k']] <- -1:-3
+df
+
+# List
+x_l <- list(a = 1:3, b = "a", d = 4:6)
+c(x_l, list(e = c(TRUE, FALSE)))
+x_l$e <- c(TRUE, FALSE) # same to x_l[['e']] <- c(TRUE, FALSE)
+x_l
+
+```
+
+
+## Python
+
+Creating new objects in Python is often accomplished using the assignment operator `=`. When it comes to adding elements to list, there are three primary functions to consider:
+
+- `append()`: add a single element to the end of a list.
+
+- `insert()`: add an element at a specific position within a list.
+
+- `extend()` same as `+`: append elements from an iterable (e.g., another list) to the end of an existing list, allowing for the expansion of the list with multiple elements.
+
+```{python}
+# Atomic element
+a = 1 / 200 * 30
+b = a + 1
+print(a)
+print(b)
+
+# List
+x = [2.1, 4.2, 3.3, 5.4]
+
+# Append on element
+x.append(-1)
+print(x)
+
+# Insert on eelement
+x.insert(3, -5.6)
+print(x)
+
+# Extend with new list
+x.extend([6.7, 7.9])
+print(x)
+```
+
+When working with `numpy.array` in Python, you can add elements in two primary ways:
+
+- `append()`: add element or a new numpy array to the end.
+
+- `insert()`: insert element or a new numpy array at specific locations within the original numpy array.
+
+```{python}
+import numpy as np
+
+# Create a NumPy array
+x_a = np.array([2.1, 4.2, 3.3, 5.4])
+
+print(np.append(x_a, -1))
+print(np.append(x_a, np.array([6.7, 7.9])))
+print(np.insert(x_a, 3, -5.6))
+print(np.insert(x_a, 3, np.array([6.7, 7.9])))
+```
+
+:::
+
 
 ### Read 
 
@@ -734,7 +873,7 @@ print(df)
 
 ## R
 
-Deletion in R can be accomplished relatively easily using methods like specifying negative integer indices or setting elements to `NULL` within a list. However, it's essential to recognize that there are limitations to deletion operations. For instance, when dealing with multi-dimensional arrays, you cannot delete a single element in the same straightforward manner; instead, you can only delete entire sub-dimensions. 
+Deletion in R can be accomplished relatively easily using methods like specifying **negative integer** indices or setting elements to `NULL` within a list. However, it's essential to recognize that there are limitations to deletion operations. For instance, when dealing with multi-dimensional arrays, you cannot delete a single element in the same straightforward manner; instead, you can only delete entire sub-dimensions. 
 
 
 ```{r}
@@ -1246,35 +1385,9 @@ The `return` statement is essential for a function to yield a value as its resul
 :::
 
 
-# New & Naming {#sec-naming}
+# Naming {#sec-naming}
 
 
-::: {.panel-tabset}
-
-## R
-
-Create new objects with the assignment operator `<-`:
-
-```{r}
-# "<-" special in R 
-
-a <- 1 / 200 * 30
-b <- a + 1
-```
-
-## Python
-
-```{python}
-a = 1 / 200 * 30
-b = a + 1
-
-print(a)
-print(b)
-
-```
-
-
-:::
 
 ## Naming rules
 
