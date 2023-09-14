@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HydroSimul - load data</title>
+<title>HydroSimul - Data Loading</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/basic_r_python.html">Processing with Skript</a></li><li class="breadcrumb-item"><a href="../dataprocess/data_load.html">load data</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/basic_r_python.html">Processing with Skript</a></li><li class="breadcrumb-item"><a href="../dataprocess/data_load.html">Data Loading</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/data_load.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">load data</span></a>
+ <span class="menu-text">Data Loading</span></a>
   </div>
 </li>
       </ul>
@@ -224,17 +224,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#plain-text-file" id="toc-plain-text-file" class="nav-link active" data-scroll-target="#plain-text-file">Plain text File</a>
+  <li><a href="#plain-text-file" id="toc-plain-text-file" class="nav-link active" data-scroll-target="#plain-text-file"><span class="header-section-number">1</span> Plain text File</a>
   <ul class="collapse">
-  <li><a href="#example-file" id="toc-example-file" class="nav-link" data-scroll-target="#example-file">Example File</a></li>
-  <li><a href="#r-library-and-functions" id="toc-r-library-and-functions" class="nav-link" data-scroll-target="#r-library-and-functions">R library and functions</a></li>
-  <li><a href="#metadata-handel" id="toc-metadata-handel" class="nav-link" data-scroll-target="#metadata-handel">Metadata Handel</a>
+  <li><a href="#example-file" id="toc-example-file" class="nav-link" data-scroll-target="#example-file"><span class="header-section-number">1.1</span> Example File</a></li>
+  <li><a href="#library-and-functions" id="toc-library-and-functions" class="nav-link" data-scroll-target="#library-and-functions"><span class="header-section-number">1.2</span> Library and functions</a></li>
+  <li><a href="#metadata-handel" id="toc-metadata-handel" class="nav-link" data-scroll-target="#metadata-handel"><span class="header-section-number">1.3</span> Metadata Handel</a>
   <ul class="collapse">
-  <li><a href="#directly-ignore-use-grguments-skip" id="toc-directly-ignore-use-grguments-skip" class="nav-link" data-scroll-target="#directly-ignore-use-grguments-skip">Directly Ignore use grguments <code>skip</code></a></li>
-  <li><a href="#read-metadata-as-table" id="toc-read-metadata-as-table" class="nav-link" data-scroll-target="#read-metadata-as-table">read metadata as table</a></li>
+  <li><a href="#directly-ignore-use-grguments-skip" id="toc-directly-ignore-use-grguments-skip" class="nav-link" data-scroll-target="#directly-ignore-use-grguments-skip"><span class="header-section-number">1.3.1</span> Directly Ignore use grguments <code>skip</code></a></li>
+  <li><a href="#read-metadata-as-table" id="toc-read-metadata-as-table" class="nav-link" data-scroll-target="#read-metadata-as-table"><span class="header-section-number">1.3.2</span> Read metadata as table</a></li>
   </ul></li>
+  <li><a href="#load-tabular-data" id="toc-load-tabular-data" class="nav-link" data-scroll-target="#load-tabular-data"><span class="header-section-number">1.4</span> Load tabular data</a></li>
+  <li><a href="#sec-datatype" id="toc-sec-datatype" class="nav-link" data-scroll-target="#sec-datatype"><span class="header-section-number">1.5</span> Data type</a></li>
   </ul></li>
-  <li><a href="#sec-string" id="toc-sec-string" class="nav-link" data-scroll-target="#sec-string">Text &amp; String</a></li>
+  <li><a href="#excel-file" id="toc-excel-file" class="nav-link" data-scroll-target="#excel-file"><span class="header-section-number">2</span> Excel File</a>
+  <ul class="collapse">
+  <li><a href="#example-file-1" id="toc-example-file-1" class="nav-link" data-scroll-target="#example-file-1"><span class="header-section-number">2.1</span> Example File</a></li>
+  <li><a href="#r-library-and-functions" id="toc-r-library-and-functions" class="nav-link" data-scroll-target="#r-library-and-functions"><span class="header-section-number">2.2</span> R library and functions</a></li>
+  <li><a href="#load-tabular-data-1" id="toc-load-tabular-data-1" class="nav-link" data-scroll-target="#load-tabular-data-1"><span class="header-section-number">2.3</span> Load tabular data</a>
+  <ul class="collapse">
+  <li><a href="#first-try-without-any-setting" id="toc-first-try-without-any-setting" class="nav-link" data-scroll-target="#first-try-without-any-setting"><span class="header-section-number">2.3.1</span> First try without any setting</a></li>
+  <li><a href="#give-a-range" id="toc-give-a-range" class="nav-link" data-scroll-target="#give-a-range"><span class="header-section-number">2.3.2</span> Give a <code>range</code></a></li>
+  </ul></li>
+  <li><a href="#data-type" id="toc-data-type" class="nav-link" data-scroll-target="#data-type"><span class="header-section-number">2.4</span> Data type</a></li>
+  </ul></li>
+  <li><a href="#netcdf" id="toc-netcdf" class="nav-link" data-scroll-target="#netcdf"><span class="header-section-number">3</span> NetCDF</a></li>
+  <li><a href="#sec-string" id="toc-sec-string" class="nav-link" data-scroll-target="#sec-string"><span class="header-section-number">4</span> Text &amp; String</a></li>
   </ul>
 </nav>
     </div>
@@ -243,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">load data</h1>
+<h1 class="title">Data Loading</h1>
 </div>
 
 
@@ -259,22 +273,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>This Aritcl will show the process to load data from other files. I t will divide into four paties: plain text (read able ASCII), Excel, NetCDF and spatial data.</p>
-<section id="plain-text-file" class="level1">
-<h1>Plain text File</h1>
+<section id="plain-text-file" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Plain text File</h1>
 <p>For more details about date (file) format, you can refer to the article titled <a href="../dataprocess/basic_format.html">Basic Data &amp; File Format</a>.</p>
-<section id="example-file" class="level2">
-<h2 class="anchored" data-anchor-id="example-file">Example File</h2>
+<section id="example-file" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="example-file"><span class="header-section-number">1.1</span> Example File</h2>
 <p>Let’s start with an example CSV file named <code>Bachum_2763190000100.csv</code>. This file contains pegel discharge data and is sourced from open data available at <a href="https://www.elwasweb.nrw.de/elwas-web/index.xhtml">ELWAS-WEB NRW</a>. You can also access it directly from the internet via <a href="https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv">Github</a>, just like you would access a local file.</p>
 <p>Take a look:</p>
 <p><img src="../images/bachum.png" class="img-fluid"></p>
 </section>
-<section id="r-library-and-functions" class="level2">
-<h2 class="anchored" data-anchor-id="r-library-and-functions">R library and functions</h2>
+<section id="library-and-functions" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="library-and-functions"><span class="header-section-number">1.2</span> Library and functions</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>First, we need to load the necessary library <code>tidyverse</code>. This library collection includes <code>readr</code> for reading files and <code>dplyr</code> for data manipulation, among others.</p>
 <p>And, we set the URL address as the file path (including the file name).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fn_Bachum <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fn_Bachum <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The documentation for the <code>readr</code> library is available online and can be accessed at <a href="https://readr.tidyverse.org">https://readr.tidyverse.org</a>.</p>
 <p>Of particular interest are the following functions:</p>
@@ -283,22 +302,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://readr.tidyverse.org/reference/read_table.html">readr::read_table()</a></li>
 </ul>
 <p>We can observe that the CSV file is divided by semicolons. Therefore, it’s more appropriate to use <code>read_csv2()</code> rather than <code>read_csv()</code>.</p>
+<p>The difference between <code>read_*()</code> functions in the <code>readr</code> package is determined by the delimiter character used in the files:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/readr_read_.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">CHEAT SHEET from <a href="https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf">Rstudio</a></figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fn_Bachum <span class="op">=</span> <span class="st">"C:\Lei\HS_Web\data_share/Bachum_2763190000100.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The documentation for the <code>pandas</code> library is available online and can be accessed at <a href="https://pandas.pydata.org/docs/index.html">https://pandas.pydata.org/docs/index.html</a>.</p>
+<p>Of particular interest are the following functions:</p>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv()</a></li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.read_table.html">pandas.read_table()</a></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-<section id="metadata-handel" class="level2">
-<h2 class="anchored" data-anchor-id="metadata-handel">Metadata Handel</h2>
+<section id="metadata-handel" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="metadata-handel"><span class="header-section-number">1.3</span> Metadata Handel</h2>
 <p>Metadata can vary widely between datasets, so it’s handled separately from the data body.</p>
 <p>There are three ways to deal with metadata:</p>
 <ol type="1">
 <li><p><strong>Directly Ignore:</strong> This approach involves ignoring metadata when it’s redundant or readily available from other data sources, such as file names or external references.</p></li>
-<li><p><strong>Extract from Text:</strong> When metadata is crucial but not in table form, you can extract information from text strings. For more information, refer to the section on string manipulation <a href="#sec-string">Section&nbsp;2</a>.</p></li>
+<li><p><strong>Extract from Text:</strong> When metadata is crucial but not in table form, you can extract information from text strings. For more information, refer to the section on string manipulation <a href="#sec-string">Section&nbsp;4</a>.</p></li>
 <li><p><strong>Read as a Second Table:</strong> If metadata is well-organized in a tabular format, it can be read as a separate table to facilitate its use.</p></li>
 </ol>
 <p>In the <code>Bachum_2763190000100.csv</code> file, you will find that there are 10 lines of metadata, which are well-organized in a tabular format. However, it’s important to note that the consistency in values column varies.</p>
-<section id="directly-ignore-use-grguments-skip" class="level3">
-<h3 class="anchored" data-anchor-id="directly-ignore-use-grguments-skip">Directly Ignore use grguments <code>skip</code></h3>
+<section id="directly-ignore-use-grguments-skip" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="directly-ignore-use-grguments-skip"><span class="header-section-number">1.3.1</span> Directly Ignore use grguments <code>skip</code></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">10</span>, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">10</span>, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
    X1            X2
@@ -316,11 +358,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="read-metadata-as-table" class="level3">
-<h3 class="anchored" data-anchor-id="read-metadata-as-table">read metadata as table</h3>
+<section id="read-metadata-as-table" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="read-metadata-as-table"><span class="header-section-number">1.3.2</span> Read metadata as table</h3>
+<p>More details in the next section:</p>
+</section>
+</section>
+<section id="load-tabular-data" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="load-tabular-data"><span class="header-section-number">1.4</span> Load tabular data</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>To read the first 10 lines of metadata, you can use the <code>n_max</code> setting with a value of <code>n_max = 10</code> in the <code>read_csv2()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
    X1                          X2             
@@ -337,6 +388,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 10 "Einzugsgebiet [km\xb2]"    "1.532,02"     </code></pre>
 </div>
 </div>
+<p>After dealing with the metadata, we can proceed to load the data body using the <code>readr::read_*()</code> function cluster. Plain text files typically store data in a tabular or matrix format, both of which have at most two dimensions. When using the <code>readr::read_()</code> function, it automatically returns a <code>tibble</code>. If your data in the text file is in matrix format, you can use conversion functions like <code>as.matrix()</code> to transform it into other data structures.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. load</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tb_Read <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">10</span>, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tb_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   X1            X2
+   &lt;chr&gt;      &lt;dbl&gt;
+ 1 01.01.1990  20.6
+ 2 02.01.1990  19.0
+ 3 03.01.1990  17.9
+ 4 04.01.1990  16.8
+ 5 05.01.1990  16.0
+ 6 06.01.1990  14.8
+ 7 07.01.1990  14.3
+ 8 08.01.1990  14.0
+ 9 09.01.1990  14.4
+10 10.01.1990  14.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. convert</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_Read <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tb_Read)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mat_Read <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(tb_Read)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>df_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           X1     X2
+1  01.01.1990 20.640
+2  02.01.1990 18.994
+3  03.01.1990 17.949
+4  04.01.1990 16.779
+5  05.01.1990 16.019
+6  06.01.1990 14.817
+7  07.01.1990 14.296
+8  08.01.1990 13.952
+9  09.01.1990 14.403
+10 10.01.1990 14.500</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mat_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      X1           X2      
+ [1,] "01.01.1990" "20.640"
+ [2,] "02.01.1990" "18.994"
+ [3,] "03.01.1990" "17.949"
+ [4,] "04.01.1990" "16.779"
+ [5,] "05.01.1990" "16.019"
+ [6,] "06.01.1990" "14.817"
+ [7,] "07.01.1990" "14.296"
+ [8,] "08.01.1990" "13.952"
+ [9,] "09.01.1990" "14.403"
+[10,] "10.01.1990" "14.500"</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tb_Read <span class="op">=</span> pd.read_csv(fn_Bachum, skiprows<span class="op">=</span><span class="dv">10</span>, nrows<span class="op">=</span><span class="dv">10</span>, header<span class="op">=</span><span class="va">None</span>, delimiter<span class="op">=</span><span class="st">';'</span>, decimal<span class="op">=</span><span class="st">','</span>, encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tb_Read)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            0       1
+0  01.01.1990  20.640
+1  02.01.1990  18.994
+2  03.01.1990  17.949
+3  04.01.1990  16.779
+4  05.01.1990  16.019
+5  06.01.1990  14.817
+6  07.01.1990  14.296
+7  08.01.1990  13.952
+8  09.01.1990  14.403
+9  10.01.1990  14.500</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-datatype" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="sec-datatype"><span class="header-section-number">1.5</span> Data type</h2>
 <p>When directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:</p>
 <ul>
 <li>Numeric: Examples include <code>Pegelnullpunkt</code> and <code>Einzugsgebiet</code>.</li>
@@ -346,8 +475,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In a data frame (tibble), columns must have the same data type. Consequently, R will automatically convert them to a single data type, which is typically string.</p>
 <p>To address this situation, you should specify the data type you want to read. For example, to read the date values in lines 4 and 5, you can use the following settings: 1. <code>skip = 3</code> to skip the first three lines of metadata. 2. <code>n_max = 2</code> to read the next two lines (lines 4 and 5) as date values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   X1        X2        
@@ -363,8 +492,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>To address the issue of date recognition, you can set the <code>col_types</code> parameter to <code>"cD"</code> when reading the data. This informs the function that the first column contains <code>c</code>haracters (<code>c</code>) and the second column contains <code>D</code>ates (<code>D</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">col_types =</span> <span class="st">"cD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">col_types =</span> <span class="st">"cD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   X1        X2    
@@ -375,9 +504,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Unfortunately, the default date format in R may not work for German-style dates like “d.m.Y,” as R primarily recognizes the “Y-m-d” format. To handle this, you can convert the dates using function <code>as.Date()</code> and specify the date format using the <code>format</code> argument, such as <code>format = "%d.%m.%Y"</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_Date <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_Date<span class="sc">$</span>X2 <span class="ot">&lt;-</span> df_Date<span class="sc">$</span>X2 <span class="sc">|&gt;</span> <span class="fu">as.Date</span>(<span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_Date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_Date <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_Date<span class="sc">$</span>X2 <span class="ot">&lt;-</span> df_Date<span class="sc">$</span>X2 <span class="sc">|&gt;</span> <span class="fu">as.Date</span>(<span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_Date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   X1        X2        
@@ -388,9 +517,162 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
+<section id="excel-file" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Excel File</h1>
+<p>When we discuss the combination of the software Excel with data files in formats such as .xls or .xlsx, there are numerous possibilities for data science. However, when we specifically consider the file format, there are distinct differences between plain text and Excel files:</p>
+<p><strong>Plain Text File vs.&nbsp;Excel for Data Storage</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 34%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Plain Text File</th>
+<th>Excel File</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data Structure</strong></td>
+<td>Typically stores data in a tabular format or matrix.</td>
+<td>Stores data in structured worksheets with multiple tables (sheets).</td>
+</tr>
+<tr class="even">
+<td><strong>Compatibility</strong></td>
+<td>Universally compatible with various software and programming languages.</td>
+<td>Compatibility may vary, and not all software can read Excel files.</td>
+</tr>
+<tr class="odd">
+<td><strong>Human-Readable</strong></td>
+<td>Easily readable by humans in a simple text format.</td>
+<td>Readable by humans but may include formatting that isn’t immediately apparent.</td>
+</tr>
+<tr class="even">
+<td><strong>Data Transfer</strong></td>
+<td>Easily shared and transferred between different platforms and systems.</td>
+<td>May require conversion or specific software for seamless data transfer.</td>
+</tr>
+<tr class="odd">
+<td><strong>Data Import/Export</strong></td>
+<td>May require custom import/export scripts for specific applications.</td>
+<td>Supports standardized import/export formats for various applications.</td>
+</tr>
+<tr class="even">
+<td><strong>Version Control</strong></td>
+<td>Suitable for version control systems (e.g., Git) for tracking changes.</td>
+<td>Not well-suited for version control due to binary format and complex changes.</td>
+</tr>
+<tr class="odd">
+<td><strong>Data Analysis</strong></td>
+<td>Requires additional software to analyze data (e.g., R or Python).</td>
+<td>Offers built-in data analysis tools (e.g., formulas, charts).</td>
+</tr>
+<tr class="even">
+<td><strong>Openness and Access</strong></td>
+<td>Open and transparent; data can be accessed and edited with any text editor.</td>
+<td>Proprietary format may require specific software (Microsoft Excel) to access and edit.</td>
+</tr>
+</tbody>
+</table>
+<p>Unlike plain text files, Excel files have the capability to contain multiple tables, known as sheets. In Excel, each cell within a sheet is uniquely identified by its specific coordinates. Rows are indexed with numerical values, and columns are identified using alphabetical indices. By combining the sheet name with these coordinates, it is possible to precisely locate any cell within an Excel file and retrieve the value it contains.</p>
+<section id="example-file-1" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="example-file-1"><span class="header-section-number">2.1</span> Example File</h2>
+<p>Let’s begin with an example Excel file named <code>Pegeln_NRW.xlsx</code>. This file contains information about measurement stations in NRW (Nordrhein-Westfalen, Germany) and is sourced from open data available at <a href="https://www.elwasweb.nrw.de/elwas-web/index.xhtml">ELWAS-WEB NRW</a>. You can also access it directly from <a href="https://github.com/HydroSimul/Web/blob/main/data_share/Pegeln_NRW.xlsx">Github</a>.</p>
+<p>Take a look:</p>
+<p><img src="../images/dataload_excel_pegeln.png" class="img-fluid"></p>
 </section>
-<section id="sec-string" class="level1">
-<h1>Text &amp; String</h1>
+<section id="r-library-and-functions" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="r-library-and-functions"><span class="header-section-number">2.2</span> R library and functions</h2>
+<p>To load the necessary library, <code>readxl</code>, and access its help documentation, you can visit <a href="https://readxl.tidyverse.org/">this link</a>. The <code>readxl::read_excel()</code> function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. Additionally, you have the options of using <code>read_xls()</code> for .xls files and <code>read_xlsx()</code> for .xlsx files. More details in the <a href="https://readxl.tidyverse.org/reference/read_excel.html">Page</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fn_Pegeln <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share/Pegeln_NRW.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-tabular-data-1" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="load-tabular-data-1"><span class="header-section-number">2.3</span> Load tabular data</h2>
+<p>Similar to plain text files, metadata is often provided before the data body in Excel files. In Excel, each cell can be assigned a specific data type, while in R tables (data.frame or tibble), every column must have the same data type. This necessitates separate handling of metadata and data body to ensure that the correct data types are maintained.</p>
+<p>Unlike plain text files where we can only select lines to load, Excel allows us to define coordinates to access a specific celles-box wherever they are located.</p>
+<section id="first-try-without-any-setting" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="first-try-without-any-setting"><span class="header-section-number">2.3.1</span> First try without any setting</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try without setting</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 277 × 16
+   Suchergebnisse Pegel.…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10
+   &lt;chr&gt;                   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 "Suchkriterien:\n -- \… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 2  &lt;NA&gt;                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 3  &lt;NA&gt;                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 4 "Name"                  Pege… Gewä… Betr… Pege… Einz… Q von Q bis NQ    MNQ  
+ 5 "Ahlen"                 3211… Werse LANU… 73,47 46,62 1975  2013  0     0,07 
+ 6 "Ahmsen"                4639… Werre LANU… 64,28 593   1963  2022  1,21  2,22 
+ 7 "Ahrhütte-Neuhof"       2718… Ahr   LANU… 340,… 124   1986  2011  0,22  0,36 
+ 8 "Albersloh"             3259… Werse LANU… 48,68 321,… 1973  2020  0,12  0,24 
+ 9 "Altena"                2766… Lenne LANU… 154,… 1.190 1950  2021  1,36  6,48 
+10 "Altena_Rahmedestraße"  2766… Rahm… LANU… 157,… 29,6  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+# ℹ 267 more rows
+# ℹ abbreviated name: ¹​`Suchergebnisse Pegel.xlsx 14.09.2023 10:01`
+# ℹ 6 more variables: ...11 &lt;chr&gt;, ...12 &lt;chr&gt;, ...13 &lt;chr&gt;, ...14 &lt;chr&gt;,
+#   ...15 &lt;chr&gt;, ...16 &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>When we provide only the file name to the function, we will always retrieve all the content from the first sheet. However, due to the limitations in R tables, every column will be recognized as the same data type, typically character.</p>
+</section>
+<section id="give-a-range" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="give-a-range"><span class="header-section-number">2.3.2</span> Give a <code>range</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the range argument</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln, <span class="at">range =</span> <span class="st">"Suchergebnisse Pegel!A5:P10"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 16
+  Name            Pegelnummer   Gewässername Betreiber  `Pegelnullpunkt [müNHN]`
+  &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;                   
+1 Ahlen           3211000000300 Werse        LANUV, NRW 73,47                   
+2 Ahmsen          4639000000100 Werre        LANUV, NRW 64,28                   
+3 Ahrhütte-Neuhof 2718193000100 Ahr          LANUV, NRW 340,58                  
+4 Albersloh       3259000000100 Werse        LANUV, NRW 48,68                   
+5 Altena          2766930000100 Lenne        LANUV, NRW 154,22                  
+# ℹ 11 more variables: `Einzugsgebiet [km²]` &lt;chr&gt;, `Q von` &lt;chr&gt;,
+#   `Q bis` &lt;chr&gt;, NQ &lt;chr&gt;, MNQ &lt;chr&gt;, MQ &lt;chr&gt;, MHQ &lt;chr&gt;, HQ &lt;chr&gt;,
+#   `Q Einheit` &lt;chr&gt;, `Ostwert in UTM` &lt;chr&gt;, `Nordwert in UTM` &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The data type of “Pegelnullpunkt [müNHN]” appears to be incorrect due to improper settings in Excel.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="data-type" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="data-type"><span class="header-section-number">2.4</span> Data type</h2>
+<p>Compared to plain text files, Excel data already contains data type information for each cell. Therefore, the data type will be directly determined by the data type specified in Excel.</p>
+<p>However, there are instances where the data type in Excel is not correctly set, so manual data type conversion may be necessary. For more details, refer to <a href="#sec-datatype">Section&nbsp;1.5</a>.</p>
+</section>
+</section>
+<section id="netcdf" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> NetCDF</h1>
+<p>the process loading of netCDF is seperated in the page</p>
+</section>
+<section id="sec-string" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Text &amp; String</h1>
 <p>more details</p>
 
 

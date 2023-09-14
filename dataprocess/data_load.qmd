@@ -1,10 +1,11 @@
 ---
-title: "load data"
+title: "Data Loading"
 execute:
   warning: false
   error: false
 sidebar:
   contents: auto
+number-sections: true
 ---
 
 This Aritcl will show the process to load data from other files. I t will divide into four paties: plain text (read able ASCII), Excel, NetCDF and spatial data. 
@@ -22,13 +23,18 @@ Take a look:
 
 ![](../images/bachum.png)
 
-## R library and functions
+## Library and functions
+
+::: {.panel-tabset}
+
+## R
 
 First, we need to load the necessary library `tidyverse`. This library collection includes `readr` for reading files and `dplyr` for data manipulation, among others.
 
 And, we set the URL address as the file path (including the file name).
 
 ```{r}
+# load the library
 library(tidyverse)
 fn_Bachum <- "https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"
 ```
@@ -41,6 +47,31 @@ Of particular interest are the following functions:
 - [readr::read_table()](https://readr.tidyverse.org/reference/read_table.html)
 
 We can observe that the CSV file is divided by semicolons. Therefore, it's more appropriate to use `read_csv2()` rather than `read_csv()`.
+
+The difference between `read_*()` functions in the `readr` package is determined by the delimiter character used in the files:
+
+
+![CHEAT SHEET from [Rstudio](https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf)](../images/readr_read_.png)
+
+
+
+## Python
+
+```{python}
+# load the library
+import pandas as pd
+fn_Bachum = "C:\Lei\HS_Web\data_share/Bachum_2763190000100.csv"
+```
+
+The documentation for the `pandas` library is available online and can be accessed at [https://pandas.pydata.org/docs/index.html](https://pandas.pydata.org/docs/index.html). 
+
+Of particular interest are the following functions:
+
+- [pandas.read_csv()](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html)
+- [pandas.read_table()](https://pandas.pydata.org/docs/reference/api/pandas.read_table.html)
+
+
+:::
 
 ## Metadata Handel
 
@@ -64,7 +95,17 @@ In the `Bachum_2763190000100.csv` file, you will find that there are 10 lines of
 read_csv2(fn_Bachum, skip = 10, n_max = 10, col_names = FALSE)
 ```
 
-### read metadata as table
+### Read metadata as table
+
+More details in the next section:
+
+## Load tabular data
+
+::: {.panel-tabset}
+
+## R
+
+
 
 To read the first 10 lines of metadata, you can use the `n_max` setting with a value of `n_max = 10` in the `read_csv2()` function.
 
@@ -72,6 +113,34 @@ To read the first 10 lines of metadata, you can use the `n_max` setting with a v
 ```{r}
 read_csv2(fn_Bachum, n_max = 10, col_names = FALSE)
 ```
+
+After dealing with the metadata, we can proceed to load the data body using the `readr::read_*()` function cluster. 
+Plain text files typically store data in a tabular or matrix format, both of which have at most two dimensions. 
+When using the `readr::read_()` function, it automatically returns a `tibble`. If your data in the text file is in matrix format, you can use conversion functions like `as.matrix()` to transform it into other data structures.
+
+```{r}
+# 1. load
+tb_Read <- read_csv2(fn_Bachum, skip = 10, n_max = 10, col_names = FALSE)
+tb_Read
+# 2. convert
+df_Read <- as.data.frame(tb_Read)
+mat_Read <- as.matrix(tb_Read)
+
+df_Read
+mat_Read
+```
+
+
+## Python
+
+```{python}
+tb_Read = pd.read_csv(fn_Bachum, skiprows=10, nrows=10, header=None, delimiter=';', decimal=',', encoding='latin-1')
+print(tb_Read)
+```
+
+:::
+
+## Data type {#sec-datatype}
 
 When directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:
 
@@ -115,6 +184,95 @@ df_Date$X2 <- df_Date$X2 |> as.Date(format = "%d.%m.%Y")
 df_Date
 ```
 
+
+
+
+
+
+# Excel File
+
+When we discuss the combination of the software Excel with data files in formats such as .xls or .xlsx, there are numerous possibilities for data science. However, when we specifically consider the file format, there are distinct differences between plain text and Excel files:
+
+**Plain Text File vs. Excel for Data Storage**
+
+| Aspect                      | Plain Text File                   | Excel File                            |
+|-----------------------------|-----------------------------------|--------------------------------------|
+| **Data Structure**          | Typically stores data in a tabular format or matrix. | Stores data in structured worksheets with multiple tables (sheets). |
+| **Compatibility**           | Universally compatible with various software and programming languages. | Compatibility may vary, and not all software can read Excel files. |
+| **Human-Readable**          | Easily readable by humans in a simple text format. | Readable by humans but may include formatting that isn't immediately apparent. |
+| **Data Transfer**           | Easily shared and transferred between different platforms and systems. | May require conversion or specific software for seamless data transfer. |
+| **Data Import/Export**      | May require custom import/export scripts for specific applications. | Supports standardized import/export formats for various applications. |
+| **Version Control**         | Suitable for version control systems (e.g., Git) for tracking changes. | Not well-suited for version control due to binary format and complex changes. |
+| **Data Analysis**           | Requires additional software to analyze data (e.g., R or Python). | Offers built-in data analysis tools (e.g., formulas, charts). |
+| **Openness and Access**     | Open and transparent; data can be accessed and edited with any text editor. | Proprietary format may require specific software (Microsoft Excel) to access and edit. |
+
+
+Unlike plain text files, Excel files have the capability to contain multiple tables, known as sheets. In Excel, each cell within a sheet is uniquely identified by its specific coordinates. Rows are indexed with numerical values, and columns are identified using alphabetical indices. By combining the sheet name with these coordinates, it is possible to precisely locate any cell within an Excel file and retrieve the value it contains.
+
+
+## Example File
+
+Let's begin with an example Excel file named `Pegeln_NRW.xlsx`. This file contains information about measurement stations in NRW (Nordrhein-Westfalen, Germany) and is sourced from open data available at [ELWAS-WEB NRW](https://www.elwasweb.nrw.de/elwas-web/index.xhtml). You can also access it directly from  [Github](https://github.com/HydroSimul/Web/blob/main/data_share/Pegeln_NRW.xlsx).
+
+Take a look:
+
+![](../images/dataload_excel_pegeln.png)
+
+
+## R library and functions
+
+To load the necessary library, `readxl`, and access its help documentation, you can visit [this link](https://readxl.tidyverse.org/). The `readxl::read_excel()` function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. Additionally, you have the options of using `read_xls()` for .xls files and `read_xlsx()` for .xlsx files. More details in the [Page](https://readxl.tidyverse.org/reference/read_excel.html).
+
+
+```{r}
+# load the library
+library(readxl)
+# The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first
+fn_Pegeln <- "C:\\Lei\\HS_Web\\data_share/Pegeln_NRW.xlsx"
+```
+
+
+## Load tabular data
+
+Similar to plain text files, metadata is often provided before the data body in Excel files. 
+In Excel, each cell can be assigned a specific data type, while in R tables (data.frame or tibble), every column must have the same data type. This necessitates separate handling of metadata and data body to ensure that the correct data types are maintained.
+
+Unlike plain text files where we can only select lines to load, Excel allows us to define coordinates to access a specific celles-box wherever they are located.
+
+### First try without any setting
+
+```{r}
+# try without setting
+tb_Pegeln <- read_excel(fn_Pegeln)
+tb_Pegeln
+```
+
+
+When we provide only the file name to the function, we will always retrieve all the content from the first sheet. However, due to the limitations in R tables, every column will be recognized as the same data type, typically character.
+
+### Give a `range`
+
+```{r}
+# using the range argument
+tb_Pegeln_Range <- read_excel(fn_Pegeln, range = "Suchergebnisse Pegel!A5:P10")
+tb_Pegeln_Range
+```
+
+::: {.callout-warning}
+The data type of "Pegelnullpunkt [müNHN]" appears to be incorrect due to improper settings in Excel.
+:::
+
+
+## Data type
+
+Compared to plain text files, Excel data already contains data type information for each cell. Therefore, the data type will be directly determined by the data type specified in Excel.
+
+However, there are instances where the data type in Excel is not correctly set, so manual data type conversion may be necessary. For more details, refer to [@sec-datatype].
+
+
+# NetCDF
+
+the process loading of netCDF is seperated in the page
 
 # Text & String {#sec-string}
 
