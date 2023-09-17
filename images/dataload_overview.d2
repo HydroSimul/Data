@@ -1,0 +1,68 @@
+...@classes
+
+Data Load -- Plaint Text: {style.stroke: "#17365c"}
+Data Load -- Excel: {style.stroke: "#17365c"}
+# Data Load -- NetCDF: {style.stroke: "#17365c"}
+# Data Load -- Spatial: {style.stroke: "#17365c"}
+
+Plaint Text -> Functions.R.read_p -- Functions.Python.read_p -> Process.metadata: {style.stroke: "#17365c"}
+Excel -> Functions.R.read_e -- Functions.Python.read_e -> Process.loadtable_e: {style.stroke: "#17365c"}
+Functions: {
+  R: {
+    class: bxR
+    read_p: |md
+      ## readr
+      - read_table()
+      - read_csv()
+    |
+    read_e: |md
+      ## readxl
+      - read_excel()
+    |
+  }
+  Python: {
+    class: bxPy
+    read_p: |md
+      ## pandas
+      - read_table()
+    |
+    read_e: |md
+      ## pandas
+      - read_excel()
+    |
+  }
+}
+Process: {
+  # plain text
+  metadata -> loadtable_p -> datatype: {style.stroke: "#17365c"}
+  metadata: 1\. Metadata {
+    text: |md
+      - Skip
+      - Read as Table
+      - Read as Text
+    |
+  }
+  loadtable_p: 2\. Load Table {
+    text: |md
+      - Separate character
+      - Header / Colnames?
+      - Skip & read number
+    |
+  }
+  datatype: 3\. Datatype {
+    text: |md
+      - Convert by reading
+      - Convert after read
+    |
+  }
+  # excel
+  loadtable_e -> datatype: {style.stroke: "#17365c"}
+  loadtable_e: 2\. Load Table {
+    text: |md
+      - Range
+      - Header / Colnames?
+    |
+  }
+}
+
+*.style.stroke: "#17365c"

@@ -8,7 +8,13 @@ sidebar:
 number-sections: true
 ---
 
+
 This Aritcl will show the process to load data from other files. I t will divide into four paties: plain text (read able ASCII), Excel, NetCDF and spatial data. 
+
+Overview:
+
+
+![](../images/dataload_overview.svg)
 
 # Plain text File
 
@@ -37,6 +43,7 @@ And, we set the URL address as the file path (including the file name).
 # load the library
 library(tidyverse)
 fn_Bachum <- "https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"
+fn_Datatype <- "https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/load_Datatype.txt"
 ```
 
 The documentation for the `readr` library is available online and can be accessed at [https://readr.tidyverse.org](https://readr.tidyverse.org). 
@@ -60,7 +67,8 @@ The difference between `read_*()` functions in the `readr` package is determined
 ```{python}
 # load the library
 import pandas as pd
-fn_Bachum = "C:\Lei\HS_Web\data_share/Bachum_2763190000100.csv"
+fn_Bachum = "https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"
+fn_Datatype = "https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/load_Datatype.txt"
 ```
 
 The documentation for the `pandas` library is available online and can be accessed at [https://pandas.pydata.org/docs/index.html](https://pandas.pydata.org/docs/index.html). 
@@ -96,6 +104,46 @@ read_csv2(fn_Bachum, skip = 10, n_max = 10, col_names = FALSE)
 ```
 
 ### Read metadata as table
+
+When directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:
+
+- Numeric: Examples include `Pegelnullpunkt` and `Einzugsgebiet`.
+- String: This category covers fields like `Name`, `Pegelnummer`, and others.
+- Date: Date values are present in columns like `Datum von` and `Datum bis`.
+
+In a data frame (tibble), columns must have the same data type. Consequently, R will automatically convert them to a single data type, which is typically string.
+
+To address this situation, you should specify the data type you want to read. For example, to read the date values in lines 4 and 5, you can use the following settings:
+1. `skip = 3` to skip the first three lines of metadata.
+2. `n_max = 2` to read the next two lines (lines 4 and 5) as date values.
+
+
+::: {.panel-tabset}
+
+## R
+
+
+
+```{r}
+# skip = 3
+read_csv2(fn_Bachum, skip = 3, n_max = 2, col_names = FALSE)
+```
+
+## Python
+
+```{python}
+df_bach = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', encoding='latin-1')
+print(df_bach)
+```
+
+:::
+
+
+Unfortunately, R may not always recognize date values correctly, so you may need to perform additional steps for conversion:
+
+1. **After Reading:** This involves transforming the data from its initial format to the desired date format within your R environment.
+
+2. **Set the Data Type by Reading:** Another approach is to set the data type while reading the data. 
 
 More details in the next section:
 
@@ -142,47 +190,168 @@ print(tb_Read)
 
 ## Data type {#sec-datatype}
 
-When directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:
+In this section, we will work with a custom-made text file that contains various data types and formats. The file consists of three rows, with one of them serving as the header containing column names, and six columns in total.
 
-- Numeric: Examples include `Pegelnullpunkt` and `Einzugsgebiet`.
-- String: This category covers fields like `Name`, `Pegelnummer`, and others.
-- Date: Date values are present in columns like `Datum von` and `Datum bis`.
+Let's take a look:
 
-In a data frame (tibble), columns must have the same data type. Consequently, R will automatically convert them to a single data type, which is typically string.
+![](../images/dataload_datatype_txt.png)
 
-To address this situation, you should specify the data type you want to read. For example, to read the date values in lines 4 and 5, you can use the following settings:
-1. `skip = 3` to skip the first three lines of metadata.
-2. `n_max = 2` to read the next two lines (lines 4 and 5) as date values.
+Actually the function will always guse the dattype for each column, when the data really normally format the function will return the right datatype for the data:
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+read_table(fn_Datatype)
+
+```
+
+## Python
+
+```{python}
+df = pd.read_table(fn_Datatype)
+print(df)
+print(df.dtypes)
+```
+
+:::
+
+By default, functions like `readr::read_table()` in R and `pandas.read_table()` in Python will attempt to guess data types automatically when reading data. Here's how this guessing typically works:
+
+- If a column contains only numbers and decimal dots (periods), it will be recognized as numeric (double in R and int or float in Python).
+
+- If a date is formatted in "Y-M-D" (e.g., "2023-08-27") or "h:m:s" (e.g., "15:30:00") formats, it may be recognized as a date or time type. **Nur in R**
+
+- If the data type cannot be confidently determined, it is often treated as a string (str in R and object in Python).
+
+This automatic guessing is convenient, but it's essential to verify the inferred data types, especially when working with diverse datasets. 
+
+### Set the Data Type by Reading
+
+Explicitly setting data types using the `col_types` (in R) or `dtype` (in Python) argument can help ensure correct data handling.
+
+
+::: {.panel-tabset}
+
+## R
+
+
+
+
+
+To address the issue of date recognition, you can set the `col_types` argument,
+you can use a compact string representation where each character represents one column:
+
+- `c`: Character
+- `i`: Integer
+- `n`: Number
+- `d`: Double
+- `l`: Logical
+- `f`: Factor
+- `D`: Date
+- `T`: Date Time
+- `t`: Time
+- `?`: Guess
+- `_` or `-`: Skip
+
+
+
+to `"cD"` when reading the data. This informs the function that the first column contains `c`haracters (`c`) and the second column contains `D`ates (`D`).
 
 
 ```{r}
-# skip = 10
-read_csv2(fn_Bachum, skip = 3, n_max = 2, col_names = FALSE)
+read_table(fn_Datatype, col_types = "iddDDc")
 ```
-
-Unfortunately, R may not always recognize date values correctly, so you may need to perform additional steps for conversion:
-
-1. **After Reading:** This involves transforming the data from its initial format to the desired date format within your R environment.
-
-2. **Set the Data Type by Reading:** Another approach is to set the data type while reading the data. 
-
-To address the issue of date recognition, you can set the `col_types` parameter to `"cD"` when reading the data. This informs the function that the first column contains `c`haracters (`c`) and the second column contains `D`ates (`D`).
-
 
 ```{r}
-# skip = 10
-read_csv2(fn_Bachum, skip = 3, n_max = 2, col_names = FALSE, col_types = "cD")
+read_table(fn_Datatype, col_types = "idd?Dc")
 ```
 
 
-Unfortunately, the default date format in R may not work for German-style dates like "d.m.Y," as R primarily recognizes the "Y-m-d" format. To handle this, you can convert the dates using function `as.Date()` and specify the date format using the `format` argument, such as `format = "%d.%m.%Y"`.
+## Python
 
+To set data types when reading data using functions `pandas.read_*`, you have three main choices by using the `dtype` parameter:
+
+- `str`: Specify the data type as a string.
+- `int`: Specify the data type as an integer.
+- `float`: Specify the data type as a floating-point number.
+
+However, you can also use the `dtype` parameter with a callable function to perform more advanced type conversions. Some commonly used functions include:
+
+- `pd.to_datetime`: Converts a column to datetime format.
+- `pd.to_numeric`: Converts a column to numeric (integer or float) format.
+- `pd.to_timedelta`: Converts a column to timedelta format.
+
+
+
+
+```{python}
+#| eval: false
+# Define column names and types as a dictionary
+col_types = {"X1": str, "X2": pd.to_datetime}
+# Read the CSV file, skip 3 rows, read 2 rows, and specify column names and types
+df = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', names=["X1", "X2"], dtype=col_types, encoding='latin-1')
+
+# Display the loaded data
+print(df)
+```
+
+::: {.callout-waring}
+DON'T RUN
+Error, because data doesn't match the default format of 'Y-m-d'.
+:::
+
+
+:::
+
+
+::: {.callout-waring}
+Unfortunately, the default date format in R and Python may not work for German-style dates like "d.m.Y" as R and Python primarily recognizes the "Y-m-d" format. 
+:::
+
+
+
+
+
+### After Reading
+
+To address this issue, you can perform date conversions after reading the data:
+
+
+
+::: {.panel-tabset}
+
+## R
+
+Using function `as.Date()` and specify the date format using the `format` argument, such as `format = "%d.%m.%Y"`.
 
 ```{r}
 df_Date <- read_csv2(fn_Bachum, skip = 3, n_max = 2, col_names = FALSE)
 df_Date$X2 <- df_Date$X2 |> as.Date(format = "%d.%m.%Y")
 df_Date
 ```
+
+
+## Python
+
+```{python}
+df_Date = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', encoding='latin-1')
+
+# Display the loaded data
+print(df_Date)
+
+# 2. Convert the second column (X2) to a date format
+df_Date[1] = pd.to_datetime(df_Date[1], format='%d.%m.%Y')
+
+# Display the DataFrame with the second column converted to date format
+print(df_Date)
+```
+
+:::
+
+
+
 
 
 

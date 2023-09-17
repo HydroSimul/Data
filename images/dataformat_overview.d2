@@ -1,0 +1,65 @@
+...@classes
+direction: right
+ds: Data Structure: {
+  Array: {
+    d2: 1- or 2-Dim
+
+    d3: 3- or more Dim
+  }
+  table: Table (Dataframe)
+  Timeserise: {
+    Normal
+    Raster based
+    Vector based
+  }
+  Spatial Raster
+  Spatial Vector
+}
+
+df: Data Fileformats: {
+  pte: Plain Text & Excel: {
+    class: bxR
+
+    text: |md
+    ## Plain Text
+    - Text
+    - CSV
+
+    ## Excel
+  |
+
+  }
+  NetCDF:{
+    class: bxGSW
+
+  }
+  Spatial Raster: {
+    class: bxING
+    text: |md
+      - TIFF
+      - ASC
+      - JPEG, PNG
+    |
+  }
+  Spatial Vector: {
+    class: bxPy
+    text: |md
+      - SHP
+      - GPKG
+    |
+  }
+}
+
+ds.table <-> df.pte: {style.stroke: "#65b32e"}
+
+ds.Array.d2 <-> df.pte: {style.stroke: "#65b32e"}
+ds.Array <-> df.NetCDF: {style.stroke: "#e0318a"}
+
+
+ds.Timeserise.Normal <-> df.pte: {style.stroke: "#65b32e"}
+ds.Timeserise <-> df.NetCDF: {style.stroke: "#e0318a"}
+
+ds.Spatial Raster <-> df.Spatial Raster: {style.stroke: "#00a1d9"}
+ds.Spatial Vector <-> df.Spatial Vector: {style.stroke: "#ef7d00"}
+
+ds.Spatial Raster <-> df.NetCDF: {style.stroke: "#e0318a"}

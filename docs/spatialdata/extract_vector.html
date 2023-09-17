@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HydroSimul - Dataset</title>
+<title>HydroSimul - Extract values from Vector (Shape) Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../dataprocess/basic_format.html" rel="next">
+<link href="../spatialdata/extract_raster.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -62,6 +62,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -105,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../spatialdata/extract_raster.html">Spatial Data</a></li><li class="breadcrumb-item"><a href="../spatialdata/extract_vector.html">Extract values from Vector (Shape) Data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -119,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../dataprocess/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../dataprocess/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dataprocess</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -180,22 +182,22 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">Spatial Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataprocess/extract_raster.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatialdata/extract_raster.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extract values from Raster Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataprocess/extract_vector.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatialdata/extract_vector.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Extract values from Vector (Shape) Data</span></a>
   </div>
 </li>
@@ -209,14 +211,27 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vector-data" id="toc-vector-data" class="nav-link active" data-scroll-target="#vector-data"><span class="header-section-number">1</span> Vector Data</a></li>
+  <li><a href="#extract-from-polygons" id="toc-extract-from-polygons" class="nav-link" data-scroll-target="#extract-from-polygons"><span class="header-section-number">2</span> Extract from Polygons</a></li>
+  <li><a href="#extract-from-points" id="toc-extract-from-points" class="nav-link" data-scroll-target="#extract-from-points"><span class="header-section-number">3</span> Extract from Points</a>
+  <ul class="collapse">
+  <li><a href="#numerical-mean" id="toc-numerical-mean" class="nav-link" data-scroll-target="#numerical-mean"><span class="header-section-number">3.1</span> Numerical Mean</a></li>
+  <li><a href="#tiessen-dirichlet-polygon" id="toc-tiessen-dirichlet-polygon" class="nav-link" data-scroll-target="#tiessen-dirichlet-polygon"><span class="header-section-number">3.2</span> Tiessen (Dirichlet) Polygon</a></li>
+  <li><a href="#interpolate-as-raster" id="toc-interpolate-as-raster" class="nav-link" data-scroll-target="#interpolate-as-raster"><span class="header-section-number">3.3</span> Interpolate as Raster</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Dataset</h1>
+<h1 class="title">Extract values from Vector (Shape) Data</h1>
 </div>
 
 
@@ -231,9 +246,82 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Numerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide <strong>direct links</strong> to the datasets but also present <strong>essential information in a standardized format</strong>, simplifying your dataset selection process. Additionally, we strive to establish connections with <strong>research papers</strong> that have utilized these datasets and offer valuable feedback gleaned from these sources.</p>
+<section id="vector-data" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Vector Data</h1>
+<p>Compared to the raster data are <strong>Vector</strong> data describe the data use mange Shapes, the basic (or we can say the only three) Shape form are <strong>Points</strong>, <strong>Lines</strong> and <strong>Polygons</strong>. In all cases, the <strong>geometry</strong> of these data structures consists of sets of coordinate pairs (x, y). (From <a href="https://rspatial.org/terra/spatial/2-spatialdata.html#vector-data">terra</a> The geometry just define the location and topology, the other important part of vector data is the <strong>attributes</strong> of every shape, in that store we the data.</p>
+<p>In our Hydrology or Meteorology fields have we usually the point-data (e.g.&nbsp;data from measuring station) and area-data (e.g.&nbsp;land use or soil). There may be also some line-data (e.g.&nbsp;isoline), but they are always not used for storing the data, maybe just show the data. So, the operate <strong>EXTRACT</strong> is actually the statistic of the Vector data for the specific regions.</p>
+<p>And in the Blog we will only take the forms <strong>POINTS</strong> and <strong>POLYGONs</strong> into account.</p>
+</section>
+<section id="extract-from-polygons" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Extract from Polygons</h1>
+<p>When we just <strong>EXTRACT</strong> one value (one attribute) we can straight use the function <code>intersect()</code>, to intersect the data-polygons and regions-polygons then calculate the statistic values for every regions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/spatialdata_extract_area.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration of Extract with Polygon-value</figcaption>
+</figure>
+</div>
+<p><strong>But</strong> when we need to extract more values (attributes), again the idea from last Blog <a href="">Exact with scale product</a> will be used:</p>
+<p><span class="math display">\[
+\vec{\Omega}_{[attribute,region]} = \vec{A}_{[attribute,polygon]} \cdot \vec{W}_{[polygon,region]}
+\]</span></p>
+<p><span class="math inline">\(\vec{\Omega}_{[attribute,region]}\)</span> = Region-value of every region</p>
+<p><span class="math inline">\(\vec{A}_{[attribute,polygon]}\)</span> = attributes list in the matrix [attribute,polygon]</p>
+<p><span class="math inline">\(\vec{W}_{[polygon,region]}\)</span> = Weights of every polygon to every region in the matrix [polygon,region]</p>
+<ol type="1">
+<li><p>Weight-Matrix create: just use <code>intersect()</code> then statistic the portion of the value-area to the region-area in matrix [value-polygon, regions]</p></li>
+<li><p>Value-Matrix create: connect the attribute list</p></li>
+<li><p>scale product with both Value- and Weight-Matrix</p></li>
+</ol>
+</section>
+<section id="extract-from-points" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Extract from Points</h1>
+<section id="numerical-mean" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="numerical-mean"><span class="header-section-number">3.1</span> Numerical Mean</h2>
+<p>The moooost simple and direct method is the <strong>Numerical Mean</strong> of points in the region:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/spatialdata_extract_point0.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration of Extract with Point-Value: Numerical Mean of points in the region</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Interset with regions, then select points which in the region</li>
+<li>Calculate mean value of points</li>
+</ol>
+<p>The weakness are also obviously, many points, who lay just near the boundary of region, will be ignored. It’s also familiar that in some regions there are no points laying in.</p>
+<p>So, we need maybe convert the point-data to <strong>polygon-</strong> or <strong>raster-data</strong></p>
+</section>
+<section id="tiessen-dirichlet-polygon" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="tiessen-dirichlet-polygon"><span class="header-section-number">3.2</span> Tiessen (Dirichlet) Polygon</h2>
+<p>Actually the convert to the polygon is the most popular and typical method specially with the <strong>Tiessen (Dirichlet) Polygon</strong> in meteorological fields.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/spatialdata_extract_point.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration of Extract mit Punkt-Wert</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Convert point data to Tiessen polygon data</li>
+<li>use the method of polygon like above</li>
+</ol>
+</section>
+<section id="interpolate-as-raster" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="interpolate-as-raster"><span class="header-section-number">3.3</span> Interpolate as Raster</h2>
+<p>The second convert idea is convert to the raster: <strong>Interpolation</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/spatialdata_point_raster.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration der Interpolation mit Punkt-Werten</figcaption>
+</figure>
+</div>
+<p>The <strong>Interpolation</strong> is also one important issue, and it will be discussed in th near future. Here will just show the three most impotent methods: <strong>Nearest neighbor</strong>, <strong>IDW (Inverse distance weighted)</strong> and <strong>Kringing</strong></p>
+<p>The three methods are also very easy processed in <code>R::terra</code>, that will be showed in the next Blog.</p>
+<p>The end.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -471,11 +559,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../spatialdata/extract_raster.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Extract values from Raster Data</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../dataprocess/basic_format.html" class="pagination-link">
-        <span class="nav-page-text">Basic format</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

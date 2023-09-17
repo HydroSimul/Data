@@ -39,6 +39,10 @@ website:
               contents:
                 - dataprocess/basic_r_python.qmd      
                 - dataprocess/data_load.qmd      
+            - section: "Spatial Data"
+              contents:
+                - dataprocess/extract_raster.qmd      
+                - dataprocess/extract_vector.qmd      
 
 
 format:

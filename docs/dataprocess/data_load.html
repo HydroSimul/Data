@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../spatialdata/extract_raster.html" rel="next">
 <link href="../dataprocess/basic_r_python.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -212,6 +213,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Spatial Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spatialdata/extract_raster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extract values from Raster Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spatialdata/extract_vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extract values from Vector (Shape) Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -234,7 +258,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#read-metadata-as-table" id="toc-read-metadata-as-table" class="nav-link" data-scroll-target="#read-metadata-as-table"><span class="header-section-number">1.3.2</span> Read metadata as table</a></li>
   </ul></li>
   <li><a href="#load-tabular-data" id="toc-load-tabular-data" class="nav-link" data-scroll-target="#load-tabular-data"><span class="header-section-number">1.4</span> Load tabular data</a></li>
-  <li><a href="#sec-datatype" id="toc-sec-datatype" class="nav-link" data-scroll-target="#sec-datatype"><span class="header-section-number">1.5</span> Data type</a></li>
+  <li><a href="#sec-datatype" id="toc-sec-datatype" class="nav-link" data-scroll-target="#sec-datatype"><span class="header-section-number">1.5</span> Data type</a>
+  <ul class="collapse">
+  <li><a href="#set-the-data-type-by-reading" id="toc-set-the-data-type-by-reading" class="nav-link" data-scroll-target="#set-the-data-type-by-reading"><span class="header-section-number">1.5.1</span> Set the Data Type by Reading</a></li>
+  <li><a href="#after-reading" id="toc-after-reading" class="nav-link" data-scroll-target="#after-reading"><span class="header-section-number">1.5.2</span> After Reading</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#excel-file" id="toc-excel-file" class="nav-link" data-scroll-target="#excel-file"><span class="header-section-number">2</span> Excel File</a>
   <ul class="collapse">
@@ -273,6 +301,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>This Aritcl will show the process to load data from other files. I t will divide into four paties: plain text (read able ASCII), Excel, NetCDF and spatial data.</p>
+<p>Overview:</p>
+<p><img src="../images/dataload_overview.svg" class="img-fluid"></p>
 <section id="plain-text-file" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Plain text File</h1>
 <p>For more details about date (file) format, you can refer to the article titled <a href="../dataprocess/basic_format.html">Basic Data &amp; File Format</a>.</p>
@@ -293,7 +323,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fn_Bachum <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fn_Bachum <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fn_Datatype <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/load_Datatype.txt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The documentation for the <code>readr</code> library is available online and can be accessed at <a href="https://readr.tidyverse.org">https://readr.tidyverse.org</a>.</p>
 <p>Of particular interest are the following functions:</p>
@@ -314,7 +345,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fn_Bachum <span class="op">=</span> <span class="st">"C:\Lei\HS_Web\data_share/Bachum_2763190000100.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fn_Bachum <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fn_Datatype <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/load_Datatype.txt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The documentation for the <code>pandas</code> library is available online and can be accessed at <a href="https://pandas.pydata.org/docs/index.html">https://pandas.pydata.org/docs/index.html</a>.</p>
 <p>Of particular interest are the following functions:</p>
@@ -360,18 +392,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="read-metadata-as-table" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="read-metadata-as-table"><span class="header-section-number">1.3.2</span> Read metadata as table</h3>
+<p>When directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:</p>
+<ul>
+<li>Numeric: Examples include <code>Pegelnullpunkt</code> and <code>Einzugsgebiet</code>.</li>
+<li>String: This category covers fields like <code>Name</code>, <code>Pegelnummer</code>, and others.</li>
+<li>Date: Date values are present in columns like <code>Datum von</code> and <code>Datum bis</code>.</li>
+</ul>
+<p>In a data frame (tibble), columns must have the same data type. Consequently, R will automatically convert them to a single data type, which is typically string.</p>
+<p>To address this situation, you should specify the data type you want to read. For example, to read the date values in lines 4 and 5, you can use the following settings: 1. <code>skip = 3</code> to skip the first three lines of metadata. 2. <code>n_max = 2</code> to read the next two lines (lines 4 and 5) as date values.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 3</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  X1        X2        
+  &lt;chr&gt;     &lt;chr&gt;     
+1 Datum von 01.01.1990
+2 Datum bis 31.12.2022</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_bach <span class="op">=</span> pd.read_csv(fn_Bachum, skiprows<span class="op">=</span><span class="dv">3</span>, nrows<span class="op">=</span><span class="dv">2</span>, header<span class="op">=</span><span class="va">None</span>, delimiter<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_bach)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           0           1
+0  Datum von  01.01.1990
+1  Datum bis  31.12.2022</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Unfortunately, R may not always recognize date values correctly, so you may need to perform additional steps for conversion:</p>
+<ol type="1">
+<li><p><strong>After Reading:</strong> This involves transforming the data from its initial format to the desired date format within your R environment.</p></li>
+<li><p><strong>Set the Data Type by Reading:</strong> Another approach is to set the data type while reading the data.</p></li>
+</ol>
 <p>More details in the next section:</p>
 </section>
 </section>
 <section id="load-tabular-data" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="load-tabular-data"><span class="header-section-number">1.4</span> Load tabular data</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>To read the first 10 lines of metadata, you can use the <code>n_max</code> setting with a value of <code>n_max = 10</code> in the <code>read_csv2()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
    X1                          X2             
@@ -390,9 +464,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>After dealing with the metadata, we can proceed to load the data body using the <code>readr::read_*()</code> function cluster. Plain text files typically store data in a tabular or matrix format, both of which have at most two dimensions. When using the <code>readr::read_()</code> function, it automatically returns a <code>tibble</code>. If your data in the text file is in matrix format, you can use conversion functions like <code>as.matrix()</code> to transform it into other data structures.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. load</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tb_Read <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">10</span>, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tb_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. load</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tb_Read <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">10</span>, <span class="at">n_max =</span> <span class="dv">10</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>tb_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
    X1            X2
@@ -408,11 +482,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  9 09.01.1990  14.4
 10 10.01.1990  14.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. convert</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_Read <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tb_Read)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mat_Read <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(tb_Read)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>df_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. convert</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_Read <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tb_Read)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mat_Read <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(tb_Read)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>df_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           X1     X2
 1  01.01.1990 20.640
@@ -426,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 9  09.01.1990 14.403
 10 10.01.1990 14.500</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mat_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mat_Read</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      X1           X2      
  [1,] "01.01.1990" "20.640"
@@ -442,10 +516,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tb_Read <span class="op">=</span> pd.read_csv(fn_Bachum, skiprows<span class="op">=</span><span class="dv">10</span>, nrows<span class="op">=</span><span class="dv">10</span>, header<span class="op">=</span><span class="va">None</span>, delimiter<span class="op">=</span><span class="st">';'</span>, decimal<span class="op">=</span><span class="st">','</span>, encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tb_Read)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tb_Read <span class="op">=</span> pd.read_csv(fn_Bachum, skiprows<span class="op">=</span><span class="dv">10</span>, nrows<span class="op">=</span><span class="dv">10</span>, header<span class="op">=</span><span class="va">None</span>, delimiter<span class="op">=</span><span class="st">';'</span>, decimal<span class="op">=</span><span class="st">','</span>, encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tb_Read)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            0       1
 0  01.01.1990  20.640
@@ -466,47 +540,142 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-datatype" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="sec-datatype"><span class="header-section-number">1.5</span> Data type</h2>
-<p>When directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:</p>
+<p>In this section, we will work with a custom-made text file that contains various data types and formats. The file consists of three rows, with one of them serving as the header containing column names, and six columns in total.</p>
+<p>Let’s take a look:</p>
+<p><img src="../images/dataload_datatype_txt.png" class="img-fluid"></p>
+<p>Actually the function will always guse the dattype for each column, when the data really normally format the function will return the right datatype for the data:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_table</span>(fn_Datatype)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+    int float_en float_de date_en    date_de    str  
+  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;date&gt;     &lt;chr&gt;      &lt;chr&gt;
+1     1      0.1 0,1      2023-09-15 15.09.2023 en   
+2     9      9.6 9,6      2023-09-16 16.09.2023 de   </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_table(fn_Datatype)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   int  float_en float_de     date_en     date_de str
+0    1       0.1      0,1  2023-09-15  15.09.2023  en
+1    9       9.6      9,6  2023-09-16  16.09.2023  de</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>int           int64
+float_en    float64
+float_de     object
+date_en      object
+date_de      object
+str          object
+dtype: object</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>By default, functions like <code>readr::read_table()</code> in R and <code>pandas.read_table()</code> in Python will attempt to guess data types automatically when reading data. Here’s how this guessing typically works:</p>
 <ul>
-<li>Numeric: Examples include <code>Pegelnullpunkt</code> and <code>Einzugsgebiet</code>.</li>
-<li>String: This category covers fields like <code>Name</code>, <code>Pegelnummer</code>, and others.</li>
-<li>Date: Date values are present in columns like <code>Datum von</code> and <code>Datum bis</code>.</li>
+<li><p>If a column contains only numbers and decimal dots (periods), it will be recognized as numeric (double in R and int or float in Python).</p></li>
+<li><p>If a date is formatted in “Y-M-D” (e.g., “2023-08-27”) or “h:m:s” (e.g., “15:30:00”) formats, it may be recognized as a date or time type. <strong>Nur in R</strong></p></li>
+<li><p>If the data type cannot be confidently determined, it is often treated as a string (str in R and object in Python).</p></li>
 </ul>
-<p>In a data frame (tibble), columns must have the same data type. Consequently, R will automatically convert them to a single data type, which is typically string.</p>
-<p>To address this situation, you should specify the data type you want to read. For example, to read the date values in lines 4 and 5, you can use the following settings: 1. <code>skip = 3</code> to skip the first three lines of metadata. 2. <code>n_max = 2</code> to read the next two lines (lines 4 and 5) as date values.</p>
+<p>This automatic guessing is convenient, but it’s essential to verify the inferred data types, especially when working with diverse datasets.</p>
+<section id="set-the-data-type-by-reading" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="set-the-data-type-by-reading"><span class="header-section-number">1.5.1</span> Set the Data Type by Reading</h3>
+<p>Explicitly setting data types using the <code>col_types</code> (in R) or <code>dtype</code> (in Python) argument can help ensure correct data handling.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>To address the issue of date recognition, you can set the <code>col_types</code> argument, you can use a compact string representation where each character represents one column:</p>
+<ul>
+<li><code>c</code>: Character</li>
+<li><code>i</code>: Integer</li>
+<li><code>n</code>: Number</li>
+<li><code>d</code>: Double</li>
+<li><code>l</code>: Logical</li>
+<li><code>f</code>: Factor</li>
+<li><code>D</code>: Date</li>
+<li><code>T</code>: Date Time</li>
+<li><code>t</code>: Time</li>
+<li><code>?</code>: Guess</li>
+<li><code>_</code> or <code>-</code>: Skip</li>
+</ul>
+<p>to <code>"cD"</code> when reading the data. This informs the function that the first column contains <code>c</code>haracters (<code>c</code>) and the second column contains <code>D</code>ates (<code>D</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_table</span>(fn_Datatype, <span class="at">col_types =</span> <span class="st">"iddDDc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  X1        X2        
-  &lt;chr&gt;     &lt;chr&gt;     
-1 Datum von 01.01.1990
-2 Datum bis 31.12.2022</code></pre>
+<pre><code># A tibble: 2 × 6
+    int float_en float_de date_en    date_de str  
+  &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;  &lt;chr&gt;
+1     1      0.1       NA 2023-09-15 NA      en   
+2     9      9.6       NA 2023-09-16 NA      de   </code></pre>
 </div>
 </div>
-<p>Unfortunately, R may not always recognize date values correctly, so you may need to perform additional steps for conversion:</p>
-<ol type="1">
-<li><p><strong>After Reading:</strong> This involves transforming the data from its initial format to the desired date format within your R environment.</p></li>
-<li><p><strong>Set the Data Type by Reading:</strong> Another approach is to set the data type while reading the data.</p></li>
-</ol>
-<p>To address the issue of date recognition, you can set the <code>col_types</code> parameter to <code>"cD"</code> when reading the data. This informs the function that the first column contains <code>c</code>haracters (<code>c</code>) and the second column contains <code>D</code>ates (<code>D</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skip = 10</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">col_types =</span> <span class="st">"cD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_table</span>(fn_Datatype, <span class="at">col_types =</span> <span class="st">"idd?Dc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  X1        X2    
-  &lt;chr&gt;     &lt;date&gt;
-1 Datum von NA    
-2 Datum bis NA    </code></pre>
+<pre><code># A tibble: 2 × 6
+    int float_en float_de date_en    date_de str  
+  &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;  &lt;chr&gt;
+1     1      0.1       NA 2023-09-15 NA      en   
+2     9      9.6       NA 2023-09-16 NA      de   </code></pre>
 </div>
 </div>
-<p>Unfortunately, the default date format in R may not work for German-style dates like “d.m.Y,” as R primarily recognizes the “Y-m-d” format. To handle this, you can convert the dates using function <code>as.Date()</code> and specify the date format using the <code>format</code> argument, such as <code>format = "%d.%m.%Y"</code>.</p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>To set data types when reading data using functions <code>pandas.read_*</code>, you have three main choices by using the <code>dtype</code> parameter:</p>
+<ul>
+<li><code>str</code>: Specify the data type as a string.</li>
+<li><code>int</code>: Specify the data type as an integer.</li>
+<li><code>float</code>: Specify the data type as a floating-point number.</li>
+</ul>
+<p>However, you can also use the <code>dtype</code> parameter with a callable function to perform more advanced type conversions. Some commonly used functions include:</p>
+<ul>
+<li><code>pd.to_datetime</code>: Converts a column to datetime format.</li>
+<li><code>pd.to_numeric</code>: Converts a column to numeric (integer or float) format.</li>
+<li><code>pd.to_timedelta</code>: Converts a column to timedelta format.</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_Date <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_Date<span class="sc">$</span>X2 <span class="ot">&lt;-</span> df_Date<span class="sc">$</span>X2 <span class="sc">|&gt;</span> <span class="fu">as.Date</span>(<span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_Date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define column names and types as a dictionary</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>col_types <span class="op">=</span> {<span class="st">"X1"</span>: <span class="bu">str</span>, <span class="st">"X2"</span>: pd.to_datetime}</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file, skip 3 rows, read 2 rows, and specify column names and types</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(fn_Bachum, skiprows<span class="op">=</span><span class="dv">3</span>, nrows<span class="op">=</span><span class="dv">2</span>, header<span class="op">=</span><span class="va">None</span>, delimiter<span class="op">=</span><span class="st">';'</span>, names<span class="op">=</span>[<span class="st">"X1"</span>, <span class="st">"X2"</span>], dtype<span class="op">=</span>col_types, encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the loaded data</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout-waring">
+<p>DON’T RUN Error, because data doesn’t match the default format of ‘Y-m-d’.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout-waring">
+<p>Unfortunately, the default date format in R and Python may not work for German-style dates like “d.m.Y” as R and Python primarily recognizes the “Y-m-d” format.</p>
+</div>
+</section>
+<section id="after-reading" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="after-reading"><span class="header-section-number">1.5.2</span> After Reading</h3>
+<p>To address this issue, you can perform date conversions after reading the data:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>Using function <code>as.Date()</code> and specify the date format using the <code>format</code> argument, such as <code>format = "%d.%m.%Y"</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_Date <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(fn_Bachum, <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_Date<span class="sc">$</span>X2 <span class="ot">&lt;-</span> df_Date<span class="sc">$</span>X2 <span class="sc">|&gt;</span> <span class="fu">as.Date</span>(<span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df_Date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   X1        X2        
@@ -515,6 +684,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2 Datum bis 2022-12-31</code></pre>
 </div>
 </div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df_Date <span class="op">=</span> pd.read_csv(fn_Bachum, skiprows<span class="op">=</span><span class="dv">3</span>, nrows<span class="op">=</span><span class="dv">2</span>, header<span class="op">=</span><span class="va">None</span>, delimiter<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the loaded data</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_Date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           0           1
+0  Datum von  01.01.1990
+1  Datum bis  31.12.2022</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Convert the second column (X2) to a date format</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df_Date[<span class="dv">1</span>] <span class="op">=</span> pd.to_datetime(df_Date[<span class="dv">1</span>], <span class="bu">format</span><span class="op">=</span><span class="st">'</span><span class="sc">%d</span><span class="st">.%m.%Y'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame with the second column converted to date format</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_Date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           0          1
+0  Datum von 1990-01-01
+1  Datum bis 2022-12-31</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="excel-file" class="level1" data-number="2">
@@ -588,10 +784,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.2" class="anchored" data-anchor-id="r-library-and-functions"><span class="header-section-number">2.2</span> R library and functions</h2>
 <p>To load the necessary library, <code>readxl</code>, and access its help documentation, you can visit <a href="https://readxl.tidyverse.org/">this link</a>. The <code>readxl::read_excel()</code> function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. Additionally, you have the options of using <code>read_xls()</code> for .xls files and <code>read_xlsx()</code> for .xlsx files. More details in the <a href="https://readxl.tidyverse.org/reference/read_excel.html">Page</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fn_Pegeln <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share/Pegeln_NRW.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>fn_Pegeln <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share/Pegeln_NRW.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="load-tabular-data-1" class="level2" data-number="2.3">
@@ -601,9 +797,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="first-try-without-any-setting" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="first-try-without-any-setting"><span class="header-section-number">2.3.1</span> First try without any setting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try without setting</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try without setting</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 277 × 16
    Suchergebnisse Pegel.…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10
@@ -629,9 +825,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="give-a-range" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="give-a-range"><span class="header-section-number">2.3.2</span> Give a <code>range</code></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the range argument</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln, <span class="at">range =</span> <span class="st">"Suchergebnisse Pegel!A5:P10"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the range argument</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln, <span class="at">range =</span> <span class="st">"Suchergebnisse Pegel!A5:P10"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 16
   Name            Pegelnummer   Gewässername Betreiber  `Pegelnullpunkt [müNHN]`
@@ -919,6 +1115,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../spatialdata/extract_raster.html" class="pagination-link">
+        <span class="nav-page-text">Extract values from Raster Data</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
