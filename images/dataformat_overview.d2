@@ -17,6 +17,9 @@ ds: Data Structure: {
 }
 
 df: Data Fileformats: {
+
+Database
+
   pte: Plain Text & Excel: {
     class: bxR
 
@@ -52,12 +55,19 @@ df: Data Fileformats: {
 
 ds.table <-> df.pte: {style.stroke: "#65b32e"}
 
+ds.table <-> df.Database
+ds.Timeserise.Normal <-> df.Database
+ds.Timeserise.Vector based <-> df.Database
+
+ds.Timeserise.Normal <-> df.pte: {style.stroke: "#65b32e"}
+ds.Timeserise <-> df.NetCDF: {style.stroke: "#e0318a"}
+ds.Timeserise.Vector based <-> df.pte: {style.stroke: "#65b32e"}
+
+
 ds.Array.d2 <-> df.pte: {style.stroke: "#65b32e"}
 ds.Array <-> df.NetCDF: {style.stroke: "#e0318a"}
 
 
-ds.Timeserise.Normal <-> df.pte: {style.stroke: "#65b32e"}
-ds.Timeserise <-> df.NetCDF: {style.stroke: "#e0318a"}
 
 ds.Spatial Raster <-> df.Spatial Raster: {style.stroke: "#00a1d9"}
 ds.Spatial Vector <-> df.Spatial Vector: {style.stroke: "#ef7d00"}
