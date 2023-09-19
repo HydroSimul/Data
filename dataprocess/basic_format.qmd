@@ -91,8 +91,10 @@ Key points about the Coordinate Reference System (CRS) include:
 
 The CRS is fundamental for correctly interpreting and analyzing spatial data, as it ensures that geographic features are accurately represented in maps and GIS applications. Different CRSs are used for different regions and applications to minimize distortion and provide precise geospatial information.
 
+
 The use of **EPSG (European Petroleum Survey Group) codes** is highly recommended for defining Coordinate Reference Systems (CRS) in spatial data. These codes consist of a string of numbers that uniquely identify a specific CRS. By using EPSG codes, you can easily access comprehensive definitions of different CRSs, which include details about their coordinate systems, datums, projections, and other parameters. Many software applications and libraries support EPSG codes, making it a standardized and convenient way to specify CRS information in spatial data.
 
+You can obtain information about EPSG codes from the [EPSG](https://epsg.io/) website. This website serves as a valuable resource for accessing detailed information associated with EPSG codes, including coordinate reference system (CRS) definitions and specifications.
 
 ## Time Series
 
@@ -136,7 +138,7 @@ ASCII (American Standard Code for Information Interchange) is a **plain text** f
 
 4. **Slower Reading/Writing:** Reading and writing data in ASCII format may be slower, especially for large datasets, due to additional parsing required to interpret text-based data.
 
-### file format for ASCII data
+### File format for ASCII data
 
 When it comes to plain text formats, there is no universal standard, and it's highly adaptable to specific needs. The initial step in loading a plain text table is to analyze the structure of the file.
 
