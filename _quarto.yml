@@ -30,17 +30,15 @@ website:
         - section: "Dataprocess"
           href: dataprocess/index.qmd
           contents: 
-            - section: "Data Format"
+            - dataprocess/basic_format.qmd      
+            - dataprocess/basic_r_python.qmd      
+            - section: "Pre-Processing"
               contents:
-                - dataprocess/basic_format.qmd      
-                - dataprocess/NetCDF.qmd      
-                - dataprocess/spatial_data.qmd      
-            - section: "Processing with Skript"
-              contents:
-                - dataprocess/basic_r_python.qmd      
                 - dataprocess/data_load.qmd      
+            - dataprocess/NetCDF.qmd      
             - section: "Spatial Data"
               contents:
+                - dataprocess/spatial_data.qmd      
                 - dataprocess/extract_raster.qmd      
                 - dataprocess/extract_vector.qmd      
 

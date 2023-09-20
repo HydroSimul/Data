@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HydroSimul - Basic format</title>
+<title>HydroSimul - Basic Data &amp; File Format</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../dataprocess/NetCDF.html" rel="next">
+<link href="../dataprocess/basic_r_python.html" rel="next">
 <link href="../dataprocess/index.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -106,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/basic_format.html">Data Format</a></li><li class="breadcrumb-item"><a href="../dataprocess/basic_format.html">Basic format</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/basic_format.html">Basic Data &amp; File Format</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -127,44 +127,21 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Data Format</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/basic_format.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Basic format</span></a>
+ <span class="menu-text">Basic Data &amp; File Format</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/NetCDF.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NetCDF</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/spatial_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">spatial data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Processing with Skript</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/basic_r_python.html" class="sidebar-item-text sidebar-link">
@@ -179,15 +156,27 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataprocess/NetCDF.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NetCDF</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Spatial Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataprocess/spatial_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">spatial data</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/extract_raster.html" class="sidebar-item-text sidebar-link">
@@ -232,7 +221,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages">Advantages</a></li>
   <li><a href="#disadvantages" id="toc-disadvantages" class="nav-link" data-scroll-target="#disadvantages">Disadvantages</a></li>
-  <li><a href="#file-format-for-ascii-data" id="toc-file-format-for-ascii-data" class="nav-link" data-scroll-target="#file-format-for-ascii-data">file format for ASCII data</a></li>
+  <li><a href="#file-format-for-ascii-data" id="toc-file-format-for-ascii-data" class="nav-link" data-scroll-target="#file-format-for-ascii-data">File format for ASCII data</a></li>
   </ul></li>
   <li><a href="#excel-files" id="toc-excel-files" class="nav-link" data-scroll-target="#excel-files">Excel Files</a>
   <ul class="collapse">
@@ -264,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Basic format</h1>
+<h1 class="title">Basic Data &amp; File Format</h1>
 </div>
 
 
@@ -335,6 +324,7 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>The CRS is fundamental for correctly interpreting and analyzing spatial data, as it ensures that geographic features are accurately represented in maps and GIS applications. Different CRSs are used for different regions and applications to minimize distortion and provide precise geospatial information.</p>
 <p>The use of <strong>EPSG (European Petroleum Survey Group) codes</strong> is highly recommended for defining Coordinate Reference Systems (CRS) in spatial data. These codes consist of a string of numbers that uniquely identify a specific CRS. By using EPSG codes, you can easily access comprehensive definitions of different CRSs, which include details about their coordinate systems, datums, projections, and other parameters. Many software applications and libraries support EPSG codes, making it a standardized and convenient way to specify CRS information in spatial data.</p>
+<p>You can obtain information about EPSG codes from the <a href="https://epsg.io/">EPSG</a> website. This website serves as a valuable resource for accessing detailed information associated with EPSG codes, including coordinate reference system (CRS) definitions and specifications.</p>
 </section>
 </section>
 <section id="time-series" class="level2">
@@ -370,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 </section>
 <section id="file-format-for-ascii-data" class="level3">
-<h3 class="anchored" data-anchor-id="file-format-for-ascii-data">file format for ASCII data</h3>
+<h3 class="anchored" data-anchor-id="file-format-for-ascii-data">File format for ASCII data</h3>
 <p>When it comes to plain text formats, there is no universal standard, and it’s highly adaptable to specific needs. The initial step in loading a plain text table is to analyze the structure of the file.</p>
 <p>Typically, a text table can store <strong>2D data</strong>, comprising columns and rows or a matrix. However, above the data body, there’s often metadata that describes the data. Metadata can vary widely between data body.</p>
 <p>Dividing rows is usually straightforward and can be achieved by identifying <strong>row-end characters</strong>. However, dividing columns within each row presents multiple possibilities, such as <strong>spaces</strong>, <strong>tabs</strong>, <strong>commas</strong>, or <strong>semicolons</strong>.</p>
@@ -765,8 +755,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../dataprocess/NetCDF.html" class="pagination-link">
-        <span class="nav-page-text">NetCDF</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../dataprocess/basic_r_python.html" class="pagination-link">
+        <span class="nav-page-text">R &amp; Python Basic</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -32,6 +32,10 @@ The above five elements can be considered as the most fundamental elements of ev
 
 This article will provide a solid introduction to the core concepts in programming, laying the groundwork for further exploration in both R and Python.
 
+Overview:
+
+![](../images/basic_data.svg)
+![](../images/basic_coding.svg)
 
 # Data {#sec-data}
 
@@ -966,8 +970,16 @@ The basic form of an if statement in R is as follows:
 
 ```{r}
 #| eval: false
-if (condition) true_action
-if (condition) true_action else false_action
+if (condition) {
+  true_action
+}
+if (condition) {
+  true_action
+} else {
+  false_action
+}
+
+
 ```
 
 If `condition` is `TRUE`, `true_action` is evaluated; if `condition` is `FALSE`, the optional `false_action` is evaluated. 
@@ -1268,25 +1280,44 @@ While the formals and body are specified explicitly when you create a function, 
 The function environment always exists, but it is only printed when the function isn't defined in the global environment.
 
 ```{r}
-f02 <- function(x, y) {
+fct_add <- function(x, y) {
   # A comment
   x + y
 }
 
-formals(f02)
+# Get the formal arguments
+formals(fct_add)
 
-body(f02)
+# Get the function's source code (body)
+body(fct_add)
 
-environment(f02)
+# Get the function's global environment (module-level namespace)
+environment(fct_add)
 ```
 
 ## Python
+
+```{python}
+def fct_add(x, y):
+    # A comment
+    return x + y
+
+# Get the formal arguments
+print(fct_add.__code__.co_varnames)
+
+# Get the function's source code (body)
+print(fct_add.__code__.co_code)
+
+# Get the function's global environment (module-level namespace)
+print(fct_add.__globals__)
+
+```
 
 
 :::
 
 
-### Calling
+### Call
 
 ::: {.panel-tabset}
 
@@ -1325,6 +1356,13 @@ The "help" windows shows as:
 
 ## Python
 
+Calling Syntax:
+
+```{python}
+#| eval: false
+
+function_name(argument1 = value1, argument2 = value2)
+```
 
 ```{python}
 sequence = list(range(1, 11))
@@ -1335,7 +1373,7 @@ print(sequence)
 
 :::
 
-### Creating 
+### Define 
 
 ::: {.panel-tabset}
 
