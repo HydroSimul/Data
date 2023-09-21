@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "minibeispiel_polygon",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::31468" } },
+"features": [
+{ "type": "Feature", "properties": { "ID_region": 1.0, "region_are": 4902455.0885434151 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 4481200.0, 5551200.0 ], [ 4481500.0, 5553750.0 ], [ 4483400.0, 5553500.0 ], [ 4483850.0, 5551750.0 ], [ 4481200.0, 5551200.0 ] ] ] ] } }
+]
+}
