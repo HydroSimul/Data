@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HydroSimul - spatial data</title>
+<title>HydroSimul - Basic Manipulation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -140,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/spatial_data.html">Spatial Data</a></li><li class="breadcrumb-item"><a href="../dataprocess/spatial_data.html">spatial data</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/spatial_data.html">Spatial Data</a></li><li class="breadcrumb-item"><a href="../dataprocess/spatial_data.html">Basic Manipulation</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/spatial_data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">spatial data</span></a>
+ <span class="menu-text">Basic Manipulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -237,9 +237,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#h1" id="toc-h1" class="nav-link active" data-scroll-target="#h1">H1</a>
+  <li><a href="#library-terra" id="toc-library-terra" class="nav-link active" data-scroll-target="#library-terra"><span class="header-section-number">1</span> Library <code>terra</code></a></li>
+  <li><a href="#creating-spatial-data-manually" id="toc-creating-spatial-data-manually" class="nav-link" data-scroll-target="#creating-spatial-data-manually"><span class="header-section-number">2</span> Creating spatial data manually</a>
   <ul class="collapse">
-  <li><a href="#h2" id="toc-h2" class="nav-link" data-scroll-target="#h2">H2</a></li>
+  <li><a href="#vector" id="toc-vector" class="nav-link" data-scroll-target="#vector"><span class="header-section-number">2.1</span> Vector</a></li>
+  <li><a href="#raster" id="toc-raster" class="nav-link" data-scroll-target="#raster"><span class="header-section-number">2.2</span> Raster</a></li>
+  </ul></li>
+  <li><a href="#read-and-write" id="toc-read-and-write" class="nav-link" data-scroll-target="#read-and-write"><span class="header-section-number">3</span> Read and write</a></li>
+  <li><a href="#coordinate-reference-systems" id="toc-coordinate-reference-systems" class="nav-link" data-scroll-target="#coordinate-reference-systems"><span class="header-section-number">4</span> Coordinate Reference Systems</a>
+  <ul class="collapse">
+  <li><a href="#assigning-a-crs" id="toc-assigning-a-crs" class="nav-link" data-scroll-target="#assigning-a-crs"><span class="header-section-number">4.1</span> Assigning a CRS</a></li>
+  <li><a href="#transforming-vector-data" id="toc-transforming-vector-data" class="nav-link" data-scroll-target="#transforming-vector-data"><span class="header-section-number">4.2</span> Transforming vector data</a></li>
+  <li><a href="#transforming-raster-data" id="toc-transforming-raster-data" class="nav-link" data-scroll-target="#transforming-raster-data"><span class="header-section-number">4.3</span> Transforming raster data</a>
+  <ul class="collapse">
+  <li><a href="#with-crs" id="toc-with-crs" class="nav-link" data-scroll-target="#with-crs"><span class="header-section-number">4.3.1</span> With CRS</a></li>
+  <li><a href="#with-mask-raster" id="toc-with-mask-raster" class="nav-link" data-scroll-target="#with-mask-raster"><span class="header-section-number">4.3.2</span> With Mask Raster</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#vector-data-manipulation" id="toc-vector-data-manipulation" class="nav-link" data-scroll-target="#vector-data-manipulation"><span class="header-section-number">5</span> Vector data manipulation</a>
+  <ul class="collapse">
+  <li><a href="#attributes-manipulation" id="toc-attributes-manipulation" class="nav-link" data-scroll-target="#attributes-manipulation"><span class="header-section-number">5.1</span> Attributes manipulation</a>
+  <ul class="collapse">
+  <li><a href="#extract-all-attributes" id="toc-extract-all-attributes" class="nav-link" data-scroll-target="#extract-all-attributes"><span class="header-section-number">5.1.1</span> Extract all Attributes</a></li>
+  <li><a href="#extract-one-with-attribute-name" id="toc-extract-one-with-attribute-name" class="nav-link" data-scroll-target="#extract-one-with-attribute-name"><span class="header-section-number">5.1.2</span> Extract one with attribute name</a></li>
+  <li><a href="#add-a-new-attribute" id="toc-add-a-new-attribute" class="nav-link" data-scroll-target="#add-a-new-attribute"><span class="header-section-number">5.1.3</span> Add a new attribute</a></li>
+  <li><a href="#merge-several-attributes" id="toc-merge-several-attributes" class="nav-link" data-scroll-target="#merge-several-attributes"><span class="header-section-number">5.1.4</span> Merge several attributes</a></li>
+  <li><a href="#delete-a-attribute" id="toc-delete-a-attribute" class="nav-link" data-scroll-target="#delete-a-attribute"><span class="header-section-number">5.1.5</span> Delete a attribute</a></li>
+  </ul></li>
+  <li><a href="#object-append-and-aggregate" id="toc-object-append-and-aggregate" class="nav-link" data-scroll-target="#object-append-and-aggregate"><span class="header-section-number">5.2</span> Object Append and aggregate</a>
+  <ul class="collapse">
+  <li><a href="#append-new-objects" id="toc-append-new-objects" class="nav-link" data-scroll-target="#append-new-objects"><span class="header-section-number">5.2.1</span> Append new Objects</a></li>
+  <li><a href="#aggregate-dissolve" id="toc-aggregate-dissolve" class="nav-link" data-scroll-target="#aggregate-dissolve"><span class="header-section-number">5.2.2</span> Aggregate / Dissolve</a></li>
+  </ul></li>
+  <li><a href="#overlap" id="toc-overlap" class="nav-link" data-scroll-target="#overlap"><span class="header-section-number">5.3</span> Overlap</a>
+  <ul class="collapse">
+  <li><a href="#erase" id="toc-erase" class="nav-link" data-scroll-target="#erase"><span class="header-section-number">5.3.1</span> Erase</a></li>
+  <li><a href="#intersect" id="toc-intersect" class="nav-link" data-scroll-target="#intersect"><span class="header-section-number">5.3.2</span> Intersect</a></li>
+  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><span class="header-section-number">5.3.3</span> Union</a></li>
+  <li><a href="#cover" id="toc-cover" class="nav-link" data-scroll-target="#cover"><span class="header-section-number">5.3.4</span> Cover</a></li>
+  <li><a href="#difference" id="toc-difference" class="nav-link" data-scroll-target="#difference"><span class="header-section-number">5.3.5</span> Difference</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#raster-data-manipulation" id="toc-raster-data-manipulation" class="nav-link" data-scroll-target="#raster-data-manipulation"><span class="header-section-number">6</span> Raster data manipulation</a>
+  <ul class="collapse">
+  <li><a href="#raster-algebra" id="toc-raster-algebra" class="nav-link" data-scroll-target="#raster-algebra"><span class="header-section-number">6.1</span> Raster algebra</a></li>
+  <li><a href="#replace-with-condition" id="toc-replace-with-condition" class="nav-link" data-scroll-target="#replace-with-condition"><span class="header-section-number">6.2</span> Replace with Condition</a></li>
+  <li><a href="#summary-of-multi-layers" id="toc-summary-of-multi-layers" class="nav-link" data-scroll-target="#summary-of-multi-layers"><span class="header-section-number">6.3</span> Summary of multi-layers</a></li>
+  <li><a href="#aggregate-and-disaggregate" id="toc-aggregate-and-disaggregate" class="nav-link" data-scroll-target="#aggregate-and-disaggregate"><span class="header-section-number">6.4</span> Aggregate and disaggregate</a></li>
+  <li><a href="#crop" id="toc-crop" class="nav-link" data-scroll-target="#crop"><span class="header-section-number">6.5</span> Crop</a></li>
+  <li><a href="#trim" id="toc-trim" class="nav-link" data-scroll-target="#trim"><span class="header-section-number">6.6</span> Trim</a></li>
+  <li><a href="#mask" id="toc-mask" class="nav-link" data-scroll-target="#mask"><span class="header-section-number">6.7</span> Mask</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -249,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">spatial data</h1>
+<h1 class="title">Basic Manipulation</h1>
 </div>
 
 
@@ -264,22 +311,751 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="h1" class="level1">
-<h1>H1</h1>
-<p>About this site test1</p>
+<section id="library-terra" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Library <code>terra</code></h1>
+<p>The <code>terra</code> package in R is a powerful and versatile package for working with geospatial data, including <strong>vector</strong> and <strong>raster</strong> data. It provides a wide range of functionality for reading, processing, analyzing, and visualizing spatial data.</p>
+<p>For more in-depth information and resources on the terra package and spatial data science in R, you can explore the original website <a href="https://rspatial.org/spatial/index.html">Spatial Data Science</a>.</p>
+<p>Firstly load the library to the R space:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="creating-spatial-data-manually" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Creating spatial data manually</h1>
+<p>Creating spatial data manually is not a common practice due to the typically large volumes of data required. However, by starting from scratch and creating spatial data manually, you can gain a deeper understanding of the <strong>data’s structure</strong> and properties. This manual creation process helps you become more familiar with how spatial data is organized and can be a valuable learning exercise.</p>
+<p>The examples provided here are just a few methods for manually creating spatial data. There are numerous ways to create spatial data in R with the <code>terra</code> package. You can refer to the package <a href="https://cran.r-project.org/web/packages/terra/terra.pdf">documentation</a>, specifically the <code>rast()</code> and <code>vect()</code> functions, to explore more advanced methods for creating and manipulating spatial data.</p>
+<section id="vector" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="vector"><span class="header-section-number">2.1</span> Vector</h2>
+<p>As introduced in the <a href="../dataprocess/basic_format.html#sec-spatialData">section</a>, spatial vector data typically consists of three main components:</p>
+<ul>
+<li><strong>Geometry</strong>: Describes the spatial location and shape of features.</li>
+<li><strong>Attributes</strong>: Non-spatial properties associated with features.</li>
+<li><strong>CRS</strong> (Coordinate Reference System): Defines the spatial reference framework.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the coordinate reference system (CRS) with EPSG codes</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>crs_31468 <span class="ot">&lt;-</span> <span class="st">"EPSG:31468"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define coordinates for the first polygon</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x_polygon_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4484566</span>, <span class="dv">4483922</span>, <span class="dv">4483002</span>, <span class="dv">4481929</span>, <span class="dv">4481222</span>, <span class="dv">4482500</span>, <span class="dv">4483000</span>, <span class="dv">4484666</span>, <span class="dv">4484233</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>y_polygon_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5554566</span>, <span class="dv">5554001</span>, <span class="dv">5553233</span>, <span class="dv">5554933</span>, <span class="dv">5550666</span>, <span class="dv">5551555</span>, <span class="dv">5550100</span>, <span class="dv">5551711</span>, <span class="dv">5552767</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>xy_polygon_1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">id=</span><span class="dv">1</span>, <span class="at">part=</span><span class="dv">1</span>, x_polygon_1, y_polygon_1)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define coordinates for the second polygon</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>x_polygon_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4481929</span>, <span class="dv">4481222</span>, <span class="dv">4480500</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>y_polygon_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5554933</span>, <span class="dv">5550666</span>, <span class="dv">5552555</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>xy_polygon_2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">id=</span><span class="dv">2</span>, <span class="at">part=</span><span class="dv">1</span>, x_polygon_2, y_polygon_2)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the two polygons into one data frame</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>xy_polygon <span class="ot">&lt;-</span> <span class="fu">rbind</span>(xy_polygon_1, xy_polygon_2)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector layer for the polygons, specifying their type, attributes, CRS, and additional attributes</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>vect_Test <span class="ot">&lt;-</span> <span class="fu">vect</span>(xy_polygon, <span class="at">type=</span><span class="st">"polygons"</span>, <span class="at">atts =</span> <span class="fu">data.frame</span>(<span class="at">ID_region =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>)), <span class="at">crs =</span> crs_31468)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>vect_Test<span class="sc">$</span>region_area <span class="ot">&lt;-</span> <span class="fu">expanse</span>(vect_Test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="raster" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="raster"><span class="header-section-number">2.2</span> Raster</h2>
+<p>For raster data, the geometry is relatively simple and can be defined by the following components:</p>
+<ul>
+<li>Coordinate of <strong>Original Point</strong> (X0, Y0) plus <strong>Resolutions</strong> (X and Y)</li>
+<li><strong>Boundaries</strong> (Xmin, Xmax, Ymin, Ymax) plus <strong>Number of Rows and Columns</strong></li>
+</ul>
+<p>One of the most critical aspects of raster data is the values stored within its cells. You can set or modify these values using the <code>values()&lt;-</code> function in R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rast_Test <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="at">ncol=</span><span class="dv">10</span>, <span class="at">nrow=</span><span class="dv">10</span>, <span class="at">xmin=</span><span class="sc">-</span><span class="dv">150</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="dv">80</span>, <span class="at">ymin=</span><span class="dv">20</span>, <span class="at">ymax=</span><span class="dv">60</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">values</span>(rast_Test) <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">ncell</span>(rast_Test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Certainly, you can directly create a data file like an ASC (ASCII) file for raster data.</p>
+<p><img src="../images/spatialdata_TestRaster.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="read-and-write" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Read and write</h1>
+<p><strong>Reading</strong> and <strong>writing</strong> data are fundamental processes that precede spatial data manipulation. Spatial data is typically acquired from external sources.</p>
+<p>However, due to the substantial differences between raster and vector data structures, they are often handled separately.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Data Type</th>
+<th>Read</th>
+<th>Write</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vector</td>
+<td><code>vect()</code></td>
+<td><code>writeVect()</code></td>
+</tr>
+<tr class="even">
+<td>Raster</td>
+<td><code>rast()</code></td>
+<td><code>writeRast()</code></td>
+</tr>
+</tbody>
+</table>
+<p>The test files are available in <a href="https://github.com/HydroSimul/Web/tree/main/data_share">Github</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read shp-file as a vector layer</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vect_Test <span class="ot">&lt;-</span> <span class="fu">vect</span>(<span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_polygon.geojson"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read raster file</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>rast_Test <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Info and Plot of vector layer</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>vect_Test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code> class       : SpatVector 
+ geometry    : polygons 
+ dimensions  : 2, 3  (geometries, attributes)
+ extent      : 4480500, 4484666, 5550100, 5554933  (xmin, xmax, ymin, ymax)
+ source      : minibeispiel_polygon.geojson
+ coord. ref. : DHDN / 3-degree Gauss-Kruger zone 4 (EPSG:31468) 
+ names       : ID_region  Name region_area
+ type        :     &lt;int&gt; &lt;chr&gt;       &lt;num&gt;
+ values      :         1     a   8.853e+06
+                       2     b   2.208e+06</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Info and Plot of raster layer</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rast_Test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 5, 5, 1  (nrow, ncol, nlyr)
+resolution  : 1000, 1000  (x, y)
+extent      : 4480000, 4485000, 5550000, 5555000  (xmin, xmax, ymin, ymax)
+coord. ref. :  
+source      : minibeispiel_raster.asc 
+name        : minibeispiel_raster </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="h2" class="level2">
-<h2 class="anchored" data-anchor-id="h2">H2</h2>
-<p>About this site test2</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeVector</span>(vect_Test, <span class="st">"fn_Output_Vector.geojson"</span>, <span class="st">"GeoJSON"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(rast_Test, <span class="st">"fn_OutPut_Raster.tif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="coordinate-reference-systems" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Coordinate Reference Systems</h1>
+<section id="assigning-a-crs" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="assigning-a-crs"><span class="header-section-number">4.1</span> Assigning a CRS</h2>
+<p>In cases where the <strong>Coordinate Reference System (CRS)</strong> information is not included in the data file’s content, you can assign it manually using the <code>crs()</code> function. This situation often occurs when working with raster data in formats like ASC (Arc/Info ASCII Grid) or other file formats that may not store CRS information.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(rast_Test) <span class="ot">&lt;-</span> <span class="st">"EPSG:31468"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>rast_Test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>class       : SpatRaster 
+dimensions  : 5, 5, 1  (nrow, ncol, nlyr)
+resolution  : 1000, 1000  (x, y)
+extent      : 4480000, 4485000, 5550000, 5555000  (xmin, xmax, ymin, ymax)
+coord. ref. : DHDN / 3-degree Gauss-Kruger zone 4 (EPSG:31468) 
+source      : minibeispiel_raster.asc 
+name        : minibeispiel_raster </code></pre>
+</div>
+</div>
+<p>As the results showed, the CRS information has been filled with the necessary details in line <code>coord. ref.</code>.</p>
+<p>The use of <strong>EPSG (European Petroleum Survey Group) codes</strong> is highly recommended for defining Coordinate Reference Systems (CRS) in spatial data. You can obtain information about EPSG codes from the <a href="https://epsg.io/">EPSG</a> website.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+NOTE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should not use this approach to change the CRS of a data set from what it is to what you want it to be. Assigning a CRS is like labeling something.</p>
+</div>
+</div>
+</section>
+<section id="transforming-vector-data" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="transforming-vector-data"><span class="header-section-number">4.2</span> Transforming vector data</h2>
+<p>The <strong>transformation</strong> of vector data is relatively simple, as it involves applying a mathematical formula to the coordinates of each point to obtain their new coordinates. This transformation can be considered as <strong>without loss of precision</strong>.</p>
+<p>The <code>project()</code> function can be utilized to <strong>reproject</strong> both vector and raster data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New CRS</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>crs_New <span class="ot">&lt;-</span> <span class="st">"EPSG:4326"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>vect_Test_New <span class="ot">&lt;-</span> <span class="fu">project</span>(vect_Test, crs_New)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Info and Plot of vector layer</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>vect_Test_New</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> class       : SpatVector 
+ geometry    : polygons 
+ dimensions  : 2, 3  (geometries, attributes)
+ extent      : 11.72592, 11.78419, 50.08692, 50.13034  (xmin, xmax, ymin, ymax)
+ coord. ref. : lon/lat WGS 84 (EPSG:4326) 
+ names       : ID_region  Name region_area
+ type        :     &lt;int&gt; &lt;chr&gt;       &lt;num&gt;
+ values      :         1     a   8.853e+06
+                       2     b   2.208e+06</code></pre>
+</div>
+</div>
+</section>
+<section id="transforming-raster-data" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="transforming-raster-data"><span class="header-section-number">4.3</span> Transforming raster data</h2>
+<p>Vector data can be transformed from lon/lat coordinates to planar and back without loss of precision. This is not the case with raster data. A raster consists of rectangular <strong>cells</strong> of the same size (in terms of the units of the CRS; their actual size may vary). It is not possible to transform cell by cell. For each new cell, values need to be <strong>estimated</strong> based on the values in the overlapping old cells. If the values are categorical data, the <strong>“nearest neighbor”</strong> method is commonly used. Otherwise some sort of interpolation is employed (e.g.&nbsp;<strong>“bilinear”</strong>). (From <a href="https://rspatial.org/spatial/6-crs.html">Spatial Data Science</a>)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Because projection of rasters affects the cell values, in most cases you will want to avoid projecting raster data and rather project vector data.</p>
+</div>
+</div>
+<section id="with-crs" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="with-crs"><span class="header-section-number">4.3.1</span> With CRS</h3>
+<p>The simplest approach is to provide a <strong>new CRS</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New CRS</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>crs_New <span class="ot">&lt;-</span> <span class="st">"EPSG:4326"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>rast_Test_New <span class="ot">&lt;-</span> <span class="fu">project</span>(rast_Test, crs_New)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Info and Plot of vector layer</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>rast_Test_New</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 4, 6, 1  (nrow, ncol, nlyr)
+resolution  : 0.01176853, 0.01176853  (x, y)
+extent      : 11.7188, 11.78941, 50.08395, 50.13102  (xmin, xmax, ymin, ymax)
+coord. ref. : lon/lat WGS 84 (EPSG:4326) 
+source(s)   : memory
+name        : minibeispiel_raster 
+min value   :            1.000000 
+max value   :            2.586555 </code></pre>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Test)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Test_New)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Original</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">New</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="with-mask-raster" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="with-mask-raster"><span class="header-section-number">4.3.2</span> With Mask Raster</h3>
+<p>A second way is provide an existing <code>SpatRaster</code> with the <strong>geometry you desire</strong>, with special boundary and resolution, this is a better way.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New CRS</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>rast_Mask <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="at">ncol=</span><span class="dv">10</span>, <span class="at">nrow=</span><span class="dv">10</span>, <span class="at">xmin=</span><span class="dv">265000</span>, <span class="at">xmax=</span><span class="dv">270000</span>, <span class="at">ymin=</span><span class="dv">5553000</span>, <span class="at">ymax=</span><span class="dv">5558000</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(rast_Mask) <span class="ot">&lt;-</span> <span class="st">"EPSG:25833"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">values</span>(rast_Mask) <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>rast_Test_New <span class="ot">&lt;-</span> <span class="fu">project</span>(rast_Test, rast_Mask)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Info and Plot of vector layer</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>rast_Test_New</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 10, 10, 1  (nrow, ncol, nlyr)
+resolution  : 500, 500  (x, y)
+extent      : 265000, 270000, 5553000, 5558000  (xmin, xmax, ymin, ymax)
+coord. ref. : ETRS89 / UTM zone 33N (EPSG:25833) 
+source(s)   : memory
+name        : minibeispiel_raster 
+min value   :                   1 
+max value   :                   3 </code></pre>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Test)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Test_New)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Original</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">New</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="vector-data-manipulation" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Vector data manipulation</h1>
+<p>In vector manipulation, it’s crucial to handle both attributes and <strong>shapes</strong>, especially when combining multiple shapes or layers with other shapes and addressing overlapping layers.</p>
+<section id="attributes-manipulation" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="attributes-manipulation"><span class="header-section-number">5.1</span> Attributes manipulation</h2>
+<section id="extract-all-attributes" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="extract-all-attributes"><span class="header-section-number">5.1.1</span> Extract all Attributes</h3>
+<ul>
+<li><code>as.data.frame()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_Attr <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(vect_Test)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df_Attr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID_region Name region_area
+1         1    a     8853404
+2         2    b     2208109</code></pre>
+</div>
+</div>
+</section>
+<section id="extract-one-with-attribute-name" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="extract-one-with-attribute-name"><span class="header-section-number">5.1.2</span> Extract one with attribute name</h3>
+<ul>
+<li><code>$name</code></li>
+<li><code>[, "name"]</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>vect_Test<span class="sc">$</span>ID_region</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vect_Test[,<span class="st">"ID_region"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> class       : SpatVector 
+ geometry    : polygons 
+ dimensions  : 2, 1  (geometries, attributes)
+ extent      : 4480500, 4484666, 5550100, 5554933  (xmin, xmax, ymin, ymax)
+ source      : minibeispiel_polygon.geojson
+ coord. ref. : DHDN / 3-degree Gauss-Kruger zone 4 (EPSG:31468) 
+ names       : ID_region
+ type        :     &lt;int&gt;
+ values      :         1
+                       2</code></pre>
+</div>
+</div>
+</section>
+<section id="add-a-new-attribute" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="add-a-new-attribute"><span class="header-section-number">5.1.3</span> Add a new attribute</h3>
+<ul>
+<li><code>$name &lt;-</code></li>
+<li><code>[, "name"] &lt;-</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>vect_Test<span class="sc">$</span>New_Attr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n1"</span>, <span class="st">"n2"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>vect_Test[,<span class="st">"New_Attr"</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n1"</span>, <span class="st">"n2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="merge-several-attributes" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="merge-several-attributes"><span class="header-section-number">5.1.4</span> Merge several attributes</h3>
+<ul>
+<li>same order
+<ul>
+<li><code>cbind()</code></li>
+</ul></li>
+<li>common (key-)attributes
+<ul>
+<li><code>merge()</code></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_New_Attr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>), <span class="at">new_Attr2 =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(vect_Test, df_New_Attr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> class       : SpatVector 
+ geometry    : polygons 
+ dimensions  : 2, 6  (geometries, attributes)
+ extent      : 4480500, 4484666, 5550100, 5554933  (xmin, xmax, ymin, ymax)
+ source      : minibeispiel_polygon.geojson
+ coord. ref. : DHDN / 3-degree Gauss-Kruger zone 4 (EPSG:31468) 
+ names       : ID_region  Name region_area New_Attr  Name new_Attr2
+ type        :     &lt;int&gt; &lt;chr&gt;       &lt;num&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;num&gt;
+ values      :         1     a   8.853e+06       n1     a         9
+                       2     b   2.208e+06       n2     b         6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(vect_Test, df_New_Attr, <span class="at">by =</span> <span class="st">"Name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> class       : SpatVector 
+ geometry    : polygons 
+ dimensions  : 2, 5  (geometries, attributes)
+ extent      : 4480500, 4484666, 5550100, 5554933  (xmin, xmax, ymin, ymax)
+ coord. ref. : DHDN / 3-degree Gauss-Kruger zone 4 (EPSG:31468) 
+ names       :  Name ID_region region_area New_Attr new_Attr2
+ type        : &lt;chr&gt;     &lt;int&gt;       &lt;num&gt;    &lt;chr&gt;     &lt;num&gt;
+ values      :     a         1   8.853e+06       n1         9
+                   b         2   2.208e+06       n2         6</code></pre>
+</div>
+</div>
+</section>
+<section id="delete-a-attribute" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="delete-a-attribute"><span class="header-section-number">5.1.5</span> Delete a attribute</h3>
+<ul>
+<li><code>$name &lt;- NULL</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>vect_Test<span class="sc">$</span>New_Attr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n1"</span>, <span class="st">"n2"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>vect_Test[,<span class="st">"New_Attr"</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n1"</span>, <span class="st">"n2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="object-append-and-aggregate" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="object-append-and-aggregate"><span class="header-section-number">5.2</span> Object Append and aggregate</h2>
+<section id="append-new-objects" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="append-new-objects"><span class="header-section-number">5.2.1</span> Append new Objects</h3>
+<ul>
+<li><code>rbind()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New Vect</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the coordinate reference system (CRS) with EPSG codes</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>crs_31468 <span class="ot">&lt;-</span> <span class="st">"EPSG:31468"</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define coordinates for the first polygon</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>x_polygon_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4480400</span>, <span class="dv">4481222</span>, <span class="dv">4480500</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>y_polygon_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5551000</span>, <span class="dv">5550666</span>, <span class="dv">5552555</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>xy_polygon_3 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">id=</span><span class="dv">3</span>, <span class="at">part=</span><span class="dv">1</span>, x_polygon_3, y_polygon_3)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector layer for the polygons, specifying their type, attributes, CRS, and additional attributes</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>vect_New <span class="ot">&lt;-</span> <span class="fu">vect</span>(xy_polygon_3, <span class="at">type=</span><span class="st">"polygons"</span>, <span class="at">atts =</span> <span class="fu">data.frame</span>(<span class="at">ID_region =</span> <span class="dv">3</span>, <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"b"</span>)), <span class="at">crs =</span> crs_31468)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>vect_New<span class="sc">$</span>region_area <span class="ot">&lt;-</span> <span class="fu">expanse</span>(vect_New)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Append the objects</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>vect_Append <span class="ot">&lt;-</span> <span class="fu">rbind</span>(vect_Test, vect_New)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>vect_Append</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> class       : SpatVector 
+ geometry    : polygons 
+ dimensions  : 3, 4  (geometries, attributes)
+ extent      : 4480400, 4484666, 5550100, 5554933  (xmin, xmax, ymin, ymax)
+ source      : minibeispiel_polygon.geojson
+ coord. ref. : DHDN / 3-degree Gauss-Kruger zone 4 (EPSG:31468) 
+ names       : ID_region  Name region_area New_Attr
+ type        :     &lt;int&gt; &lt;chr&gt;       &lt;num&gt;    &lt;chr&gt;
+ values      :         1     a   8.853e+06       n1
+                       2     b   2.208e+06       n2
+                       3     b   6.558e+05       NA</code></pre>
+</div>
+</div>
+</section>
+<section id="aggregate-dissolve" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="aggregate-dissolve"><span class="header-section-number">5.2.2</span> Aggregate / Dissolve</h3>
+<p>It is common to <strong>aggregate (“dissolve”)</strong> polygons that have the same value for an attribute of interest.</p>
+<ul>
+<li><code>aggregate()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>vect_Aggregated <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">aggregate</span>(vect_Append, <span class="at">by =</span> <span class="st">"Name"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>vect_Aggregated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> class       : SpatVector 
+ geometry    : polygons 
+ dimensions  : 2, 5  (geometries, attributes)
+ extent      : 4480400, 4484666, 5550100, 5554933  (xmin, xmax, ymin, ymax)
+ coord. ref. : DHDN / 3-degree Gauss-Kruger zone 4 (EPSG:31468) 
+ names       :  Name mean_ID_region mean_region_area New_Attr agg_n
+ type        : &lt;chr&gt;          &lt;num&gt;            &lt;num&gt;    &lt;chr&gt; &lt;int&gt;
+ values      :     a              1        8.853e+06       n1     1
+                   b            2.5        1.432e+06       NA     2</code></pre>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Append, <span class="st">"ID_region"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Aggregated, <span class="st">"Name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Original</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Aggregated</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="overlap" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="overlap"><span class="header-section-number">5.3</span> Overlap</h2>
+<p>To perform operations that involve overlap between two vector datasets, we will create a new vector dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>vect_Overlap <span class="ot">&lt;-</span> <span class="fu">as.polygons</span>(rast_Test)[<span class="dv">1</span>,]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(vect_Overlap) <span class="ot">&lt;-</span> <span class="st">"ID_Rast"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Overlap, <span class="st">"ID_Rast"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="erase" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="erase"><span class="header-section-number">5.3.1</span> Erase</h3>
+<ul>
+<li><code>erase()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>vect_Erase <span class="ot">&lt;-</span> <span class="fu">erase</span>(vect_Test, vect_Overlap)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Erase, <span class="st">"ID_region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="intersect" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="intersect"><span class="header-section-number">5.3.2</span> Intersect</h3>
+<ul>
+<li><code>intersect()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>vect_Intersect <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">intersect</span>(vect_Test, vect_Overlap)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Intersect, <span class="st">"ID_region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="union" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="union"><span class="header-section-number">5.3.3</span> Union</h3>
+<p>Appends the geometries and attributes of the input.</p>
+<ul>
+<li><code>union()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>vect_Union <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">union</span>(vect_Test, vect_Overlap)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Union, <span class="st">"ID_region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="cover" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="cover"><span class="header-section-number">5.3.4</span> Cover</h3>
+<p><code>cover()</code> is a combination of <code>intersect()</code> and <code>union()</code>. intersect returns new (intersected) geometries with the attributes of both input datasets. union appends the geometries and attributes of the input. cover returns the intersection and appends the other geometries and attributes of both datasets.</p>
+<ul>
+<li><code>cover()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>vect_Cover <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">cover</span>(vect_Test, vect_Overlap)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Cover, <span class="st">"ID_region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="difference" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="difference"><span class="header-section-number">5.3.5</span> Difference</h3>
+<ul>
+<li><code>symdif()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>vect_Difference <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">symdif</span>(vect_Test, vect_Overlap)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vect_Difference, <span class="st">"ID_region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="raster-data-manipulation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Raster data manipulation</h1>
+<p>Compared to vector data, raster data stores <strong>continuous numeric</strong> values more, leading to significant differences in manipulation and analysis approaches.</p>
+<section id="raster-algebra" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="raster-algebra"><span class="header-section-number">6.1</span> Raster algebra</h2>
+<p>Many generic functions that allow for simple and elegant raster <strong>algebra</strong> have been implemented for Raster objects, including the normal algebraic operators such as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, logical operators such as <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>==</code>, <code>!</code>, and functions like <code>abs</code>, <code>round</code>, <code>ceiling</code>, <code>floor</code>, <code>trunc</code>, <code>sqrt</code>, <code>log</code>, <code>log10</code>, <code>exp</code>, <code>cos</code>, <code>sin</code>, <code>atan</code>, <code>tan</code>, <code>max</code>, <code>min</code>, <code>range</code>, <code>prod</code>, <code>sum</code>, <code>any</code>, <code>all</code>. In these functions, you can mix raster objects with numbers, as long as the first argument is a raster object. (<a href="https://rspatial.org/spatial/index.html">Spatial Data Science</a>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>rast_Add <span class="ot">&lt;-</span> rast_Test <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Add)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="replace-with-condition" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="replace-with-condition"><span class="header-section-number">6.2</span> Replace with Condition</h2>
+<ul>
+<li><code>rast[condition] &lt;-</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy to a new raster</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>rast_Replace <span class="ot">&lt;-</span> rast_Test</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>rast_Replace[rast_Replace <span class="sc">&gt;</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Replace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="summary-of-multi-layers" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="summary-of-multi-layers"><span class="header-section-number">6.3</span> Summary of multi-layers</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>rast_Mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(rast_Test, rast_Replace)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="aggregate-and-disaggregate" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="aggregate-and-disaggregate"><span class="header-section-number">6.4</span> Aggregate and disaggregate</h2>
+<ul>
+<li><code>aggregate()</code></li>
+<li><code>disagg()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>rast_Aggregate <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(rast_Test, <span class="dv">2</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Aggregate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>rast_Disagg <span class="ot">&lt;-</span> <span class="fu">disagg</span>(rast_Test, <span class="dv">2</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>rast_Disagg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 10, 10, 1  (nrow, ncol, nlyr)
+resolution  : 500, 500  (x, y)
+extent      : 4480000, 4485000, 5550000, 5555000  (xmin, xmax, ymin, ymax)
+coord. ref. : DHDN / 3-degree Gauss-Kruger zone 4 (EPSG:31468) 
+source(s)   : memory
+name        : minibeispiel_raster 
+min value   :                   1 
+max value   :                   3 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Disagg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="crop" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="crop"><span class="header-section-number">6.5</span> Crop</h2>
+<p>The crop function lets you take a geographic <strong>subset</strong> of a larger raster object with an <strong>extent</strong>. But you can also use other spatial object, in them an extent can be extracted.</p>
+<ul>
+<li><code>crop()</code>
+<ul>
+<li>with extention</li>
+<li>with rster</li>
+<li>with vector</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>rast_Crop <span class="ot">&lt;-</span> <span class="fu">crop</span>(rast_Test, vect_Test[<span class="dv">1</span>,])</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Crop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="trim" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="trim"><span class="header-section-number">6.6</span> Trim</h2>
+<ul>
+<li><code>trim()</code></li>
+</ul>
+<p>Trim (shrink) a <code>SpatRaster</code> by <strong>removing outer rows and columns</strong> that are NA or another value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rast_Trim0 <span class="ot">&lt;-</span> rast_Test</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>rast_Trim0[<span class="dv">21</span><span class="sc">:</span><span class="dv">25</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>rast_Trim <span class="ot">&lt;-</span> <span class="fu">trim</span>(rast_Trim0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Trim0)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Trim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">with NA</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-33-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Trimed</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="mask" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="mask"><span class="header-section-number">6.7</span> Mask</h2>
+<ul>
+<li><code>mask()</code></li>
+<li><code>crop(mask = TRUE)</code> = <code>mask()</code> + <code>trim()</code></li>
+</ul>
+<p>When you use mask manipulation in spatial data analysis, it involves setting the cells that are <strong>not covered</strong> by a mask to NA (Not Available) values. If you apply the <code>crop(mask = TRUE)</code> operation, it means that not only will the cells outside of the mask be set to NA, but the resulting raster will also be cropped to match the extent of the mask.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>rast_Mask <span class="ot">&lt;-</span> <span class="fu">mask</span>(rast_Disagg, vect_Test[<span class="dv">1</span>,])</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>rast_CropMask <span class="ot">&lt;-</span> <span class="fu">crop</span>(rast_Disagg, vect_Test[<span class="dv">1</span>,], <span class="at">mask =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_Mask)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rast_CropMask)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Mask</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="spatial_data_files/figure-html/unnamed-chunk-35-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Mask + Crop (Trim)</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 

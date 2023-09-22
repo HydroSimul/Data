@@ -1,21 +1,529 @@
 ---
-title: "spatial data"
+title: "Basic Manipulation"
+execute:
+  warning: false
+  error: false
 sidebar:
   contents: auto
+number-sections: true
 ---
 
-# H1
+# Library `terra`
 
-About this site test1
+The `terra` package in R is a powerful and versatile package for working with geospatial data, including **vector** and **raster** data. It provides a wide range of functionality for reading, processing, analyzing, and visualizing spatial data. 
 
-```{r}
-1 + 1
-```
+For more in-depth information and resources on the terra package and spatial data science in R, you can explore the original website [Spatial Data Science](https://rspatial.org/spatial/index.html). 
 
-## H2
+Firstly load the library to the R space:
 
-About this site test2
 
 ```{r}
-1 + 1
+# load the library
+library(terra)
+library(tidyverse)
+
+
 ```
+
+# Creating spatial data manually
+
+Creating spatial data manually is not a common practice due to the typically large volumes of data required. However, by starting from scratch and creating spatial data manually, you can gain a deeper understanding of the **data's structure** and properties. This manual creation process helps you become more familiar with how spatial data is organized and can be a valuable learning exercise.
+
+The examples provided here are just a few methods for manually creating spatial data. There are numerous ways to create spatial data in R with the `terra` package. You can refer to the package [documentation](https://cran.r-project.org/web/packages/terra/terra.pdf), specifically the `rast()` and `vect()` functions, to explore more advanced methods for creating and manipulating spatial data. 
+
+## Vector
+
+As introduced in the [section](basic_format.qmd#sec-spatialData), spatial vector data typically consists of three main components:
+
+- **Geometry**: Describes the spatial location and shape of features.
+- **Attributes**: Non-spatial properties associated with features.
+- **CRS** (Coordinate Reference System): Defines the spatial reference framework.
+
+```{r}
+# Define the coordinate reference system (CRS) with EPSG codes
+crs_31468 <- "EPSG:31468"
+
+# Define coordinates for the first polygon
+x_polygon_1 <- c(4484566, 4483922, 4483002, 4481929, 4481222, 4482500, 4483000, 4484666, 4484233)
+y_polygon_1 <- c(5554566, 5554001, 5553233, 5554933, 5550666, 5551555, 5550100, 5551711, 5552767)
+xy_polygon_1 <- cbind(id=1, part=1, x_polygon_1, y_polygon_1)
+# Define coordinates for the second polygon
+x_polygon_2 <- c(4481929, 4481222, 4480500)
+y_polygon_2 <- c(5554933, 5550666, 5552555)
+xy_polygon_2 <- cbind(id=2, part=1, x_polygon_2, y_polygon_2)
+# Combine the two polygons into one data frame
+xy_polygon <- rbind(xy_polygon_1, xy_polygon_2)
+
+# Create a vector layer for the polygons, specifying their type, attributes, CRS, and additional attributes
+vect_Test <- vect(xy_polygon, type="polygons", atts = data.frame(ID_region = 1:2, Name = c("a", "b")), crs = crs_31468)
+vect_Test$region_area <- expanse(vect_Test)
+
+```
+
+
+
+## Raster
+
+For raster data, the geometry is relatively simple and can be defined by the following components:
+
+- Coordinate of **Original Point** (X0, Y0) plus **Resolutions** (X and Y)
+- **Boundaries** (Xmin, Xmax, Ymin, Ymax) plus **Number of Rows and Columns**
+
+
+One of the most critical aspects of raster data is the values stored within its cells. You can set or modify these values using the `values()<-` function in R.
+
+```{r}
+rast_Test <- rast(ncol=10, nrow=10, xmin=-150, xmax=-80, ymin=20, ymax=60)
+values(rast_Test) <- runif(ncell(rast_Test))
+```
+
+
+Certainly, you can directly create a data file like an ASC (ASCII) file for raster data. 
+
+![](../images/spatialdata_TestRaster.png)
+
+
+
+
+# Read and write
+
+**Reading** and **writing** data are fundamental processes that precede spatial data manipulation. Spatial data is typically acquired from external sources. 
+
+However, due to the substantial differences between raster and vector data structures, they are often handled separately.
+
+| Data Type | Read | Write |
+|-----------|------|-------|
+| Vector    |`vect()`|`writeVect()`|
+| Raster    |`rast()`|`writeRast()`|
+
+The test files are available in [Github](https://github.com/HydroSimul/Web/tree/main/data_share)
+
+```{r}
+# Read shp-file as a vector layer
+vect_Test <- vect("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_polygon.geojson")
+# Read raster file
+rast_Test <- rast("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc")
+
+# Info and Plot of vector layer
+vect_Test
+plot(vect_Test)
+
+# Info and Plot of raster layer
+rast_Test
+plot(rast_Test)
+
+```
+
+```{r}
+#| eval: false
+writeVector(vect_Test, "fn_Output_Vector.geojson", "GeoJSON")
+
+writeRaster(rast_Test, "fn_OutPut_Raster.tif")
+```
+
+
+# Coordinate Reference Systems
+
+## Assigning a CRS
+
+In cases where the **Coordinate Reference System (CRS)** information is not included in the data file's content, you can assign it manually using the `crs()` function. This situation often occurs when working with raster data in formats like ASC (Arc/Info ASCII Grid) or other file formats that may not store CRS information.
+
+
+```{r}
+crs(rast_Test) <- "EPSG:31468"
+rast_Test
+```
+
+
+As the results showed, the CRS information has been filled with the necessary details in line `coord. ref.`. 
+
+
+The use of **EPSG (European Petroleum Survey Group) codes** is highly recommended for defining Coordinate Reference Systems (CRS) in spatial data. You can obtain information about EPSG codes from the [EPSG](https://epsg.io/) website. 
+
+::: {.callout-important}
+## NOTE
+
+You should not use this approach to change the CRS of a data set from what it is to what you want it to be. Assigning a CRS is like labeling something.
+:::
+
+
+## Transforming vector data
+
+The **transformation** of vector data is relatively simple, as it involves applying a mathematical formula to the coordinates of each point to obtain their new coordinates. This transformation can be considered as **without loss of precision**. 
+
+The `project()` function can be utilized to **reproject** both vector and raster data. 
+
+
+```{r}
+# New CRS
+crs_New <- "EPSG:4326"
+# Reproject
+vect_Test_New <- project(vect_Test, crs_New)
+
+# Info and Plot of vector layer
+vect_Test_New
+
+```
+
+
+## Transforming raster data
+
+Vector data can be transformed from lon/lat coordinates to planar and back without loss of precision. This is not the case with raster data. A raster consists of rectangular **cells** of the same size (in terms of the units of the CRS; their actual size may vary).
+It is not possible to transform cell by cell. For each new cell, values need to be **estimated** based on the values in the overlapping old cells. If the values are categorical data, the **“nearest neighbor”** method is commonly used. Otherwise some sort of interpolation is employed (e.g. **“bilinear”**).  (From [Spatial Data Science](https://rspatial.org/spatial/6-crs.html))
+
+::: {.callout-note}
+Because projection of rasters affects the cell values, in most cases you will want to avoid projecting raster data and rather project vector data. 
+:::
+
+### With CRS
+
+The simplest approach is to provide a **new CRS**:
+
+```{r}
+# New CRS
+crs_New <- "EPSG:4326"
+# Reproject
+rast_Test_New <- project(rast_Test, crs_New)
+
+# Info and Plot of vector layer
+rast_Test_New
+
+```
+
+
+```{r}
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Original"
+#|   - "New"
+
+plot(rast_Test)
+plot(rast_Test_New)
+```
+
+### With Mask Raster
+
+A second way is provide an existing `SpatRaster` with the **geometry you desire**, with special boundary and resolution, this is a better way.
+
+```{r}
+# New CRS
+rast_Mask <- rast(ncol=10, nrow=10, xmin=265000, xmax=270000, ymin=5553000, ymax=5558000)
+crs(rast_Mask) <- "EPSG:25833"
+values(rast_Mask) <- 1
+# Reproject
+rast_Test_New <- project(rast_Test, rast_Mask)
+
+# Info and Plot of vector layer
+rast_Test_New
+
+```
+
+
+```{r}
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Original"
+#|   - "New"
+
+plot(rast_Test)
+plot(rast_Test_New)
+```
+
+# Vector data manipulation
+
+In vector manipulation, it's crucial to handle both attributes and **shapes**, especially when combining multiple shapes or layers with other shapes and addressing overlapping layers.
+
+
+## Attributes manipulation
+
+### Extract all Attributes
+
+- `as.data.frame()`
+
+```{r}
+df_Attr <- as.data.frame(vect_Test)
+df_Attr
+```
+
+### Extract one with attribute name
+
+- `$name`
+- `[, "name"]`
+
+```{r}
+vect_Test$ID_region
+vect_Test[,"ID_region"]
+```
+
+### Add a new attribute
+
+- `$name <- `
+- `[, "name"] <- `
+
+
+```{r}
+vect_Test$New_Attr <- c("n1", "n2")
+vect_Test[,"New_Attr"] <- c("n1", "n2")
+```
+
+
+### Merge several attributes
+
+- same order
+  - `cbind()`
+- common (key-)attributes
+  - `merge()`
+
+```{r}
+df_New_Attr <- data.frame(Name = c("a", "b"), new_Attr2 = c(9, 6))
+
+cbind(vect_Test, df_New_Attr)
+
+merge(vect_Test, df_New_Attr, by = "Name")
+
+```
+
+
+
+### Delete a attribute
+
+- `$name <- NULL`
+
+```{r}
+vect_Test$New_Attr <- c("n1", "n2")
+vect_Test[,"New_Attr"] <- c("n1", "n2")
+```
+
+## Object Append and aggregate
+
+### Append new Objects
+
+- `rbind()`
+
+```{r}
+# New Vect
+# Define the coordinate reference system (CRS) with EPSG codes
+crs_31468 <- "EPSG:31468"
+
+# Define coordinates for the first polygon
+x_polygon_3 <- c(4480400, 4481222, 4480500)
+y_polygon_3 <- c(5551000, 5550666, 5552555)
+xy_polygon_3 <- cbind(id=3, part=1, x_polygon_3, y_polygon_3)
+
+# Create a vector layer for the polygons, specifying their type, attributes, CRS, and additional attributes
+vect_New <- vect(xy_polygon_3, type="polygons", atts = data.frame(ID_region = 3, Name = c("b")), crs = crs_31468)
+vect_New$region_area <- expanse(vect_New)
+
+# Append the objects
+vect_Append <- rbind(vect_Test, vect_New)
+vect_Append
+```
+
+
+### Aggregate / Dissolve
+
+It is common to **aggregate (“dissolve”)** polygons that have the same value for an attribute of interest. 
+
+- `aggregate()`
+
+```{r}
+vect_Aggregated <- terra::aggregate(vect_Append, by = "Name")
+vect_Aggregated
+```
+
+
+```{r}
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Original"
+#|   - "Aggregated"
+
+plot(vect_Append, "ID_region")
+plot(vect_Aggregated, "Name")
+```
+
+## Overlap
+
+To perform operations that involve overlap between two vector datasets, we will create a new vector dataset:
+
+```{r}
+vect_Overlap <- as.polygons(rast_Test)[1,]
+names(vect_Overlap) <- "ID_Rast"
+
+plot(vect_Overlap, "ID_Rast")
+```
+
+
+### Erase
+
+- `erase()`
+
+```{r}
+vect_Erase <- erase(vect_Test, vect_Overlap)
+plot(vect_Erase, "ID_region")
+```
+
+
+### Intersect
+
+- `intersect()`
+
+```{r}
+vect_Intersect <- terra::intersect(vect_Test, vect_Overlap)
+plot(vect_Intersect, "ID_region")
+```
+
+### Union
+
+Appends the geometries and attributes of the input. 
+
+- `union()`
+
+```{r}
+vect_Union <- terra::union(vect_Test, vect_Overlap)
+plot(vect_Union, "ID_region")
+```
+
+### Cover
+
+`cover()` is a combination of `intersect()` and `union()`. intersect returns new (intersected) geometries with the attributes of both input datasets. union appends the geometries and attributes of the input. cover returns the intersection and appends the other geometries and attributes of both datasets.
+
+
+- `cover()`
+
+```{r}
+vect_Cover <- terra::cover(vect_Test, vect_Overlap)
+plot(vect_Cover, "ID_region")
+```
+
+
+
+
+### Difference
+
+- `symdif()`
+
+```{r}
+vect_Difference <- terra::symdif(vect_Test, vect_Overlap)
+plot(vect_Difference, "ID_region")
+```
+
+# Raster data manipulation
+
+Compared to vector data, raster data stores **continuous numeric** values more, leading to significant differences in manipulation and analysis approaches.
+
+
+## Raster algebra
+
+Many generic functions that allow for simple and elegant raster **algebra** have been implemented for Raster objects, including the normal algebraic operators such as `+`, `-`, `*`, `/`, logical operators such as `>`, `>=`, `<`, `==`, `!`, and functions like `abs`, `round`, `ceiling`, `floor`, `trunc`, `sqrt`, `log`, `log10`, `exp`, `cos`, `sin`, `atan`, `tan`, `max`, `min`, `range`, `prod`, `sum`, `any`, `all`. In these functions, you can mix raster objects with numbers, as long as the first argument is a raster object. ([Spatial Data Science](https://rspatial.org/spatial/index.html))
+
+
+```{r}
+rast_Add <- rast_Test + 10
+plot(rast_Add)
+```
+
+## Replace with Condition
+
+- `rast[condition] <- `
+
+```{r}
+# Copy to a new raster
+rast_Replace <- rast_Test
+
+# Replace
+rast_Replace[rast_Replace > 1] <- 10
+plot(rast_Replace)
+```
+
+## Summary of multi-layers
+
+```{r}
+rast_Mean <- mean(rast_Test, rast_Replace)
+plot(rast_Mean)
+```
+
+## Aggregate and disaggregate
+
+- `aggregate()`
+- `disagg()`
+
+```{r}
+rast_Aggregate <- aggregate(rast_Test, 2)
+plot(rast_Aggregate)
+```
+
+
+```{r}
+rast_Disagg <- disagg(rast_Test, 2)
+rast_Disagg
+plot(rast_Disagg)
+```
+
+
+## Crop
+
+The crop function lets you take a geographic **subset** of a larger raster object with an **extent**. But you can also use other spatial object, in them an extent can be extracted.
+
+- `crop()`
+  - with extention
+  - with rster
+  - with vector
+  
+
+```{r}
+rast_Crop <- crop(rast_Test, vect_Test[1,])
+plot(rast_Crop)
+```
+
+
+## Trim
+
+- `trim()`
+
+Trim (shrink) a `SpatRaster` by **removing outer rows and columns** that are NA or another value.
+
+
+```{r}
+rast_Trim0 <- rast_Test
+rast_Trim0[21:25] <- NA
+rast_Trim <- trim(rast_Trim0)
+```
+
+
+```{r}
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "with NA"
+#|   - "Trimed"
+
+plot(rast_Trim0)
+plot(rast_Trim)
+```
+
+
+## Mask
+
+- `mask()`
+- `crop(mask = TRUE)` = `mask()` + `trim()`
+
+When you use mask manipulation in spatial data analysis, it involves setting the cells that are **not covered** by a mask to NA (Not Available) values. If you apply the `crop(mask = TRUE)` operation, it means that not only will the cells outside of the mask be set to NA, but the resulting raster will also be cropped to match the extent of the mask.
+
+
+
+```{r}
+rast_Mask <- mask(rast_Disagg, vect_Test[1,])
+rast_CropMask <- crop(rast_Disagg, vect_Test[1,], mask = TRUE)
+```
+
+```{r}
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Mask"
+#|   - "Mask + Crop (Trim)"
+
+plot(rast_Mask)
+plot(rast_CropMask)
+```
+
+

@@ -38,7 +38,7 @@ Compare to array, in a table, columns are allowed to have different data types, 
 
 ![](../images/dataformat_table.svg){width=60%}
 
-## Spatial Data
+## Spatial Data {#sec-spatialData}
 
 More Details in [Spatial Data Science](https://rspatial.org/spatial/2-spatialdata.html)
 
@@ -80,6 +80,8 @@ The datastructure of raster data is quite simple. In a raster, each **row shares
 In addition to Geometry (of Vector) and Koordinate (of aster), another essential component of spatial data is the Coordinate Reference System (CRS). The CRS plays a crucial role in geospatial data by providing a framework for translating the **Earth's 3D surface into a 2D coordinate** system. 
 
 Key points about the Coordinate Reference System (CRS) include:
+
+0. **Angular coordinates**: The earth has an irregular spheroid-like shape. The natural coordinate reference system for geographic data is longitude/latitude.
 
 1. **Projection**: The CRS defines how the Earth's curved surface is projected onto a 2D plane, enabling the representation of geographic features on maps and in geographic information systems (GIS). Different projection methods exist, each with its own strengths and weaknesses depending on the region and purpose of the map.
 

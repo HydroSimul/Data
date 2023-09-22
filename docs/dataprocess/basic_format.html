@@ -133,21 +133,21 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Basic Data &amp; File Format</span></a>
   </div>
 </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Processing with Skript</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/basic_r_python.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R &amp; Python Basic</span></a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Pre-Processing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/data_load.html" class="sidebar-item-text sidebar-link">
@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/spatial_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">spatial data</span></a>
+ <span class="menu-text">Basic Manipulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -207,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#array" id="toc-array" class="nav-link" data-scroll-target="#array">Array</a></li>
   <li><a href="#table-dataframe" id="toc-table-dataframe" class="nav-link" data-scroll-target="#table-dataframe">Table (Dataframe)</a></li>
-  <li><a href="#spatial-data" id="toc-spatial-data" class="nav-link" data-scroll-target="#spatial-data">Spatial Data</a>
+  <li><a href="#sec-spatialData" id="toc-sec-spatialData" class="nav-link" data-scroll-target="#sec-spatialData">Spatial Data</a>
   <ul class="collapse">
   <li><a href="#spatial-vector" id="toc-spatial-vector" class="nav-link" data-scroll-target="#spatial-vector">Spatial Vector</a></li>
   <li><a href="#spatial-raster" id="toc-spatial-raster" class="nav-link" data-scroll-target="#spatial-raster">Spatial Raster</a></li>
@@ -288,8 +288,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Compare to array, in a table, columns are allowed to have different data types, but all values within a specific column must share the <strong>same data type</strong>.</p>
 <p><img src="../images/dataformat_table.svg" class="img-fluid" style="width:60.0%"></p>
 </section>
-<section id="spatial-data" class="level2">
-<h2 class="anchored" data-anchor-id="spatial-data">Spatial Data</h2>
+<section id="sec-spatialData" class="level2">
+<h2 class="anchored" data-anchor-id="sec-spatialData">Spatial Data</h2>
 <p>More Details in <a href="https://rspatial.org/spatial/2-spatialdata.html">Spatial Data Science</a></p>
 <p>Spatial data refers to data that has a <strong>geographic</strong> or <strong>spatial</strong> component, representing the locations and shapes of physical objects on the Earth’s surface. This type of data is essential in various fields, including geography, environmental science, urban planning, and more. One of the key elements in spatial data is its association with coordinate systems, which allow precise location referencing.</p>
 <section id="spatial-vector" class="level3">
@@ -316,7 +316,8 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="coordinate-reference-system-crs">Coordinate Reference System (CRS)</h3>
 <p>In addition to Geometry (of Vector) and Koordinate (of aster), another essential component of spatial data is the Coordinate Reference System (CRS). The CRS plays a crucial role in geospatial data by providing a framework for translating the <strong>Earth’s 3D surface into a 2D coordinate</strong> system.</p>
 <p>Key points about the Coordinate Reference System (CRS) include:</p>
-<ol type="1">
+<ol start="0" type="1">
+<li><p><strong>Angular coordinates</strong>: The earth has an irregular spheroid-like shape. The natural coordinate reference system for geographic data is longitude/latitude.</p></li>
 <li><p><strong>Projection</strong>: The CRS defines how the Earth’s curved surface is projected onto a 2D plane, enabling the representation of geographic features on maps and in geographic information systems (GIS). Different projection methods exist, each with its own strengths and weaknesses depending on the region and purpose of the map.</p></li>
 <li><p><strong>Units</strong>: CRS specifies the units of measurement for coordinates. Common units include degrees (for latitude and longitude), meters, and feet, among others.</p></li>
 <li><p><strong>Reference Point</strong>: It establishes a reference point (usually the origin) and orientation for the coordinate system.</p></li>
