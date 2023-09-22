@@ -39,8 +39,7 @@ website:
             - section: "Spatial Data"
               contents:
                 - dataprocess/spatial_data.qmd      
-                - dataprocess/extract_raster.qmd      
-                - dataprocess/extract_vector.qmd      
+                - dataprocess/extract_spatial.qmd      
 
 
 format:
