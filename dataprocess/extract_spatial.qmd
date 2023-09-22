@@ -14,7 +14,7 @@ Raster Data is actually a kind of Sample data of a area, the area will be divide
 
 Therefore we need the operate **EXTRACT**.
 
-# Extract from Raster
+## Extract from Raster
 
 The basic Data are like:
 
@@ -25,7 +25,7 @@ The basic Data are like:
 
 For the operate **EXTRACT**, we need basically the **raster data** and the **regions (shape files)**. Before this we must confirm that, the both data are in the same CRS (coordinate reference system). In this Blog we discuss only the theories and ideas about **EXTRACT**. There will show total four methods:
 
-## Rough with original resolution
+### Rough with original resolution
 
 The first method we just use the original Raster with **original resolution**. But when the resolution not so fine, it will occur to that the selected grids have the big difference than the region. This is one very typical Problem in meteorological data, they have not so gut space resolution because the time resolution is always finer than the common geological data. In order to balance the data size, we must reduce the space resolution.
 
@@ -55,7 +55,7 @@ Summary we can say: the original resolution can be used, only when the deviation
 
 
 
-## Refine resolution
+### Refine resolution
 
 The second method is one simplest method, we need only refine our data in higher resolution, like resolution in 10 times finer and the grids will in 100 times more.
 
@@ -67,7 +67,7 @@ Essentially there is no difference as 1. method, but the problem will be solved.
 Like the figure shows: the accuracy is gut improvement, the deviation should lay under the 1%.
 
 
-## Exact with Area
+### Exact with Area
 
 The weighted mean is always exacter than the numerical average. The important Point for the weighted mean is the weights, in the spatial analyse it's the portion of the area. So, the main task in third method is calculate the area of every value, that within one region.
 
@@ -81,7 +81,7 @@ In order to calculate the area, we need actually **convert the raster grids into
 In the Illustration is every value as the same polygon converted.
 
 
-## Exact with scale product
+### Exact with scale product
 
 This method is designed only for the meteorological data, those have the **big mange on time scalar**. It's also the most effective method in the practice.
 
@@ -102,7 +102,7 @@ $\vec{A}_{[time,grid]}$ = all Value in the matrix [time, grid]
 $\vec{W}_{[grid,region]}$ = Weights of every grid to every region in the matrix [grid,region]
 
 
-### Weight-Matrix
+#### Weight-Matrix
 
 For the Weight-Matrix calculate we just the portion of the grid area only that within the region to the **whole region area** (but not the whole grid), then divide the area of the region.
 
@@ -119,7 +119,7 @@ One example `weight_grid`:
 ```
 `G` for Grid and `R` for Region
 
-### Value-Matrix
+#### Value-Matrix
 
 One example `mat_value`:
 
@@ -134,3 +134,84 @@ One example `mat_value`:
 The end.
 
 
+# Vector Data
+
+Compared to the raster data are **Vector** data describe the data use mange Shapes, the basic (or we can say the only three) Shape form are **Points**, **Lines** and **Polygons**. In all cases, the **geometry** of these data structures consists of sets of coordinate pairs (x, y). (From [terra](https://rspatial.org/terra/spatial/2-spatialdata.html#vector-data) The geometry just define the location and topology, the other important part of vector data is the **attributes** of every shape, in that store we the data.
+
+In our Hydrology or Meteorology fields have we usually the point-data (e.g. data from measuring station) and area-data (e.g. land use or soil). There may be also some line-data (e.g. isoline), but they are always not used for storing the data, maybe just show the data. So, the operate **EXTRACT** is actually the statistic of the Vector data for the specific regions.
+
+
+
+And in the Blog we will only take the forms **POINTS** and **POLYGONs** into account.
+
+## Extract from Polygons
+
+When we just **EXTRACT** one value (one attribute) we can straight use the function `intersect()`, to intersect the data-polygons and regions-polygons then calculate the statistic values for every regions. 
+
+
+![Illustration of Extract with Polygon-value](../images/spatialdata_extract_area.png)
+
+**But** when we need to extract more values (attributes), again the idea from last Blog [Exact with scale product]() will be used:
+
+$$
+\vec{\Omega}_{[attribute,region]} = \vec{A}_{[attribute,polygon]} \cdot \vec{W}_{[polygon,region]}
+$$
+
+
+
+$\vec{\Omega}_{[attribute,region]}$ = Region-value of every region
+
+$\vec{A}_{[attribute,polygon]}$ = attributes list in the matrix [attribute,polygon]   
+
+$\vec{W}_{[polygon,region]}$ = Weights of every polygon to every region in the matrix [polygon,region]
+
+1. Weight-Matrix create: just use `intersect()` then statistic the portion of the value-area to the region-area in matrix [value-polygon, regions]
+
+2. Value-Matrix create: connect the attribute list
+
+3. scale product with both Value- and Weight-Matrix
+
+
+
+
+
+
+
+## Extract from Points
+
+### Numerical Mean
+
+The moooost simple and direct method is the **Numerical Mean** of points in the region:
+
+
+![Illustration of Extract with Point-Value: Numerical Mean of points in the region](../images/spatialdata_extract_point0.png)
+
+1. Interset with regions, then select points which in the region
+2. Calculate mean value of points
+
+The weakness are also obviously, many points, who lay just near the boundary of region, will be ignored. It's also familiar that in some regions there are no points laying in. 
+
+So, we need maybe convert the point-data to **polygon-** or **raster-data**
+
+### Tiessen (Dirichlet) Polygon
+
+Actually the convert to the polygon is the most popular and typical method specially with the **Tiessen (Dirichlet) Polygon** in meteorological fields.
+
+![Illustration of Extract mit Punkt-Wert](../images/spatialdata_extract_point.png)
+
+1. Convert point data to Tiessen polygon data
+2. use the method of polygon like above
+
+
+
+### Interpolate as Raster
+
+The second convert idea is convert to the raster: **Interpolation** 
+
+![Illustration der Interpolation mit Punkt-Werten](../images/spatialdata_point_raster.png)
+
+The **Interpolation** is also one important issue, and it will be discussed in th near future. Here will just show the three most impotent methods: **Nearest neighbor**, **IDW (Inverse distance weighted)** and **Kringing**
+
+The three methods are also very easy processed in `R::terra`, that will be showed in the next Blog.
+
+The end.

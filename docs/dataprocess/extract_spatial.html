@@ -64,8 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../dataprocess/extract_vector.html" rel="next">
-<link href="../dataprocess/data_load.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -102,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -128,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Dataset</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../dataprocess/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../dataprocess/index.html" rel="" target="">
  <span class="menu-text">Dataprocess</span></a>
   </li>  
 </ul>
@@ -137,129 +135,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/extract_raster.html">Spatial Data</a></li><li class="breadcrumb-item"><a href="../dataprocess/extract_raster.html">Extract values from Raster Data</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../dataprocess/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dataprocess</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Data Format</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/basic_format.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Basic format</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/NetCDF.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NetCDF</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/spatial_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">spatial data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
- <span class="menu-text">Processing with Skript</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/basic_r_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R &amp; Python Basic</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/data_load.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Loading</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Spatial Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/extract_raster.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Extract values from Raster Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/extract_vector.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Extract values from Vector (Shape) Data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#raster-data" id="toc-raster-data" class="nav-link active" data-scroll-target="#raster-data"><span class="header-section-number">1</span> Raster Data</a></li>
-  <li><a href="#extract-from-raster" id="toc-extract-from-raster" class="nav-link" data-scroll-target="#extract-from-raster"><span class="header-section-number">2</span> Extract from Raster</a>
+  <li><a href="#raster-data" id="toc-raster-data" class="nav-link active" data-scroll-target="#raster-data"><span class="header-section-number">1</span> Raster Data</a>
   <ul class="collapse">
-  <li><a href="#rough-with-original-resolution" id="toc-rough-with-original-resolution" class="nav-link" data-scroll-target="#rough-with-original-resolution"><span class="header-section-number">2.1</span> Rough with original resolution</a></li>
-  <li><a href="#refine-resolution" id="toc-refine-resolution" class="nav-link" data-scroll-target="#refine-resolution"><span class="header-section-number">2.2</span> Refine resolution</a></li>
-  <li><a href="#exact-with-area" id="toc-exact-with-area" class="nav-link" data-scroll-target="#exact-with-area"><span class="header-section-number">2.3</span> Exact with Area</a></li>
-  <li><a href="#exact-with-scale-product" id="toc-exact-with-scale-product" class="nav-link" data-scroll-target="#exact-with-scale-product"><span class="header-section-number">2.4</span> Exact with scale product</a>
+  <li><a href="#extract-from-raster" id="toc-extract-from-raster" class="nav-link" data-scroll-target="#extract-from-raster"><span class="header-section-number">1.1</span> Extract from Raster</a>
   <ul class="collapse">
-  <li><a href="#weight-matrix" id="toc-weight-matrix" class="nav-link" data-scroll-target="#weight-matrix"><span class="header-section-number">2.4.1</span> Weight-Matrix</a></li>
-  <li><a href="#value-matrix" id="toc-value-matrix" class="nav-link" data-scroll-target="#value-matrix"><span class="header-section-number">2.4.2</span> Value-Matrix</a></li>
+  <li><a href="#rough-with-original-resolution" id="toc-rough-with-original-resolution" class="nav-link" data-scroll-target="#rough-with-original-resolution"><span class="header-section-number">1.1.1</span> Rough with original resolution</a></li>
+  <li><a href="#refine-resolution" id="toc-refine-resolution" class="nav-link" data-scroll-target="#refine-resolution"><span class="header-section-number">1.1.2</span> Refine resolution</a></li>
+  <li><a href="#exact-with-area" id="toc-exact-with-area" class="nav-link" data-scroll-target="#exact-with-area"><span class="header-section-number">1.1.3</span> Exact with Area</a></li>
+  <li><a href="#exact-with-scale-product" id="toc-exact-with-scale-product" class="nav-link" data-scroll-target="#exact-with-scale-product"><span class="header-section-number">1.1.4</span> Exact with scale product</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#vector-data" id="toc-vector-data" class="nav-link" data-scroll-target="#vector-data"><span class="header-section-number">2</span> Vector Data</a>
+  <ul class="collapse">
+  <li><a href="#extract-from-polygons" id="toc-extract-from-polygons" class="nav-link" data-scroll-target="#extract-from-polygons"><span class="header-section-number">2.1</span> Extract from Polygons</a></li>
+  <li><a href="#extract-from-points" id="toc-extract-from-points" class="nav-link" data-scroll-target="#extract-from-points"><span class="header-section-number">2.2</span> Extract from Points</a>
+  <ul class="collapse">
+  <li><a href="#numerical-mean" id="toc-numerical-mean" class="nav-link" data-scroll-target="#numerical-mean"><span class="header-section-number">2.2.1</span> Numerical Mean</a></li>
+  <li><a href="#tiessen-dirichlet-polygon" id="toc-tiessen-dirichlet-polygon" class="nav-link" data-scroll-target="#tiessen-dirichlet-polygon"><span class="header-section-number">2.2.2</span> Tiessen (Dirichlet) Polygon</a></li>
+  <li><a href="#interpolate-as-raster" id="toc-interpolate-as-raster" class="nav-link" data-scroll-target="#interpolate-as-raster"><span class="header-section-number">2.2.3</span> Interpolate as Raster</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -289,9 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-number="1"><span class="header-section-number">1</span> Raster Data</h1>
 <p>Raster Data is actually a kind of Sample data of a area, the area will be divided in regular grids (equally sized rectangles). The typical raster data like elevation is already the most important data for many spatial-based research fields. The raster form is also the important form for meteorological data, in order the area-value (e.g.&nbsp;Temperature and Presentation) to represent. But for the application e.g.&nbsp;in the Hydrology need we some statistical values for specific research regions, especially the Average.</p>
 <p>Therefore we need the operate <strong>EXTRACT</strong>.</p>
-</section>
-<section id="extract-from-raster" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Extract from Raster</h1>
+<section id="extract-from-raster" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="extract-from-raster"><span class="header-section-number">1.1</span> Extract from Raster</h2>
 <p>The basic Data are like:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -304,8 +206,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>two Regions shape files</li>
 </ul>
 <p>For the operate <strong>EXTRACT</strong>, we need basically the <strong>raster data</strong> and the <strong>regions (shape files)</strong>. Before this we must confirm that, the both data are in the same CRS (coordinate reference system). In this Blog we discuss only the theories and ideas about <strong>EXTRACT</strong>. There will show total four methods:</p>
-<section id="rough-with-original-resolution" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="rough-with-original-resolution"><span class="header-section-number">2.1</span> Rough with original resolution</h2>
+<section id="rough-with-original-resolution" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="rough-with-original-resolution"><span class="header-section-number">1.1.1</span> Rough with original resolution</h3>
 <p>The first method we just use the original Raster with <strong>original resolution</strong>. But when the resolution not so fine, it will occur to that the selected grids have the big difference than the region. This is one very typical Problem in meteorological data, they have not so gut space resolution because the time resolution is always finer than the common geological data. In order to balance the data size, we must reduce the space resolution.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -330,8 +232,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>Center-point</code> can be used for the average value and actually the deviation maybe reduced, due to the surplus of selected grids and deficit of not selected grids in the boundary.</p></li>
 </ul>
 </section>
-<section id="refine-resolution" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="refine-resolution"><span class="header-section-number">2.2</span> Refine resolution</h2>
+<section id="refine-resolution" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="refine-resolution"><span class="header-section-number">1.1.2</span> Refine resolution</h3>
 <p>The second method is one simplest method, we need only refine our data in higher resolution, like resolution in 10 times finer and the grids will in 100 times more.</p>
 <p>Essentially there is no difference as 1. method, but the problem will be solved. This method is pointed, just because I must use Matlab processing the data, but there is no spatial Analyse Toolbox in Matlab. Therefore this is fast the only Answer, just because the Refine needs no supply from spatial Analyse Toolbox, we can easily repeat the data 10 more in row and 10 more in column.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -342,8 +244,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Like the figure shows: the accuracy is gut improvement, the deviation should lay under the 1%.</p>
 </section>
-<section id="exact-with-area" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="exact-with-area"><span class="header-section-number">2.3</span> Exact with Area</h2>
+<section id="exact-with-area" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="exact-with-area"><span class="header-section-number">1.1.3</span> Exact with Area</h3>
 <p>The weighted mean is always exacter than the numerical average. The important Point for the weighted mean is the weights, in the spatial analyse it’s the portion of the area. So, the main task in third method is calculate the area of every value, that within one region.</p>
 <p>In order to calculate the area, we need actually <strong>convert the raster grids into shape</strong>, for the convert we have also two methods:</p>
 <ul>
@@ -358,8 +260,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In the Illustration is every value as the same polygon converted.</p>
 </section>
-<section id="exact-with-scale-product" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="exact-with-scale-product"><span class="header-section-number">2.4</span> Exact with scale product</h2>
+<section id="exact-with-scale-product" class="level3" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="exact-with-scale-product"><span class="header-section-number">1.1.4</span> Exact with scale product</h3>
 <p>This method is designed only for the meteorological data, those have the <strong>big mange on time scalar</strong>. It’s also the most effective method in the practice.</p>
 <p>The theory and the formal is just like:</p>
 <p><span class="math display">\[
@@ -368,8 +270,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\(\vec{\Omega}_{[time,region]}\)</span> = Region-value of every region</p>
 <p><span class="math inline">\(\vec{A}_{[time,grid]}\)</span> = all Value in the matrix [time, grid]</p>
 <p><span class="math inline">\(\vec{W}_{[grid,region]}\)</span> = Weights of every grid to every region in the matrix [grid,region]</p>
-<section id="weight-matrix" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="weight-matrix"><span class="header-section-number">2.4.1</span> Weight-Matrix</h3>
+<section id="weight-matrix" class="level4" data-number="1.1.4.1">
+<h4 data-number="1.1.4.1" class="anchored" data-anchor-id="weight-matrix"><span class="header-section-number">1.1.4.1</span> Weight-Matrix</h4>
 <p>For the Weight-Matrix calculate we just the portion of the grid area only that within the region to the <strong>whole region area</strong> (but not the whole grid), then divide the area of the region.</p>
 <p>One example <code>weight_grid</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>            [R1]      [R2]</span>
@@ -381,13 +283,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> [G6]      <span class="fl">0.000</span>  <span class="fl">45011.22</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>G</code> for Grid and <code>R</code> for Region</p>
 </section>
-<section id="value-matrix" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="value-matrix"><span class="header-section-number">2.4.2</span> Value-Matrix</h3>
+<section id="value-matrix" class="level4" data-number="1.1.4.2">
+<h4 data-number="1.1.4.2" class="anchored" data-anchor-id="value-matrix"><span class="header-section-number">1.1.4.2</span> Value-Matrix</h4>
 <p>One example <code>mat_value</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>     [G1] [G2] [G3] [G4] [G5] [G6] </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[T1]    <span class="dv">2</span>    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">4</span>    <span class="dv">1</span>    <span class="dv">1</span>  </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>[T2]    <span class="dv">3</span>    <span class="dv">1</span>    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">1</span>    <span class="dv">1</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>T</code> for Time</p>
+<p>The end.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="vector-data" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Vector Data</h1>
+<p>Compared to the raster data are <strong>Vector</strong> data describe the data use mange Shapes, the basic (or we can say the only three) Shape form are <strong>Points</strong>, <strong>Lines</strong> and <strong>Polygons</strong>. In all cases, the <strong>geometry</strong> of these data structures consists of sets of coordinate pairs (x, y). (From <a href="https://rspatial.org/terra/spatial/2-spatialdata.html#vector-data">terra</a> The geometry just define the location and topology, the other important part of vector data is the <strong>attributes</strong> of every shape, in that store we the data.</p>
+<p>In our Hydrology or Meteorology fields have we usually the point-data (e.g.&nbsp;data from measuring station) and area-data (e.g.&nbsp;land use or soil). There may be also some line-data (e.g.&nbsp;isoline), but they are always not used for storing the data, maybe just show the data. So, the operate <strong>EXTRACT</strong> is actually the statistic of the Vector data for the specific regions.</p>
+<p>And in the Blog we will only take the forms <strong>POINTS</strong> and <strong>POLYGONs</strong> into account.</p>
+<section id="extract-from-polygons" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="extract-from-polygons"><span class="header-section-number">2.1</span> Extract from Polygons</h2>
+<p>When we just <strong>EXTRACT</strong> one value (one attribute) we can straight use the function <code>intersect()</code>, to intersect the data-polygons and regions-polygons then calculate the statistic values for every regions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/spatialdata_extract_area.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration of Extract with Polygon-value</figcaption>
+</figure>
+</div>
+<p><strong>But</strong> when we need to extract more values (attributes), again the idea from last Blog <a href="">Exact with scale product</a> will be used:</p>
+<p><span class="math display">\[
+\vec{\Omega}_{[attribute,region]} = \vec{A}_{[attribute,polygon]} \cdot \vec{W}_{[polygon,region]}
+\]</span></p>
+<p><span class="math inline">\(\vec{\Omega}_{[attribute,region]}\)</span> = Region-value of every region</p>
+<p><span class="math inline">\(\vec{A}_{[attribute,polygon]}\)</span> = attributes list in the matrix [attribute,polygon]</p>
+<p><span class="math inline">\(\vec{W}_{[polygon,region]}\)</span> = Weights of every polygon to every region in the matrix [polygon,region]</p>
+<ol type="1">
+<li><p>Weight-Matrix create: just use <code>intersect()</code> then statistic the portion of the value-area to the region-area in matrix [value-polygon, regions]</p></li>
+<li><p>Value-Matrix create: connect the attribute list</p></li>
+<li><p>scale product with both Value- and Weight-Matrix</p></li>
+</ol>
+</section>
+<section id="extract-from-points" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="extract-from-points"><span class="header-section-number">2.2</span> Extract from Points</h2>
+<section id="numerical-mean" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="numerical-mean"><span class="header-section-number">2.2.1</span> Numerical Mean</h3>
+<p>The moooost simple and direct method is the <strong>Numerical Mean</strong> of points in the region:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/spatialdata_extract_point0.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration of Extract with Point-Value: Numerical Mean of points in the region</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Interset with regions, then select points which in the region</li>
+<li>Calculate mean value of points</li>
+</ol>
+<p>The weakness are also obviously, many points, who lay just near the boundary of region, will be ignored. It’s also familiar that in some regions there are no points laying in.</p>
+<p>So, we need maybe convert the point-data to <strong>polygon-</strong> or <strong>raster-data</strong></p>
+</section>
+<section id="tiessen-dirichlet-polygon" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="tiessen-dirichlet-polygon"><span class="header-section-number">2.2.2</span> Tiessen (Dirichlet) Polygon</h3>
+<p>Actually the convert to the polygon is the most popular and typical method specially with the <strong>Tiessen (Dirichlet) Polygon</strong> in meteorological fields.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/spatialdata_extract_point.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration of Extract mit Punkt-Wert</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Convert point data to Tiessen polygon data</li>
+<li>use the method of polygon like above</li>
+</ol>
+</section>
+<section id="interpolate-as-raster" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="interpolate-as-raster"><span class="header-section-number">2.2.3</span> Interpolate as Raster</h3>
+<p>The second convert idea is convert to the raster: <strong>Interpolation</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/spatialdata_point_raster.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration der Interpolation mit Punkt-Werten</figcaption>
+</figure>
+</div>
+<p>The <strong>Interpolation</strong> is also one important issue, and it will be discussed in th near future. Here will just show the three most impotent methods: <strong>Nearest neighbor</strong>, <strong>IDW (Inverse distance weighted)</strong> and <strong>Kringing</strong></p>
+<p>The three methods are also very easy processed in <code>R::terra</code>, that will be showed in the next Blog.</p>
 <p>The end.</p>
 
 
@@ -629,18 +606,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../dataprocess/data_load.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Loading</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../dataprocess/extract_vector.html" class="pagination-link">
-        <span class="nav-page-text">Extract values from Vector (Shape) Data</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
