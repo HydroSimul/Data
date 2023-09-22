@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "Modelling/HM_0.html",
+    "href": "Modelling/HM_0.html",
+    "title": "Modelling",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "Modelling/HM_0.html#h2",
+    "href": "Modelling/HM_0.html#h2",
+    "title": "Modelling",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/meteo.html",
+    "href": "dataset/meteo.html",
+    "title": "Meteological",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/meteo.html#h2",
+    "href": "dataset/meteo.html#h2",
+    "title": "Meteological",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/hydro.html",
+    "href": "dataset/hydro.html",
+    "title": "Hydro",
+    "section": "",
+    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataset/hydro.html#h2",
+    "href": "dataset/hydro.html#h2",
+    "title": "Hydro",
+    "section": "",
+    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+  },
+  {
     "objectID": "dataprocess/spatial_data.html",
     "href": "dataprocess/spatial_data.html",
     "title": "Basic Manipulation",
@@ -112,39 +154,81 @@
     "text": "6.7 Mask\n\nmask()\ncrop(mask = TRUE) = mask() + trim()\n\nWhen you use mask manipulation in spatial data analysis, it involves setting the cells that are not covered by a mask to NA (Not Available) values. If you apply the crop(mask = TRUE) operation, it means that not only will the cells outside of the mask be set to NA, but the resulting raster will also be cropped to match the extent of the mask.\n\nrast_Mask &lt;- mask(rast_Disagg, vect_Test[1,])\nrast_CropMask &lt;- crop(rast_Disagg, vect_Test[1,], mask = TRUE)\n\n\nplot(rast_Mask)\nplot(rast_CropMask)\n\n\n\n\n\n\nMask\n\n\n\n\n\n\n\nMask + Crop (Trim)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcom Page",
+    "objectID": "dataprocess/index.html",
+    "href": "dataprocess/index.html",
+    "title": "Dataset",
     "section": "",
-    "text": "Welcome to HydroSimul: Your Gateway to Understanding Hydrological Simulation\nWe’re thrilled to have you at HydroSimul, your premier resource for delving into the realm of hydrological simulation. Here, we curate a vast collection of datasets and offer cutting-edge techniques to empower your exploration.\nAt HydroSimul, we believe in the power of collaboration. If you want to share your knowledge, experience, and skills in the field, please contact us at hydro.simul@gmail.com. We also welcome your advice.\nOur website serves as a comprehensive hub for your hydrological journey:"
+    "text": "Numerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide direct links to the datasets but also present essential information in a standardized format, simplifying your dataset selection process. Additionally, we strive to establish connections with research papers that have utilized these datasets and offer valuable feedback gleaned from these sources."
   },
   {
-    "objectID": "index.html#dataset-collection",
-    "href": "index.html#dataset-collection",
-    "title": "Welcom Page",
-    "section": "1. Dataset Collection:",
-    "text": "1. Dataset Collection:\nNumerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide direct links to the datasets but also present essential information in a standardized format, simplifying your dataset selection process. Additionally, we strive to establish connections with research papers that have utilized these datasets and offer valuable feedback gleaned from these sources."
+    "objectID": "dataprocess/data_load.html",
+    "href": "dataprocess/data_load.html",
+    "title": "Data Loading",
+    "section": "",
+    "text": "This Aritcl will show the process to load data from other files. I t will divide into four paties: plain text (read able ASCII), Excel, NetCDF and spatial data.\nOverview:"
   },
   {
-    "objectID": "index.html#data-processing",
-    "href": "index.html#data-processing",
-    "title": "Welcom Page",
-    "section": "2. Data Processing:",
-    "text": "2. Data Processing:\nOn this page, we provide you with a wealth of data processing tools and techniques. Discover how to adeptly clean, preprocess, and convert raw hydrological data into a valuable format suitable for analysis and modeling."
+    "objectID": "dataprocess/data_load.html#example-file",
+    "href": "dataprocess/data_load.html#example-file",
+    "title": "Data Loading",
+    "section": "1.1 Example File",
+    "text": "1.1 Example File\nLet’s start with an example CSV file named Bachum_2763190000100.csv. This file contains pegel discharge data and is sourced from open data available at ELWAS-WEB NRW. You can also access it directly from the internet via Github, just like you would access a local file.\nTake a look:"
   },
   {
-    "objectID": "index.html#data-analysis",
-    "href": "index.html#data-analysis",
-    "title": "Welcom Page",
-    "section": "3. Data Analysis:",
-    "text": "3. Data Analysis:\nUncover concealed statistical insights and trends within your data. Our comprehensive guides and tutorials are designed to empower you with the skills to effectively analyze hydrological data."
+    "objectID": "dataprocess/data_load.html#library-and-functions",
+    "href": "dataprocess/data_load.html#library-and-functions",
+    "title": "Data Loading",
+    "section": "1.2 Library and functions",
+    "text": "1.2 Library and functions\n\nRPython\n\n\nFirst, we need to load the necessary library tidyverse. This library collection includes readr for reading files and dplyr for data manipulation, among others.\nAnd, we set the URL address as the file path (including the file name).\n\n# load the library\nlibrary(tidyverse)\nfn_Bachum &lt;- \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv\"\nfn_Datatype &lt;- \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/load_Datatype.txt\"\n\nThe documentation for the readr library is available online and can be accessed at https://readr.tidyverse.org.\nOf particular interest are the following functions:\n\nreadr::read_csv()\nreadr::read_table()\n\nWe can observe that the CSV file is divided by semicolons. Therefore, it’s more appropriate to use read_csv2() rather than read_csv().\nThe difference between read_*() functions in the readr package is determined by the delimiter character used in the files:\n\n\n\nCHEAT SHEET from Rstudio\n\n\n\n\n\n# load the library\nimport pandas as pd\nfn_Bachum = \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv\"\nfn_Datatype = \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/load_Datatype.txt\"\n\nThe documentation for the pandas library is available online and can be accessed at https://pandas.pydata.org/docs/index.html.\nOf particular interest are the following functions:\n\npandas.read_csv()\npandas.read_table()"
   },
   {
-    "objectID": "index.html#hydrological-modeling",
-    "href": "index.html#hydrological-modeling",
-    "title": "Welcom Page",
-    "section": "4. Hydrological Modeling:",
-    "text": "4. Hydrological Modeling:\nTake your understanding to the next level with hydrological modeling. Explore various models and model frameworks and acquire hands-on experience in simulating complex hydrological processes. Additionally, we provide extensive resources on calibration algorithms and strategies to significantly improve your modeling outcomes."
+    "objectID": "dataprocess/data_load.html#metadata-handel",
+    "href": "dataprocess/data_load.html#metadata-handel",
+    "title": "Data Loading",
+    "section": "1.3 Metadata Handel",
+    "text": "1.3 Metadata Handel\nMetadata can vary widely between datasets, so it’s handled separately from the data body.\nThere are three ways to deal with metadata:\n\nDirectly Ignore: This approach involves ignoring metadata when it’s redundant or readily available from other data sources, such as file names or external references.\nExtract from Text: When metadata is crucial but not in table form, you can extract information from text strings. For more information, refer to the section on string manipulation Section 4.\nRead as a Second Table: If metadata is well-organized in a tabular format, it can be read as a separate table to facilitate its use.\n\nIn the Bachum_2763190000100.csv file, you will find that there are 10 lines of metadata, which are well-organized in a tabular format. However, it’s important to note that the consistency in values column varies.\n\n1.3.1 Directly Ignore use grguments skip\n\n# skip = 10\nread_csv2(fn_Bachum, skip = 10, n_max = 10, col_names = FALSE)\n\n# A tibble: 10 × 2\n   X1            X2\n   &lt;chr&gt;      &lt;dbl&gt;\n 1 01.01.1990  20.6\n 2 02.01.1990  19.0\n 3 03.01.1990  17.9\n 4 04.01.1990  16.8\n 5 05.01.1990  16.0\n 6 06.01.1990  14.8\n 7 07.01.1990  14.3\n 8 08.01.1990  14.0\n 9 09.01.1990  14.4\n10 10.01.1990  14.5\n\n\n\n\n1.3.2 Read metadata as table\nWhen directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:\n\nNumeric: Examples include Pegelnullpunkt and Einzugsgebiet.\nString: This category covers fields like Name, Pegelnummer, and others.\nDate: Date values are present in columns like Datum von and Datum bis.\n\nIn a data frame (tibble), columns must have the same data type. Consequently, R will automatically convert them to a single data type, which is typically string.\nTo address this situation, you should specify the data type you want to read. For example, to read the date values in lines 4 and 5, you can use the following settings: 1. skip = 3 to skip the first three lines of metadata. 2. n_max = 2 to read the next two lines (lines 4 and 5) as date values.\n\nRPython\n\n\n\n# skip = 3\nread_csv2(fn_Bachum, skip = 3, n_max = 2, col_names = FALSE)\n\n# A tibble: 2 × 2\n  X1        X2        \n  &lt;chr&gt;     &lt;chr&gt;     \n1 Datum von 01.01.1990\n2 Datum bis 31.12.2022\n\n\n\n\n\ndf_bach = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', encoding='latin-1')\nprint(df_bach)\n\n           0           1\n0  Datum von  01.01.1990\n1  Datum bis  31.12.2022\n\n\n\n\n\nUnfortunately, R may not always recognize date values correctly, so you may need to perform additional steps for conversion:\n\nAfter Reading: This involves transforming the data from its initial format to the desired date format within your R environment.\nSet the Data Type by Reading: Another approach is to set the data type while reading the data.\n\nMore details in the next section:"
+  },
+  {
+    "objectID": "dataprocess/data_load.html#load-tabular-data",
+    "href": "dataprocess/data_load.html#load-tabular-data",
+    "title": "Data Loading",
+    "section": "1.4 Load tabular data",
+    "text": "1.4 Load tabular data\n\nRPython\n\n\nTo read the first 10 lines of metadata, you can use the n_max setting with a value of n_max = 10 in the read_csv2() function.\n\nread_csv2(fn_Bachum, n_max = 10, col_names = FALSE)\n\n# A tibble: 10 × 2\n   X1                          X2             \n   &lt;chr&gt;                       &lt;chr&gt;          \n 1 \"Name\"                      \"Bachum\"       \n 2 \"Pegelnummer\"               \"2763190000100\"\n 3 \"Gew\\xe4sser\"               \"Ruhr\"         \n 4 \"Datum von\"                 \"01.01.1990\"   \n 5 \"Datum bis\"                 \"31.12.2022\"   \n 6 \"Parameter\"                 \"Abfluss\"      \n 7 \"Q Einheit\"                 \"m\\xb3/s\"      \n 8 \"Tagesmittelwerte\"           &lt;NA&gt;          \n 9 \"Pegelnullpunkt [m\\xfcNHN]\" \"146,83\"       \n10 \"Einzugsgebiet [km\\xb2]\"    \"1.532,02\"     \n\n\nAfter dealing with the metadata, we can proceed to load the data body using the readr::read_*() function cluster. Plain text files typically store data in a tabular or matrix format, both of which have at most two dimensions. When using the readr::read_() function, it automatically returns a tibble. If your data in the text file is in matrix format, you can use conversion functions like as.matrix() to transform it into other data structures.\n\n# 1. load\ntb_Read &lt;- read_csv2(fn_Bachum, skip = 10, n_max = 10, col_names = FALSE)\ntb_Read\n\n# A tibble: 10 × 2\n   X1            X2\n   &lt;chr&gt;      &lt;dbl&gt;\n 1 01.01.1990  20.6\n 2 02.01.1990  19.0\n 3 03.01.1990  17.9\n 4 04.01.1990  16.8\n 5 05.01.1990  16.0\n 6 06.01.1990  14.8\n 7 07.01.1990  14.3\n 8 08.01.1990  14.0\n 9 09.01.1990  14.4\n10 10.01.1990  14.5\n\n# 2. convert\ndf_Read &lt;- as.data.frame(tb_Read)\nmat_Read &lt;- as.matrix(tb_Read)\n\ndf_Read\n\n           X1     X2\n1  01.01.1990 20.640\n2  02.01.1990 18.994\n3  03.01.1990 17.949\n4  04.01.1990 16.779\n5  05.01.1990 16.019\n6  06.01.1990 14.817\n7  07.01.1990 14.296\n8  08.01.1990 13.952\n9  09.01.1990 14.403\n10 10.01.1990 14.500\n\nmat_Read\n\n      X1           X2      \n [1,] \"01.01.1990\" \"20.640\"\n [2,] \"02.01.1990\" \"18.994\"\n [3,] \"03.01.1990\" \"17.949\"\n [4,] \"04.01.1990\" \"16.779\"\n [5,] \"05.01.1990\" \"16.019\"\n [6,] \"06.01.1990\" \"14.817\"\n [7,] \"07.01.1990\" \"14.296\"\n [8,] \"08.01.1990\" \"13.952\"\n [9,] \"09.01.1990\" \"14.403\"\n[10,] \"10.01.1990\" \"14.500\"\n\n\n\n\n\ntb_Read = pd.read_csv(fn_Bachum, skiprows=10, nrows=10, header=None, delimiter=';', decimal=',', encoding='latin-1')\nprint(tb_Read)\n\n            0       1\n0  01.01.1990  20.640\n1  02.01.1990  18.994\n2  03.01.1990  17.949\n3  04.01.1990  16.779\n4  05.01.1990  16.019\n5  06.01.1990  14.817\n6  07.01.1990  14.296\n7  08.01.1990  13.952\n8  09.01.1990  14.403\n9  10.01.1990  14.500"
+  },
+  {
+    "objectID": "dataprocess/data_load.html#sec-datatype",
+    "href": "dataprocess/data_load.html#sec-datatype",
+    "title": "Data Loading",
+    "section": "1.5 Data type",
+    "text": "1.5 Data type\nIn this section, we will work with a custom-made text file that contains various data types and formats. The file consists of three rows, with one of them serving as the header containing column names, and six columns in total.\nLet’s take a look:\n\nActually the function will always guse the dattype for each column, when the data really normally format the function will return the right datatype for the data:\n\nRPython\n\n\n\nread_table(fn_Datatype)\n\n# A tibble: 2 × 6\n    int float_en float_de date_en    date_de    str  \n  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;date&gt;     &lt;chr&gt;      &lt;chr&gt;\n1     1      0.1 0,1      2023-09-15 15.09.2023 en   \n2     9      9.6 9,6      2023-09-16 16.09.2023 de   \n\n\n\n\n\ndf = pd.read_table(fn_Datatype)\nprint(df)\n\n   int  float_en float_de     date_en     date_de str\n0    1       0.1      0,1  2023-09-15  15.09.2023  en\n1    9       9.6      9,6  2023-09-16  16.09.2023  de\n\nprint(df.dtypes)\n\nint           int64\nfloat_en    float64\nfloat_de     object\ndate_en      object\ndate_de      object\nstr          object\ndtype: object\n\n\n\n\n\nBy default, functions like readr::read_table() in R and pandas.read_table() in Python will attempt to guess data types automatically when reading data. Here’s how this guessing typically works:\n\nIf a column contains only numbers and decimal dots (periods), it will be recognized as numeric (double in R and int or float in Python).\nIf a date is formatted in “Y-M-D” (e.g., “2023-08-27”) or “h:m:s” (e.g., “15:30:00”) formats, it may be recognized as a date or time type. Nur in R\nIf the data type cannot be confidently determined, it is often treated as a string (str in R and object in Python).\n\nThis automatic guessing is convenient, but it’s essential to verify the inferred data types, especially when working with diverse datasets.\n\n1.5.1 Set the Data Type by Reading\nExplicitly setting data types using the col_types (in R) or dtype (in Python) argument can help ensure correct data handling.\n\nRPython\n\n\nTo address the issue of date recognition, you can set the col_types argument, you can use a compact string representation where each character represents one column:\n\nc: Character\ni: Integer\nn: Number\nd: Double\nl: Logical\nf: Factor\nD: Date\nT: Date Time\nt: Time\n?: Guess\n_ or -: Skip\n\nto \"cD\" when reading the data. This informs the function that the first column contains characters (c) and the second column contains Dates (D).\n\nread_table(fn_Datatype, col_types = \"iddDDc\")\n\n# A tibble: 2 × 6\n    int float_en float_de date_en    date_de str  \n  &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;  &lt;chr&gt;\n1     1      0.1       NA 2023-09-15 NA      en   \n2     9      9.6       NA 2023-09-16 NA      de   \n\n\n\nread_table(fn_Datatype, col_types = \"idd?Dc\")\n\n# A tibble: 2 × 6\n    int float_en float_de date_en    date_de str  \n  &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;  &lt;chr&gt;\n1     1      0.1       NA 2023-09-15 NA      en   \n2     9      9.6       NA 2023-09-16 NA      de   \n\n\n\n\nTo set data types when reading data using functions pandas.read_*, you have three main choices by using the dtype parameter:\n\nstr: Specify the data type as a string.\nint: Specify the data type as an integer.\nfloat: Specify the data type as a floating-point number.\n\nHowever, you can also use the dtype parameter with a callable function to perform more advanced type conversions. Some commonly used functions include:\n\npd.to_datetime: Converts a column to datetime format.\npd.to_numeric: Converts a column to numeric (integer or float) format.\npd.to_timedelta: Converts a column to timedelta format.\n\n\n# Define column names and types as a dictionary\ncol_types = {\"X1\": str, \"X2\": pd.to_datetime}\n# Read the CSV file, skip 3 rows, read 2 rows, and specify column names and types\ndf = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', names=[\"X1\", \"X2\"], dtype=col_types, encoding='latin-1')\n\n# Display the loaded data\nprint(df)\n\n\nDON’T RUN Error, because data doesn’t match the default format of ‘Y-m-d’.\n\n\n\n\n\nUnfortunately, the default date format in R and Python may not work for German-style dates like “d.m.Y” as R and Python primarily recognizes the “Y-m-d” format.\n\n\n\n1.5.2 After Reading\nTo address this issue, you can perform date conversions after reading the data:\n\nRPython\n\n\nUsing function as.Date() and specify the date format using the format argument, such as format = \"%d.%m.%Y\".\n\ndf_Date &lt;- read_csv2(fn_Bachum, skip = 3, n_max = 2, col_names = FALSE)\ndf_Date$X2 &lt;- df_Date$X2 |&gt; as.Date(format = \"%d.%m.%Y\")\ndf_Date\n\n# A tibble: 2 × 2\n  X1        X2        \n  &lt;chr&gt;     &lt;date&gt;    \n1 Datum von 1990-01-01\n2 Datum bis 2022-12-31\n\n\n\n\n\ndf_Date = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', encoding='latin-1')\n\n# Display the loaded data\nprint(df_Date)\n\n           0           1\n0  Datum von  01.01.1990\n1  Datum bis  31.12.2022\n\n# 2. Convert the second column (X2) to a date format\ndf_Date[1] = pd.to_datetime(df_Date[1], format='%d.%m.%Y')\n\n# Display the DataFrame with the second column converted to date format\nprint(df_Date)\n\n           0          1\n0  Datum von 1990-01-01\n1  Datum bis 2022-12-31"
+  },
+  {
+    "objectID": "dataprocess/data_load.html#example-file-1",
+    "href": "dataprocess/data_load.html#example-file-1",
+    "title": "Data Loading",
+    "section": "2.1 Example File",
+    "text": "2.1 Example File\nLet’s begin with an example Excel file named Pegeln_NRW.xlsx. This file contains information about measurement stations in NRW (Nordrhein-Westfalen, Germany) and is sourced from open data available at ELWAS-WEB NRW. You can also access it directly from Github.\nTake a look:"
+  },
+  {
+    "objectID": "dataprocess/data_load.html#r-library-and-functions",
+    "href": "dataprocess/data_load.html#r-library-and-functions",
+    "title": "Data Loading",
+    "section": "2.2 R library and functions",
+    "text": "2.2 R library and functions\nTo load the necessary library, readxl, and access its help documentation, you can visit this link. The readxl::read_excel() function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. Additionally, you have the options of using read_xls() for .xls files and read_xlsx() for .xlsx files. More details in the Page.\n\n# load the library\nlibrary(readxl)\n# The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first\nfn_Pegeln &lt;- \"C:\\\\Lei\\\\HS_Web\\\\data_share/Pegeln_NRW.xlsx\""
+  },
+  {
+    "objectID": "dataprocess/data_load.html#load-tabular-data-1",
+    "href": "dataprocess/data_load.html#load-tabular-data-1",
+    "title": "Data Loading",
+    "section": "2.3 Load tabular data",
+    "text": "2.3 Load tabular data\nSimilar to plain text files, metadata is often provided before the data body in Excel files. In Excel, each cell can be assigned a specific data type, while in R tables (data.frame or tibble), every column must have the same data type. This necessitates separate handling of metadata and data body to ensure that the correct data types are maintained.\nUnlike plain text files where we can only select lines to load, Excel allows us to define coordinates to access a specific celles-box wherever they are located.\n\n2.3.1 First try without any setting\n\n# try without setting\ntb_Pegeln &lt;- read_excel(fn_Pegeln)\ntb_Pegeln\n\n# A tibble: 277 × 16\n   Suchergebnisse Pegel.…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10\n   &lt;chr&gt;                   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;\n 1 \"Suchkriterien:\\n -- \\… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n 2  &lt;NA&gt;                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n 3  &lt;NA&gt;                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n 4 \"Name\"                  Pege… Gewä… Betr… Pege… Einz… Q von Q bis NQ    MNQ  \n 5 \"Ahlen\"                 3211… Werse LANU… 73,47 46,62 1975  2013  0     0,07 \n 6 \"Ahmsen\"                4639… Werre LANU… 64,28 593   1963  2022  1,21  2,22 \n 7 \"Ahrhütte-Neuhof\"       2718… Ahr   LANU… 340,… 124   1986  2011  0,22  0,36 \n 8 \"Albersloh\"             3259… Werse LANU… 48,68 321,… 1973  2020  0,12  0,24 \n 9 \"Altena\"                2766… Lenne LANU… 154,… 1.190 1950  2021  1,36  6,48 \n10 \"Altena_Rahmedestraße\"  2766… Rahm… LANU… 157,… 29,6  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n# ℹ 267 more rows\n# ℹ abbreviated name: ¹​`Suchergebnisse Pegel.xlsx 14.09.2023 10:01`\n# ℹ 6 more variables: ...11 &lt;chr&gt;, ...12 &lt;chr&gt;, ...13 &lt;chr&gt;, ...14 &lt;chr&gt;,\n#   ...15 &lt;chr&gt;, ...16 &lt;chr&gt;\n\n\nWhen we provide only the file name to the function, we will always retrieve all the content from the first sheet. However, due to the limitations in R tables, every column will be recognized as the same data type, typically character.\n\n\n2.3.2 Give a range\n\n# using the range argument\ntb_Pegeln_Range &lt;- read_excel(fn_Pegeln, range = \"Suchergebnisse Pegel!A5:P10\")\ntb_Pegeln_Range\n\n# A tibble: 5 × 16\n  Name            Pegelnummer   Gewässername Betreiber  `Pegelnullpunkt [müNHN]`\n  &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;                   \n1 Ahlen           3211000000300 Werse        LANUV, NRW 73,47                   \n2 Ahmsen          4639000000100 Werre        LANUV, NRW 64,28                   \n3 Ahrhütte-Neuhof 2718193000100 Ahr          LANUV, NRW 340,58                  \n4 Albersloh       3259000000100 Werse        LANUV, NRW 48,68                   \n5 Altena          2766930000100 Lenne        LANUV, NRW 154,22                  \n# ℹ 11 more variables: `Einzugsgebiet [km²]` &lt;chr&gt;, `Q von` &lt;chr&gt;,\n#   `Q bis` &lt;chr&gt;, NQ &lt;chr&gt;, MNQ &lt;chr&gt;, MQ &lt;chr&gt;, MHQ &lt;chr&gt;, HQ &lt;chr&gt;,\n#   `Q Einheit` &lt;chr&gt;, `Ostwert in UTM` &lt;chr&gt;, `Nordwert in UTM` &lt;chr&gt;\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThe data type of “Pegelnullpunkt [müNHN]” appears to be incorrect due to improper settings in Excel."
+  },
+  {
+    "objectID": "dataprocess/data_load.html#data-type",
+    "href": "dataprocess/data_load.html#data-type",
+    "title": "Data Loading",
+    "section": "2.4 Data type",
+    "text": "2.4 Data type\nCompared to plain text files, Excel data already contains data type information for each cell. Therefore, the data type will be directly determined by the data type specified in Excel.\nHowever, there are instances where the data type in Excel is not correctly set, so manual data type conversion may be necessary. For more details, refer to Section 1.5."
   },
   {
     "objectID": "dataprocess/basic_format.html",
@@ -287,76 +371,6 @@
     "text": "3.2 Naming Conventions\n\nCamel Case\n\nEach word, except the first, starts with a capital letter:\nmyVariableName\n\nPascal Case\n\nEach word starts with a capital letter:\nMyVariableName\n\nSnake Case\n\nEach word is separated by an underscore character:\nmy_variable_name"
   },
   {
-    "objectID": "dataprocess/data_load.html",
-    "href": "dataprocess/data_load.html",
-    "title": "Data Loading",
-    "section": "",
-    "text": "This Aritcl will show the process to load data from other files. I t will divide into four paties: plain text (read able ASCII), Excel, NetCDF and spatial data.\nOverview:"
-  },
-  {
-    "objectID": "dataprocess/data_load.html#example-file",
-    "href": "dataprocess/data_load.html#example-file",
-    "title": "Data Loading",
-    "section": "1.1 Example File",
-    "text": "1.1 Example File\nLet’s start with an example CSV file named Bachum_2763190000100.csv. This file contains pegel discharge data and is sourced from open data available at ELWAS-WEB NRW. You can also access it directly from the internet via Github, just like you would access a local file.\nTake a look:"
-  },
-  {
-    "objectID": "dataprocess/data_load.html#library-and-functions",
-    "href": "dataprocess/data_load.html#library-and-functions",
-    "title": "Data Loading",
-    "section": "1.2 Library and functions",
-    "text": "1.2 Library and functions\n\nRPython\n\n\nFirst, we need to load the necessary library tidyverse. This library collection includes readr for reading files and dplyr for data manipulation, among others.\nAnd, we set the URL address as the file path (including the file name).\n\n# load the library\nlibrary(tidyverse)\nfn_Bachum &lt;- \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv\"\nfn_Datatype &lt;- \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/load_Datatype.txt\"\n\nThe documentation for the readr library is available online and can be accessed at https://readr.tidyverse.org.\nOf particular interest are the following functions:\n\nreadr::read_csv()\nreadr::read_table()\n\nWe can observe that the CSV file is divided by semicolons. Therefore, it’s more appropriate to use read_csv2() rather than read_csv().\nThe difference between read_*() functions in the readr package is determined by the delimiter character used in the files:\n\n\n\nCHEAT SHEET from Rstudio\n\n\n\n\n\n# load the library\nimport pandas as pd\nfn_Bachum = \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv\"\nfn_Datatype = \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/load_Datatype.txt\"\n\nThe documentation for the pandas library is available online and can be accessed at https://pandas.pydata.org/docs/index.html.\nOf particular interest are the following functions:\n\npandas.read_csv()\npandas.read_table()"
-  },
-  {
-    "objectID": "dataprocess/data_load.html#metadata-handel",
-    "href": "dataprocess/data_load.html#metadata-handel",
-    "title": "Data Loading",
-    "section": "1.3 Metadata Handel",
-    "text": "1.3 Metadata Handel\nMetadata can vary widely between datasets, so it’s handled separately from the data body.\nThere are three ways to deal with metadata:\n\nDirectly Ignore: This approach involves ignoring metadata when it’s redundant or readily available from other data sources, such as file names or external references.\nExtract from Text: When metadata is crucial but not in table form, you can extract information from text strings. For more information, refer to the section on string manipulation Section 4.\nRead as a Second Table: If metadata is well-organized in a tabular format, it can be read as a separate table to facilitate its use.\n\nIn the Bachum_2763190000100.csv file, you will find that there are 10 lines of metadata, which are well-organized in a tabular format. However, it’s important to note that the consistency in values column varies.\n\n1.3.1 Directly Ignore use grguments skip\n\n# skip = 10\nread_csv2(fn_Bachum, skip = 10, n_max = 10, col_names = FALSE)\n\n# A tibble: 10 × 2\n   X1            X2\n   &lt;chr&gt;      &lt;dbl&gt;\n 1 01.01.1990  20.6\n 2 02.01.1990  19.0\n 3 03.01.1990  17.9\n 4 04.01.1990  16.8\n 5 05.01.1990  16.0\n 6 06.01.1990  14.8\n 7 07.01.1990  14.3\n 8 08.01.1990  14.0\n 9 09.01.1990  14.4\n10 10.01.1990  14.5\n\n\n\n\n1.3.2 Read metadata as table\nWhen directly reading all metadata into one table, you may encounter mixed data types. In the metadata, there are three data types:\n\nNumeric: Examples include Pegelnullpunkt and Einzugsgebiet.\nString: This category covers fields like Name, Pegelnummer, and others.\nDate: Date values are present in columns like Datum von and Datum bis.\n\nIn a data frame (tibble), columns must have the same data type. Consequently, R will automatically convert them to a single data type, which is typically string.\nTo address this situation, you should specify the data type you want to read. For example, to read the date values in lines 4 and 5, you can use the following settings: 1. skip = 3 to skip the first three lines of metadata. 2. n_max = 2 to read the next two lines (lines 4 and 5) as date values.\n\nRPython\n\n\n\n# skip = 3\nread_csv2(fn_Bachum, skip = 3, n_max = 2, col_names = FALSE)\n\n# A tibble: 2 × 2\n  X1        X2        \n  &lt;chr&gt;     &lt;chr&gt;     \n1 Datum von 01.01.1990\n2 Datum bis 31.12.2022\n\n\n\n\n\ndf_bach = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', encoding='latin-1')\nprint(df_bach)\n\n           0           1\n0  Datum von  01.01.1990\n1  Datum bis  31.12.2022\n\n\n\n\n\nUnfortunately, R may not always recognize date values correctly, so you may need to perform additional steps for conversion:\n\nAfter Reading: This involves transforming the data from its initial format to the desired date format within your R environment.\nSet the Data Type by Reading: Another approach is to set the data type while reading the data.\n\nMore details in the next section:"
-  },
-  {
-    "objectID": "dataprocess/data_load.html#load-tabular-data",
-    "href": "dataprocess/data_load.html#load-tabular-data",
-    "title": "Data Loading",
-    "section": "1.4 Load tabular data",
-    "text": "1.4 Load tabular data\n\nRPython\n\n\nTo read the first 10 lines of metadata, you can use the n_max setting with a value of n_max = 10 in the read_csv2() function.\n\nread_csv2(fn_Bachum, n_max = 10, col_names = FALSE)\n\n# A tibble: 10 × 2\n   X1                          X2             \n   &lt;chr&gt;                       &lt;chr&gt;          \n 1 \"Name\"                      \"Bachum\"       \n 2 \"Pegelnummer\"               \"2763190000100\"\n 3 \"Gew\\xe4sser\"               \"Ruhr\"         \n 4 \"Datum von\"                 \"01.01.1990\"   \n 5 \"Datum bis\"                 \"31.12.2022\"   \n 6 \"Parameter\"                 \"Abfluss\"      \n 7 \"Q Einheit\"                 \"m\\xb3/s\"      \n 8 \"Tagesmittelwerte\"           &lt;NA&gt;          \n 9 \"Pegelnullpunkt [m\\xfcNHN]\" \"146,83\"       \n10 \"Einzugsgebiet [km\\xb2]\"    \"1.532,02\"     \n\n\nAfter dealing with the metadata, we can proceed to load the data body using the readr::read_*() function cluster. Plain text files typically store data in a tabular or matrix format, both of which have at most two dimensions. When using the readr::read_() function, it automatically returns a tibble. If your data in the text file is in matrix format, you can use conversion functions like as.matrix() to transform it into other data structures.\n\n# 1. load\ntb_Read &lt;- read_csv2(fn_Bachum, skip = 10, n_max = 10, col_names = FALSE)\ntb_Read\n\n# A tibble: 10 × 2\n   X1            X2\n   &lt;chr&gt;      &lt;dbl&gt;\n 1 01.01.1990  20.6\n 2 02.01.1990  19.0\n 3 03.01.1990  17.9\n 4 04.01.1990  16.8\n 5 05.01.1990  16.0\n 6 06.01.1990  14.8\n 7 07.01.1990  14.3\n 8 08.01.1990  14.0\n 9 09.01.1990  14.4\n10 10.01.1990  14.5\n\n# 2. convert\ndf_Read &lt;- as.data.frame(tb_Read)\nmat_Read &lt;- as.matrix(tb_Read)\n\ndf_Read\n\n           X1     X2\n1  01.01.1990 20.640\n2  02.01.1990 18.994\n3  03.01.1990 17.949\n4  04.01.1990 16.779\n5  05.01.1990 16.019\n6  06.01.1990 14.817\n7  07.01.1990 14.296\n8  08.01.1990 13.952\n9  09.01.1990 14.403\n10 10.01.1990 14.500\n\nmat_Read\n\n      X1           X2      \n [1,] \"01.01.1990\" \"20.640\"\n [2,] \"02.01.1990\" \"18.994\"\n [3,] \"03.01.1990\" \"17.949\"\n [4,] \"04.01.1990\" \"16.779\"\n [5,] \"05.01.1990\" \"16.019\"\n [6,] \"06.01.1990\" \"14.817\"\n [7,] \"07.01.1990\" \"14.296\"\n [8,] \"08.01.1990\" \"13.952\"\n [9,] \"09.01.1990\" \"14.403\"\n[10,] \"10.01.1990\" \"14.500\"\n\n\n\n\n\ntb_Read = pd.read_csv(fn_Bachum, skiprows=10, nrows=10, header=None, delimiter=';', decimal=',', encoding='latin-1')\nprint(tb_Read)\n\n            0       1\n0  01.01.1990  20.640\n1  02.01.1990  18.994\n2  03.01.1990  17.949\n3  04.01.1990  16.779\n4  05.01.1990  16.019\n5  06.01.1990  14.817\n6  07.01.1990  14.296\n7  08.01.1990  13.952\n8  09.01.1990  14.403\n9  10.01.1990  14.500"
-  },
-  {
-    "objectID": "dataprocess/data_load.html#sec-datatype",
-    "href": "dataprocess/data_load.html#sec-datatype",
-    "title": "Data Loading",
-    "section": "1.5 Data type",
-    "text": "1.5 Data type\nIn this section, we will work with a custom-made text file that contains various data types and formats. The file consists of three rows, with one of them serving as the header containing column names, and six columns in total.\nLet’s take a look:\n\nActually the function will always guse the dattype for each column, when the data really normally format the function will return the right datatype for the data:\n\nRPython\n\n\n\nread_table(fn_Datatype)\n\n# A tibble: 2 × 6\n    int float_en float_de date_en    date_de    str  \n  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;date&gt;     &lt;chr&gt;      &lt;chr&gt;\n1     1      0.1 0,1      2023-09-15 15.09.2023 en   \n2     9      9.6 9,6      2023-09-16 16.09.2023 de   \n\n\n\n\n\ndf = pd.read_table(fn_Datatype)\nprint(df)\n\n   int  float_en float_de     date_en     date_de str\n0    1       0.1      0,1  2023-09-15  15.09.2023  en\n1    9       9.6      9,6  2023-09-16  16.09.2023  de\n\nprint(df.dtypes)\n\nint           int64\nfloat_en    float64\nfloat_de     object\ndate_en      object\ndate_de      object\nstr          object\ndtype: object\n\n\n\n\n\nBy default, functions like readr::read_table() in R and pandas.read_table() in Python will attempt to guess data types automatically when reading data. Here’s how this guessing typically works:\n\nIf a column contains only numbers and decimal dots (periods), it will be recognized as numeric (double in R and int or float in Python).\nIf a date is formatted in “Y-M-D” (e.g., “2023-08-27”) or “h:m:s” (e.g., “15:30:00”) formats, it may be recognized as a date or time type. Nur in R\nIf the data type cannot be confidently determined, it is often treated as a string (str in R and object in Python).\n\nThis automatic guessing is convenient, but it’s essential to verify the inferred data types, especially when working with diverse datasets.\n\n1.5.1 Set the Data Type by Reading\nExplicitly setting data types using the col_types (in R) or dtype (in Python) argument can help ensure correct data handling.\n\nRPython\n\n\nTo address the issue of date recognition, you can set the col_types argument, you can use a compact string representation where each character represents one column:\n\nc: Character\ni: Integer\nn: Number\nd: Double\nl: Logical\nf: Factor\nD: Date\nT: Date Time\nt: Time\n?: Guess\n_ or -: Skip\n\nto \"cD\" when reading the data. This informs the function that the first column contains characters (c) and the second column contains Dates (D).\n\nread_table(fn_Datatype, col_types = \"iddDDc\")\n\n# A tibble: 2 × 6\n    int float_en float_de date_en    date_de str  \n  &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;  &lt;chr&gt;\n1     1      0.1       NA 2023-09-15 NA      en   \n2     9      9.6       NA 2023-09-16 NA      de   \n\n\n\nread_table(fn_Datatype, col_types = \"idd?Dc\")\n\n# A tibble: 2 × 6\n    int float_en float_de date_en    date_de str  \n  &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;  &lt;chr&gt;\n1     1      0.1       NA 2023-09-15 NA      en   \n2     9      9.6       NA 2023-09-16 NA      de   \n\n\n\n\nTo set data types when reading data using functions pandas.read_*, you have three main choices by using the dtype parameter:\n\nstr: Specify the data type as a string.\nint: Specify the data type as an integer.\nfloat: Specify the data type as a floating-point number.\n\nHowever, you can also use the dtype parameter with a callable function to perform more advanced type conversions. Some commonly used functions include:\n\npd.to_datetime: Converts a column to datetime format.\npd.to_numeric: Converts a column to numeric (integer or float) format.\npd.to_timedelta: Converts a column to timedelta format.\n\n\n# Define column names and types as a dictionary\ncol_types = {\"X1\": str, \"X2\": pd.to_datetime}\n# Read the CSV file, skip 3 rows, read 2 rows, and specify column names and types\ndf = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', names=[\"X1\", \"X2\"], dtype=col_types, encoding='latin-1')\n\n# Display the loaded data\nprint(df)\n\n\nDON’T RUN Error, because data doesn’t match the default format of ‘Y-m-d’.\n\n\n\n\n\nUnfortunately, the default date format in R and Python may not work for German-style dates like “d.m.Y” as R and Python primarily recognizes the “Y-m-d” format.\n\n\n\n1.5.2 After Reading\nTo address this issue, you can perform date conversions after reading the data:\n\nRPython\n\n\nUsing function as.Date() and specify the date format using the format argument, such as format = \"%d.%m.%Y\".\n\ndf_Date &lt;- read_csv2(fn_Bachum, skip = 3, n_max = 2, col_names = FALSE)\ndf_Date$X2 &lt;- df_Date$X2 |&gt; as.Date(format = \"%d.%m.%Y\")\ndf_Date\n\n# A tibble: 2 × 2\n  X1        X2        \n  &lt;chr&gt;     &lt;date&gt;    \n1 Datum von 1990-01-01\n2 Datum bis 2022-12-31\n\n\n\n\n\ndf_Date = pd.read_csv(fn_Bachum, skiprows=3, nrows=2, header=None, delimiter=';', encoding='latin-1')\n\n# Display the loaded data\nprint(df_Date)\n\n           0           1\n0  Datum von  01.01.1990\n1  Datum bis  31.12.2022\n\n# 2. Convert the second column (X2) to a date format\ndf_Date[1] = pd.to_datetime(df_Date[1], format='%d.%m.%Y')\n\n# Display the DataFrame with the second column converted to date format\nprint(df_Date)\n\n           0          1\n0  Datum von 1990-01-01\n1  Datum bis 2022-12-31"
-  },
-  {
-    "objectID": "dataprocess/data_load.html#example-file-1",
-    "href": "dataprocess/data_load.html#example-file-1",
-    "title": "Data Loading",
-    "section": "2.1 Example File",
-    "text": "2.1 Example File\nLet’s begin with an example Excel file named Pegeln_NRW.xlsx. This file contains information about measurement stations in NRW (Nordrhein-Westfalen, Germany) and is sourced from open data available at ELWAS-WEB NRW. You can also access it directly from Github.\nTake a look:"
-  },
-  {
-    "objectID": "dataprocess/data_load.html#r-library-and-functions",
-    "href": "dataprocess/data_load.html#r-library-and-functions",
-    "title": "Data Loading",
-    "section": "2.2 R library and functions",
-    "text": "2.2 R library and functions\nTo load the necessary library, readxl, and access its help documentation, you can visit this link. The readxl::read_excel() function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. Additionally, you have the options of using read_xls() for .xls files and read_xlsx() for .xlsx files. More details in the Page.\n\n# load the library\nlibrary(readxl)\n# The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first\nfn_Pegeln &lt;- \"C:\\\\Lei\\\\HS_Web\\\\data_share/Pegeln_NRW.xlsx\""
-  },
-  {
-    "objectID": "dataprocess/data_load.html#load-tabular-data-1",
-    "href": "dataprocess/data_load.html#load-tabular-data-1",
-    "title": "Data Loading",
-    "section": "2.3 Load tabular data",
-    "text": "2.3 Load tabular data\nSimilar to plain text files, metadata is often provided before the data body in Excel files. In Excel, each cell can be assigned a specific data type, while in R tables (data.frame or tibble), every column must have the same data type. This necessitates separate handling of metadata and data body to ensure that the correct data types are maintained.\nUnlike plain text files where we can only select lines to load, Excel allows us to define coordinates to access a specific celles-box wherever they are located.\n\n2.3.1 First try without any setting\n\n# try without setting\ntb_Pegeln &lt;- read_excel(fn_Pegeln)\ntb_Pegeln\n\n# A tibble: 277 × 16\n   Suchergebnisse Pegel.…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10\n   &lt;chr&gt;                   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;\n 1 \"Suchkriterien:\\n -- \\… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n 2  &lt;NA&gt;                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n 3  &lt;NA&gt;                   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n 4 \"Name\"                  Pege… Gewä… Betr… Pege… Einz… Q von Q bis NQ    MNQ  \n 5 \"Ahlen\"                 3211… Werse LANU… 73,47 46,62 1975  2013  0     0,07 \n 6 \"Ahmsen\"                4639… Werre LANU… 64,28 593   1963  2022  1,21  2,22 \n 7 \"Ahrhütte-Neuhof\"       2718… Ahr   LANU… 340,… 124   1986  2011  0,22  0,36 \n 8 \"Albersloh\"             3259… Werse LANU… 48,68 321,… 1973  2020  0,12  0,24 \n 9 \"Altena\"                2766… Lenne LANU… 154,… 1.190 1950  2021  1,36  6,48 \n10 \"Altena_Rahmedestraße\"  2766… Rahm… LANU… 157,… 29,6  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n# ℹ 267 more rows\n# ℹ abbreviated name: ¹​`Suchergebnisse Pegel.xlsx 14.09.2023 10:01`\n# ℹ 6 more variables: ...11 &lt;chr&gt;, ...12 &lt;chr&gt;, ...13 &lt;chr&gt;, ...14 &lt;chr&gt;,\n#   ...15 &lt;chr&gt;, ...16 &lt;chr&gt;\n\n\nWhen we provide only the file name to the function, we will always retrieve all the content from the first sheet. However, due to the limitations in R tables, every column will be recognized as the same data type, typically character.\n\n\n2.3.2 Give a range\n\n# using the range argument\ntb_Pegeln_Range &lt;- read_excel(fn_Pegeln, range = \"Suchergebnisse Pegel!A5:P10\")\ntb_Pegeln_Range\n\n# A tibble: 5 × 16\n  Name            Pegelnummer   Gewässername Betreiber  `Pegelnullpunkt [müNHN]`\n  &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;                   \n1 Ahlen           3211000000300 Werse        LANUV, NRW 73,47                   \n2 Ahmsen          4639000000100 Werre        LANUV, NRW 64,28                   \n3 Ahrhütte-Neuhof 2718193000100 Ahr          LANUV, NRW 340,58                  \n4 Albersloh       3259000000100 Werse        LANUV, NRW 48,68                   \n5 Altena          2766930000100 Lenne        LANUV, NRW 154,22                  \n# ℹ 11 more variables: `Einzugsgebiet [km²]` &lt;chr&gt;, `Q von` &lt;chr&gt;,\n#   `Q bis` &lt;chr&gt;, NQ &lt;chr&gt;, MNQ &lt;chr&gt;, MQ &lt;chr&gt;, MHQ &lt;chr&gt;, HQ &lt;chr&gt;,\n#   `Q Einheit` &lt;chr&gt;, `Ostwert in UTM` &lt;chr&gt;, `Nordwert in UTM` &lt;chr&gt;\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThe data type of “Pegelnullpunkt [müNHN]” appears to be incorrect due to improper settings in Excel."
-  },
-  {
-    "objectID": "dataprocess/data_load.html#data-type",
-    "href": "dataprocess/data_load.html#data-type",
-    "title": "Data Loading",
-    "section": "2.4 Data type",
-    "text": "2.4 Data type\nCompared to plain text files, Excel data already contains data type information for each cell. Therefore, the data type will be directly determined by the data type specified in Excel.\nHowever, there are instances where the data type in Excel is not correctly set, so manual data type conversion may be necessary. For more details, refer to Section 1.5."
-  },
-  {
     "objectID": "dataprocess/extract_spatial.html",
     "href": "dataprocess/extract_spatial.html",
     "title": "Values Extract",
@@ -385,25 +399,18 @@
     "text": "2.2 Extract from Points\n\n2.2.1 Numerical Mean\nThe moooost simple and direct method is the Numerical Mean of points in the region:\n\n\n\nIllustration of Extract with Point-Value: Numerical Mean of points in the region\n\n\n\nInterset with regions, then select points which in the region\nCalculate mean value of points\n\nThe weakness are also obviously, many points, who lay just near the boundary of region, will be ignored. It’s also familiar that in some regions there are no points laying in.\nSo, we need maybe convert the point-data to polygon- or raster-data\n\n\n2.2.2 Tiessen (Dirichlet) Polygon\nActually the convert to the polygon is the most popular and typical method specially with the Tiessen (Dirichlet) Polygon in meteorological fields.\n\n\n\nIllustration of Extract mit Punkt-Wert\n\n\n\nConvert point data to Tiessen polygon data\nuse the method of polygon like above\n\n\n\n2.2.3 Interpolate as Raster\nThe second convert idea is convert to the raster: Interpolation\n\n\n\nIllustration der Interpolation mit Punkt-Werten\n\n\nThe Interpolation is also one important issue, and it will be discussed in th near future. Here will just show the three most impotent methods: Nearest neighbor, IDW (Inverse distance weighted) and Kringing\nThe three methods are also very easy processed in R::terra, that will be showed in the next Blog.\nThe end."
   },
   {
-    "objectID": "Modelling/HM_0.html",
-    "href": "Modelling/HM_0.html",
-    "title": "Modelling",
+    "objectID": "dataprocess/NetCDF.html",
+    "href": "dataprocess/NetCDF.html",
+    "title": "NetCDF",
     "section": "",
     "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "Modelling/HM_0.html#h2",
-    "href": "Modelling/HM_0.html#h2",
-    "title": "Modelling",
+    "objectID": "dataprocess/NetCDF.html#h2",
+    "href": "dataprocess/NetCDF.html#h2",
+    "title": "NetCDF",
     "section": "",
     "text": "About this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "dataset/index.html",
-    "href": "dataset/index.html",
-    "title": "Dataset",
-    "section": "",
-    "text": "Numerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide direct links to the datasets but also present essential information in a standardized format, simplifying your dataset selection process. Additionally, we strive to establish connections with research papers that have utilized these datasets and offer valuable feedback gleaned from these sources."
   },
   {
     "objectID": "dataset/geoph.html",
@@ -420,80 +427,45 @@
     "text": "About this site test2\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "dataprocess/index.html",
-    "href": "dataprocess/index.html",
+    "objectID": "dataset/index.html",
+    "href": "dataset/index.html",
     "title": "Dataset",
     "section": "",
     "text": "Numerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide direct links to the datasets but also present essential information in a standardized format, simplifying your dataset selection process. Additionally, we strive to establish connections with research papers that have utilized these datasets and offer valuable feedback gleaned from these sources."
   },
   {
-    "objectID": "dataprocess/extract_vector.html",
-    "href": "dataprocess/extract_vector.html",
-    "title": "Extract values from Vector (Shape) Data",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcom Page",
     "section": "",
-    "text": "Compared to the raster data are Vector data describe the data use mange Shapes, the basic (or we can say the only three) Shape form are Points, Lines and Polygons. In all cases, the geometry of these data structures consists of sets of coordinate pairs (x, y). (From terra The geometry just define the location and topology, the other important part of vector data is the attributes of every shape, in that store we the data.\nIn our Hydrology or Meteorology fields have we usually the point-data (e.g. data from measuring station) and area-data (e.g. land use or soil). There may be also some line-data (e.g. isoline), but they are always not used for storing the data, maybe just show the data. So, the operate EXTRACT is actually the statistic of the Vector data for the specific regions.\nAnd in the Blog we will only take the forms POINTS and POLYGONs into account."
+    "text": "Welcome to HydroSimul: Your Gateway to Understanding Hydrological Simulation\nWe’re thrilled to have you at HydroSimul, your premier resource for delving into the realm of hydrological simulation. Here, we curate a vast collection of datasets and offer cutting-edge techniques to empower your exploration.\nAt HydroSimul, we believe in the power of collaboration. If you want to share your knowledge, experience, and skills in the field, please contact us at hydro.simul@gmail.com. We also welcome your advice.\nOur website serves as a comprehensive hub for your hydrological journey:"
   },
   {
-    "objectID": "dataprocess/extract_vector.html#numerical-mean",
-    "href": "dataprocess/extract_vector.html#numerical-mean",
-    "title": "Extract values from Vector (Shape) Data",
-    "section": "3.1 Numerical Mean",
-    "text": "3.1 Numerical Mean\nThe moooost simple and direct method is the Numerical Mean of points in the region:\n\n\n\nIllustration of Extract with Point-Value: Numerical Mean of points in the region\n\n\n\nInterset with regions, then select points which in the region\nCalculate mean value of points\n\nThe weakness are also obviously, many points, who lay just near the boundary of region, will be ignored. It’s also familiar that in some regions there are no points laying in.\nSo, we need maybe convert the point-data to polygon- or raster-data"
+    "objectID": "index.html#dataset-collection",
+    "href": "index.html#dataset-collection",
+    "title": "Welcom Page",
+    "section": "1. Dataset Collection:",
+    "text": "1. Dataset Collection:\nNumerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide direct links to the datasets but also present essential information in a standardized format, simplifying your dataset selection process. Additionally, we strive to establish connections with research papers that have utilized these datasets and offer valuable feedback gleaned from these sources."
   },
   {
-    "objectID": "dataprocess/extract_vector.html#tiessen-dirichlet-polygon",
-    "href": "dataprocess/extract_vector.html#tiessen-dirichlet-polygon",
-    "title": "Extract values from Vector (Shape) Data",
-    "section": "3.2 Tiessen (Dirichlet) Polygon",
-    "text": "3.2 Tiessen (Dirichlet) Polygon\nActually the convert to the polygon is the most popular and typical method specially with the Tiessen (Dirichlet) Polygon in meteorological fields.\n\n\n\nIllustration of Extract mit Punkt-Wert\n\n\n\nConvert point data to Tiessen polygon data\nuse the method of polygon like above"
+    "objectID": "index.html#data-processing",
+    "href": "index.html#data-processing",
+    "title": "Welcom Page",
+    "section": "2. Data Processing:",
+    "text": "2. Data Processing:\nOn this page, we provide you with a wealth of data processing tools and techniques. Discover how to adeptly clean, preprocess, and convert raw hydrological data into a valuable format suitable for analysis and modeling."
   },
   {
-    "objectID": "dataprocess/extract_vector.html#interpolate-as-raster",
-    "href": "dataprocess/extract_vector.html#interpolate-as-raster",
-    "title": "Extract values from Vector (Shape) Data",
-    "section": "3.3 Interpolate as Raster",
-    "text": "3.3 Interpolate as Raster\nThe second convert idea is convert to the raster: Interpolation\n\n\n\nIllustration der Interpolation mit Punkt-Werten\n\n\nThe Interpolation is also one important issue, and it will be discussed in th near future. Here will just show the three most impotent methods: Nearest neighbor, IDW (Inverse distance weighted) and Kringing\nThe three methods are also very easy processed in R::terra, that will be showed in the next Blog.\nThe end."
+    "objectID": "index.html#data-analysis",
+    "href": "index.html#data-analysis",
+    "title": "Welcom Page",
+    "section": "3. Data Analysis:",
+    "text": "3. Data Analysis:\nUncover concealed statistical insights and trends within your data. Our comprehensive guides and tutorials are designed to empower you with the skills to effectively analyze hydrological data."
   },
   {
-    "objectID": "dataprocess/NetCDF.html",
-    "href": "dataprocess/NetCDF.html",
-    "title": "NetCDF",
-    "section": "",
-    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "dataprocess/NetCDF.html#h2",
-    "href": "dataprocess/NetCDF.html#h2",
-    "title": "NetCDF",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "dataset/hydro.html",
-    "href": "dataset/hydro.html",
-    "title": "Hydro",
-    "section": "",
-    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "dataset/hydro.html#h2",
-    "href": "dataset/hydro.html#h2",
-    "title": "Hydro",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "dataset/meteo.html",
-    "href": "dataset/meteo.html",
-    "title": "Meteological",
-    "section": "",
-    "text": "About this site test1\n\n1 + 1\n\n[1] 2\n\n\n\n\nAbout this site test2\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "dataset/meteo.html#h2",
-    "href": "dataset/meteo.html#h2",
-    "title": "Meteological",
-    "section": "",
-    "text": "About this site test2\n\n1 + 1\n\n[1] 2"
+    "objectID": "index.html#hydrological-modeling",
+    "href": "index.html#hydrological-modeling",
+    "title": "Welcom Page",
+    "section": "4. Hydrological Modeling:",
+    "text": "4. Hydrological Modeling:\nTake your understanding to the next level with hydrological modeling. Explore various models and model frameworks and acquire hands-on experience in simulating complex hydrological processes. Additionally, we provide extensive resources on calibration algorithms and strategies to significantly improve your modeling outcomes."
   }
 ]
