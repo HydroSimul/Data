@@ -36,10 +36,6 @@ website:
               contents:
                 - dataprocess/data_load.qmd      
             - dataprocess/NetCDF.qmd      
-            - section: "Spatial Data"
-              contents:
-                - dataprocess/spatial_data.qmd      
-                - dataprocess/extract_spatial.qmd      
 
 
 format:
