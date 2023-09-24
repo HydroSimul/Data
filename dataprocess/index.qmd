@@ -1,5 +1,6 @@
 ---
-title: "Dataset"
+title: "Data Processing"
 ---
 
-Numerous open-access datasets are readily available for use in hydrological modeling, including meteorological, hydrological, and various geophysical datasets. Within this dataset collection, we not only provide **direct links** to the datasets but also present **essential information in a standardized format**, simplifying your dataset selection process. Additionally, we strive to establish connections with **research papers** that have utilized these datasets and offer valuable feedback gleaned from these sources.
+Data processing is a fundamental step in transforming raw data into valuable insights. In the domain of hydrology, data often involves spatial and temporal aspects, making it complex and voluminous. Effective processing tools and methods are essential to successfully analyze and utilize this data. This page provides valuable technological skills for (pre)processing raw data.
+

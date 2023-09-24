@@ -1,21 +1,222 @@
 ---
 title: "NetCDF"
+execute:
+  warning: false
+  error: false
 sidebar:
   contents: auto
+number-sections: true
 ---
 
-# H1
+NetCDF stands for "Network Common Data Form." It is a file format that is designed to store large **arrays** of data, primarily used in scientific and engineering applications. NetCDF files are self-describing, meaning they **contain metadata** along with the data, which makes it easier to understand the contents. NetCDF is particularly well-suited for storing **multi-dimensional** data, such as time series, spatial data, and climate model outputs. It can handle data with complex structures like grids, which are common in environmental and geospatial datasets.
 
-About this site test1
+In simple terms, NetCDF is a file format for storing multi-dimensional arrays of data along with metadata.
+
+More Details in [unidata](https://www.unidata.ucar.edu/software/netcdf/).
+
+
+NetCDF files have a hierarchical structure, consisting of **dimensions**, **variables**, and **attributes**. Dimensions define the size of arrays, variables hold the data, and attributes provide additional information about the data.
+
+
+![](../images/dataformat_netcdf.svg)
+
+With these three components, you can efficiently handle the import, creation, and export of data in the NetCDF format.
+
+## Library
+
+The `ncdf4` R package is a powerful tool for working with NetCDF data in R, allowing you to **read**, **write**, and **manipulate** datasets in this format with ease and efficiency.
+
 
 ```{r}
-1 + 1
+library(ncdf4)
+library(tidyverse)
+fn_NetCDF <- "C:\\Lei\\HS_Web\\data_share\\minibeispiel_NetCDF.nc"
 ```
 
-## H2
 
-About this site test2
+The Test data `minibeispiel_NetCDF.nc` is avable from Github, but it can not be direcly read from Git hub so you need download to local.
+
+## Import
+
+### Open
+
+The first step in working with NetCDF files is to **open** the file using the `nc_open()` function. However, it's important to note that opening the file **doesn't directly load** its contents into the R environment. Instead, it establishes a **connection** between the file and the R session and effectively locks the file for reading or writing operations. 
 
 ```{r}
-1 + 1
+nc_Test <- nc_open(fn_NetCDF)
 ```
+
+### Basic Information
+
+After opening a NetCDF file in R, you can access the **basic information** about the dataset, which is contained in a list. This information typically includes details about three components: **dimensions**, **variables**, and **attributes** of the NetCDF file.
+
+
+```{r}
+# Access the dimensions
+# nc_Test$dim
+nc_Test$dim |> names()
+
+
+# Access the variables
+# nc_Test$var
+nc_Test$var |> names()
+nc_Test$var$T0$size
+
+# Access attributes
+ncatt_get(nc_Test, 0)
+```
+
+### Values and Attributes
+
+With the basic information about variables obtained, you can access the **values** and **attributes** of each variable as needed. You can also obtain specific subsets of variables using **start points** and **counts** for each dimension. 
+
+Additionally, dimensions are treated as variables in the NetCDF structure, making it easier to work with them.
+
+- `ncvar_get()`
+  - `start`: The starting point of every dimension to load variable values
+  - `count`:  The length of every dimension to read
+- `ncatt_get()`
+
+```{r}
+# Retrieve the variable "T0" WHOLE
+ncvar_get(nc_Test, "T0")
+
+# Retrieve a subset of the variable "T0"
+# This subset starts at position (1, 1, 1) and has a count of (2, 3, 1) along each dimension
+ncvar_get(nc_Test, "T0", start = c(1, 1, 1), count = c(2, 3, 1))
+
+# Retrieve attributes associated with the variable "T0"
+ncatt_get(nc_Test, "T0")
+```
+
+
+
+### Close
+
+When working with NetCDF files in R using the ncdf4 package, it's crucial to remember that opening a file establishes a connection. This prevents data corruption and conflicts. To finish, always close the file using `nc_close()` once you've completed your operations.
+
+
+```{r}
+nc_close(nc_Test)
+```
+
+
+## Create and Export
+
+
+In this section, we will walk you through the steps to create a NetCDF file with your data. By following these steps, you'll be able to prepare your data and save it in the NetCDF format for further analysis or sharing.
+
+### Define the Dimensions
+
+
+The initial step in creating a NetCDF dataset is **dimension** definition:
+
+- `ncdim_def()`
+
+```{r}
+dim_lon <- ncdim_def("longitude", "degrees_east",
+                     seq(11.72, 11.79, 0.01),
+                     longname = "longitude")
+dim_lat <- ncdim_def("latitude", "degrees_north",
+                     seq(50.08, 50.13, 0.01),
+                     longname = "latitude")
+dim_time <- ncdim_def("time", "day since 1961-01-01 00:00:00 +00",
+                      1:3, unlim=TRUE,
+                      longname = "time")
+
+```
+
+In this example, we will create a 3D array with latitude, longitude, and time dimensions.
+
+
+### Define the Variales
+
+The next step is to **define a variable**, but you don't need to assign values to it at this stage. There are three common attributes (name, units and dimensions) that are essential for every variable and should always be defined. Other user-defined attributes can be added later as needed.
+
+- `ncvar_def()`
+  - `name`
+  - `units`
+  - `dim`
+
+You also have the option to create a dimension with no data values, effectively making it a null dimension. However, you can still set attributes for this dimension to store non-array information.
+
+After defining all the variables, it's necessary to **gather them into a list**.
+
+
+```{r}
+# Define a variable named "T0" with the units "cel" and dimensions dim_lat, dim_lon, and dim_time.
+# The missing value for this variable is set to -9999.
+var_T0 <- ncvar_def("T0", "cel", list(dim_lat, dim_lon, dim_time), -9999)
+
+# Define a variable named "crs" with no units and no dimensions (empty list).
+# This variable is defined as NULL initially.
+var_crs <- ncvar_def("crs", "", list(), NULL)
+
+# Combine variables into a list
+vars <- list(var_T0, var_crs)
+
+```
+
+
+
+### Create new empty NetCDF file
+
+You can already **create a NetCDF file** with the (list of) variables you have:
+
+- `nc_create(filename, vars)`
+
+```{r}
+nc_Create <- nc_create("C:\\Lei\\HS_Web\\data_share\\minibeispiel_NetCDF.nc", vars)
+
+```
+
+
+
+### Put the Data
+
+After creating the NetCDF file, it will be an **empty** file in your local folder. The next step is to **populate** the file with data for each of the variables. This involves specifying the values for each variable and writing them to the file.
+
+- `ncvar_put()`
+
+```{r}
+ncvar_put(nc_Create, var_T0, runif(6*8*3))
+
+```
+
+
+### Put Attributes
+
+When populating a NetCDF file, it's essential to not only specify the variable data values but also the **attributes** associated with those variables. Attributes provide crucial metadata that describes the data, such as units, long names, and other relevant information.
+
+
+- `ncatt_put()`
+
+Absolutely, you can set attributes not only for **individual variables**. 
+
+
+```{r}
+# Add the "long_name" and "EPSG" attributes to the variable "var_crs"
+ncatt_put(nc_Create, var_crs, "long_name", "coordinate reference system")
+ncatt_put(nc_Create, var_crs, "EPSG", "EPSG:4236")
+```
+
+But also for the entire NetCDF file as **global attributes**. Global attributes provide overarching information about the dataset, such as its title, source, creation date, and any other relevant details.
+
+```{r}
+# Add the "title" and "author" global attributes to the NetCDF file
+ncatt_put(nc_Create, 0, "title", "Multidimensional data example")
+ncatt_put(nc_Create, 0, "author", "Kan, Lei, kan.lei@ruhr-uni-bochum.de")
+```
+
+
+### Close
+
+At the end, **make sure to close** the connections to your NetCDF files. 
+
+```{r}
+nc_close(nc_Create)
+```
+
+Once you've gone through these steps, you'll have a well-maintained NetCDF file that can be easily used for any further processing, transformations, or visualization.
+
+

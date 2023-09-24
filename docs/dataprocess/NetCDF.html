@@ -231,9 +231,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#h1" id="toc-h1" class="nav-link active" data-scroll-target="#h1">H1</a>
+  <li><a href="#library" id="toc-library" class="nav-link active" data-scroll-target="#library"><span class="header-section-number">1</span> Library</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import"><span class="header-section-number">2</span> Import</a>
   <ul class="collapse">
-  <li><a href="#h2" id="toc-h2" class="nav-link" data-scroll-target="#h2">H2</a></li>
+  <li><a href="#open" id="toc-open" class="nav-link" data-scroll-target="#open"><span class="header-section-number">2.1</span> Open</a></li>
+  <li><a href="#basic-information" id="toc-basic-information" class="nav-link" data-scroll-target="#basic-information"><span class="header-section-number">2.2</span> Basic Information</a></li>
+  <li><a href="#values-and-attributes" id="toc-values-and-attributes" class="nav-link" data-scroll-target="#values-and-attributes"><span class="header-section-number">2.3</span> Values and Attributes</a></li>
+  <li><a href="#close" id="toc-close" class="nav-link" data-scroll-target="#close"><span class="header-section-number">2.4</span> Close</a></li>
+  </ul></li>
+  <li><a href="#create-and-export" id="toc-create-and-export" class="nav-link" data-scroll-target="#create-and-export"><span class="header-section-number">3</span> Create and Export</a>
+  <ul class="collapse">
+  <li><a href="#define-the-dimensions" id="toc-define-the-dimensions" class="nav-link" data-scroll-target="#define-the-dimensions"><span class="header-section-number">3.1</span> Define the Dimensions</a></li>
+  <li><a href="#define-the-variales" id="toc-define-the-variales" class="nav-link" data-scroll-target="#define-the-variales"><span class="header-section-number">3.2</span> Define the Variales</a></li>
+  <li><a href="#create-new-empty-netcdf-file" id="toc-create-new-empty-netcdf-file" class="nav-link" data-scroll-target="#create-new-empty-netcdf-file"><span class="header-section-number">3.3</span> Create new empty NetCDF file</a></li>
+  <li><a href="#put-the-data" id="toc-put-the-data" class="nav-link" data-scroll-target="#put-the-data"><span class="header-section-number">3.4</span> Put the Data</a></li>
+  <li><a href="#put-attributes" id="toc-put-attributes" class="nav-link" data-scroll-target="#put-attributes"><span class="header-section-number">3.5</span> Put Attributes</a></li>
+  <li><a href="#close-1" id="toc-close-1" class="nav-link" data-scroll-target="#close-1"><span class="header-section-number">3.6</span> Close</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -258,24 +271,250 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="h1" class="level1">
-<h1>H1</h1>
-<p>About this site test1</p>
+<p>NetCDF stands for “Network Common Data Form.” It is a file format that is designed to store large <strong>arrays</strong> of data, primarily used in scientific and engineering applications. NetCDF files are self-describing, meaning they <strong>contain metadata</strong> along with the data, which makes it easier to understand the contents. NetCDF is particularly well-suited for storing <strong>multi-dimensional</strong> data, such as time series, spatial data, and climate model outputs. It can handle data with complex structures like grids, which are common in environmental and geospatial datasets.</p>
+<p>In simple terms, NetCDF is a file format for storing multi-dimensional arrays of data along with metadata.</p>
+<p>More Details in <a href="https://www.unidata.ucar.edu/software/netcdf/">unidata</a>.</p>
+<p>NetCDF files have a hierarchical structure, consisting of <strong>dimensions</strong>, <strong>variables</strong>, and <strong>attributes</strong>. Dimensions define the size of arrays, variables hold the data, and attributes provide additional information about the data.</p>
+<p><img src="../images/dataformat_netcdf.svg" class="img-fluid"></p>
+<p>With these three components, you can efficiently handle the import, creation, and export of data in the NetCDF format.</p>
+<section id="library" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="library"><span class="header-section-number">1</span> Library</h2>
+<p>The <code>ncdf4</code> R package is a powerful tool for working with NetCDF data in R, allowing you to <strong>read</strong>, <strong>write</strong>, and <strong>manipulate</strong> datasets in this format with ease and efficiency.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fn_NetCDF <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share</span><span class="sc">\\</span><span class="st">minibeispiel_NetCDF.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<section id="h2" class="level2">
-<h2 class="anchored" data-anchor-id="h2">H2</h2>
-<p>About this site test2</p>
+<p>The Test data <code>minibeispiel_NetCDF.nc</code> is avable from Github, but it can not be direcly read from Git hub so you need download to local.</p>
+</section>
+<section id="import" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="import"><span class="header-section-number">2</span> Import</h2>
+<section id="open" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="open"><span class="header-section-number">2.1</span> Open</h3>
+<p>The first step in working with NetCDF files is to <strong>open</strong> the file using the <code>nc_open()</code> function. However, it’s important to note that opening the file <strong>doesn’t directly load</strong> its contents into the R environment. Instead, it establishes a <strong>connection</strong> between the file and the R session and effectively locks the file for reading or writing operations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nc_Test <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fn_NetCDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="basic-information" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="basic-information"><span class="header-section-number">2.2</span> Basic Information</h3>
+<p>After opening a NetCDF file in R, you can access the <strong>basic information</strong> about the dataset, which is contained in a list. This information typically includes details about three components: <strong>dimensions</strong>, <strong>variables</strong>, and <strong>attributes</strong> of the NetCDF file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the dimensions</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nc_Test$dim</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>dim <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>[1] "latitude"  "longitude" "time"     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the variables</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nc_Test$var</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>var <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "T0"  "crs"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>var<span class="sc">$</span>T0<span class="sc">$</span>size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6 8 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access attributes</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_get</span>(nc_Test, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$title
+[1] "Multidimensional data example"
+
+$author
+[1] "Kan, Lei, kan.lei@ruhr-uni-bochum.de"</code></pre>
 </div>
 </div>
+</section>
+<section id="values-and-attributes" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="values-and-attributes"><span class="header-section-number">2.3</span> Values and Attributes</h3>
+<p>With the basic information about variables obtained, you can access the <strong>values</strong> and <strong>attributes</strong> of each variable as needed. You can also obtain specific subsets of variables using <strong>start points</strong> and <strong>counts</strong> for each dimension.</p>
+<p>Additionally, dimensions are treated as variables in the NetCDF structure, making it easier to work with them.</p>
+<ul>
+<li><code>ncvar_get()</code>
+<ul>
+<li><code>start</code>: The starting point of every dimension to load variable values</li>
+<li><code>count</code>: The length of every dimension to read</li>
+</ul></li>
+<li><code>ncatt_get()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the variable "T0" WHOLE</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_get</span>(nc_Test, <span class="st">"T0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , 1
+
+           [,1]       [,2]      [,3]      [,4]       [,5]       [,6]      [,7]
+[1,] 0.87323433 0.84079581 0.9281288 0.6661375 0.04758887 0.96682316 0.2882475
+[2,] 0.84566671 0.04471953 0.8753740 0.8303212 0.91060263 0.97662097 0.4387989
+[3,] 0.87702137 0.52173090 0.3899564 0.7390187 0.15751220 0.08919455 0.1058832
+[4,] 0.05253063 0.41560754 0.5622070 0.2759584 0.60747105 0.86474377 0.4941541
+[5,] 0.13788696 0.64514744 0.1193469 0.7815173 0.17213744 0.90108442 0.2186224
+[6,] 0.01323104 0.20803328 0.7549667 0.3373279 0.81990784 0.92592072 0.9812934
+          [,8]
+[1,] 0.4798310
+[2,] 0.8073431
+[3,] 0.2100407
+[4,] 0.1944774
+[5,] 0.6252168
+[6,] 0.9121284
+
+, , 2
+
+           [,1]       [,2]      [,3]       [,4]        [,5]      [,6]      [,7]
+[1,] 0.67261952 0.81357676 0.9129938 0.07847439 0.695212364 0.9965690 0.4535292
+[2,] 0.54622287 0.47057596 0.7701718 0.76087618 0.681510150 0.2870260 0.9298078
+[3,] 0.97883582 0.27574405 0.2979580 0.82688719 0.775471032 0.1091156 0.4443779
+[4,] 0.24032776 0.94651270 0.9004657 0.46679950 0.714241982 0.2785303 0.8597365
+[5,] 0.11894906 0.08771272 0.4285217 0.39392269 0.881228805 0.1175296 0.4345917
+[6,] 0.02775612 0.69773751 0.6743689 0.30370802 0.003402067 0.5098888 0.5001363
+           [,8]
+[1,] 0.01954478
+[2,] 0.48761898
+[3,] 0.77260524
+[4,] 0.09660549
+[5,] 0.18708077
+[6,] 0.32882696
+
+, , 3
+
+          [,1]      [,2]      [,3]      [,4]        [,5]      [,6]      [,7]
+[1,] 0.2438949 0.2796387 0.2310013 0.9290695 0.001803675 0.2213203 0.6040062
+[2,] 0.7087626 0.1305958 0.4242381 0.3876229 0.108581930 0.9331994 0.1862334
+[3,] 0.6429835 0.5069839 0.4480698 0.6828141 0.002890128 0.5832875 0.4345271
+[4,] 0.5077407 0.7143151 0.5654522 0.7300830 0.554731011 0.3791544 0.6306387
+[5,] 0.5006290 0.7366096 0.7772436 0.7581558 0.917714417 0.8559392 0.4371825
+[6,] 0.5524286 0.1317367 0.6158218 0.8492355 0.189386442 0.5469928 0.7492338
+           [,8]
+[1,] 0.16166402
+[2,] 0.51010555
+[3,] 0.38010010
+[4,] 0.75959259
+[5,] 0.40291563
+[6,] 0.01315346</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve a subset of the variable "T0"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This subset starts at position (1, 1, 1) and has a count of (2, 3, 1) along each dimension</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_get</span>(nc_Test, <span class="st">"T0"</span>, <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">count =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]       [,2]      [,3]
+[1,] 0.8732343 0.84079581 0.9281288
+[2,] 0.8456667 0.04471953 0.8753740</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve attributes associated with the variable "T0"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_get</span>(nc_Test, <span class="st">"T0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$units
+[1] "cel"
+
+$`_FillValue`
+[1] -9999</code></pre>
+</div>
+</div>
+</section>
+<section id="close" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="close"><span class="header-section-number">2.4</span> Close</h3>
+<p>When working with NetCDF files in R using the ncdf4 package, it’s crucial to remember that opening a file establishes a connection. This prevents data corruption and conflicts. To finish, always close the file using <code>nc_close()</code> once you’ve completed your operations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc_Test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="create-and-export" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="create-and-export"><span class="header-section-number">3</span> Create and Export</h2>
+<p>In this section, we will walk you through the steps to create a NetCDF file with your data. By following these steps, you’ll be able to prepare your data and save it in the NetCDF format for further analysis or sharing.</p>
+<section id="define-the-dimensions" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="define-the-dimensions"><span class="header-section-number">3.1</span> Define the Dimensions</h3>
+<p>The initial step in creating a NetCDF dataset is <strong>dimension</strong> definition:</p>
+<ul>
+<li><code>ncdim_def()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dim_lon <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"longitude"</span>, <span class="st">"degrees_east"</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">seq</span>(<span class="fl">11.72</span>, <span class="fl">11.79</span>, <span class="fl">0.01</span>),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">longname =</span> <span class="st">"longitude"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>dim_lat <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"latitude"</span>, <span class="st">"degrees_north"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">seq</span>(<span class="fl">50.08</span>, <span class="fl">50.13</span>, <span class="fl">0.01</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">longname =</span> <span class="st">"latitude"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>dim_time <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"time"</span>, <span class="st">"day since 1961-01-01 00:00:00 +00"</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">unlim=</span><span class="cn">TRUE</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">longname =</span> <span class="st">"time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this example, we will create a 3D array with latitude, longitude, and time dimensions.</p>
+</section>
+<section id="define-the-variales" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="define-the-variales"><span class="header-section-number">3.2</span> Define the Variales</h3>
+<p>The next step is to <strong>define a variable</strong>, but you don’t need to assign values to it at this stage. There are three common attributes (name, units and dimensions) that are essential for every variable and should always be defined. Other user-defined attributes can be added later as needed.</p>
+<ul>
+<li><code>ncvar_def()</code>
+<ul>
+<li><code>name</code></li>
+<li><code>units</code></li>
+<li><code>dim</code></li>
+</ul></li>
+</ul>
+<p>You also have the option to create a dimension with no data values, effectively making it a null dimension. However, you can still set attributes for this dimension to store non-array information.</p>
+<p>After defining all the variables, it’s necessary to <strong>gather them into a list</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a variable named "T0" with the units "cel" and dimensions dim_lat, dim_lon, and dim_time.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The missing value for this variable is set to -9999.</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>var_T0 <span class="ot">&lt;-</span> <span class="fu">ncvar_def</span>(<span class="st">"T0"</span>, <span class="st">"cel"</span>, <span class="fu">list</span>(dim_lat, dim_lon, dim_time), <span class="sc">-</span><span class="dv">9999</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a variable named "crs" with no units and no dimensions (empty list).</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This variable is defined as NULL initially.</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>var_crs <span class="ot">&lt;-</span> <span class="fu">ncvar_def</span>(<span class="st">"crs"</span>, <span class="st">""</span>, <span class="fu">list</span>(), <span class="cn">NULL</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine variables into a list</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">list</span>(var_T0, var_crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-new-empty-netcdf-file" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="create-new-empty-netcdf-file"><span class="header-section-number">3.3</span> Create new empty NetCDF file</h3>
+<p>You can already <strong>create a NetCDF file</strong> with the (list of) variables you have:</p>
+<ul>
+<li><code>nc_create(filename, vars)</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nc_Create <span class="ot">&lt;-</span> <span class="fu">nc_create</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share</span><span class="sc">\\</span><span class="st">minibeispiel_NetCDF.nc"</span>, vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="put-the-data" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="put-the-data"><span class="header-section-number">3.4</span> Put the Data</h3>
+<p>After creating the NetCDF file, it will be an <strong>empty</strong> file in your local folder. The next step is to <strong>populate</strong> the file with data for each of the variables. This involves specifying the values for each variable and writing them to the file.</p>
+<ul>
+<li><code>ncvar_put()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_put</span>(nc_Create, var_T0, <span class="fu">runif</span>(<span class="dv">6</span><span class="sc">*</span><span class="dv">8</span><span class="sc">*</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="put-attributes" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="put-attributes"><span class="header-section-number">3.5</span> Put Attributes</h3>
+<p>When populating a NetCDF file, it’s essential to not only specify the variable data values but also the <strong>attributes</strong> associated with those variables. Attributes provide crucial metadata that describes the data, such as units, long names, and other relevant information.</p>
+<ul>
+<li><code>ncatt_put()</code></li>
+</ul>
+<p>Absolutely, you can set attributes not only for <strong>individual variables</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the "long_name" and "EPSG" attributes to the variable "var_crs"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, var_crs, <span class="st">"long_name"</span>, <span class="st">"coordinate reference system"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, var_crs, <span class="st">"EPSG"</span>, <span class="st">"EPSG:4236"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But also for the entire NetCDF file as <strong>global attributes</strong>. Global attributes provide overarching information about the dataset, such as its title, source, creation date, and any other relevant details.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the "title" and "author" global attributes to the NetCDF file</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, <span class="dv">0</span>, <span class="st">"title"</span>, <span class="st">"Multidimensional data example"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, <span class="dv">0</span>, <span class="st">"author"</span>, <span class="st">"Kan, Lei, kan.lei@ruhr-uni-bochum.de"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="close-1" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="close-1"><span class="header-section-number">3.6</span> Close</h3>
+<p>At the end, <strong>make sure to close</strong> the connections to your NetCDF files.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc_Create)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you’ve gone through these steps, you’ll have a well-maintained NetCDF file that can be easily used for any further processing, transformations, or visualization.</p>
 
 
 </section>

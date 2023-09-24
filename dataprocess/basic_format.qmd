@@ -217,6 +217,7 @@ Binary formats are a valuable choice for certain applications, particularly when
 
 ## NectCDF
 
+![](../images/dataformat_netcdf.svg)
 
 NetCDF (Network Common Data Form) is a versatile data format widely used in scientific and environmental applications. It is primarily a binary data format, but it includes structured elements for efficient data storage and management. Here are some key characteristics of NetCDF:
 
