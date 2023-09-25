@@ -1,0 +1,139 @@
+---
+title: "Basic Processing"
+execute:
+  warning: false
+  error: false
+sidebar:
+  contents: auto
+number-sections: true
+---
+
+In this article, we will cover fundamental techniques for manipulating and analyzing time series data. This includes tasks such as creating time series, summarizing data based on time indices, identifying trends, and more.
+
+# Library
+
+
+Time series data structures are not standard in R, but the `xts` package is commonly used to work with time indices. However, it's important to note that for processes that don't rely on specific time indexing, the original data structure is sufficient. Time series structures are particularly useful when you need to perform time-based operations and analysis.
+
+
+```{r}
+library(xts)
+library(tidyverse)
+```
+
+
+# Example Files
+
+The example files provided consist of three discharge time series for the Ruhr River in the Rhein basin, Germany. These data sets are sourced from open data available at [ELWAS-WEB NRW](https://www.elwasweb.nrw.de/elwas-web/index.xhtml). You can also access it directly from the internet via [Github](https://raw.githubusercontent.com/HydroSimul/Web/main/data_share).
+
+```{r}
+fn_Bachum <- "https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Bachum_2763190000100.csv"
+fn_Oeventrop <- "https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Oeventrop_2761759000100.csv"
+fn_Villigst <- "https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/Villigst_2765590000100.csv"
+
+```
+
+
+# Create data
+
+
+Before creating a time series structure, the data should be loaded into R. Time series in R can typically (only) support two-dimensional data structures, such as matrices and data frames. 
+
+If the date-time information is not correctly recognized during reading or if there is no time data present, you need to make sure that you have a valid time index. 
+
+There are two primary ways to create a time series in R:
+
+- `xts()`: With this method, you explicitly specify the time index and create a time series object. This is useful when you have a matrix with an external time index.
+
+- `as.xts()`: This method is more straightforward and is suitable when you have a data frame with a date column. The function will automatically recognize the date column and create a time series.
+
+
+
+```{r}
+# Read a CSV file as data.frame
+df_Bachum <- read_csv2(fn_Bachum, skip = 10, col_names = FALSE)
+df_Villigst <- read_csv2(fn_Villigst, skip = 10, col_names = FALSE)
+
+# Convert Date column to a Date type
+df_Bachum$X1 <- as_date(df_Bachum$X1, format = "%d.%m.%Y")
+df_Villigst$X1 <- as_date(df_Villigst$X1, format = "%d.%m.%Y")
+
+# Create an xts object
+xts_Bachum <- xts(df_Bachum$X2, order.by = df_Bachum$X1)
+xts_Villigst <- as.xts(df_Villigst)
+
+```
+
+
+# Merging Several Time Series
+
+In R, the time index is consistent and follows a standardized format. This consistency in time indexing makes it easy to combine multiple time series into a single dataset based on their time index.
+
+- `merge()`
+
+```{r}
+xts_Rhur <- merge(xts_Bachum, xts_Villigst)
+names(xts_Rhur) <- c("Bachum", "Villigst")
+
+```
+
+It's worth noting that when working with time series data in R, the length of the time series doesn't necessarily have to be the same for all time series. This flexibility allows you to work with data that may have missing or varying data points over time, which is common in many real-world scenarios. 
+
+```{r}
+length(xts_Bachum)
+length(xts_Villigst)
+```
+
+# Subsetting (Index with time)
+
+You can work with time series data in R using both integer indexing, and time-based indexing using time intervals.
+
+```{r}
+# Create a time sequence
+ts_Inteval <- seq(as_date("1996-01-01"), as_date("1996-12-31"), "days")
+
+# Subset
+xts_Inteval <- xts_Rhur[ts_Inteval, ]
+head(xts_Inteval, 10)
+
+```
+
+
+# Rolling Windows
+
+Moving averages are a valuable tool for smoothing time series data and uncovering underlying trends or patterns. With rolling windows, you can calculate not only the mean value but also other statistics like the median and sum. To expand the range of functions available, you can utilize the `rollapply()`. This enables you to apply a wide variety of functions to your time series data within specified rolling windows.
+
+- `rollmean()`
+- `rollmedian()`
+- `rollsum()`
+- `rollmax()`
+
+
+```{r}
+xts_RollMean <- rollmean(xts_Inteval, 7)
+head(xts_RollMean, 10)
+```
+
+
+# Summary in Calendar Period
+
+
+Dealing with irregularly spaced time series data can be challenging. One fundamental operation in time series analysis is applying a function by calendar period. This process helps in summarizing and analyzing time series data more effectively, even when the data points are irregularly spaced in time.
+
+- `apply.daily()`
+- `apply.weekly()`
+- `apply.monthly()`
+- `apply.quarterly()`
+- `apply.yearly()`
+
+
+```{r}
+xts_Month <- apply.monthly(xts_Inteval, mean)
+xts_Month
+```
+
+
+
+
+
+

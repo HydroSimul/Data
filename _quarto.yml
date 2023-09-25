@@ -39,7 +39,11 @@ website:
             - section: "Spatial Data"
               contents:
                 - dataprocess/spatial_data.qmd      
-                - dataprocess/extract_spatial.qmd      
+                - dataprocess/extract_spatial.qmd
+            - section: "Timeserises"
+              contents:
+                - dataprocess/timeserises_process.qmd      
+                - dataprocess/timeserises_analyse.qmd      
 
 
 format:

@@ -1,0 +1,40 @@
+---
+title: "Time Series Analyse"
+execute:
+  warning: false
+  error: false
+sidebar:
+  contents: auto
+number-sections: true
+bibliography: ../../references.bib
+---
+
+# Structure of Time Series
+
+A time series is often adequately described as a function of four components: trend, seasonality, dependent stochastic component and independent residual component [@HydroTimeSeries_machiwal_2012]. It can be mathematically expressed as [@StatisticWater_shahin_1993]:
+
+
+$$
+x_{\mathrm{t}}=T_{\mathrm{t}}+S_{\mathrm{t}}+\varepsilon_{\mathrm{t}}+\eta_{\mathrm{t}} 
+$$
+
+
+where 
+
+- $T_{\mathrm{t}}$ = trend component, 
+- $S_{\mathrm{t}}$ = seasonality, 
+- $\varepsilon_{\mathrm{t}}$ = dependent stochastic component, and 
+- $\eta_{\mathrm{t}}$ = independent residual component.
+
+The first two components can be treat as systematic pattern, which are deterministic in nature, whereas the stochastic component accounts for the random error.
+
+
+
+
+
+
+
+
+
+
+
