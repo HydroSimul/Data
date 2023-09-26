@@ -30,11 +30,27 @@ The first two components can be treat as systematic pattern, which are determini
 
 
 
+## Stationarity (Homogeneity) and Trend
+
+The term ‘homogeneity’ implies that the data in the series belong to one population, and therefore have a time invariant mean [@HydroTimeSeries_machiwal_2012]. Homogeneity in the time dimension is one aspect of stationarity. It means that the statistical characteristics of the time series, like its mean and variance, don't change significantly across different time periods. 
+
+A time series is said to be **strictly stationary** if its statistical properties do not vary with changes of time origin. A less strict type of stationarity, called weak stationarity or second-order stationarity, is that in which the first- and secondorder moments depend only on time differences [@HydroTimeSerises_chen_2002]. In nature, strictly stationary time series does not exist, and weakly stationary time series is practically considered as stationary time series [@HydroTimeSeries_machiwal_2012].
+
+A ‘trend’ is defined as “a unidirectional and gradual change (falling or rising) in the mean value of a variable” [@StatisticWater_shahin_1993].
+
+A time series is said to have trends, if there is a significant correlation (positive or negative) between the observed values and time. Trends and shifts in a hydrologic time series are usually introduced due to gradual natural or human-induced changes in the hydrologic environment producing the time series [@StatisticHydro_haan_1977].
 
 
+## Periodicity
 
+‘Periodicity’  represents a regular or oscillatory form of movement that is recurring over a fixed interval of time [@StatisticWater_shahin_1993]. It generally occurs due to astronomic cycles such as earth’s rotation around the sun [@StatisticHydro_haan_1977].
 
+- Annual: Precipetation, evapotranspiration
+- Weekly: water-use data of domestic, industrial
 
+## Persistence
+
+the phenomenon of ‘persistence’ is highly relevant to the hydrologic time series, which means that the successive members of a time series are linked in some dependent manner [@StatisticWater_shahin_1993]. In other words, ‘persistence’ denotes the tendency for the magnitude of an event to be dependent on the magnitude of previous event(s), i.e., a memory effect [@HydroTimeSeries_machiwal_2012].
 
 
 

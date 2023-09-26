@@ -1,0 +1,260 @@
+---
+title: "Statistic Basic"
+execute:
+  warning: false
+  error: false
+sidebar:
+  contents: auto
+number-sections: true
+bibliography: ../../references.bib
+---
+
+
+# Statistic
+
+One of the most important tasks while analyzing any time series is to describe and summarize the time series data in forms, which easily convey their important characteristics.
+
+Key statistical characteristics often described include: a measure of the central tendency of the data, a measure of spread or variability, a measure of the symmetry of the data distribution, and perhaps estimates of extremes such as some large or small percentile [@StatisticalMethods_snedecor_1980].
+
+## Population and Sample
+
+According to Helsel and Hirsch [-@StatisticWater_helsel_2020], the data about which a statement or summary is to be made are called ‘population’ or sometimes ‘target population’. It may be impossible both physically and economically to collect all data of interest.
+Alternatively, a subset of the entire data called ‘sample’ is selected and measured in such a way that conclusions about the sample may be extended to the entire population.
+
+
+## Measures of Location
+
+
+In statistics, measures of location or central tendency are used to summarize and describe the central or typical value in a dataset. Here are the six common measures of location [@HydroTimeSeries_machiwal_2012]:
+
+- Mean: The mean, often referred to as the average, is calculated by summing all the values in a dataset and dividing by the number of values. It represents the balance point of the data.
+
+- Median: The median is the middle value when the data is sorted in ascending order. It's less sensitive to extreme values (outliers) than the mean and is a good measure of the central value when the data is skewed.
+
+- Mode: The mode is the value that appears most frequently in the dataset. There can be multiple modes in a dataset, and it's useful for categorical or discrete data.
+
+- Geometric Mean: The geometric mean is used for data that is not normally distributed, such as financial returns or growth rates. It's calculated by taking the nth root of the product of n values.
+
+- Harmonic Mean: The harmonic mean is used for rates and ratios, such as speed or efficiency. It's calculated by dividing the number of values by the sum of their reciprocals.
+
+- Trimmed Mean: The trimmed mean is a variation of the mean that removes a certain percentage of extreme values (usually a specified percentage from both tails of the distribution) before calculating the mean. This makes it more robust to outliers.
+
+Among these measures, the mean and median are the most widely used for summarizing data. 
+
+
+### Arithmetic Mean
+
+The arithmetic mean ($\overline{{x}}$) is calculated by summing up of all data values, $x_{\mathrm{i}}$ and dividing the sum by the sample size $n$:
+
+
+$$
+{\overline{{x}}}=\sum_{i=1}^{n}{\frac{x_{\mathrm{i}}}{n}} 
+$$
+
+### Median
+
+The median is the middle value in a dataset when the data is ordered from smallest to largest. It's a robust measure of central tendency that is not influenced by extreme values (outliers).
+
+
+For an ordered dataset with 'n' values:
+
+- If 'n' is odd, the median is the middle value: 
+$$
+\text{Median} = x_{\frac{n+1}{2}} 
+$$
+
+- If 'n' is even, the median is the average of the two middle values: 
+$$ 
+\text{Median} = \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2} 
+$$
+
+
+
+
+### Geometric Mean
+
+The geometric mean (GM) is often used to compute summary statistic for positively skewed datasets [@HydroTimeSeries_machiwal_2012].
+
+
+
+
+$$
+{\mathrm{GM}}={\mathrm{exp}}\left[\sum_{i=1}^{n}{\frac{\ln\left(x_{\mathrm{i}}\right)}{n}}\right] 
+$$
+
+For the positively skewed data series, the GM is usually fairly close to the median of the series. In fact, the GM is an unbiased estimate of the median when the logarithms of the datasets are symmetric [@StatisticWater_helsel_2020].
+
+
+## Measures of Spread/Dispersion
+
+
+### Variance and Standard Deviation
+
+The ‘sample variance’ and ‘sample standard deviation’ (square root of sample variance) are classical measures of spread (dispersion), which are the most common measures of dispersion [@HydroTimeSeries_machiwal_2012].
+
+
+$$
+s^{2}=\sum_{i=1}^{n}\frac{\left(x_{\mathrm{i}}-{\overline{{x}}}\,\right)^{2}}{\left(n-1\right)} 
+$$
+
+
+
+$$
+s={\sqrt{\sum_{i=1}^{n}{\frac{\left(x_{i}-{\overline{{x}}}\,\right)^{2}}{\left(n-1\right)}}}} 
+$$
+
+### Robust Measures
+
+Robust measures of spreading about the mean include ‘range’, ‘interquartile range’, ‘coefficient of variation’ and ‘median absolute deviation’ [@HydroTimeSeries_machiwal_2012].
+
+
+#### Quantiles
+
+Quantiles are values that divide a dataset into equally sized subsets. Common quantiles include quartiles (dividing data into four parts), quintiles (dividing into five parts), deciles (dividing into ten parts), and percentiles (dividing into one hundred parts).
+
+
+- Sort the dataset in ascending order.
+- Compute the index 'i' as 
+
+$$ 
+i = \text{round}((n+1) \cdot q) 
+$$
+
+- If 'i' is an integer, the quantile is 
+
+$$ 
+\text{Quantile}(q) = x_i 
+$$
+- If 'i' is not an integer, the quantile is interpolated as 
+
+$$ 
+\text{Quantile}(q) = x_{\lfloor i \rfloor} + (i - \lfloor i \rfloor) \cdot (x_{\lfloor i \rfloor + 1} - x_{\lfloor i \rfloor}) 
+$$
+
+Quantiles are used to understand the spread and distribution of data and are often used in box plots and histograms to visualize data distribution.
+
+#### coefficient of variation
+
+The coefficient of variation (CV) gives a normalized measure of spreading about the mean, and is estimated as [@HydroTimeSeries_machiwal_2012]:
+
+
+
+$$
+\mathbf{C}\mathbf{V}(\vartheta_{0})={\frac{s}{\bar{x}}}\times100 
+$$
+
+
+Hydrologic variables with larger CV values are more variable than those with smaller values. Wilding (in [@SoilSpatialVariability_nielsen_1985]) suggested a classification scheme for identifying the extent of variability for soil properties based on their CV values, where CV values of 0-15, 16-35 and >36 indicate little, moderate and high variability, respectively.
+
+#### Quartile coefficient
+
+Quartile coefficient (qc) of dispersion is another descriptive statistic which measures dispersion and is used to make comparison within and between datasets. The test-statistic is computed using the first (P25) and third (P75) quartiles for each data set. The quartile coefficient of dispersion (qc) is given as [@HydroTimeSeries_machiwal_2012]:
+
+
+
+$$
+q_{C}={\frac{P_{75}-P_{25}}{P_{75}+P_{25}}} 
+$$
+
+## Measures of Skewness
+
+Hydrologic time series data are usually skewed, which means that data in the time series are not symmetric around the mean or median, with extreme values extending out longer in one direction [@HydroTimeSeries_machiwal_2012].
+
+
+### coefficient of skewness
+
+It is defined as the adjusted third moment about the mean divided by the cube of the standard deviation (s), and is mathematically expressed as follows:
+
+$$
+g={\frac{n}{\left(n-1\right)\,\left(n-2\right)}}\sum_{i=1}^{n}{\frac{\left(x_{i}-{\overline{{x}}}\,\right)^{3}}{s^{3}}} 
+$$
+
+
+A positively skewed distribution of hydrologic time series with right extended tail has a positive coefficient of skewness, whereas a time series with negative-skewed distribution with left extended tail has a negative coefficient of skewness [@HydroTimeSeries_machiwal_2012].
+
+
+### quartile skew coefficient (Robust Measure)
+
+A robust measure of skewness is the ‘quartile skew coefficient (qs)’, which is defined as the difference in distances of the upper and lower quartiles from the median, divided by the IQR [@MathStatistic_kenneyjohnf_1939]. Mathematically, it is expressed as:
+
+$$
+q s=\frac{\left(P_{75}-P_{50}\,\right)-\left(P_{50}-P_{25}\,\right)}{P_{75}-P_{25}} 
+$$
+
+# Skript (R & Python)
+
+::: {.panel-tabset}
+
+## R
+
+
+```{r}
+library(moments)
+# Sample dataset (replace with your data)
+data <- c(12, 15, 18, 22, 24, 28, 31, 35, 40, 45, 50)
+
+# Calculate Mean
+mean_value <- mean(data)
+
+# Calculate Median
+median_value <- median(data)
+
+# Calculate Variance
+variance_value <- var(data)
+
+# Calculate Standard Deviation
+std_deviation_value <- sd(data)
+
+# Calculate Quantiles (25th, 50th, and 75th percentiles)
+quantiles_values <- quantile(data, probs = c(0.25, 0.5, 0.75))
+
+# Calculate Skewness
+skewness_value <- moments::skewness(data)
+
+# Print the results
+cat("Mean:", mean_value, "\n")
+cat("Median:", median_value, "\n")
+cat("Variance:", variance_value, "\n")
+cat("Standard Deviation:", std_deviation_value, "\n")
+cat("Quantiles (25th, 50th, 75th percentiles):", quantiles_values, "\n")
+cat("Skewness:", skewness_value, "\n")
+```
+
+## Python
+
+```{python}
+import numpy as np
+from scipy.stats import skew
+
+# Sample dataset (replace with your data)
+data = np.array([12, 15, 18, 22, 24, 28, 31, 35, 40, 45, 50])
+
+# Calculate Mean
+mean_value = np.mean(data)
+
+# Calculate Median
+median_value = np.median(data)
+
+# Calculate Variance
+variance_value = np.var(data, ddof=0)  # Set ddof to 0 for population variance
+
+# Calculate Standard Deviation
+std_deviation_value = np.std(data, ddof=0)  # Set ddof to 0 for population standard deviation
+
+# Calculate Quantiles (25th, 50th, and 75th percentiles)
+quantiles_values = np.percentile(data, [25, 50, 75])
+
+# Calculate Skewness
+skewness_value = skew(data)
+
+print("Mean:", mean_value)
+print("Median:", median_value)
+print("Variance:", variance_value)
+print("Standard Deviation:", std_deviation_value)
+print("Quantiles (25th, 50th, 75th percentiles):", quantiles_values)
+print("Skewness:", skewness_value)
+
+```
+
+:::
+

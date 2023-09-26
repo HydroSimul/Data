@@ -43,6 +43,8 @@ website:
             - section: "Timeserises"
               contents:
                 - dataprocess/timeserises_process.qmd      
+                - dataprocess/statistic_basic.qmd      
+                - dataprocess/statistic_graphic.qmd      
                 - dataprocess/timeserises_analyse.qmd      
 
 
