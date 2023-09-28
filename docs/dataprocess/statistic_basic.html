@@ -334,21 +334,20 @@ div.csl-indent {
 <section id="statistic" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Statistic</h1>
 <p>One of the most important tasks while analyzing any time series is to describe and summarize the time series data in forms, which easily convey their important characteristics.</p>
-<p>Key statistical characteristics often described include: a measure of the central tendency of the data, a measure of spread or variability, a measure of the symmetry of the data distribution, and perhaps estimates of extremes such as some large or small percentile <span class="citation" data-cites="StatisticalMethods_snedecor_1980">(<a href="#ref-StatisticalMethods_snedecor_1980" role="doc-biblioref">Snedecor and Cochran 1980</a>)</span>.</p>
+<p>Key statistical characteristics often described include: a measure of the <strong>central tendency</strong> of the data, a measure of <strong>spread or variability</strong>, a measure of the <strong>symmetry</strong> of the data distribution, and perhaps estimates of extremes such as some large or small percentile <span class="citation" data-cites="StatisticalMethods_snedecor_1980">(<a href="#ref-StatisticalMethods_snedecor_1980" role="doc-biblioref">Snedecor and Cochran 1980</a>)</span>.</p>
 <section id="population-and-sample" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="population-and-sample"><span class="header-section-number">1.1</span> Population and Sample</h2>
-<p>According to Helsel and Hirsch <span class="citation" data-cites="StatisticWater_helsel_2020">(<a href="#ref-StatisticWater_helsel_2020" role="doc-biblioref">2020</a>)</span>, the data about which a statement or summary is to be made are called ‘population’ or sometimes ‘target population’. It may be impossible both physically and economically to collect all data of interest. Alternatively, a subset of the entire data called ‘sample’ is selected and measured in such a way that conclusions about the sample may be extended to the entire population.</p>
+<p>According to Helsel and Hirsch <span class="citation" data-cites="StatisticWater_helsel_2020">(<a href="#ref-StatisticWater_helsel_2020" role="doc-biblioref">2020</a>)</span>, the data about which a statement or summary is to be made are called <strong>‘population’</strong> or sometimes ‘target population’. It may be impossible both physically and economically to collect all data of interest. Alternatively, a <strong>subset</strong> of the entire data called <strong>‘sample’</strong> is selected and measured in such a way that conclusions about the sample may be extended to the entire population.</p>
 </section>
 <section id="measures-of-location" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="measures-of-location"><span class="header-section-number">1.2</span> Measures of Location</h2>
 <p>In statistics, measures of location or central tendency are used to summarize and describe the central or typical value in a dataset. Here are the six common measures of location <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>:</p>
 <ul>
-<li><p>Mean: The mean, often referred to as the average, is calculated by summing all the values in a dataset and dividing by the number of values. It represents the balance point of the data.</p></li>
-<li><p>Median: The median is the middle value when the data is sorted in ascending order. It’s less sensitive to extreme values (outliers) than the mean and is a good measure of the central value when the data is skewed.</p></li>
-<li><p>Mode: The mode is the value that appears most frequently in the dataset. There can be multiple modes in a dataset, and it’s useful for categorical or discrete data.</p></li>
-<li><p>Geometric Mean: The geometric mean is used for data that is not normally distributed, such as financial returns or growth rates. It’s calculated by taking the nth root of the product of n values.</p></li>
-<li><p>Harmonic Mean: The harmonic mean is used for rates and ratios, such as speed or efficiency. It’s calculated by dividing the number of values by the sum of their reciprocals.</p></li>
-<li><p>Trimmed Mean: The trimmed mean is a variation of the mean that removes a certain percentage of extreme values (usually a specified percentage from both tails of the distribution) before calculating the mean. This makes it more robust to outliers.</p></li>
+<li><p><strong>Mean</strong>: The mean, often referred to as the <strong>average</strong>, is calculated by summing all the values in a dataset and dividing by the number of values. It represents the <strong>balance</strong> point of the data.</p></li>
+<li><p><strong>Median</strong>: The median is the <strong>middle</strong> value when the data is sorted in ascending order. It’s less sensitive to extreme values (outliers) than the mean and is a good measure of the central value <em>when the data is skewed</em>.</p></li>
+<li><p><strong>Mode</strong>: The mode is the value that appears <strong>most frequently</strong> in the dataset. There can be multiple modes in a dataset, and it’s useful for categorical or discrete data.</p></li>
+<li><p><strong>Geometric Mean</strong>: The geometric mean is used for data that is <strong>not normally distributed</strong>, such as financial returns or growth rates. It’s calculated by taking the nth root of the product of n values.</p></li>
+<li><p><strong>Trimmed Mean</strong>: The trimmed mean is a variation of the mean that <strong>removes a certain percentage of extreme values</strong> (usually a specified percentage from both tails of the distribution) before calculating the mean. This makes it more robust to outliers.</p></li>
 </ul>
 <p>Among these measures, the mean and median are the most widely used for summarizing data.</p>
 <section id="arithmetic-mean" class="level3" data-number="1.2.1">
@@ -364,10 +363,10 @@ div.csl-indent {
 <p>For an ordered dataset with ‘n’ values:</p>
 <ul>
 <li><p>If ‘n’ is odd, the median is the middle value: <span class="math display">\[
-\text{Median} = x_{\frac{n+1}{2}}
+\text{M} = x_{\frac{n+1}{2}}
 \]</span></p></li>
 <li><p>If ‘n’ is even, the median is the average of the two middle values: <span class="math display">\[
-\text{Median} = \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2}
+\text{M} = \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2}
 \]</span></p></li>
 </ul>
 </section>
@@ -394,10 +393,10 @@ s={\sqrt{\sum_{i=1}^{n}{\frac{\left(x_{i}-{\overline{{x}}}\,\right)^{2}}{\left(n
 </section>
 <section id="robust-measures" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="robust-measures"><span class="header-section-number">1.3.2</span> Robust Measures</h3>
-<p>Robust measures of spreading about the mean include ‘range’, ‘interquartile range’, ‘coefficient of variation’ and ‘median absolute deviation’ <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>.</p>
+<p>Robust measures of spreading about the mean include <strong>‘range’</strong>, ‘interquartile range’, ‘coefficient of variation’ and ‘median absolute deviation’ <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>.</p>
 <section id="quantiles" class="level4" data-number="1.3.2.1">
 <h4 data-number="1.3.2.1" class="anchored" data-anchor-id="quantiles"><span class="header-section-number">1.3.2.1</span> Quantiles</h4>
-<p>Quantiles are values that divide a dataset into equally sized subsets. Common quantiles include quartiles (dividing data into four parts), quintiles (dividing into five parts), deciles (dividing into ten parts), and percentiles (dividing into one hundred parts).</p>
+<p><strong>Quantiles</strong> are values that divide a dataset into equally sized subsets. Common quantiles include <strong>quartiles</strong> (dividing data into four parts), <strong>quintiles</strong> (dividing into five parts), <strong>deciles</strong> (dividing into ten parts), and <strong>percentiles</strong> (dividing into one hundred parts).</p>
 <ul>
 <li>Sort the dataset in ascending order.</li>
 <li>Compute the index ‘i’ as</li>
@@ -409,10 +408,10 @@ i = \text{round}((n+1) \cdot q)
 <li>If ‘i’ is an integer, the quantile is</li>
 </ul>
 <p><span class="math display">\[
-\text{Quantile}(q) = x_i
+\text{Q}(q) = x_i
 \]</span> - If ‘i’ is not an integer, the quantile is interpolated as</p>
 <p><span class="math display">\[
-\text{Quantile}(q) = x_{\lfloor i \rfloor} + (i - \lfloor i \rfloor) \cdot (x_{\lfloor i \rfloor + 1} - x_{\lfloor i \rfloor})
+\text{Q}(q) = x_{\lfloor i \rfloor} + (i - \lfloor i \rfloor) \cdot (x_{\lfloor i \rfloor + 1} - x_{\lfloor i \rfloor})
 \]</span></p>
 <p>Quantiles are used to understand the spread and distribution of data and are often used in box plots and histograms to visualize data distribution.</p>
 </section>
@@ -426,16 +425,16 @@ i = \text{round}((n+1) \cdot q)
 </section>
 <section id="quartile-coefficient" class="level4" data-number="1.3.2.3">
 <h4 data-number="1.3.2.3" class="anchored" data-anchor-id="quartile-coefficient"><span class="header-section-number">1.3.2.3</span> Quartile coefficient</h4>
-<p>Quartile coefficient (qc) of dispersion is another descriptive statistic which measures dispersion and is used to make comparison within and between datasets. The test-statistic is computed using the first (P25) and third (P75) quartiles for each data set. The quartile coefficient of dispersion (qc) is given as <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>:</p>
+<p>Quartile coefficient (QC) of dispersion is another descriptive statistic which measures dispersion and is used to make comparison within and between datasets. The test-statistic is computed using the first (P25) and third (P75) quartiles for each data set. The quartile coefficient of dispersion (QC) is given as <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>:</p>
 <p><span class="math display">\[
-q_{C}={\frac{P_{75}-P_{25}}{P_{75}+P_{25}}}
+\text{QC}={\frac{P_{75}-P_{25}}{P_{75}+P_{25}}}
 \]</span></p>
 </section>
 </section>
 </section>
 <section id="measures-of-skewness" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="measures-of-skewness"><span class="header-section-number">1.4</span> Measures of Skewness</h2>
-<p>Hydrologic time series data are usually skewed, which means that data in the time series are not symmetric around the mean or median, with extreme values extending out longer in one direction <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>.</p>
+<p>Hydrologic time series data are usually <strong>skewed</strong>, which means that data in the time series are <strong>not symmetric</strong> around the mean or median, with extreme values extending out longer in one direction <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>.</p>
 <section id="coefficient-of-skewness" class="level3" data-number="1.4.1">
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="coefficient-of-skewness"><span class="header-section-number">1.4.1</span> coefficient of skewness</h3>
 <p>It is defined as the adjusted third moment about the mean divided by the cube of the standard deviation (s), and is mathematically expressed as follows:</p>
@@ -446,9 +445,9 @@ g={\frac{n}{\left(n-1\right)\,\left(n-2\right)}}\sum_{i=1}^{n}{\frac{\left(x_{i}
 </section>
 <section id="quartile-skew-coefficient-robust-measure" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="quartile-skew-coefficient-robust-measure"><span class="header-section-number">1.4.2</span> quartile skew coefficient (Robust Measure)</h3>
-<p>A robust measure of skewness is the ‘quartile skew coefficient (qs)’, which is defined as the difference in distances of the upper and lower quartiles from the median, divided by the IQR <span class="citation" data-cites="MathStatistic_kenneyjohnf_1939">(<a href="#ref-MathStatistic_kenneyjohnf_1939" role="doc-biblioref">Kenney John F 1939</a>)</span>. Mathematically, it is expressed as:</p>
+<p>A robust measure of skewness is the ‘quartile skew coefficient (QS)’, which is defined as the difference in distances of the upper and lower quartiles from the median, divided by the IQR <span class="citation" data-cites="MathStatistic_kenneyjohnf_1939">(<a href="#ref-MathStatistic_kenneyjohnf_1939" role="doc-biblioref">Kenney John F 1939</a>)</span>. Mathematically, it is expressed as:</p>
 <p><span class="math display">\[
-q s=\frac{\left(P_{75}-P_{50}\,\right)-\left(P_{50}-P_{25}\,\right)}{P_{75}-P_{25}}
+\text{QS}=\frac{\left(P_{75}-P_{50}\,\right)-\left(P_{50}-P_{25}\,\right)}{P_{75}-P_{25}}
 \]</span></p>
 </section>
 </section>

@@ -9,7 +9,7 @@ number-sections: true
 bibliography: ../../references.bib
 ---
 
-Graphical statistic is a branch of statistics that involves using visual representations to analyze and communicate data. It provides a powerful way to convey complex information in a more understandable and intuitive form.
+Graphical statistic is a branch of statistics that involves using **visual representations** to analyze and communicate data. It provides a powerful way to convey complex information in a more understandable and intuitive form.
 
 
 # Example Data
@@ -52,13 +52,14 @@ xts_Rhur <- xts_Rhur[seq(as_date("1991-01-01"), as_date("2020-12-31"), "days"), 
 df_Ruhr <- coredata(xts_Rhur)
 df_Ruhr[df_Ruhr < 0] <- NA
 
+# Summary in month
 xts_Ruhr_Clean <- xts(df_Ruhr, index(xts_Rhur))
 df_Ruhr_Month <- apply.monthly(xts_Ruhr_Clean, mean)
 
 ```
 
 
-In this article, we will leverage the power of the `ggplot2` library to create plots and visualizations. So we need first refoem the dataframe:
+In this article, we will leverage the power of the `ggplot2` library to create plots and visualizations. To achieve this, the first step is to reformat the dataframe to a structure suitable for plotting.
 
 
 ```{r}
@@ -67,7 +68,9 @@ gdf_Ruhr <- reshape2::melt(data.frame(date=index(df_Ruhr_Month), df_Ruhr_Month),
 
 # Timeserise line
 
-- `geom_line`
+The time series lines will provide us with discharge from 1991-01-01 to 2020-12-31 of the three gauges.
+
+- `geom_line()`
 
 ```{r}
 gg_TS_Ruhr <- ggplot(gdf_Ruhr) +
@@ -80,24 +83,30 @@ ggplotly(gg_TS_Ruhr)
 
 # Frequency Plots/Histogram
 
-- `geom_histogram`
+Histograms and frequency plots are graphical representations of data distribution. 
+
+Histograms display the counts (or frequency) with bars; frequency plots display the counts (or frequency) with lines.
+
+The frequency plot represents the relative density of the data points by the relative height of the bars, while in a histogram, the area within the bar represents the relative density of the data points.
+
+- `geom_histogram()`
 
 
 
 ```{r}
 gg_Hist_Ruhr <- ggplot(gdf_Ruhr) +
   geom_histogram(aes(value, group = variable, fill = variable, color = variable), position = "dodge", alpha = .5) +
-  labs(y = "Frequency", x = "Discharge [m^3/s]", color = "Gauge")
+  labs(y = "Count", x = "Discharge [m^3/s]", color = "Gauge", fill = "Gauge")
 
 ggplotly(gg_Hist_Ruhr)
 ```
 
 
-- `geom_freqpoly`
+- `geom_freqpoly()`
 
 ```{r}
 gg_Freq_Ruhr <- ggplot(gdf_Ruhr) +
-  geom_freqpoly(aes(value, group = variable, fill = variable, color = variable)) +
+  geom_freqpoly(aes(value, y = after_stat(count / sum(count)), group = variable, fill = variable, color = variable)) +
   labs(y = "Frequency", x = "Discharge [m^3/s]", color = "Gauge")
 
 ggplotly(gg_Freq_Ruhr)
@@ -106,24 +115,17 @@ ggplotly(gg_Freq_Ruhr)
 
 # Box and Whisker Plot
 
-A Box and Whisker Plot, also known as a box plot, is a graphical representation of the distribution of a dataset. It provides a concise summary of the dataset's key statistical measures and helps you visualize the spread and skewness of the data. Here's how a typical box and whisker plot is structured:
+A Box and Whisker Plot, also known as a box plot, is a graphical representation of the distribution of a dataset. It provides a concise summary of the dataset's key statistical measures and helps you visualize the spread and skewness of the data [@HydroTimeSeries_machiwal_2012]. Here's how a typical box and whisker plot is structured:
 
-Box: The box in the middle of the plot represents the interquartile range (IQR), which contains the middle 50% of the data. The bottom edge of the box represents the 25th percentile (Q1), and the top edge represents the 75th percentile (Q3).
+- **Box**: The box in the middle of the plot represents the interquartile range (IQR), which contains the middle 50% of the data. The bottom edge of the box represents the 25th percentile (Q1), and the top edge represents the 75th percentile (Q3).
 
-Whiskers: The whiskers extend from the box and represent the range of the data, excluding outliers. They typically extend to a certain multiple of the IQR beyond the quartiles. Outliers beyond the whiskers are often plotted as individual points.
+- **Whiskers**: The whiskers extend from the box and represent the range of the data, excluding **outliers**. They typically extend to a certain multiple of the IQR beyond the quartiles. Outliers beyond the whiskers are often plotted as individual points.
 
-Median (line inside the box): A horizontal line inside the box represents the median (Q2), which is the middle value of the dataset when it's sorted.
-
-Box and whisker plots are useful for identifying the following aspects of a dataset:
-
-Skewness: The direction in which the data is skewed (positively or negatively).
-
-Spread: How dispersed or concentrated the data points are within the interquartile range.
-
-Outliers: Any data points that fall significantly beyond the whiskers.
+- **Median** (line inside the box): A horizontal line inside the box represents the median (Q2), which is the middle value of the dataset when it's sorted.
 
 
-![](https://lsc.studysixsigma.com/wp-content/uploads/sites/6/2015/12/1435.png)
+
+![Figure from [Internet](https://lsc.studysixsigma.com/wp-content/uploads/sites/6/2015/12/1435.png)](https://lsc.studysixsigma.com/wp-content/uploads/sites/6/2015/12/1435.png)
 
 ```{r}
 gg_Box_Ruhr <- ggplot(gdf_Ruhr) +
@@ -136,11 +138,15 @@ ggplotly(gg_Box_Ruhr)
 
 # Quantile Plot
 
+A ‘quantile plot’ can be used to evaluate the quantile information such as the median, **quartiles**, and interquartile range of the data points [@HydroTimeSeries_machiwal_2012].
+
+- `geom_qq()`
+
 ```{r}
-gg_QQ_Ruhr <- ggplot(gdf_Ruhr) +
-  geom_qq(aes(sample = value, color = variable), alpha = .5) +
-  geom_qq_line(aes(sample = value, color = variable)) +
-  labs(x = "Gauge", y = "Discharge [m^3/s]", color = "Gauge")
+gg_QQ_Ruhr <- ggplot(gdf_Ruhr, aes(sample = value, color = variable)) +
+  geom_qq(alpha = .5, distribution = stats::qunif) +
+  geom_qq_line(distribution = stats::qunif) +
+  labs(x = "Fraction", y = "Discharge [m^3/s]", color = "Gauge")
 
 ggplotly(gg_QQ_Ruhr)
 ```

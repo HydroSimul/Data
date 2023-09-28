@@ -14,12 +14,12 @@ bibliography: ../../references.bib
 
 One of the most important tasks while analyzing any time series is to describe and summarize the time series data in forms, which easily convey their important characteristics.
 
-Key statistical characteristics often described include: a measure of the central tendency of the data, a measure of spread or variability, a measure of the symmetry of the data distribution, and perhaps estimates of extremes such as some large or small percentile [@StatisticalMethods_snedecor_1980].
+Key statistical characteristics often described include: a measure of the **central tendency** of the data, a measure of **spread or variability**, a measure of the **symmetry** of the data distribution, and perhaps estimates of extremes such as some large or small percentile [@StatisticalMethods_snedecor_1980].
 
 ## Population and Sample
 
-According to Helsel and Hirsch [-@StatisticWater_helsel_2020], the data about which a statement or summary is to be made are called ‘population’ or sometimes ‘target population’. It may be impossible both physically and economically to collect all data of interest.
-Alternatively, a subset of the entire data called ‘sample’ is selected and measured in such a way that conclusions about the sample may be extended to the entire population.
+According to Helsel and Hirsch [-@StatisticWater_helsel_2020], the data about which a statement or summary is to be made are called **‘population’** or sometimes ‘target population’. It may be impossible both physically and economically to collect all data of interest.
+Alternatively, a **subset** of the entire data called **‘sample’** is selected and measured in such a way that conclusions about the sample may be extended to the entire population.
 
 
 ## Measures of Location
@@ -27,17 +27,15 @@ Alternatively, a subset of the entire data called ‘sample’ is selected and m
 
 In statistics, measures of location or central tendency are used to summarize and describe the central or typical value in a dataset. Here are the six common measures of location [@HydroTimeSeries_machiwal_2012]:
 
-- Mean: The mean, often referred to as the average, is calculated by summing all the values in a dataset and dividing by the number of values. It represents the balance point of the data.
+- **Mean**: The mean, often referred to as the **average**, is calculated by summing all the values in a dataset and dividing by the number of values. It represents the **balance** point of the data.
 
-- Median: The median is the middle value when the data is sorted in ascending order. It's less sensitive to extreme values (outliers) than the mean and is a good measure of the central value when the data is skewed.
+- **Median**: The median is the **middle** value when the data is sorted in ascending order. It's less sensitive to extreme values (outliers) than the mean and is a good measure of the central value *when the data is skewed*.
 
-- Mode: The mode is the value that appears most frequently in the dataset. There can be multiple modes in a dataset, and it's useful for categorical or discrete data.
+- **Mode**: The mode is the value that appears **most frequently** in the dataset. There can be multiple modes in a dataset, and it's useful for categorical or discrete data.
 
-- Geometric Mean: The geometric mean is used for data that is not normally distributed, such as financial returns or growth rates. It's calculated by taking the nth root of the product of n values.
+- **Geometric Mean**: The geometric mean is used for data that is **not normally distributed**, such as financial returns or growth rates. It's calculated by taking the nth root of the product of n values.
 
-- Harmonic Mean: The harmonic mean is used for rates and ratios, such as speed or efficiency. It's calculated by dividing the number of values by the sum of their reciprocals.
-
-- Trimmed Mean: The trimmed mean is a variation of the mean that removes a certain percentage of extreme values (usually a specified percentage from both tails of the distribution) before calculating the mean. This makes it more robust to outliers.
+- **Trimmed Mean**: The trimmed mean is a variation of the mean that **removes a certain percentage of extreme values** (usually a specified percentage from both tails of the distribution) before calculating the mean. This makes it more robust to outliers.
 
 Among these measures, the mean and median are the most widely used for summarizing data. 
 
@@ -60,12 +58,12 @@ For an ordered dataset with 'n' values:
 
 - If 'n' is odd, the median is the middle value: 
 $$
-\text{Median} = x_{\frac{n+1}{2}} 
+\text{M} = x_{\frac{n+1}{2}} 
 $$
 
 - If 'n' is even, the median is the average of the two middle values: 
 $$ 
-\text{Median} = \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2} 
+\text{M} = \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2} 
 $$
 
 
@@ -105,12 +103,12 @@ $$
 
 ### Robust Measures
 
-Robust measures of spreading about the mean include ‘range’, ‘interquartile range’, ‘coefficient of variation’ and ‘median absolute deviation’ [@HydroTimeSeries_machiwal_2012].
+Robust measures of spreading about the mean include **‘range’**, ‘interquartile range’, ‘coefficient of variation’ and ‘median absolute deviation’ [@HydroTimeSeries_machiwal_2012].
 
 
 #### Quantiles
 
-Quantiles are values that divide a dataset into equally sized subsets. Common quantiles include quartiles (dividing data into four parts), quintiles (dividing into five parts), deciles (dividing into ten parts), and percentiles (dividing into one hundred parts).
+**Quantiles** are values that divide a dataset into equally sized subsets. Common quantiles include **quartiles** (dividing data into four parts), **quintiles** (dividing into five parts), **deciles** (dividing into ten parts), and **percentiles** (dividing into one hundred parts).
 
 
 - Sort the dataset in ascending order.
@@ -123,12 +121,12 @@ $$
 - If 'i' is an integer, the quantile is 
 
 $$ 
-\text{Quantile}(q) = x_i 
+\text{Q}(q) = x_i 
 $$
 - If 'i' is not an integer, the quantile is interpolated as 
 
 $$ 
-\text{Quantile}(q) = x_{\lfloor i \rfloor} + (i - \lfloor i \rfloor) \cdot (x_{\lfloor i \rfloor + 1} - x_{\lfloor i \rfloor}) 
+\text{Q}(q) = x_{\lfloor i \rfloor} + (i - \lfloor i \rfloor) \cdot (x_{\lfloor i \rfloor + 1} - x_{\lfloor i \rfloor}) 
 $$
 
 Quantiles are used to understand the spread and distribution of data and are often used in box plots and histograms to visualize data distribution.
@@ -148,17 +146,17 @@ Hydrologic variables with larger CV values are more variable than those with sma
 
 #### Quartile coefficient
 
-Quartile coefficient (qc) of dispersion is another descriptive statistic which measures dispersion and is used to make comparison within and between datasets. The test-statistic is computed using the first (P25) and third (P75) quartiles for each data set. The quartile coefficient of dispersion (qc) is given as [@HydroTimeSeries_machiwal_2012]:
+Quartile coefficient (QC) of dispersion is another descriptive statistic which measures dispersion and is used to make comparison within and between datasets. The test-statistic is computed using the first (P25) and third (P75) quartiles for each data set. The quartile coefficient of dispersion (QC) is given as [@HydroTimeSeries_machiwal_2012]:
 
 
 
 $$
-q_{C}={\frac{P_{75}-P_{25}}{P_{75}+P_{25}}} 
+\text{QC}={\frac{P_{75}-P_{25}}{P_{75}+P_{25}}} 
 $$
 
 ## Measures of Skewness
 
-Hydrologic time series data are usually skewed, which means that data in the time series are not symmetric around the mean or median, with extreme values extending out longer in one direction [@HydroTimeSeries_machiwal_2012].
+Hydrologic time series data are usually **skewed**, which means that data in the time series are **not symmetric** around the mean or median, with extreme values extending out longer in one direction [@HydroTimeSeries_machiwal_2012].
 
 
 ### coefficient of skewness
@@ -175,10 +173,10 @@ A positively skewed distribution of hydrologic time series with right extended t
 
 ### quartile skew coefficient (Robust Measure)
 
-A robust measure of skewness is the ‘quartile skew coefficient (qs)’, which is defined as the difference in distances of the upper and lower quartiles from the median, divided by the IQR [@MathStatistic_kenneyjohnf_1939]. Mathematically, it is expressed as:
+A robust measure of skewness is the ‘quartile skew coefficient (QS)’, which is defined as the difference in distances of the upper and lower quartiles from the median, divided by the IQR [@MathStatistic_kenneyjohnf_1939]. Mathematically, it is expressed as:
 
 $$
-q s=\frac{\left(P_{75}-P_{50}\,\right)-\left(P_{50}-P_{25}\,\right)}{P_{75}-P_{25}} 
+\text{QS}=\frac{\left(P_{75}-P_{50}\,\right)-\left(P_{50}-P_{25}\,\right)}{P_{75}-P_{25}} 
 $$
 
 # Skript (R & Python)

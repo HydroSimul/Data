@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HydroSimul - Modelling</title>
+<title>HydroSimul - Concept of Modelling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,6 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../modelling/index.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -98,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -127,25 +94,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../dataprocess/index.html" rel="" target="">
  <span class="menu-text">Dataprocess</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../modelling/index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Modelling</span></a>
+  </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modelling/index.html">Modelling</a></li><li class="breadcrumb-item"><a href="../modelling/basic_process.html">Concept of Modelling</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../modelling/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modelling/basic_process.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Concept of Modelling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#h1" id="toc-h1" class="nav-link active" data-scroll-target="#h1">H1</a>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">1</span> Data</a>
   <ul class="collapse">
-  <li><a href="#h2" id="toc-h2" class="nav-link" data-scroll-target="#h2">H2</a></li>
+  <li><a href="#forcing-data-boundary-condition-data" id="toc-forcing-data-boundary-condition-data" class="nav-link" data-scroll-target="#forcing-data-boundary-condition-data"><span class="header-section-number">1.1</span> Forcing Data / Boundary Condition Data</a></li>
+  <li><a href="#initial-condition-data-warm-up-time" id="toc-initial-condition-data-warm-up-time" class="nav-link" data-scroll-target="#initial-condition-data-warm-up-time"><span class="header-section-number">1.2</span> Initial Condition Data &amp; Warm-up Time</a></li>
+  <li><a href="#parameter" id="toc-parameter" class="nav-link" data-scroll-target="#parameter"><span class="header-section-number">1.3</span> Parameter</a>
+  <ul class="collapse">
+  <li><a href="#initial-parameters" id="toc-initial-parameters" class="nav-link" data-scroll-target="#initial-parameters"><span class="header-section-number">1.3.1</span> Initial Parameters</a></li>
+  <li><a href="#parameter-range" id="toc-parameter-range" class="nav-link" data-scroll-target="#parameter-range"><span class="header-section-number">1.3.2</span> Parameter Range</a></li>
+  <li><a href="#calibrated-parameters" id="toc-calibrated-parameters" class="nav-link" data-scroll-target="#calibrated-parameters"><span class="header-section-number">1.3.3</span> Calibrated Parameters</a></li>
+  <li><a href="#validated-parameters" id="toc-validated-parameters" class="nav-link" data-scroll-target="#validated-parameters"><span class="header-section-number">1.3.4</span> Validated Parameters</a></li>
+  <li><a href="#parameter-mapping-with-groups" id="toc-parameter-mapping-with-groups" class="nav-link" data-scroll-target="#parameter-mapping-with-groups"><span class="header-section-number">1.3.5</span> Parameter Mapping with Groups</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#process" id="toc-process" class="nav-link" data-scroll-target="#process"><span class="header-section-number">2</span> Process</a>
+  <ul class="collapse">
+  <li><a href="#model-running" id="toc-model-running" class="nav-link" data-scroll-target="#model-running"><span class="header-section-number">2.1</span> Model Running</a></li>
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation"><span class="header-section-number">2.2</span> Evaluation</a></li>
+  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration"><span class="header-section-number">2.3</span> Calibration</a></li>
+  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation"><span class="header-section-number">2.4</span> Validation</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -155,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Modelling</h1>
+<h1 class="title">Concept of Modelling</h1>
 </div>
 
 
@@ -170,24 +191,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="h1" class="level1">
-<h1>H1</h1>
-<p>About this site test1</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<section id="h2" class="level2">
-<h2 class="anchored" data-anchor-id="h2">H2</h2>
-<p>About this site test2</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
+<p>Within the process of hydrological modeling, there are fundamental concepts that play a crucial role. In this article, we will elucidate these concepts through illustrative figures, enhancing your comprehension. These concepts can be categorized into two main parts: the Data part, which encompasses aspects related to input data, parameters, and parameter ranges, and the Process part, which outlines the workflow of the entire modeling process. By exploring these concepts and their visual representations, you’ll gain a deeper understanding of hydrological modeling.</p>
+<section id="data" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Data</h1>
+<section id="forcing-data-boundary-condition-data" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="forcing-data-boundary-condition-data"><span class="header-section-number">1.1</span> Forcing Data / Boundary Condition Data</h2>
+<p>For hydrological modeling, you need data that describes the boundary conditions or forcing factors affecting the model. This includes information on precipitation, temperature, humidity, and other meteorological variables.</p>
+</section>
+<section id="initial-condition-data-warm-up-time" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="initial-condition-data-warm-up-time"><span class="header-section-number">1.2</span> Initial Condition Data &amp; Warm-up Time</h2>
+<p>Initial conditions represent the state of the watershed or catchment at the beginning of the simulation. Warm-up time refers to the period during which the model is run to reach a stable state before starting the actual simulation.</p>
+</section>
+<section id="parameter" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="parameter"><span class="header-section-number">1.3</span> Parameter</h2>
+<p>Parameters are essential components of hydrological models. There are three main model categories:</p>
+<ol type="1">
+<li><p>Physical-based models (white box): These models simulate processes with detailed data and deterministic formulas, ideally requiring no parameters.</p></li>
+<li><p>Conceptual models (gray box): These models, which are the most commonly used, rely on parameters that represent physical characteristics of the watershed. Calibration is typically needed.</p></li>
+<li><p>Empirical and data-driven models (black box): These models rely heavily on observed data and may not have explicit physical representations.</p></li>
+</ol>
+<section id="initial-parameters" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="initial-parameters"><span class="header-section-number">1.3.1</span> Initial Parameters</h3>
+<p>Initial parameters represent the initial values of model parameters at the beginning of the simulation.</p>
+</section>
+<section id="parameter-range" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="parameter-range"><span class="header-section-number">1.3.2</span> Parameter Range</h3>
+<p>Parameter ranges define the possible values that model parameters can take within certain bounds.</p>
+</section>
+<section id="calibrated-parameters" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="calibrated-parameters"><span class="header-section-number">1.3.3</span> Calibrated Parameters</h3>
+<p>Calibrated parameters are fine-tuned to optimize model performance and make model predictions more accurate.</p>
+</section>
+<section id="validated-parameters" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="validated-parameters"><span class="header-section-number">1.3.4</span> Validated Parameters</h3>
+<p>Validated parameters are parameters that have been verified through comparison with observed data to ensure that the model accurately represents the real-world system.</p>
+</section>
+<section id="parameter-mapping-with-groups" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="parameter-mapping-with-groups"><span class="header-section-number">1.3.5</span> Parameter Mapping with Groups</h3>
+<p>Parameters can be organized into groups based on their characteristics, simplifying the modeling process.</p>
+</section>
+</section>
+</section>
+<section id="process" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Process</h1>
+<section id="model-running" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="model-running"><span class="header-section-number">2.1</span> Model Running</h2>
+<p>The core step in hydrological modeling involves running the model using the provided forcing data, initial conditions, and parameter values. This phase represents the simulation of the hydrological processes within the watershed or catchment.</p>
+<p><img src="../images/model_function.svg" class="img-fluid" style="width:30.0%"></p>
+<p><img src="../images/model_model.svg" class="img-fluid" style="width:60.0%"></p>
+</section>
+<section id="evaluation" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="evaluation"><span class="header-section-number">2.2</span> Evaluation</h2>
+<p>After the model run, an evaluation process is conducted to assess the performance of the model. This involves comparing the model’s simulated output to observed data or reference values. Various performance metrics and statistical measures are used to determine how well the model simulates real-world conditions.</p>
+<p><img src="../images/model_evalute.svg" class="img-fluid" style="width:90.0%"></p>
+</section>
+<section id="calibration" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="calibration"><span class="header-section-number">2.3</span> Calibration</h2>
+<p>Calibration is a critical step in hydrological modeling. It involves adjusting the model’s parameters to improve its accuracy and alignment with observed data. Optimization techniques are often used to find parameter values that minimize the difference between model output and observed data.</p>
+<p><img src="../images/model_calibrate.svg" class="img-fluid"></p>
+</section>
+<section id="validation" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="validation"><span class="header-section-number">2.4</span> Validation</h2>
+<p>Once the model has been calibrated, it is essential to validate its performance. Validation involves testing the calibrated model against independent datasets or data from a different time period. This step ensures that the model’s performance is not solely tailored to the calibration data but remains reliable for a broader range of conditions.</p>
+<p><img src="../images/model_validate.svg" class="img-fluid" style="width:90.0%"></p>
 
 
 </section>
@@ -427,6 +493,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../modelling/index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Modelling</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

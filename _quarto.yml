@@ -13,6 +13,8 @@ website:
         href: dataset/index.qmd
       - text: "Dataprocess"
         href: dataprocess/index.qmd
+      - text: "Modelling"
+        href: modelling/index.qmd
         
   
   sidebar:
@@ -46,6 +48,13 @@ website:
                 - dataprocess/statistic_basic.qmd      
                 - dataprocess/statistic_graphic.qmd      
                 - dataprocess/timeserises_analyse.qmd      
+    - id: modelling
+      collapse-level: 1
+      contents:
+        - section: "Modelling"
+          href: modelling/index.qmd
+          contents: 
+            - modelling/basic_process.qmd      
 
 
 format:
