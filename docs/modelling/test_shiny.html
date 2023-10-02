@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HydroSimul - Time Series Analyse</title>
+<title>HydroSimul - Old Faithful</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../dataprocess/statistic_graphic.html" rel="prev">
+<link href="../modelling/model_linearReservoir.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -81,8 +62,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -112,11 +91,11 @@ div.csl-indent {
  <span class="menu-text">Dataset</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../dataprocess/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../dataprocess/index.html" rel="" target="">
  <span class="menu-text">Dataprocess</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../modelling/index.html" rel="" target="">
+    <a class="nav-link active" href="../modelling/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Modelling</span></a>
   </li>  
 </ul>
@@ -130,7 +109,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/timeserises_process.html">Timeserises</a></li><li class="breadcrumb-item"><a href="../dataprocess/timeserises_analyse.html">Time Series Analyse</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modelling/index.html">Modelling</a></li><li class="breadcrumb-item"><a href="../modelling/test_shiny.html">Old Faithful</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -144,8 +123,8 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../dataprocess/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dataprocess</span></a>
+            <a href="../modelling/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modelling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -153,97 +132,22 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataprocess/basic_format.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Basic Data &amp; File Format</span></a>
+  <a href="../modelling/basic_process.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept of Modelling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataprocess/basic_r_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R &amp; Python Basic</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Pre-Processing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/data_load.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Loading</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/NetCDF.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NetCDF</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
- <span class="menu-text">Spatial Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/spatial_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Basic Manipulation</span></a>
+  <a href="../modelling/model_linearReservoir.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Reservoir</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataprocess/extract_spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Values Extract</span></a>
+  <a href="../modelling/test_shiny.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Old Faithful</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Timeserises</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/timeserises_process.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Basic Processing</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/statistic_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistic Basic</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/statistic_graphic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Graphical Statistic</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../dataprocess/timeserises_analyse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Time Series Analyse</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
       </ul>
   </li>
     </ul>
@@ -252,25 +156,14 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#structure-of-time-series" id="toc-structure-of-time-series" class="nav-link active" data-scroll-target="#structure-of-time-series"><span class="header-section-number">1</span> Structure of Time Series</a>
-  <ul class="collapse">
-  <li><a href="#stationarity-homogeneity-and-trend" id="toc-stationarity-homogeneity-and-trend" class="nav-link" data-scroll-target="#stationarity-homogeneity-and-trend"><span class="header-section-number">1.1</span> Stationarity (Homogeneity) and Trend</a></li>
-  <li><a href="#periodicity" id="toc-periodicity" class="nav-link" data-scroll-target="#periodicity"><span class="header-section-number">1.2</span> Periodicity</a></li>
-  <li><a href="#persistence" id="toc-persistence" class="nav-link" data-scroll-target="#persistence"><span class="header-section-number">1.3</span> Persistence</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Time Series Analyse</h1>
+<h1 class="title">Old Faithful</h1>
 </div>
 
 
@@ -285,58 +178,68 @@ div.csl-indent {
 
 </header>
 
-<section id="structure-of-time-series" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Structure of Time Series</h1>
-<p>A time series is often adequately described as a function of four components: trend, seasonality, dependent stochastic component and independent residual component <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>. It can be mathematically expressed as <span class="citation" data-cites="StatisticWater_shahin_1993">(<a href="#ref-StatisticWater_shahin_1993" role="doc-biblioref">Shahin, Oorschot, and Lange 1993</a>)</span>:</p>
-<p><span class="math display">\[
-x_{\mathrm{t}}=T_{\mathrm{t}}+S_{\mathrm{t}}+\varepsilon_{\mathrm{t}}+\eta_{\mathrm{t}}
-\]</span></p>
-<p>where</p>
-<ul>
-<li><span class="math inline">\(T_{\mathrm{t}}\)</span> = trend component,</li>
-<li><span class="math inline">\(S_{\mathrm{t}}\)</span> = seasonality,</li>
-<li><span class="math inline">\(\varepsilon_{\mathrm{t}}\)</span> = dependent stochastic component, and</li>
-<li><span class="math inline">\(\eta_{\mathrm{t}}\)</span> = independent residual component.</li>
-</ul>
-<p>The first two components can be treat as systematic pattern, which are deterministic in nature, whereas the stochastic component accounts for the random error.</p>
-<section id="stationarity-homogeneity-and-trend" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="stationarity-homogeneity-and-trend"><span class="header-section-number">1.1</span> Stationarity (Homogeneity) and Trend</h2>
-<p>The term ‘homogeneity’ implies that the data in the series belong to one population, and therefore have a time invariant mean <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>. Homogeneity in the time dimension is one aspect of stationarity. It means that the statistical characteristics of the time series, like its mean and variance, don’t change significantly across different time periods.</p>
-<p>A time series is said to be <strong>strictly stationary</strong> if its statistical properties do not vary with changes of time origin. A less strict type of stationarity, called weak stationarity or second-order stationarity, is that in which the first- and secondorder moments depend only on time differences <span class="citation" data-cites="HydroTimeSerises_chen_2002">(<a href="#ref-HydroTimeSerises_chen_2002" role="doc-biblioref">Chen and Rao 2002</a>)</span>. In nature, strictly stationary time series does not exist, and weakly stationary time series is practically considered as stationary time series <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>.</p>
-<p>A ‘trend’ is defined as “a unidirectional and gradual change (falling or rising) in the mean value of a variable” <span class="citation" data-cites="StatisticWater_shahin_1993">(<a href="#ref-StatisticWater_shahin_1993" role="doc-biblioref">Shahin, Oorschot, and Lange 1993</a>)</span>.</p>
-<p>A time series is said to have trends, if there is a significant correlation (positive or negative) between the observed values and time. Trends and shifts in a hydrologic time series are usually introduced due to gradual natural or human-induced changes in the hydrologic environment producing the time series <span class="citation" data-cites="StatisticHydro_haan_1977">(<a href="#ref-StatisticHydro_haan_1977" role="doc-biblioref">Haan 1977</a>)</span>.</p>
-</section>
-<section id="periodicity" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="periodicity"><span class="header-section-number">1.2</span> Periodicity</h2>
-<p>‘Periodicity’ represents a regular or oscillatory form of movement that is recurring over a fixed interval of time <span class="citation" data-cites="StatisticWater_shahin_1993">(<a href="#ref-StatisticWater_shahin_1993" role="doc-biblioref">Shahin, Oorschot, and Lange 1993</a>)</span>. It generally occurs due to astronomic cycles such as earth’s rotation around the sun <span class="citation" data-cites="StatisticHydro_haan_1977">(<a href="#ref-StatisticHydro_haan_1977" role="doc-biblioref">Haan 1977</a>)</span>.</p>
-<ul>
-<li>Annual: Precipetation, evapotranspiration</li>
-<li>Weekly: water-use data of domestic, industrial</li>
-</ul>
-</section>
-<section id="persistence" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="persistence"><span class="header-section-number">1.3</span> Persistence</h2>
-<p>the phenomenon of ‘persistence’ is highly relevant to the hydrologic time series, which means that the successive members of a time series are linked in some dependent manner <span class="citation" data-cites="StatisticWater_shahin_1993">(<a href="#ref-StatisticWater_shahin_1993" role="doc-biblioref">Shahin, Oorschot, and Lange 1993</a>)</span>. In other words, ‘persistence’ denotes the tendency for the magnitude of an event to be dependent on the magnitude of previous event(s), i.e., a memory effect <span class="citation" data-cites="HydroTimeSeries_machiwal_2012">(<a href="#ref-HydroTimeSeries_machiwal_2012" role="doc-biblioref">Machiwal and Jha 2012</a>)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="form-group shiny-input-container">
+<label class="control-label" id="bins-label" for="bins">Number of bins:</label>
+<input class="js-range-slider" id="bins" data-skin="shiny" data-min="1" data-max="50" data-from="30" data-step="1" data-grid="true" data-grid-num="9.8" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number">
+</div>
+</div>
+<div class="cell-output-display">
+<div class="shiny-plot-output html-fill-item" id="distPlot" style="width:100%;height:400px;"></div>
+</div>
+</div>
+<p>
+<script type="application/shiny-prerendered" data-context="server">
+output$distPlot <- renderPlot({
+  x <- faithful[, 2]  # Old Faithful Geyser data
+  bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  hist(x, breaks = bins, col = 'darkgray', border = 'white')
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server-extras">
+ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
+  quos <- rlang::enquos(...)
+  vars <- rlang::list2(...)
+  nm <- names(vars)
+  if (is.null(nm)) {
+    nm <- rep_len("", length(vars))
+  }
+  mapply(function(q, nm, val) {
+    # Infer name, if possible
+    if (nm == "") {
+      tryCatch({
+        nm <- rlang::as_name(q)
+      }, error = function(e) {
+        code <- paste(collapse = "\n", deparse(rlang::f_rhs(q)))
+        stop("ojs_define() could not create a name for the argument: ", code)
+      })
+    }
+    .session$output[[nm]] <- val
+    outputOptions(.session$output, nm, suspendWhenHidden = FALSE)
+    .session$sendCustomMessage("ojs-export", list(name = nm))
+    NULL
+  }, quos, nm, vars, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  invisible()
+}
+</script>
+</p>
+<!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ionrangeslider-javascript"]},{"type":"character","attributes":{},"value":["2.3.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/ionrangeslider"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/ion.rangeSlider.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["strftime"]},{"type":"character","attributes":{},"value":["0.9.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/strftime"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["strftime-min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ionrangeslider-css"]},{"type":"character","attributes":{},"value":["2.3.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/ionrangeslider"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/ion.rangeSlider.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5"]}]}]}
+</script>
+<!--/html_preserve-->
+<!--html_preserve-->
+
+<script type="application/shiny-prerendered" data-context="execution_dependencies">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38]}},"value":[{"type":"character","attributes":{},"value":["base","bslib","cachem","cli","compiler","datasets","digest","ellipsis","evaluate","fastmap","graphics","grDevices","htmltools","htmlwidgets","httpuv","jquerylib","jsonlite","knitr","later","lifecycle","magrittr","memoise","methods","mime","promises","R6","Rcpp","rlang","rmarkdown","rstudioapi","sass","shiny","stats","tools","utils","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["4.3.1","0.5.1","1.0.8","3.6.1","4.3.1","4.3.1","0.6.33","0.3.2","0.21","1.1.1","4.3.1","4.3.1","0.5.6","1.6.2","1.6.11","0.1.4","1.8.7","1.44","1.3.1","1.0.3","2.0.3","2.0.1","4.3.1","0.12","1.2.1","2.5.1","1.0.11","1.1.1","2.24","0.15.0","0.4.7","1.7.5","4.3.1","4.3.1","4.3.1","0.40","1.8-4","2.3.7"]}]}]}
+</script>
+<!--/html_preserve-->
 
 
 
-</section>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-HydroTimeSerises_chen_2002" class="csl-entry" role="listitem">
-Chen, Huey-Long, and A. Ramachandra Rao. 2002. <span>“Testing <span>Hydrologic Time Series</span> for <span>Stationarity</span>.”</span> <em>Journal of Hydrologic Engineering</em> 7 (2): 129–36. <a href="https://doi.org/10.1061/(ASCE)1084-0699(2002)7:2(129)">https://doi.org/10.1061/(ASCE)1084-0699(2002)7:2(129)</a>.
-</div>
-<div id="ref-StatisticHydro_haan_1977" class="csl-entry" role="listitem">
-Haan, C. T. 1977. <em>Statistical Methods in Hydrology</em>. 1st ed. <span>Ames</span>: <span>Iowa State University Press</span>.
-</div>
-<div id="ref-HydroTimeSeries_machiwal_2012" class="csl-entry" role="listitem">
-Machiwal, Deepesh, and Madan Kumar Jha. 2012. <em>Hydrologic Time Series Analysis: Theory and Practice</em>. <span>Neu Dehli</span>: <span>Captial Publishing Company</span>.
-</div>
-<div id="ref-StatisticWater_shahin_1993" class="csl-entry" role="listitem">
-Shahin, Mamdouh, H. J. L. van Oorschot, and S. J. de Lange. 1993. <em>Statistical Analysis in Water Resources Engineering</em>. Applied Hydrology Monographs 1. <span>Rotterdam ; Brookfield VT</span>: <span>A.A. Balkema</span>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -572,8 +475,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../dataprocess/statistic_graphic.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graphical Statistic</span>
+      <a href="../modelling/model_linearReservoir.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Linear Reservoir</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

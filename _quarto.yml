@@ -54,7 +54,8 @@ website:
         - section: "Modelling"
           href: modelling/index.qmd
           contents: 
-            - modelling/basic_process.qmd      
+            - modelling/basic_concept.qmd      
+            - modelling/model_linearReservoir.qmd      
 
 
 format:

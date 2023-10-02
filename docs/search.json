@@ -607,5 +607,131 @@
     "title": "Concept of Modelling",
     "section": "2.4 Validation",
     "text": "2.4 Validation\nOnce the model has been calibrated, it is essential to validate its performance. Validation involves testing the calibrated model against independent datasets or data from a different time period. This step ensures that the model’s performance is not solely tailored to the calibration data but remains reliable for a broader range of conditions."
+  },
+  {
+    "objectID": "modelling/test_shiny.html",
+    "href": "modelling/test_shiny.html",
+    "title": "Old Faithful",
+    "section": "",
+    "text": "Number of bins:"
+  },
+  {
+    "objectID": "modelling/model_linearReservoir.html",
+    "href": "modelling/model_linearReservoir.html",
+    "title": "Linear Reservoir",
+    "section": "",
+    "text": "Linear Reservoir is a method and just assuming that the watershed behaves like a linear reservoir, where the outflow is proportional to the water storage within the reservoir.\n\\[\nQ_{out} = \\frac{1}{K}S(t)\n\\tag{1}\\]\nIn addition to their relationship with output and storage, linear reservoir models also adhere to the continuity equation, often referred to as the water balance equation.\n\\[\n\\frac{\\mathrm{d}S(t)}{\\mathrm{d}t} = Q_{in} - Q_{out}\n\\tag{2}\\]\nBy combining both equations, we obtain a differential equation (DGL).\n\\[\nQ_{in} = Q_{out} + K\\frac{\\mathrm{d}Q_{out}(t)}{\\mathrm{d}t}\n\\tag{3}\\]\n\\[\nQ_{out}(t)=\\int_{\\tau=t0}^{t}Q_{in}(\\tau)\\frac{1}{K}e^{-\\frac{t-\\tau}{K}}\\mathrm{d}\\tau + Q_{out}(t_0)\\frac{1}{K}e^{-\\frac{t-t0}{K}}\n\\tag{4}\\]\nWhere:\n\n\\(Q_{in}\\) is the inflow of the reservoir\n\\(Q_{out}\\) is the outflow of the reservoir\n\\(S\\) is the storage of the reservoir\n\\(K\\) is the parameter that defines the relationship between \\(Q_{out}\\) and \\(S\\)"
+  },
+  {
+    "objectID": "modelling/model_linearReservoir.html#analytical-solution",
+    "href": "modelling/model_linearReservoir.html#analytical-solution",
+    "title": "Linear Reservoir",
+    "section": "2.1 Analytical Solution",
+    "text": "2.1 Analytical Solution\nThe final form of the equation under the simplifying hypothesis of linear input looks like this:\n\\[\nQ_{out}(t_1) = Q_{out}(t_0) + (Q_{in}(t_1) - Q_{out}(t_0))\\cdot (1-e^{-\\frac{1}{K}}) + (Q_{in}(t_1) - Q_{in}(t_0))\\cdot [1-K(1-e^{-\\frac{1}{K}})]\n\\]\n\nlinear_reservoir_Ana &lt;- function(Q_In, Q_Out0 = 0, param_K = 1) {\n  n_Step &lt;- length(Q_In)\n  Q_Out &lt;- c(Q_Out0, rep(0, n_Step - 1))\n  \n  for (i in 2:n_Step) {\n    Q_Out[i] &lt;- Q_Out[i-1] + (Q_In[i] - Q_Out[i-1]) * (1 - exp(-1 / param_K)) + (Q_In[i] - Q_In[i-1]) * (1 - param_K * (1 - exp(-1 / param_K)))\n  }\n  \n  Q_Out\n  \n}"
+  },
+  {
+    "objectID": "modelling/model_linearReservoir.html#numerical-solution",
+    "href": "modelling/model_linearReservoir.html#numerical-solution",
+    "title": "Linear Reservoir",
+    "section": "2.2 Numerical Solution",
+    "text": "2.2 Numerical Solution\nWhen we simplify the difficult continuous form into a discrete form using \\(\\Delta S / \\Delta t\\) to replace \\(\\mathrm{d}S/\\mathrm{d}t\\), we can obtain the numerical (discrete) format:\n\\[\nQ_{out}(t_1) = Q_{out}(t_0) + (Q_{in}(t_0) - Q_{out}(t_0)) \\frac{1}{K + 0.5} + (Q_{in}(t_1) - Q_{in}(t_0)) \\frac{0.5}{K + 0.5}\n\\]\n\nlinear_reservoir_Num &lt;- function(Q_In, Q_Out0 = 0, param_K = 1) {\n  n_Step &lt;- length(Q_In)\n  Q_Out &lt;- c(Q_Out0, rep(0, n_Step - 1))\n  \n  for (i in 2:n_Step) {\n    Q_Out[i] &lt;- Q_Out[i-1] + (Q_In[i-1] - Q_Out[i-1]) / (param_K + 0.5) + (Q_In[i] - Q_In[i-1]) * .5 / (param_K + 0.5)\n  }\n  \n  Q_Out\n  \n}"
+  },
+  {
+    "objectID": "modelling/model_linearReservoir.html#compare-the-results-of-both-functions",
+    "href": "modelling/model_linearReservoir.html#compare-the-results-of-both-functions",
+    "title": "Linear Reservoir",
+    "section": "2.3 Compare the results of both Functions",
+    "text": "2.3 Compare the results of both Functions\n\nlibrary(tidyverse)\ntheme_set(theme_bw())\nlibrary(plotly)\nload(\"../data_share/color.Rdata\")\n\n\n\nCode\nnum_TestIn &lt;- c(rep(100, 100), 0:100, rep(0,99))\nnum_Out_Ana &lt;- linear_reservoir_Ana(num_TestIn, param_K = 60)\nnum_Out_Num &lt;- linear_reservoir_Num(num_TestIn, param_K = 60)\n\ngg_Test &lt;- ggplot() +\n  geom_line(aes(1:300, num_TestIn, color = \"Input\")) +\n  geom_line(aes(1:300, num_Out_Ana, color = \"Output\\n(Analytical)\")) +\n  geom_line(aes(1:300, num_Out_Num, color = \"Output\\n(Numerical)\")) +\n  scale_color_manual(values = c(\"cyan\", \"red\", \"orange\"))+\n  labs(x = \"Time [T]\", y = \"Water Flow [V/T]\", color = \"\") \n\nggplotly(gg_Test)\n\n\n\n\n\n\nIn the test forcing data, there are constant, linear, and null input scenarios. In all three situations, the analytical and numerical solutions yield almost the same results. Therefore, we can use either of them for subsequent analysis."
+  },
+  {
+    "objectID": "modelling/model_linearReservoir.html#boundaray-condition-forcing",
+    "href": "modelling/model_linearReservoir.html#boundaray-condition-forcing",
+    "title": "Linear Reservoir",
+    "section": "3.1 Boundaray Condition Forcing",
+    "text": "3.1 Boundaray Condition Forcing\nFor the single linear reservoir, the boundary condition is the time series of the inflow \\(Q_{in}(t)\\) (Q_In).\nIn the one-variable experiment of the boundary condition, we will consider five boundary conditions, including three constants at 10, 50, and 100 [V/L], as well as an increasing (0 to 100 [V/L]) and decreasing (100 to 0 [V/L]) series.\nThe\n\n\nCode\nnum_BC10 &lt;- rep(c(10,0), each = 100)\nnum_BC50 &lt;- rep(c(50,0), each = 100)\nnum_BC100 &lt;- rep(c(100,0), each = 100)\nnum_BCin &lt;- c(0:100, rep(0,99))\nnum_BCde &lt;- c(100:0, rep(0,99))\n\nlst_BC_in &lt;- list(num_BC10, num_BC50, num_BC100, num_BCin, num_BCde)\ndf_BC_in &lt;- bind_cols(lst_BC_in) |&gt; as.data.frame()\nnames(df_BC_in) &lt;- c(\"BC10\", \"BC50\", \"BC100\", \"BCin\", \"BCde\")\ngdf_BC_in &lt;- reshape2::melt(df_BC_in)\ngdf_BC_in$time &lt;- 1:200\ngdf_BC_in$facet &lt;- \"Q_In\"\n\nlst_BC_out &lt;- map(lst_BC_in, linear_reservoir_Num, param_K = 60)\n\ndf_BC_out &lt;- bind_cols(lst_BC_out) |&gt; as.data.frame()\nnames(df_BC_out) &lt;- c(\"BC10\", \"BC50\", \"BC100\", \"BCin\", \"BCde\")\ngdf_BC_out &lt;- reshape2::melt(df_BC_out)\ngdf_BC_out$time &lt;- 1:200\ngdf_BC_out$facet &lt;- \"Q_Out\"\ngdf_BC &lt;- rbind(gdf_BC_in, gdf_BC_out)\ngg_BC &lt;- ggplot(gdf_BC) +\n  geom_line(aes(time, value, group = variable, color = variable)) +\n  scale_color_manual(values = color_TUD_diskrete)+\n  facet_grid(cols = vars(facet))+\n  scale_alpha_manual(values = c(.6,1)) +\n    labs(x = \"Time [T]\", y = \"Water Flow [V/T]\", color = \"Vari (BC):\") \nggplotly(gg_BC)\n\n\n\n\n\nFigure 1: The facet labeled Q_In displays five input time series (\\(Q_{in}\\)) scenarios. In scenarios BC10, BC50, and BC100, the input remains constant for the initial 100 timesteps. BCin and BCde represent scenarios where the input increases and decreases, respectively, during the first 100 timesteps. Notably, BC50, BCin, and BCde scenarios all have the same total volume of 5000 [V]. The facet labeled Q_Out presents the corresponding simulated results, showcasing the model’s responses to different boundary conditions (\\(Q_{in}\\))."
+  },
+  {
+    "objectID": "modelling/model_linearReservoir.html#innitial-condition-forcing",
+    "href": "modelling/model_linearReservoir.html#innitial-condition-forcing",
+    "title": "Linear Reservoir",
+    "section": "3.2 Innitial Condition Forcing",
+    "text": "3.2 Innitial Condition Forcing\nNormally, the initial condition represents the initial state of state variables, such as the water content of the soil or the storage of the reservoir. However, in the case of a single linear reservoir, the storage of the reservoir is simplified as the variable \\(Q_{out}\\) (Q_Out). For this one-variable experiment, \\(Q_{out}\\) will vary from 10 to 90 [V/L].\n\n\nCode\nlst_IC_in &lt;- as.list(seq(10, 90, 10))\nlst_IC_out &lt;- map(lst_IC_in, linear_reservoir_Ana, Q_In = num_BC100, param_K = 60)\n\ndf_IC_out &lt;- bind_cols(lst_IC_out) |&gt; as.data.frame()\ngdf_IC_out &lt;- reshape2::melt(df_IC_out)\ngdf_IC_out$time &lt;- 1:200\ngdf_IC_out$variable &lt;- rep(seq(10, 90, 10), each = 200)\ngg_BC &lt;- ggplot(gdf_IC_out) +\n  geom_line(aes(time, value, group = variable, color = variable)) +\n  scale_color_gradientn(colours = color_DRESDEN)+\n    labs(x = \"Time [T]\", y = \"Water Flow [V/T]\", color = \"Vari\\n(IC):\") \nggplotly(gg_BC)\n\n\n\n\n\nFigure 2: The different initial condition \\(Q_{out}(t_0)\\) values result in distinct outflow time series. The line colors correspond to the values of the initial condition."
+  },
+  {
+    "objectID": "modelling/model_linearReservoir.html#parameter",
+    "href": "modelling/model_linearReservoir.html#parameter",
+    "title": "Linear Reservoir",
+    "section": "3.3 Parameter",
+    "text": "3.3 Parameter\nIn the case of the single linear reservoir, there is only one parameter, denoted as \\(K\\) (param_K). The parameter \\(K\\) can vary widely due to differences in the scale of the simulation domain. It has physical units of time, which can be specified in units such as seconds, hours, or days depending on the scale of the hydrological model.\n\n\nCode\nlst_Param_in &lt;- as.list(seq(10, 90, 10))\nlst_Param_out &lt;- map(lst_Param_in, linear_reservoir_Ana, Q_In = num_BC100, Q_Out0 = 0)\n\ndf_Param_out &lt;- bind_cols(lst_Param_out) |&gt; as.data.frame()\ngdf_Param_out &lt;- reshape2::melt(df_Param_out)\ngdf_Param_out$time &lt;- 1:200\ngdf_Param_out$variable &lt;- rep(seq(10, 90, 10), each = 200)\ngg_BC &lt;- ggplot(gdf_Param_out) +\n  geom_line(aes(time, value, group = variable, color = variable)) +\n  scale_color_gradientn(colours = color_DRESDEN)+\n  labs(x = \"Time [T]\", y = \"Water Flow [V/T]\", color = \"Vari\\n(Param):\") \nggplotly(gg_BC)\n\n\n\n\n\nFigure 3: The different parameter \\(K\\) values result in distinct outflow time series. The line colors correspond to the values of the parameter."
+  },
+  {
+    "objectID": "modelling/basic_concept.html",
+    "href": "modelling/basic_concept.html",
+    "title": "Concept of Modelling",
+    "section": "",
+    "text": "Within the process of hydrological modeling, there are fundamental concepts that play a crucial role. In this article, we will elucidate these concepts through illustrative figures, enhancing your comprehension. These concepts can be categorized into two main parts: the Data part, which encompasses aspects related to input data, parameters, and parameter ranges, and the Process part, which outlines the workflow of the entire modeling process. By exploring these concepts and their visual representations, you’ll gain a deeper understanding of hydrological modeling."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#forcing-data-boundary-condition-data",
+    "href": "modelling/basic_concept.html#forcing-data-boundary-condition-data",
+    "title": "Concept of Modelling",
+    "section": "1.1 Forcing Data / Boundary Condition Data",
+    "text": "1.1 Forcing Data / Boundary Condition Data\nFor hydrological modeling, you need data that describes the boundary conditions or forcing factors affecting the model. This includes information on precipitation, temperature, humidity, and other meteorological variables."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#initial-condition-data-warm-up-time",
+    "href": "modelling/basic_concept.html#initial-condition-data-warm-up-time",
+    "title": "Concept of Modelling",
+    "section": "1.2 Initial Condition Data & Warm-up Time",
+    "text": "1.2 Initial Condition Data & Warm-up Time\nInitial conditions represent the state of the watershed or catchment at the beginning of the simulation.\nHowever, in many cases, the exact initial conditions are unknown or difficult to measure accurately. To address this uncertainty, hydrological models incorporate a warm-up period. This warm-up period refers to the initial phase of model simulation where the model runs to establish a stable or equilibrium state before commencing the actual simulation.\nIt’s crucial to ensure that the warm-up period is of sufficient duration to reach a stable state. Typically, this period should span at least two complete cycles of the dominant hydrological processes within the watershed. This requirement ensures that the model has the opportunity to capture the full range of variability associated with these processes.\nThe periodicity of hydrological processes is a crucial consideration when implementing a warm-up period. By assuming that the initial state during warm-up has only a minimal influence, we rely on the repeated cycles of hydrological events. During the second cycle, the system tends to reach its maximum or minimum state, which is indicative of equilibrium. Subsequently, the simulation becomes stable, and this equilibrium state serves as the initial condition for the formal simulation."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#parameter",
+    "href": "modelling/basic_concept.html#parameter",
+    "title": "Concept of Modelling",
+    "section": "1.3 Parameter",
+    "text": "1.3 Parameter\nParameters are essential components of hydrological models for several reasons. Firstly, hydrological models cannot simulate the entire complexity of the real world, so parameters are used to represent various physical characteristics and processes. Secondly, real-world measurements are often limited in scope and may not capture all relevant data across the entire watershed. Parameters help bridge these gaps by allowing models to make predictions based on available information.\nThere are three main categories of hydrological models based on their use of parameters:\n\nPhysical-based models (white box): These models aim to simulate hydrological processes with a high level of detail. They rely on deterministic formulas and aim to represent physical processes as accurately as possible. Ideally, physical-based models do not require the use of parameters, as all processes are simulated with detailed data and deterministic equations. However, in practice, some level of parameterization may still be necessary, especially for processes that are not well understood or difficult to represent mathematically.\nConceptual models (gray box): Conceptual models are the most commonly used hydrological models. They strike a balance between complexity and simplicity. These models use parameters to represent various physical characteristics of the watershed, such as soil properties, land use, and drainage patterns. Calibration, a process of adjusting parameter values to match observed data, is typically needed to make the model’s predictions consistent with real-world conditions.\nEmpirical and data-driven models (black box): Empirical models rely heavily on observed data and may not explicitly represent physical processes. Instead, they use statistical relationships to make predictions. These models often require fewer parameters than physical-based or conceptual models but may still involve parameter estimation based on data.\n\n\n1.3.1 Initial Parameters\nInitial parameters are the starting values for model parameters that are often suggested based on previous research or prior knowledge. These initial parameter values are used to test the fundamental functionality of the model and its applicability to the study area. While these initial parameters may provide a reasonable starting point, they may or may not be a good fit for the specific study area and objectives.\n\n\n1.3.2 Parameter Range\nParameter ranges define the range of allowable values that model parameters can assume within specified bounds. While a broad parameter range can provide a greater opportunity to find optimal parameter values, it also expands the search space, making it more challenging to identify the best-fitting parameters.\nParameter ranges can be categorized into two main types:\n\nPhysical Range: This refers to the range of parameter values that are physically meaningful and are constrained by the fundamental characteristics of the system being modeled. For example, hydraulic conductivity in groundwater models cannot be negative, so it has a physical lower bound of zero. Physical range limits ensure that parameter values are consistent with the underlying physical processes.\nRegional Range: In addition to the physical limits, parameters may have regional variations based on the specific characteristics of the study area. These regional variations account for local geological, climatic, or land-use differences that influence parameter values. Regional ranges help to capture the heterogeneity within a larger study domain and allow for parameterization that reflects local conditions.\n\nBalancing the scope of parameter ranges is essential in hydrological modeling. While broader ranges offer flexibility, they also increase the complexity of parameter estimation. The challenge lies in finding a balance that allows for the exploration of diverse parameter values while ensuring that the model remains physically meaningful and regionally applicable.\n\n\n1.3.3 Calibrated Parameters\nCalibrated parameters are the parameter set that has been adjusted and fine-tuned during the calibration process. These parameters represent the current best-fit values for the hydrological model in a specific study area. They are chosen to optimize the model’s performance and ensure that it provides accurate predictions and simulations based on observed data.\n\n\n1.3.4 Validated Parameters\nValidated parameters are parameters that have been **verified* through comparison with observed data to ensure that the model accurately represents the real-world system.\n\n\n1.3.5 Parameter Mapping with Groups\nParameters in hydrological modeling vary based on the physical characteristics of the system being studied. However, in reality, different regions within a study area often exhibit distinct physical characteristics. Consequently, when performing simulations, it becomes necessary to calibrate parameters for each Hydrological Response Unit (HRU), which represents a homogeneous area within the study domain.\nCalibrating parameters for every HRU can be a formidable task, as it would involve a substantial number of individual calibrations. To address this challenge, researchers often employ a strategy of grouping HRUs with similar characteristics. By doing so, they can map parameters to these groups, effectively reducing the parameter calibration space.\nOne of the most commonly used grouping criteria includes categorizing HRUs based on factors such as land use, soil type, soil class, or climate zone. These characteristics often play a significant role in shaping the hydrological behavior of a region."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#model-running",
+    "href": "modelling/basic_concept.html#model-running",
+    "title": "Concept of Modelling",
+    "section": "2.1 Model Running",
+    "text": "2.1 Model Running\nThe core step in hydrological modeling involves running the model, which treats the model as a function that calculates a process with the input data to produce output data.\n\nThis process utilizes the provided boundary conditions, initial conditions, and parameter values to simulate the hydrological processes within the watershed or catchment. Boundary conditions and initial conditions are often collectively referred to as forcing data or input data."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#evaluation",
+    "href": "modelling/basic_concept.html#evaluation",
+    "title": "Concept of Modelling",
+    "section": "2.2 Evaluation",
+    "text": "2.2 Evaluation\nAfter the model run, an evaluation process is conducted to assess the performance of the model. This involves comparing the model’s simulated output to observed data or reference values. Various performance metrics and statistical measures are used to determine how well the model simulates real-world conditions."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#calibration",
+    "href": "modelling/basic_concept.html#calibration",
+    "title": "Concept of Modelling",
+    "section": "2.4 Calibration",
+    "text": "2.4 Calibration\nCalibration is a critical step in hydrological modeling. It involves adjusting the model’s parameters to improve its accuracy and alignment with observed data. Optimization techniques are often used to find parameter values that minimize the difference between model output and observed data."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#validation",
+    "href": "modelling/basic_concept.html#validation",
+    "title": "Concept of Modelling",
+    "section": "2.5 Validation",
+    "text": "2.5 Validation\nOnce the model has been calibrated, it is essential to validate its performance. Validation involves testing the calibrated model against independent datasets or data from a different time period. This step ensures that the model’s performance is not solely tailored to the calibration data but remains reliable for a broader range of conditions."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#boundary-condition-forcing-data",
+    "href": "modelling/basic_concept.html#boundary-condition-forcing-data",
+    "title": "Concept of Modelling",
+    "section": "1.1 Boundary Condition (Forcing Data)",
+    "text": "1.1 Boundary Condition (Forcing Data)\nFor hydrological modeling, you need data that describes the boundary conditions or forcing factors affecting the model. They define how water and other related variables enter or exit the modeled domain. This includes information on precipitation, temperature, humidity, and other meteorological variables."
+  },
+  {
+    "objectID": "modelling/basic_concept.html#uncertainty-and-sensitivity",
+    "href": "modelling/basic_concept.html#uncertainty-and-sensitivity",
+    "title": "Concept of Modelling",
+    "section": "2.3 Uncertainty and sensitivity",
+    "text": "2.3 Uncertainty and sensitivity\nUncertainty and sensitivity analysis are crucial components of hydrological modeling, helping us understand the reliability of model predictions and the influence of different input parameters. Uncertainty analysis assesses the overall uncertainty in model outputs, considering various sources of uncertainty, while sensitivity analysis identifies which input parameters have the most significant impact on model results. Together, they provide valuable insights into the robustness and reliability of hydrological models."
   }
 ]

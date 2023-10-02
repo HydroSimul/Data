@@ -1,0 +1,263 @@
+---
+title: "Linear Reservoir"
+execute:
+  warning: false
+  error: false
+sidebar:
+  contents: auto
+number-sections: true
+bibliography: ../../references.bib
+---
+
+# Theory
+
+Linear Reservoir is a method and just assuming that the watershed behaves like a **linear reservoir**, where the outflow is **proportional** to the water storage within the reservoir.
+
+$$
+Q_{out} = \frac{1}{K}S(t)
+$$ {#eq-linearresevoir}
+
+
+In addition to their relationship with output and storage, linear reservoir models also adhere to the **continuity equation**, often referred to as the **water balance equation**.
+
+$$
+\frac{\mathrm{d}S(t)}{\mathrm{d}t} = Q_{in} - Q_{out}
+$$ {#eq-continiue}
+
+By combining both equations, we obtain a differential equation (DGL). 
+
+$$
+Q_{in} = Q_{out} + K\frac{\mathrm{d}Q_{out}(t)}{\mathrm{d}t}
+$$ {#eq-linearresevoir0}
+
+
+$$
+Q_{out}(t)=\int_{\tau=t0}^{t}Q_{in}(\tau)\frac{1}{K}e^{-\frac{t-\tau}{K}}\mathrm{d}\tau + Q_{out}(t_0)\frac{1}{K}e^{-\frac{t-t0}{K}}
+$$ {#eq-linearresevoir1}
+
+Where:
+
+- $Q_{in}$ is the inflow of the reservoir
+- $Q_{out}$ is the outflow of the reservoir
+- $S$ is the storage of the reservoir
+- $K$ is the parameter that defines the relationship between $Q_{out}$ and $S$
+
+
+# Solution & Function
+
+## Analytical Solution
+
+The final form of the equation under the simplifying hypothesis of linear input looks like this:
+
+
+$$
+Q_{out}(t_1) = Q_{out}(t_0) + (Q_{in}(t_1) - Q_{out}(t_0))\cdot (1-e^{-\frac{1}{K}}) + (Q_{in}(t_1) - Q_{in}(t_0))\cdot [1-K(1-e^{-\frac{1}{K}})]
+$$
+
+
+
+```{r}
+linear_reservoir_Ana <- function(Q_In, Q_Out0 = 0, param_K = 1) {
+  n_Step <- length(Q_In)
+  Q_Out <- c(Q_Out0, rep(0, n_Step - 1))
+  
+  for (i in 2:n_Step) {
+    Q_Out[i] <- Q_Out[i-1] + (Q_In[i] - Q_Out[i-1]) * (1 - exp(-1 / param_K)) + (Q_In[i] - Q_In[i-1]) * (1 - param_K * (1 - exp(-1 / param_K)))
+  }
+  
+  Q_Out
+  
+}
+
+```
+
+
+
+## Numerical Solution
+
+When we simplify the difficult continuous form into a discrete form using $\Delta S / \Delta t$ to replace $\mathrm{d}S/\mathrm{d}t$, we can obtain the numerical (discrete) format:
+
+$$
+Q_{out}(t_1) = Q_{out}(t_0) + (Q_{in}(t_0) - Q_{out}(t_0)) \frac{1}{K + 0.5} + (Q_{in}(t_1) - Q_{in}(t_0)) \frac{0.5}{K + 0.5}
+$$
+
+
+```{r}
+
+
+linear_reservoir_Num <- function(Q_In, Q_Out0 = 0, param_K = 1) {
+  n_Step <- length(Q_In)
+  Q_Out <- c(Q_Out0, rep(0, n_Step - 1))
+  
+  for (i in 2:n_Step) {
+    Q_Out[i] <- Q_Out[i-1] + (Q_In[i-1] - Q_Out[i-1]) / (param_K + 0.5) + (Q_In[i] - Q_In[i-1]) * .5 / (param_K + 0.5)
+  }
+  
+  Q_Out
+  
+}
+```
+
+
+
+
+
+## Compare the results of both Functions
+
+```{r}
+library(tidyverse)
+theme_set(theme_bw())
+library(plotly)
+load("../data_share/color.Rdata")
+
+```
+
+
+```{r}
+#| code-fold: true
+
+num_TestIn <- c(rep(100, 100), 0:100, rep(0,99))
+num_Out_Ana <- linear_reservoir_Ana(num_TestIn, param_K = 60)
+num_Out_Num <- linear_reservoir_Num(num_TestIn, param_K = 60)
+
+gg_Test <- ggplot() +
+  geom_line(aes(1:300, num_TestIn, color = "Input")) +
+  geom_line(aes(1:300, num_Out_Ana, color = "Output\n(Analytical)")) +
+  geom_line(aes(1:300, num_Out_Num, color = "Output\n(Numerical)")) +
+  scale_color_manual(values = c("cyan", "red", "orange"))+
+  labs(x = "Time [T]", y = "Water Flow [V/T]", color = "") 
+
+ggplotly(gg_Test)
+
+```
+
+In the test forcing data, there are constant, linear, and null input scenarios. In all three situations, the analytical and numerical solutions yield **almost the same** results. Therefore, we can use either of them for subsequent analysis.
+
+
+# Uncertenty Test
+
+For every hydrological model, there are three components: **Boundary Conditions** (sometimes also named as forcing data), **Initial Conditions**, and **Parameters**, treated as input for the model. In the uncertainty test, we will examine these components through **one-variable experiments**, where one of them varies while the other two remain in the same setting.
+
+## Boundaray Condition Forcing
+
+For the single linear reservoir, the boundary condition is the time series of the inflow $Q_{in}(t)$ (`Q_In`).
+
+In the one-variable experiment of the boundary condition, we will consider five boundary conditions, including three constants at 10, 50, and 100 [V/L], as well as an increasing (0 to 100 [V/L]) and decreasing (100 to 0 [V/L]) series.
+
+The 
+
+```{r}
+#| code-fold: true
+#| label: fig-bc
+#| fig-cap: "The facet labeled `Q_In` displays five input time series ($Q_{in}$) scenarios. In scenarios BC10, BC50, and BC100, the input remains constant for the initial 100 timesteps. BCin and BCde represent scenarios where the input increases and decreases, respectively, during the first 100 timesteps. Notably, BC50, BCin, and BCde scenarios all have the same total volume of 5000 [V]. The facet labeled `Q_Out` presents the corresponding simulated results, showcasing the model's responses to different boundary conditions ($Q_{in}$)."
+
+num_BC10 <- rep(c(10,0), each = 100)
+num_BC50 <- rep(c(50,0), each = 100)
+num_BC100 <- rep(c(100,0), each = 100)
+num_BCin <- c(0:100, rep(0,99))
+num_BCde <- c(100:0, rep(0,99))
+
+lst_BC_in <- list(num_BC10, num_BC50, num_BC100, num_BCin, num_BCde)
+df_BC_in <- bind_cols(lst_BC_in) |> as.data.frame()
+names(df_BC_in) <- c("BC10", "BC50", "BC100", "BCin", "BCde")
+gdf_BC_in <- reshape2::melt(df_BC_in)
+gdf_BC_in$time <- 1:200
+gdf_BC_in$facet <- "Q_In"
+
+lst_BC_out <- map(lst_BC_in, linear_reservoir_Num, param_K = 60)
+
+df_BC_out <- bind_cols(lst_BC_out) |> as.data.frame()
+names(df_BC_out) <- c("BC10", "BC50", "BC100", "BCin", "BCde")
+gdf_BC_out <- reshape2::melt(df_BC_out)
+gdf_BC_out$time <- 1:200
+gdf_BC_out$facet <- "Q_Out"
+gdf_BC <- rbind(gdf_BC_in, gdf_BC_out)
+gg_BC <- ggplot(gdf_BC) +
+  geom_line(aes(time, value, group = variable, color = variable)) +
+  scale_color_manual(values = color_TUD_diskrete)+
+  facet_grid(cols = vars(facet))+
+  scale_alpha_manual(values = c(.6,1)) +
+    labs(x = "Time [T]", y = "Water Flow [V/T]", color = "Vari (BC):") 
+ggplotly(gg_BC)
+```
+
+
+
+
+## Innitial Condition Forcing
+
+Normally, the initial condition represents the **initial state** of state variables, such as the water content of the soil or the storage of the reservoir. However, in the case of a single linear reservoir, the storage of the reservoir is simplified as the variable $Q_{out}$ (`Q_Out`). For this one-variable experiment, $Q_{out}$ will vary from 10 to 90 [V/L].
+
+
+```{r}
+#| code-fold: true
+#| label: fig-ic
+#| fig-cap: The different initial condition $Q_{out}(t_0)$ values result in distinct outflow time series. The line colors correspond to the values of the initial condition.
+
+lst_IC_in <- as.list(seq(10, 90, 10))
+lst_IC_out <- map(lst_IC_in, linear_reservoir_Ana, Q_In = num_BC100, param_K = 60)
+
+df_IC_out <- bind_cols(lst_IC_out) |> as.data.frame()
+gdf_IC_out <- reshape2::melt(df_IC_out)
+gdf_IC_out$time <- 1:200
+gdf_IC_out$variable <- rep(seq(10, 90, 10), each = 200)
+gg_BC <- ggplot(gdf_IC_out) +
+  geom_line(aes(time, value, group = variable, color = variable)) +
+  scale_color_gradientn(colours = color_DRESDEN)+
+    labs(x = "Time [T]", y = "Water Flow [V/T]", color = "Vari\n(IC):") 
+ggplotly(gg_BC)
+```
+
+
+
+## Parameter
+
+In the case of the single linear reservoir, there is only one parameter, denoted as $K$ (`param_K`). The parameter $K$ can vary widely due to differences in the scale of the simulation domain. It has physical units of time, which can be specified in units such as seconds, hours, or days depending on the scale of the hydrological model. 
+
+
+```{r}
+#| code-fold: true
+#| label: fig-param
+#| fig-cap: The different parameter $K$ values result in distinct outflow time series. The line colors correspond to the values of the parameter.
+
+lst_Param_in <- as.list(seq(10, 90, 10))
+lst_Param_out <- map(lst_Param_in, linear_reservoir_Ana, Q_In = num_BC100, Q_Out0 = 0)
+
+df_Param_out <- bind_cols(lst_Param_out) |> as.data.frame()
+gdf_Param_out <- reshape2::melt(df_Param_out)
+gdf_Param_out$time <- 1:200
+gdf_Param_out$variable <- rep(seq(10, 90, 10), each = 200)
+gg_BC <- ggplot(gdf_Param_out) +
+  geom_line(aes(time, value, group = variable, color = variable)) +
+  scale_color_gradientn(colours = color_DRESDEN)+
+  labs(x = "Time [T]", y = "Water Flow [V/T]", color = "Vari\n(Param):") 
+ggplotly(gg_BC)
+```
+
+
+# Labor Test
+
+(Data and Figures ??)
+
+```{r}
+df_Labor <- read_delim("L:\\Aktuelle Vorlesungsunterlagen\\MSc Wasserhaushaltsmodellierung\\Einzellinearspeicher Teil 1\\tbl_LaborMess_LinearReservior.txt", delim = "\t")
+
+names(df_Labor) <- c("t", "QZ", "QA")
+
+```
+
+
+```{r}
+
+num_Q_Sim_Ana <- linear_reservoir_Num(df_Labor$QZ, param_K =  50)
+num_Q_Sim_Num <- linear_reservoir_Num(df_Labor$QZ, param_K =  50)
+
+ggLabor <- ggplot(df_Labor) +
+  geom_line(aes(t, QZ), color = "cyan") +
+  geom_line(aes(t, num_Q_Sim_Ana), color = "tomato") +
+  geom_line(aes(t, num_Q_Sim_Num), color = "orange") +
+  geom_line(aes(t, QA), color = "blue") 
+ggplotly(ggLabor)
+```
+
+

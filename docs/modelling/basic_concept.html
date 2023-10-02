@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modelling/index.html">Modelling</a></li><li class="breadcrumb-item"><a href="../modelling/basic_process.html">Concept of Modelling</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modelling/index.html">Modelling</a></li><li class="breadcrumb-item"><a href="../modelling/basic_concept.html">Concept of Modelling</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modelling/basic_process.html" class="sidebar-item-text sidebar-link active">
+  <a href="../modelling/basic_concept.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Concept of Modelling</span></a>
   </div>
 </li>
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">1</span> Data</a>
   <ul class="collapse">
-  <li><a href="#forcing-data-boundary-condition-data" id="toc-forcing-data-boundary-condition-data" class="nav-link" data-scroll-target="#forcing-data-boundary-condition-data"><span class="header-section-number">1.1</span> Forcing Data / Boundary Condition Data</a></li>
+  <li><a href="#boundary-condition-forcing-data" id="toc-boundary-condition-forcing-data" class="nav-link" data-scroll-target="#boundary-condition-forcing-data"><span class="header-section-number">1.1</span> Boundary Condition (Forcing Data)</a></li>
   <li><a href="#initial-condition-data-warm-up-time" id="toc-initial-condition-data-warm-up-time" class="nav-link" data-scroll-target="#initial-condition-data-warm-up-time"><span class="header-section-number">1.2</span> Initial Condition Data &amp; Warm-up Time</a></li>
   <li><a href="#parameter" id="toc-parameter" class="nav-link" data-scroll-target="#parameter"><span class="header-section-number">1.3</span> Parameter</a>
   <ul class="collapse">
@@ -172,8 +172,9 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#model-running" id="toc-model-running" class="nav-link" data-scroll-target="#model-running"><span class="header-section-number">2.1</span> Model Running</a></li>
   <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation"><span class="header-section-number">2.2</span> Evaluation</a></li>
-  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration"><span class="header-section-number">2.3</span> Calibration</a></li>
-  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation"><span class="header-section-number">2.4</span> Validation</a></li>
+  <li><a href="#uncertainty-and-sensitivity" id="toc-uncertainty-and-sensitivity" class="nav-link" data-scroll-target="#uncertainty-and-sensitivity"><span class="header-section-number">2.3</span> Uncertainty and sensitivity</a></li>
+  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration"><span class="header-section-number">2.4</span> Calibration</a></li>
+  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation"><span class="header-section-number">2.5</span> Validation</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -198,68 +199,89 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Within the process of hydrological modeling, there are fundamental concepts that play a crucial role. In this article, we will elucidate these concepts through illustrative figures, enhancing your comprehension. These concepts can be categorized into two main parts: the Data part, which encompasses aspects related to input data, parameters, and parameter ranges, and the Process part, which outlines the workflow of the entire modeling process. By exploring these concepts and their visual representations, you’ll gain a deeper understanding of hydrological modeling.</p>
+<p>Within the process of hydrological modeling, there are fundamental concepts that play a crucial role. In this article, we will elucidate these concepts through illustrative figures, enhancing your comprehension. These concepts can be categorized into two main parts: the <strong>Data</strong> part, which encompasses aspects related to <strong>input data</strong>, <strong>parameters</strong>, and <strong>parameter ranges</strong>, and the <strong>Process</strong> part, which outlines the workflow of the entire modeling process. By exploring these concepts and their visual representations, you’ll gain a deeper understanding of hydrological modeling.</p>
 <section id="data" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Data</h1>
-<section id="forcing-data-boundary-condition-data" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="forcing-data-boundary-condition-data"><span class="header-section-number">1.1</span> Forcing Data / Boundary Condition Data</h2>
-<p>For hydrological modeling, you need data that describes the boundary conditions or forcing factors affecting the model. This includes information on precipitation, temperature, humidity, and other meteorological variables.</p>
+<p>In terms of data, it can encompass various types of information, including <strong>forcing data</strong> such as time series, <strong>initial states</strong>, as well as the <strong>parameters</strong>. These values are essential inputs that the model relies on during the simulation process.</p>
+<section id="boundary-condition-forcing-data" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="boundary-condition-forcing-data"><span class="header-section-number">1.1</span> Boundary Condition (Forcing Data)</h2>
+<p>For hydrological modeling, you need data that describes the <strong>boundary conditions</strong> or forcing factors affecting the model. They define how water and other related variables enter or exit the modeled domain. This includes information on precipitation, temperature, humidity, and other <strong>meteorological variables</strong>.</p>
+<p><img src="../images/model_bcic.svg" class="img-fluid"></p>
 </section>
 <section id="initial-condition-data-warm-up-time" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="initial-condition-data-warm-up-time"><span class="header-section-number">1.2</span> Initial Condition Data &amp; Warm-up Time</h2>
-<p>Initial conditions represent the state of the watershed or catchment at the beginning of the simulation. Warm-up time refers to the period during which the model is run to reach a stable state before starting the actual simulation.</p>
+<p>Initial conditions represent the <strong>state</strong> of the watershed or catchment at the <strong>beginning</strong> of the simulation.</p>
+<p>However, in many cases, the exact initial conditions are <strong>unknown or difficult to measure</strong> accurately. To address this uncertainty, hydrological models incorporate a warm-up period. This warm-up period refers to the initial phase of model simulation where the model runs to establish a stable or equilibrium state before commencing the actual simulation.</p>
+<p>It’s crucial to ensure that the <strong>warm-up period</strong> is of sufficient duration to reach a stable state. Typically, this period should span <strong>at least two complete cycles</strong> of the dominant hydrological processes within the watershed. This requirement ensures that the model has the opportunity to capture the full range of variability associated with these processes.</p>
+<p>The <strong>periodicity</strong> of hydrological processes is a crucial consideration when implementing a warm-up period. By assuming that the initial state during warm-up has only a minimal influence, we rely on the repeated cycles of hydrological events. During the second cycle, the system tends to <strong>reach its maximum or minimum state</strong>, which is indicative of equilibrium. Subsequently, the simulation becomes stable, and this equilibrium state serves as the initial condition for the formal simulation.</p>
+<p><img src="../images/model_warmup.svg" class="img-fluid"></p>
 </section>
 <section id="parameter" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="parameter"><span class="header-section-number">1.3</span> Parameter</h2>
-<p>Parameters are essential components of hydrological models. There are three main model categories:</p>
+<p><strong>Parameters</strong> are essential components of hydrological models for several reasons. Firstly, hydrological models cannot simulate the entire complexity of the real world, so parameters are used to represent various physical characteristics and processes. Secondly, real-world measurements are often limited in scope and may not capture all relevant data across the entire watershed. Parameters help bridge these gaps by allowing models to make predictions based on available information.</p>
+<p>There are three main categories of hydrological models based on their use of parameters:</p>
 <ol type="1">
-<li><p>Physical-based models (white box): These models simulate processes with detailed data and deterministic formulas, ideally requiring no parameters.</p></li>
-<li><p>Conceptual models (gray box): These models, which are the most commonly used, rely on parameters that represent physical characteristics of the watershed. Calibration is typically needed.</p></li>
-<li><p>Empirical and data-driven models (black box): These models rely heavily on observed data and may not have explicit physical representations.</p></li>
+<li><p><strong>Physical-based models</strong> (white box): These models aim to simulate hydrological processes with a high level of detail. They rely on deterministic formulas and aim to represent physical processes as accurately as possible. Ideally, physical-based models do not require the use of parameters, as all processes are simulated with detailed data and deterministic equations. However, in practice, some level of parameterization may still be necessary, especially for processes that are not well understood or difficult to represent mathematically.</p></li>
+<li><p><strong>Conceptual models</strong> (gray box): Conceptual models are the most commonly used hydrological models. They strike a balance between complexity and simplicity. These models use parameters to <strong>represent various physical characteristics</strong> of the watershed, such as soil properties, land use, and drainage patterns. Calibration, a process of adjusting parameter values to match observed data, is typically needed to make the model’s predictions consistent with real-world conditions.</p></li>
+<li><p><strong>Empirical and data-driven models</strong> (black box): Empirical models rely heavily on observed data and may not explicitly represent physical processes. Instead, they use statistical relationships to make predictions. These models often require fewer parameters than physical-based or conceptual models but may still involve parameter estimation based on data.</p></li>
 </ol>
 <section id="initial-parameters" class="level3" data-number="1.3.1">
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="initial-parameters"><span class="header-section-number">1.3.1</span> Initial Parameters</h3>
-<p>Initial parameters represent the initial values of model parameters at the beginning of the simulation.</p>
+<p>Initial parameters are the <strong>starting values</strong> for model parameters that are often suggested based on previous research or prior knowledge. These initial parameter values are used to test the fundamental functionality of the model and its applicability to the study area. While these initial parameters may provide a reasonable starting point, they may or may not be a good fit for the specific study area and objectives.</p>
 </section>
 <section id="parameter-range" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="parameter-range"><span class="header-section-number">1.3.2</span> Parameter Range</h3>
-<p>Parameter ranges define the possible values that model parameters can take within certain bounds.</p>
+<p>Parameter ranges define the range of allowable values that model parameters can assume within specified bounds. While a <strong>broad</strong> parameter range can provide a <strong>greater opportunity</strong> to find optimal parameter values, it also expands the search space, making it more <strong>challenging</strong> to identify the best-fitting parameters.</p>
+<p>Parameter ranges can be categorized into two main types:</p>
+<ol type="1">
+<li><p><strong>Physical Range</strong>: This refers to the range of parameter values that are physically meaningful and are constrained by the fundamental characteristics of the system being modeled. For example, hydraulic conductivity in groundwater models cannot be negative, so it has a physical lower bound of zero. Physical range limits ensure that parameter values are consistent with the underlying physical processes.</p></li>
+<li><p><strong>Regional Range</strong>: In addition to the physical limits, parameters may have regional variations based on the specific characteristics of the study area. These regional variations account for local geological, climatic, or land-use differences that influence parameter values. Regional ranges help to capture the heterogeneity within a larger study domain and allow for parameterization that reflects local conditions.</p></li>
+</ol>
+<p>Balancing the scope of parameter ranges is essential in hydrological modeling. While broader ranges offer flexibility, they also increase the complexity of parameter estimation. The challenge lies in finding a balance that allows for the exploration of diverse parameter values while ensuring that the model remains physically meaningful and regionally applicable.</p>
 </section>
 <section id="calibrated-parameters" class="level3" data-number="1.3.3">
 <h3 data-number="1.3.3" class="anchored" data-anchor-id="calibrated-parameters"><span class="header-section-number">1.3.3</span> Calibrated Parameters</h3>
-<p>Calibrated parameters are fine-tuned to optimize model performance and make model predictions more accurate.</p>
+<p>Calibrated parameters are the parameter set that has been <strong>adjusted and fine-tuned</strong> during the calibration process. These parameters represent the <strong>current best-fit</strong> values for the hydrological model in a specific study area. They are chosen to optimize the model’s performance and ensure that it provides accurate predictions and simulations based on observed data.</p>
 </section>
 <section id="validated-parameters" class="level3" data-number="1.3.4">
 <h3 data-number="1.3.4" class="anchored" data-anchor-id="validated-parameters"><span class="header-section-number">1.3.4</span> Validated Parameters</h3>
-<p>Validated parameters are parameters that have been verified through comparison with observed data to ensure that the model accurately represents the real-world system.</p>
+<p>Validated parameters are parameters that have been **verified* through comparison with observed data to ensure that the model accurately represents the real-world system.</p>
 </section>
 <section id="parameter-mapping-with-groups" class="level3" data-number="1.3.5">
 <h3 data-number="1.3.5" class="anchored" data-anchor-id="parameter-mapping-with-groups"><span class="header-section-number">1.3.5</span> Parameter Mapping with Groups</h3>
-<p>Parameters can be organized into groups based on their characteristics, simplifying the modeling process.</p>
+<p>Parameters in hydrological modeling vary based on the <strong>physical characteristics</strong> of the system being studied. However, in reality, different regions within a study area often exhibit distinct physical characteristics. Consequently, when performing simulations, it becomes necessary to calibrate parameters for each Hydrological Response Unit (HRU), which represents a homogeneous area within the study domain.</p>
+<p>Calibrating parameters for every HRU can be a <strong>formidable</strong> task, as it would involve a substantial number of individual calibrations. To address this challenge, researchers often employ a strategy of <strong>grouping</strong> HRUs with similar characteristics. By doing so, they can map parameters to these groups, effectively reducing the parameter calibration space.</p>
+<p>One of the most commonly used grouping criteria includes categorizing HRUs based on factors such as land use, soil type, soil class, or climate zone. These characteristics often play a significant role in shaping the hydrological behavior of a region.</p>
 </section>
 </section>
 </section>
 <section id="process" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Process</h1>
+<p>In hydrological modeling, there are several common steps, including model running, calibration, validation, and uncertainty and sensitivity analysis, which collectively form the essential framework for model development and evaluation.</p>
 <section id="model-running" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="model-running"><span class="header-section-number">2.1</span> Model Running</h2>
-<p>The core step in hydrological modeling involves running the model using the provided forcing data, initial conditions, and parameter values. This phase represents the simulation of the hydrological processes within the watershed or catchment.</p>
+<p>The core step in hydrological modeling involves running the model, which treats the model as a function that calculates a process with the input data to produce output data.</p>
 <p><img src="../images/model_function.svg" class="img-fluid" style="width:30.0%"></p>
+<p>This process utilizes the provided boundary conditions, initial conditions, and parameter values to <strong>simulate</strong> the hydrological processes within the watershed or catchment. Boundary conditions and initial conditions are often collectively referred to as forcing data or input data.</p>
 <p><img src="../images/model_model.svg" class="img-fluid" style="width:60.0%"></p>
 </section>
 <section id="evaluation" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="evaluation"><span class="header-section-number">2.2</span> Evaluation</h2>
-<p>After the model run, an evaluation process is conducted to assess the performance of the model. This involves comparing the model’s simulated output to observed data or reference values. Various performance metrics and statistical measures are used to determine how well the model simulates real-world conditions.</p>
+<p>After the model run, an evaluation process is conducted to assess the <strong>performance</strong> of the model. This involves comparing the model’s <strong>simulated output to observed data</strong> or reference values. Various performance metrics and statistical measures are used to determine how well the model simulates real-world conditions.</p>
 <p><img src="../images/model_evalute.svg" class="img-fluid" style="width:90.0%"></p>
 </section>
-<section id="calibration" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="calibration"><span class="header-section-number">2.3</span> Calibration</h2>
-<p>Calibration is a critical step in hydrological modeling. It involves adjusting the model’s parameters to improve its accuracy and alignment with observed data. Optimization techniques are often used to find parameter values that minimize the difference between model output and observed data.</p>
+<section id="uncertainty-and-sensitivity" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="uncertainty-and-sensitivity"><span class="header-section-number">2.3</span> Uncertainty and sensitivity</h2>
+<p>Uncertainty and sensitivity analysis are crucial components of hydrological modeling, helping us understand the reliability of model predictions and the influence of different input <strong>parameters</strong>. Uncertainty analysis assesses the overall uncertainty in model outputs, considering various sources of uncertainty, while sensitivity analysis identifies which input parameters have the most <strong>significant impact</strong> on model results. Together, they provide valuable insights into the robustness and reliability of hydrological models.</p>
+</section>
+<section id="calibration" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="calibration"><span class="header-section-number">2.4</span> Calibration</h2>
+<p>Calibration is a critical step in hydrological modeling. It involves <strong>adjusting</strong> the model’s parameters to improve its accuracy and alignment with observed data. Optimization techniques are often used to find parameter values that minimize the difference between model output and observed data.</p>
 <p><img src="../images/model_calibrate.svg" class="img-fluid"></p>
 </section>
-<section id="validation" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="validation"><span class="header-section-number">2.4</span> Validation</h2>
-<p>Once the model has been calibrated, it is essential to validate its performance. Validation involves testing the calibrated model against independent datasets or data from a different time period. This step ensures that the model’s performance is not solely tailored to the calibration data but remains reliable for a broader range of conditions.</p>
+<section id="validation" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="validation"><span class="header-section-number">2.5</span> Validation</h2>
+<p>Once the model has been calibrated, it is essential to validate its performance. Validation involves <strong>testing the calibrated model</strong> against <strong>independent datasets</strong> or data from a different time period. This step ensures that the model’s performance is not solely tailored to the calibration data but remains reliable for a broader range of conditions.</p>
 <p><img src="../images/model_validate.svg" class="img-fluid" style="width:90.0%"></p>
 
 
