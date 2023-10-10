@@ -237,7 +237,7 @@ ggplotly(gg_BC)
 
 # Labor Test
 
-(Data and Figures ??)
+
 
 ```{r}
 df_Labor <- read_delim("L:\\Aktuelle Vorlesungsunterlagen\\MSc Wasserhaushaltsmodellierung\\Einzellinearspeicher Teil 1\\tbl_LaborMess_LinearReservior.txt", delim = "\t")

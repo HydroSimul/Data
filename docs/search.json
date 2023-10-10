@@ -733,5 +733,96 @@
     "title": "Concept of Modelling",
     "section": "2.3 Uncertainty and sensitivity",
     "text": "2.3 Uncertainty and sensitivity\nUncertainty and sensitivity analysis are crucial components of hydrological modeling, helping us understand the reliability of model predictions and the influence of different input parameters. Uncertainty analysis assesses the overall uncertainty in model outputs, considering various sources of uncertainty, while sensitivity analysis identifies which input parameters have the most significant impact on model results. Together, they provide valuable insights into the robustness and reliability of hydrological models."
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html",
+    "href": "modelling/model_caliLinearReser.html",
+    "title": "Calibration Prozess",
+    "section": "",
+    "text": "In this article, we will learn how to manage the entire hydrological modeling process with the minimal model Linear-Reservoir model, including automatic calibration."
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#load-forcing-data-and-obesevations",
+    "href": "modelling/model_caliLinearReser.html#load-forcing-data-and-obesevations",
+    "title": "Calibration Prozess",
+    "section": "4.1 load Forcing Data and Obesevations",
+    "text": "4.1 load Forcing Data and Obesevations\n\ndf_Labor &lt;- read_delim(\"L:\\\\Aktuelle Vorlesungsunterlagen\\\\MSc Wasserhaushaltsmodellierung\\\\Einzellinearspeicher Teil 1\\\\tbl_LaborMess_LinearReservior.txt\", delim = \"\\t\")\n\nnames(df_Labor) &lt;- c(\"t\", \"QZ\", \"QA\")\n\n\n\n1.1 -&gt; Q_In = df_Labor$QZ\n1.2 -&gt; Q_Out0 = 0\n1.3 -&gt; param_K = 50\nf1 -&gt; model_linearReservoir()\n2 -&gt; df_Labor$QZ\nf2 -&gt; NSE(), KGE()"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#run-the-model-with-forcing-data",
+    "href": "modelling/model_caliLinearReser.html#run-the-model-with-forcing-data",
+    "title": "Calibration Prozess",
+    "section": "4.3 Run the model with Forcing Data",
+    "text": "4.3 Run the model with Forcing Data\n\nnum_Q_Sim &lt;- model_linearReservoir(df_Labor$QZ, 0, param_K =  50)\n\nggLabor &lt;- ggplot(df_Labor) +\n  geom_line(aes(t, QZ), color = \"cyan\") +\n  geom_line(aes(t, num_Q_Sim), color = \"tomato\") +\n  geom_line(aes(t, QA), color = \"blue\") +\n  labs(x = \"Time [s]\", y = \"In-/Outflow [L/s]\")\nggplotly(ggLabor)"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#evaluete-with-nse-and-kge",
+    "href": "modelling/model_caliLinearReser.html#evaluete-with-nse-and-kge",
+    "title": "Calibration Prozess",
+    "section": "4.4 Evaluete with NSE and KGE",
+    "text": "4.4 Evaluete with NSE and KGE\n\nNSE(num_Q_Sim, df_Labor$QA)\n\n[1] 0.8141169\n\nKGE(num_Q_Sim, df_Labor$QA)\n\n[1] 0.8912488"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#create-the-fit-function",
+    "href": "modelling/model_caliLinearReser.html#create-the-fit-function",
+    "title": "Calibration Prozess",
+    "section": "5.1 Create the Fit-FUnction",
+    "text": "5.1 Create the Fit-FUnction\n\neva_fit &lt;- function(model_Param,\n                     model_Input,\n                     Q_Observ,\n                     fct_gof = NSE) {\n  Q_Simu &lt;- model_linearReservoir(model_Input, param_K = model_Param)\n  \n  - fct_gof(Q_Simu, Q_Observ)\n  \n}\n\neva_fit(60, df_Labor$QZ, df_Labor$QA)\n\n[1] -0.8752109"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#calibrating",
+    "href": "modelling/model_caliLinearReser.html#calibrating",
+    "title": "Calibration Prozess",
+    "section": "5.2 Calibrating",
+    "text": "5.2 Calibrating\n\nlst_Cali &lt;- cali_UVS(eva_fit, x_Min = 40, x_Max = 90, model_Input = df_Labor$QZ, Q_Observ = df_Labor$QA, fct_gof = KGE)\n\n\n  |                                                                            \n  |                                                                      |   0%"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#load-labor-data",
+    "href": "modelling/model_caliLinearReser.html#load-labor-data",
+    "title": "Calibration Prozess",
+    "section": "4.1 load Labor Data",
+    "text": "4.1 load Labor Data\n\n# Load Labor Data\ndf_Labor &lt;- read_delim(\"L:\\\\Aktuelle Vorlesungsunterlagen\\\\MSc Wasserhaushaltsmodellierung\\\\Einzellinearspeicher Teil 1\\\\tbl_LaborMess_LinearReservior.txt\", delim = \"\\t\")\n\n# Rename the data, in order to more flexible Manipulation\nnames(df_Labor) &lt;- c(\"t\", \"QZ\", \"QA\")\n\n# The first 10 Line\nhead(df_Labor)\n\n# A tibble: 6 × 3\n      t    QZ    QA\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0     0    30\n2     1     0    30\n3     2     0    29\n4     3     0    29\n5     4     0    29\n6     5     0    29"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#concept-to-simulation",
+    "href": "modelling/model_caliLinearReser.html#concept-to-simulation",
+    "title": "Calibration Prozess",
+    "section": "4.2 Concept to Simulation",
+    "text": "4.2 Concept to Simulation\n\n\n1.1 -&gt; Q_In = df_Labor$QZ\n1.2 -&gt; Q_Out0 = 0\n1.3 -&gt; param_K = 50\nf1 -&gt; model_linearReservoir()\n2 -&gt; df_Labor$QZ\nf2 -&gt; NSE(), KGE()"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#load-experimental-data",
+    "href": "modelling/model_caliLinearReser.html#load-experimental-data",
+    "title": "Calibration Prozess",
+    "section": "4.1 Load Experimental Data",
+    "text": "4.1 Load Experimental Data\nIn this phase, we will utilize experimental data from a labor experiment. This dataset involves the physical simulation of a linear reservoir and provides the measured inflow and outflow data in liters per second (L/s).\n\n# Load Labor Data\ndf_Labor &lt;- read_delim(\"L:\\\\Aktuelle Vorlesungsunterlagen\\\\MSc Wasserhaushaltsmodellierung\\\\Einzellinearspeicher Teil 1\\\\tbl_LaborMess_LinearReservior.txt\", delim = \"\\t\")\n\n# Rename the data, in order to more flexible Manipulation\nnames(df_Labor) &lt;- c(\"t\", \"QZ\", \"QA\")\n\n# The first 10 Line\nhead(df_Labor)\n\n# A tibble: 6 × 3\n      t    QZ    QA\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0     0    30\n2     1     0    30\n3     2     0    29\n4     3     0    29\n5     4     0    29\n6     5     0    29"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#mapping-from-concept-to-proceeding",
+    "href": "modelling/model_caliLinearReser.html#mapping-from-concept-to-proceeding",
+    "title": "Calibration Prozess",
+    "section": "4.2 Mapping from Concept to Proceeding",
+    "text": "4.2 Mapping from Concept to Proceeding\nTo provide clarity, let’s map the conceptual understanding to the simulation before proceeding:\n\n\n1.1 -&gt; Q_In = df_Labor$QZ\n1.2 -&gt; Q_Out0 = 0\n1.3 -&gt; param_K = 50\nf1 -&gt; model_linearReservoir()\n2 -&gt; df_Labor$QZ\nf2 -&gt; NSE(), KGE()"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#running-the-model-with-forcing-data",
+    "href": "modelling/model_caliLinearReser.html#running-the-model-with-forcing-data",
+    "title": "Calibration Prozess",
+    "section": "4.3 Running the Model with Forcing Data",
+    "text": "4.3 Running the Model with Forcing Data\nAs a preliminary test, we can suggest certain parameter values, such as \\(K\\) at 90 and 60. After the simulation, we will store the results in variables num_Q_Sim and num_Q_Sim2 for further analysis.\n\n# run the model\n\nnum_Q_Sim &lt;- model_linearReservoir(df_Labor$QZ, 0, param_K =  90)\n\nnum_Q_Sim2 &lt;- model_linearReservoir(df_Labor$QZ, 0, param_K =  60)"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#visual-evaluation",
+    "href": "modelling/model_caliLinearReser.html#visual-evaluation",
+    "title": "Calibration Prozess",
+    "section": "4.4 Visual Evaluation",
+    "text": "4.4 Visual Evaluation\nBefore employing quantitative criteria, it’s beneficial to visually evaluate the simulation results using time series plots, which provide an initial sense of the model’s performance.\n\n# Visual Evaluation\nggLabor &lt;- ggplot(df_Labor) +\n  geom_line(aes(t, QZ, color = \"Inflow\")) +\n  geom_line(aes(t, num_Q_Sim, color = \"Simul1\")) +\n  geom_line(aes(t, num_Q_Sim2, color = \"Simul2\")) +\n  geom_line(aes(t, QA, color = \"Observ\")) +\n  scale_color_manual(values = c(Inflow = \"cyan\", Simul1 = \"red\", Simul2 = \"orange\", Observ = \"blue\"))+\n  labs(x = \"Time [s]\", y = \"In-/Outflow [L/s]\", color = \"Flow\")\nggplotly(ggLabor)"
+  },
+  {
+    "objectID": "modelling/model_caliLinearReser.html#quantitative-evaluation",
+    "href": "modelling/model_caliLinearReser.html#quantitative-evaluation",
+    "title": "Calibration Prozess",
+    "section": "4.5 Quantitative Evaluation",
+    "text": "4.5 Quantitative Evaluation\nFor short or simplified time series, visual evaluation may suffice. However, when dealing with long-term data, we require standardized criteria to objectively assess the model’s performance.\nNSE and KGE are most used criteria in the research. There are also more ctiteiras in the Package hydroGOF:\nQuantitative statistics included are: Mean Error (me), Mean Absolute Error (mae), Root Mean Square Error (rms), Normalized Root Mean Square Error (nrms), Pearson product-moment correlation coefficient (r), Spearman Correlation coefficient (r.Spearman), Coefficient of Determination (R2), Ratio of Standard Deviations (rSD), Nash-Sutcliffe efficiency (NSE), Modified Nash-Sutcliffe efficiency (mNSE), Relative Nash-Sutcliffe efficiency (rNSE), Index of Agreement (d), Modified Index of Agreement (md), Relative Index of Agreement (rd), Coefficient of Persistence (cp), Percent Bias (pbias), Kling-Gupta efficiency (KGE), the coef. of determination multiplied by the slope of the linear regression between ‘sim’ and ‘obs’ (bR2), and volumetric efficiency (VE). (hydroGOF?)\n\nNSE(num_Q_Sim, df_Labor$QA)\n\n[1] 0.9234607\n\nNSE(num_Q_Sim2, df_Labor$QA)\n\n[1] 0.8752109\n\nKGE(num_Q_Sim, df_Labor$QA)\n\n[1] 0.8425622\n\nKGE(num_Q_Sim2, df_Labor$QA)\n\n[1] 0.9273187"
   }
 ]

@@ -1,0 +1,211 @@
+---
+title: "Calibration Prozess"
+execute:
+  warning: false
+  error: false
+sidebar:
+  contents: auto
+number-sections: true
+bibliography: ../../references.bib
+---
+
+
+# Overview
+
+In this article, we will learn how to manage the entire hydrological modeling process with the minimal model  [Linear-Reservoir model](model_linearReservoir.qmd), including automatic calibration.
+
+# Library
+
+All the functions used in this tutorial are bundled in the [HydroCourse](https://hydrosimul.github.io/HydroCourse/index.html) package. You will need to install this package from GitHub before loading it.
+
+Once installed, you'll also need to load the following packages into your R workspace: `HydroCourse`, `hydroGOF`, `tidyverse`, and `plotly`.
+
+
+```{r}
+# If don't installed:
+# remotes::install_github("HydroSimul/HydroCourse")
+library(HydroCourse)
+# Evalution
+library(hydroGOF)
+
+# Data Manipulation und Plot
+library(tidyverse)
+theme_set(theme_bw())
+# Interactive Plot
+library(plotly)
+```
+
+# Run the Model
+
+The first step is to become familiar with the hydrological model. You need to understand what input data it requires, which typically includes boundary condition (forcing) data, initial conditions, and one or more parameters. Additionally, you should know what kind of output the model will generate.
+
+You can access detailed information about the model using the `help(model_linearReservoir)` or `?model_linearReservoir` commands. This will provide you with a description of the model's functionality and usage. Alternatively, you can also find information about the model online in the [model_linearReservoir documentation](https://hydrosimul.github.io/HydroCourse/reference/model.html).
+
+Once you have reviewed the model's documentation, the next step is to test the model with synthetic or test data to get a hands-on understanding of how it works.
+
+![](../images/model_model_c.svg){width=60%}
+
+To understand the flow of data from concept to simulation, we can create a visual representation. We'll use blue squares to represent the data and blue circles to represent the functions:
+
+- 1.1 -> `Q_In = 1:10`
+- 1.2 -> `Q_Out0 = 2`
+- 1.3 -> `param_K = 5`
+- f1 -> `model_linearReservoir()`
+
+
+
+
+
+```{r}
+# Try with synthetic data
+model_linearReservoir(Q_In = 1:10, Q_Out0 = 2, param_K = 5)
+```
+
+# Evaluate
+
+Before proceeding with the calibration, it's essential to evaluate the simulation results. The question arises: are some results better evaluated as good while others as bad?
+
+
+## Load Experimental Data
+
+In this phase, we will utilize experimental data from a labor experiment. This dataset involves the physical simulation of a linear reservoir and provides the measured inflow and outflow data in liters per second (L/s).
+
+```{r}
+# Load Labor Data
+df_Labor <- read_delim("L:\\Aktuelle Vorlesungsunterlagen\\MSc Wasserhaushaltsmodellierung\\Einzellinearspeicher Teil 1\\tbl_LaborMess_LinearReservior.txt", delim = "\t")
+
+# Rename the data, in order to more flexible Manipulation
+names(df_Labor) <- c("t", "QZ", "QA")
+
+# The first 10 Line
+head(df_Labor)
+```
+
+## Mapping from Concept to Proceeding
+
+To provide clarity, let's map the conceptual understanding to the simulation before proceeding:
+
+![](../images/model_evalute_c.svg){width=90%}
+
+- 1.1 -> `Q_In = df_Labor$QZ`
+- 1.2 -> `Q_Out0 = 0`
+- 1.3 -> `param_K = 50`
+- f1 -> `model_linearReservoir()`
+- 2 -> `df_Labor$QZ`
+- f2 -> `NSE()`, `KGE()`
+
+## Running the Model with Forcing Data
+
+As a preliminary test, we can suggest certain parameter values, such as $K$ at 90 and 60. After the simulation, we will store the results in variables `num_Q_Sim` and `num_Q_Sim2` for further analysis.
+
+```{r}
+# run the model
+
+num_Q_Sim <- model_linearReservoir(df_Labor$QZ, 0, param_K =  90)
+
+num_Q_Sim2 <- model_linearReservoir(df_Labor$QZ, 0, param_K =  60)
+
+```
+
+## Visual Evaluation
+
+Before employing quantitative criteria, it's beneficial to visually evaluate the simulation results using time series plots, which provide an initial sense of the model's performance.
+
+```{r}
+# Visual Evaluation
+ggLabor <- ggplot(df_Labor) +
+  geom_line(aes(t, QZ, color = "Inflow")) +
+  geom_line(aes(t, num_Q_Sim, color = "Simul1")) +
+  geom_line(aes(t, num_Q_Sim2, color = "Simul2")) +
+  geom_line(aes(t, QA, color = "Observ")) +
+  scale_color_manual(values = c(Inflow = "cyan", Simul1 = "red", Simul2 = "orange", Observ = "blue"))+
+  labs(x = "Time [s]", y = "In-/Outflow [L/s]", color = "Flow")
+ggplotly(ggLabor)
+
+```
+
+
+
+
+## Quantitative Evaluation
+
+For short or simplified time series, visual evaluation may suffice. However, when dealing with long-term data, we require standardized criteria to objectively assess the model's performance.
+
+NSE and KGE are the most commonly used criteria in hydrological research. However, there are also additional criteria available in the `hydroGOF` package (use `?hydroGOF`):
+
+Quantitative statistics included are: Mean Error (me), Mean Absolute Error (mae), Root Mean Square Error (rms), Normalized Root Mean Square Error (nrms), Pearson product-moment correlation coefficient (r), Spearman Correlation coefficient (r.Spearman), Coefficient of Determination (R2), Ratio of Standard Deviations (rSD), Nash-Sutcliffe efficiency (NSE), Modified Nash-Sutcliffe efficiency (mNSE), Relative Nash-Sutcliffe efficiency (rNSE), Index of Agreement (d), Modified Index of Agreement (md), Relative Index of Agreement (rd), Coefficient of Persistence (cp), Percent Bias (pbias), Kling-Gupta efficiency (KGE), the coef. of determination multiplied by the slope of the linear regression between 'sim' and 'obs' (bR2), and volumetric efficiency (VE).
+
+```{r}
+NSE(num_Q_Sim, df_Labor$QA)
+NSE(num_Q_Sim2, df_Labor$QA)
+KGE(num_Q_Sim, df_Labor$QA)
+KGE(num_Q_Sim2, df_Labor$QA)
+```
+
+
+
+
+# Calibrate
+
+As always, the first step is to map from the concept to the procedure:
+
+![](../images/model_calibrate_c.svg)
+
+- 1.1 -> `Q_In = df_Labor$QZ`
+- 1.2 -> `Q_Out0 = 0`
+- f1 -> `model_linearReservoir()`
+- 2 -> `df_Labor$QZ`
+- f2 -> `NSE()`, `KGE()`
+- 3 -> `x_Min = 40, x_Max = 90`
+- f3.1 -> `cali_UVS()`
+- f3.2 -> `eva_fit()`
+
+
+## Create the Fit Function
+
+Before proceeding with automatic calibration, an important step is to create a function that the calibration algorithm will use. This function should take the parameter to be calibrated as an input. Thus, we need to modify our model and evaluation function into a "Fit Function."
+
+```{r}
+eva_fit <- function(model_Param,
+                     model_Input,
+                     Q_Observ,
+                     fct_gof = NSE) {
+  Q_Simu <- model_linearReservoir(model_Input, param_K = model_Param)
+  
+  - fct_gof(Q_Simu, Q_Observ)
+  
+}
+
+eva_fit(60, df_Labor$QZ, df_Labor$QA)
+
+
+```
+
+## Calibrating
+
+With the fit function in place, we can choose a calibration algorithm to optimize our model parameter (in this case, parameter $K$).
+
+
+```{r}
+lst_Cali <- cali_UVS(eva_fit, x_Min = 40, x_Max = 90, model_Input = df_Labor$QZ, Q_Observ = df_Labor$QA, fct_gof = KGE)
+```
+
+# Validate
+
+After calibration, it's crucial to validate the calibrated parameter to ensure that it performs well in other phases. In this course, we will demonstrate this through visual evaluation.
+
+```{r}
+num_Q_Sim_Cali <- model_linearReservoir(df_Labor$QZ, param_K =  lst_Cali$x_Best)
+
+ggVali <- ggplot(df_Labor) +
+  geom_line(aes(t, QZ), color = "cyan") +
+  geom_line(aes(t, num_Q_Sim_Cali), color = "tomato") +
+  geom_line(aes(t, QA), color = "blue") +
+  labs(x = "Time [s]", y = "In-/Outflow [L/s]")
+ggplotly(ggVali)
+
+```
+
+
+
+
