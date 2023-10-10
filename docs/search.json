@@ -766,15 +766,15 @@
     "objectID": "modelling/model_caliLinearReser.html#create-the-fit-function",
     "href": "modelling/model_caliLinearReser.html#create-the-fit-function",
     "title": "Calibration Prozess",
-    "section": "5.1 Create the Fit-FUnction",
-    "text": "5.1 Create the Fit-FUnction\n\neva_fit &lt;- function(model_Param,\n                     model_Input,\n                     Q_Observ,\n                     fct_gof = NSE) {\n  Q_Simu &lt;- model_linearReservoir(model_Input, param_K = model_Param)\n  \n  - fct_gof(Q_Simu, Q_Observ)\n  \n}\n\neva_fit(60, df_Labor$QZ, df_Labor$QA)\n\n[1] -0.8752109"
+    "section": "5.1 Create the Fit Function",
+    "text": "5.1 Create the Fit Function\nBefore proceeding with automatic calibration, an important step is to create a function that the calibration algorithm will use. This function should take the parameter to be calibrated as an input. Thus, we need to modify our model and evaluation function into a “Fit Function.”\n\neva_fit &lt;- function(model_Param,\n                     model_Input,\n                     Q_Observ,\n                     fct_gof = NSE) {\n  Q_Simu &lt;- model_linearReservoir(model_Input, param_K = model_Param)\n  \n  - fct_gof(Q_Simu, Q_Observ)\n  \n}\n\neva_fit(60, df_Labor$QZ, df_Labor$QA)\n\n[1] -0.8752109"
   },
   {
     "objectID": "modelling/model_caliLinearReser.html#calibrating",
     "href": "modelling/model_caliLinearReser.html#calibrating",
     "title": "Calibration Prozess",
     "section": "5.2 Calibrating",
-    "text": "5.2 Calibrating\n\nlst_Cali &lt;- cali_UVS(eva_fit, x_Min = 40, x_Max = 90, model_Input = df_Labor$QZ, Q_Observ = df_Labor$QA, fct_gof = KGE)\n\n\n  |                                                                            \n  |                                                                      |   0%"
+    "text": "5.2 Calibrating\nWith the fit function in place, we can choose a calibration algorithm to optimize our model parameter (in this case, parameter \\(K\\)).\n\nlst_Cali &lt;- cali_UVS(eva_fit, x_Min = 40, x_Max = 90, model_Input = df_Labor$QZ, Q_Observ = df_Labor$QA, fct_gof = KGE)\n\n\n  |                                                                            \n  |                                                                      |   0%"
   },
   {
     "objectID": "modelling/model_caliLinearReser.html#load-labor-data",
@@ -823,6 +823,6 @@
     "href": "modelling/model_caliLinearReser.html#quantitative-evaluation",
     "title": "Calibration Prozess",
     "section": "4.5 Quantitative Evaluation",
-    "text": "4.5 Quantitative Evaluation\nFor short or simplified time series, visual evaluation may suffice. However, when dealing with long-term data, we require standardized criteria to objectively assess the model’s performance.\nNSE and KGE are most used criteria in the research. There are also more ctiteiras in the Package hydroGOF:\nQuantitative statistics included are: Mean Error (me), Mean Absolute Error (mae), Root Mean Square Error (rms), Normalized Root Mean Square Error (nrms), Pearson product-moment correlation coefficient (r), Spearman Correlation coefficient (r.Spearman), Coefficient of Determination (R2), Ratio of Standard Deviations (rSD), Nash-Sutcliffe efficiency (NSE), Modified Nash-Sutcliffe efficiency (mNSE), Relative Nash-Sutcliffe efficiency (rNSE), Index of Agreement (d), Modified Index of Agreement (md), Relative Index of Agreement (rd), Coefficient of Persistence (cp), Percent Bias (pbias), Kling-Gupta efficiency (KGE), the coef. of determination multiplied by the slope of the linear regression between ‘sim’ and ‘obs’ (bR2), and volumetric efficiency (VE). (hydroGOF?)\n\nNSE(num_Q_Sim, df_Labor$QA)\n\n[1] 0.9234607\n\nNSE(num_Q_Sim2, df_Labor$QA)\n\n[1] 0.8752109\n\nKGE(num_Q_Sim, df_Labor$QA)\n\n[1] 0.8425622\n\nKGE(num_Q_Sim2, df_Labor$QA)\n\n[1] 0.9273187"
+    "text": "4.5 Quantitative Evaluation\nFor short or simplified time series, visual evaluation may suffice. However, when dealing with long-term data, we require standardized criteria to objectively assess the model’s performance.\nNSE and KGE are the most commonly used criteria in hydrological research. However, there are also additional criteria available in the hydroGOF package (use ?hydroGOF):\nQuantitative statistics included are: Mean Error (me), Mean Absolute Error (mae), Root Mean Square Error (rms), Normalized Root Mean Square Error (nrms), Pearson product-moment correlation coefficient (r), Spearman Correlation coefficient (r.Spearman), Coefficient of Determination (R2), Ratio of Standard Deviations (rSD), Nash-Sutcliffe efficiency (NSE), Modified Nash-Sutcliffe efficiency (mNSE), Relative Nash-Sutcliffe efficiency (rNSE), Index of Agreement (d), Modified Index of Agreement (md), Relative Index of Agreement (rd), Coefficient of Persistence (cp), Percent Bias (pbias), Kling-Gupta efficiency (KGE), the coef. of determination multiplied by the slope of the linear regression between ‘sim’ and ‘obs’ (bR2), and volumetric efficiency (VE).\n\nNSE(num_Q_Sim, df_Labor$QA)\n\n[1] 0.9234607\n\nNSE(num_Q_Sim2, df_Labor$QA)\n\n[1] 0.8752109\n\nKGE(num_Q_Sim, df_Labor$QA)\n\n[1] 0.8425622\n\nKGE(num_Q_Sim2, df_Labor$QA)\n\n[1] 0.9273187"
   }
 ]
