@@ -12,7 +12,7 @@ bibliography: ../../references.bib
 
 # Overview
 
-In this article, we will learn how to manage the entire hydrological modeling process with the minimal model  [Linear-Reservoir model](model_linearReservoir.qmd), including automatic calibration.
+In this article, we will learn how to manage the entire **hydrological modeling process** (mehr Concept Details in [Concept of Modelling](basic_concept.qmd)) with the minimal model  [Linear-Reservoir model](model_linearReservoir.qmd), including **automatic calibration**.
 
 # Library
 
@@ -23,12 +23,13 @@ Once installed, you'll also need to load the following packages into your R work
 
 ```{r}
 # If don't installed:
+# If remotes not installed, use: install.packages("remotes")
 # remotes::install_github("HydroSimul/HydroCourse")
 library(HydroCourse)
-# Evalution
+# Evalute functions
 library(hydroGOF)
 
-# Data Manipulation und Plot
+# Data Manipulation and Plot
 library(tidyverse)
 theme_set(theme_bw())
 # Interactive Plot
@@ -37,9 +38,9 @@ library(plotly)
 
 # Run the Model
 
-The first step is to become familiar with the hydrological model. You need to understand what input data it requires, which typically includes boundary condition (forcing) data, initial conditions, and one or more parameters. Additionally, you should know what kind of output the model will generate.
+The first step is to become **familiar** with the hydrological model. You need to understand what input data it requires, which typically includes boundary condition (forcing) data, initial conditions, and one or more parameters. Additionally, you should know what kind of output the model will generate.
 
-You can access detailed information about the model using the `help(model_linearReservoir)` or `?model_linearReservoir` commands. This will provide you with a description of the model's functionality and usage. Alternatively, you can also find information about the model online in the [model_linearReservoir documentation](https://hydrosimul.github.io/HydroCourse/reference/model.html).
+You can access detailed information about the model using the `help(model_linearReservoir)` or `?model_linearReservoir` commands in R Console. This will provide you with a description of the model's functionality and usage. Alternatively, you can also find information about the model online in the [model_linearReservoir documentation](https://hydrosimul.github.io/HydroCourse/reference/model.html).
 
 Once you have reviewed the model's documentation, the next step is to test the model with synthetic or test data to get a hands-on understanding of how it works.
 
@@ -68,7 +69,7 @@ Before proceeding with the calibration, it's essential to evaluate the simulatio
 
 ## Load Experimental Data
 
-In this phase, we will utilize experimental data from a labor experiment. This dataset involves the physical simulation of a linear reservoir and provides the measured inflow and outflow data in liters per second (L/s).
+In this phase, we will utilize experimental data from a labor experiment. This dataset involves the **physical simulation** of a linear reservoir and provides the measured inflow and outflow data in liters per second (L/s).
 
 ```{r}
 # Load Labor Data
@@ -129,7 +130,7 @@ ggplotly(ggLabor)
 
 ## Quantitative Evaluation
 
-For short or simplified time series, visual evaluation may suffice. However, when dealing with long-term data, we require standardized criteria to objectively assess the model's performance.
+For short or simplified time series, visual evaluation may suffice. However, when dealing with long-term data, we require standardized **criteria** to objectively assess the model's performance.
 
 NSE and KGE are the most commonly used criteria in hydrological research. However, there are also additional criteria available in the `hydroGOF` package (use `?hydroGOF`):
 
@@ -180,6 +181,11 @@ eva_fit(60, df_Labor$QZ, df_Labor$QA)
 
 
 ```
+
+
+
+There is another critical point to consider when creating the Fit Function. Calibration algorithms need to know which criteria is better. Most calibration algorithms compare the current criteria value with the previous one (or several previous ones) and consider the **minimum (or maximum)** criteria value as the best. However, in the case of NSE and KGE, a better simulation results in a higher value. To handle this, we should set these criteria as **negative values**. By doing so, calibration algorithms like `cali_UVS()` can work effectively with them.
+
 
 ## Calibrating
 
