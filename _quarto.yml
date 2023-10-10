@@ -9,8 +9,6 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "Dataset"
-        href: dataset/index.qmd
       - text: "Dataprocess"
         href: dataprocess/index.qmd
       - text: "Modelling"
@@ -18,14 +16,6 @@ website:
         
   
   sidebar:
-    - id: dataset
-      collapse-level: 1
-      contents:
-        - TEXT: "Overview"
-          href: dataset/index.qmd
-        - dataset/meteo.qmd      
-        - dataset/hydro.qmd      
-        - dataset/geoph.qmd      
     - id: dataprocess
       collapse-level: 1
       contents:
