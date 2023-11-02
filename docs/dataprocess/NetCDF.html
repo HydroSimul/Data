@@ -122,12 +122,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../dataset/index.html" rel="" target="">
- <span class="menu-text">Dataset</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="../dataprocess/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Dataprocess</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../modelling/index.html" rel="" target="">
+ <span class="menu-text">Modelling</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -276,12 +276,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#create-and-export" id="toc-create-and-export" class="nav-link" data-scroll-target="#create-and-export"><span class="header-section-number">3</span> Create and Export</a>
   <ul class="collapse">
-  <li><a href="#define-the-dimensions" id="toc-define-the-dimensions" class="nav-link" data-scroll-target="#define-the-dimensions"><span class="header-section-number">3.1</span> Define the Dimensions</a></li>
-  <li><a href="#define-the-variales" id="toc-define-the-variales" class="nav-link" data-scroll-target="#define-the-variales"><span class="header-section-number">3.2</span> Define the Variales</a></li>
-  <li><a href="#create-new-empty-netcdf-file" id="toc-create-new-empty-netcdf-file" class="nav-link" data-scroll-target="#create-new-empty-netcdf-file"><span class="header-section-number">3.3</span> Create new empty NetCDF file</a></li>
-  <li><a href="#put-the-data" id="toc-put-the-data" class="nav-link" data-scroll-target="#put-the-data"><span class="header-section-number">3.4</span> Put the Data</a></li>
-  <li><a href="#put-attributes" id="toc-put-attributes" class="nav-link" data-scroll-target="#put-attributes"><span class="header-section-number">3.5</span> Put Attributes</a></li>
-  <li><a href="#close-1" id="toc-close-1" class="nav-link" data-scroll-target="#close-1"><span class="header-section-number">3.6</span> Close</a></li>
+  <li><a href="#create-new-empty-netcdf-file-python" id="toc-create-new-empty-netcdf-file-python" class="nav-link" data-scroll-target="#create-new-empty-netcdf-file-python"><span class="header-section-number">3.1</span> Create new empty NetCDF file (Python)</a></li>
+  <li><a href="#define-the-dimensions" id="toc-define-the-dimensions" class="nav-link" data-scroll-target="#define-the-dimensions"><span class="header-section-number">3.2</span> Define the Dimensions</a></li>
+  <li><a href="#define-the-variales" id="toc-define-the-variales" class="nav-link" data-scroll-target="#define-the-variales"><span class="header-section-number">3.3</span> Define the Variales</a></li>
+  <li><a href="#sec-createNetCDFR" id="toc-sec-createNetCDFR" class="nav-link" data-scroll-target="#sec-createNetCDFR"><span class="header-section-number">3.4</span> Create new empty NetCDF file (R)</a></li>
+  <li><a href="#put-the-data" id="toc-put-the-data" class="nav-link" data-scroll-target="#put-the-data"><span class="header-section-number">3.5</span> Put the Data</a></li>
+  <li><a href="#put-attributes" id="toc-put-attributes" class="nav-link" data-scroll-target="#put-attributes"><span class="header-section-number">3.6</span> Put Attributes</a></li>
+  <li><a href="#close-1" id="toc-close-1" class="nav-link" data-scroll-target="#close-1"><span class="header-section-number">3.7</span> Close</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -314,11 +315,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>With these three components, you can efficiently handle the import, creation, and export of data in the NetCDF format.</p>
 <section id="library" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="library"><span class="header-section-number">1</span> Library</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>The <code>ncdf4</code> R package is a powerful tool for working with NetCDF data in R, allowing you to <strong>read</strong>, <strong>write</strong>, and <strong>manipulate</strong> datasets in this format with ease and efficiency.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fn_NetCDF <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share</span><span class="sc">\\</span><span class="st">minibeispiel_NetCDF.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the NetCDF file path</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fn_NetCDF <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share</span><span class="sc">\\</span><span class="st">minibeispiel_NetCDF.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>The <code>netCDF4</code> Python Library is a powerful tool for working with NetCDF data in R, allowing you to <strong>read</strong>, <strong>write</strong>, and <strong>manipulate</strong> datasets in this format with ease and efficiency.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netCDF4 <span class="im">as</span> nc</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the NetCDF file path</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>fn_NetCDF <span class="op">=</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Lei</span><span class="ch">\\</span><span class="st">HS_Web</span><span class="ch">\\</span><span class="st">data_share</span><span class="ch">\\</span><span class="st">minibeispiel_NetCDF.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <p>The Test data <code>minibeispiel_NetCDF.nc</code> is avable from Github, but it can not be direcly read from Git hub so you need download to local.</p>
 </section>
@@ -327,32 +347,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="open" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="open"><span class="header-section-number">2.1</span> Open</h3>
 <p>The first step in working with NetCDF files is to <strong>open</strong> the file using the <code>nc_open()</code> function. However, it’s important to note that opening the file <strong>doesn’t directly load</strong> its contents into the R environment. Instead, it establishes a <strong>connection</strong> between the file and the R session and effectively locks the file for reading or writing operations.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nc_Test <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fn_NetCDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the NetCDF file</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nc_Test <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fn_NetCDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the NetCDF file</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nc_Test <span class="op">=</span> nc.Dataset(fn_NetCDF, <span class="st">"r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="basic-information" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="basic-information"><span class="header-section-number">2.2</span> Basic Information</h3>
 <p>After opening a NetCDF file in R, you can access the <strong>basic information</strong> about the dataset, which is contained in a list. This information typically includes details about three components: <strong>dimensions</strong>, <strong>variables</strong>, and <strong>attributes</strong> of the NetCDF file.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the dimensions</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nc_Test$dim</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>dim <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the dimensions</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nc_Test$dim</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>dim <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "latitude"  "longitude" "time"     </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the variables</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nc_Test$var</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>var <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the variables</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nc_Test$var</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>var <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "T0"  "crs"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>var<span class="sc">$</span>T0<span class="sc">$</span>size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nc_Test<span class="sc">$</span>var<span class="sc">$</span>T0<span class="sc">$</span>size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6 8 3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access attributes</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_get</span>(nc_Test, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access attributes</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_get</span>(nc_Test, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$title
 [1] "Multidimensional data example"
@@ -361,11 +399,72 @@ $author
 [1] "Kan, Lei, kan.lei@ruhr-uni-bochum.de"</code></pre>
 </div>
 </div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the dimensions</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nc_Test.dimensions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'latitude': &lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'latitude', size = 6, 'longitude': &lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'longitude', size = 8, 'time': &lt;class 'netCDF4._netCDF4.Dimension'&gt; (unlimited): name = 'time', size = 3}</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the variables</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nc_Test.variables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'latitude': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float64 latitude(latitude)
+    units: degrees_north
+    long_name: latitude
+unlimited dimensions: 
+current shape = (6,)
+filling on, default _FillValue of 9.969209968386869e+36 used, 'longitude': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float64 longitude(longitude)
+    units: degrees_east
+    long_name: longitude
+unlimited dimensions: 
+current shape = (8,)
+filling on, default _FillValue of 9.969209968386869e+36 used, 'time': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+int32 time(time)
+    units: day since 1961-01-01 00:00:00 +00
+    long_name: time
+unlimited dimensions: time
+current shape = (3,)
+filling on, default _FillValue of -2147483647 used, 'T0': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 T0(time, longitude, latitude)
+    units: cel
+    _FillValue: -9999.0
+unlimited dimensions: time
+current shape = (3, 8, 6)
+filling on, 'crs': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 crs()
+    long_name: coordinate reference system
+    EPSG: EPSG:4236
+unlimited dimensions: 
+current shape = ()
+filling on, default _FillValue of 9.969209968386869e+36 used}</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the size of the "T0" variable</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nc_Test.variables[<span class="st">"T0"</span>].size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>144</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access attributes associated with the NetCDF file</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nc_Test.__dict__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'title': 'Multidimensional data example', 'author': 'Kan, Lei, kan.lei@ruhr-uni-bochum.de'}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="values-and-attributes" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="values-and-attributes"><span class="header-section-number">2.3</span> Values and Attributes</h3>
 <p>With the basic information about variables obtained, you can access the <strong>values</strong> and <strong>attributes</strong> of each variable as needed. You can also obtain specific subsets of variables using <strong>start points</strong> and <strong>counts</strong> for each dimension.</p>
 <p>Additionally, dimensions are treated as variables in the NetCDF structure, making it easier to work with them.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <ul>
 <li><code>ncvar_get()</code>
 <ul>
@@ -375,70 +474,70 @@ $author
 <li><code>ncatt_get()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the variable "T0" WHOLE</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_get</span>(nc_Test, <span class="st">"T0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the variable "T0" WHOLE</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_get</span>(nc_Test, <span class="st">"T0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>, , 1
 
-           [,1]       [,2]      [,3]      [,4]       [,5]       [,6]      [,7]
-[1,] 0.87323433 0.84079581 0.9281288 0.6661375 0.04758887 0.96682316 0.2882475
-[2,] 0.84566671 0.04471953 0.8753740 0.8303212 0.91060263 0.97662097 0.4387989
-[3,] 0.87702137 0.52173090 0.3899564 0.7390187 0.15751220 0.08919455 0.1058832
-[4,] 0.05253063 0.41560754 0.5622070 0.2759584 0.60747105 0.86474377 0.4941541
-[5,] 0.13788696 0.64514744 0.1193469 0.7815173 0.17213744 0.90108442 0.2186224
-[6,] 0.01323104 0.20803328 0.7549667 0.3373279 0.81990784 0.92592072 0.9812934
-          [,8]
-[1,] 0.4798310
-[2,] 0.8073431
-[3,] 0.2100407
-[4,] 0.1944774
-[5,] 0.6252168
-[6,] 0.9121284
+          [,1]      [,2]      [,3]      [,4]      [,5]      [,6]       [,7]
+[1,] 0.4243155 0.9355373 0.6876228 0.8002278 0.4408700 0.4708699 0.59079015
+[2,] 0.4031014 0.7100455 0.4772366 0.3784053 0.6279713 0.9022897 0.89029056
+[3,] 0.6261856 0.2216192 0.7574885 0.3998128 0.1462598 0.2891743 0.34810999
+[4,] 0.2051169 0.7212336 0.2052466 0.2371419 0.8615803 0.9635419 0.06449199
+[5,] 0.4202865 0.3519120 0.8772820 0.4323429 0.8802429 0.7829933 0.02408920
+[6,] 0.5832691 0.2425931 0.8981051 0.8781416 0.9701738 0.7729005 0.74079919
+           [,8]
+[1,] 0.96064091
+[2,] 0.02331837
+[3,] 0.59957153
+[4,] 0.49539265
+[5,] 0.30605116
+[6,] 0.88251084
 
 , , 2
 
-           [,1]       [,2]      [,3]       [,4]        [,5]      [,6]      [,7]
-[1,] 0.67261952 0.81357676 0.9129938 0.07847439 0.695212364 0.9965690 0.4535292
-[2,] 0.54622287 0.47057596 0.7701718 0.76087618 0.681510150 0.2870260 0.9298078
-[3,] 0.97883582 0.27574405 0.2979580 0.82688719 0.775471032 0.1091156 0.4443779
-[4,] 0.24032776 0.94651270 0.9004657 0.46679950 0.714241982 0.2785303 0.8597365
-[5,] 0.11894906 0.08771272 0.4285217 0.39392269 0.881228805 0.1175296 0.4345917
-[6,] 0.02775612 0.69773751 0.6743689 0.30370802 0.003402067 0.5098888 0.5001363
-           [,8]
-[1,] 0.01954478
-[2,] 0.48761898
-[3,] 0.77260524
-[4,] 0.09660549
-[5,] 0.18708077
-[6,] 0.32882696
+          [,1]      [,2]       [,3]      [,4]       [,5]      [,6]       [,7]
+[1,] 0.2956963 0.5266238 0.80266231 0.9940577 0.26920769 0.9580371 0.27879658
+[2,] 0.9417820 0.5029727 0.03080061 0.6261121 0.31751490 0.0802093 0.50476611
+[3,] 0.9786192 0.5408758 0.46791443 0.4680299 0.05485917 0.1339196 0.93703490
+[4,] 0.6288502 0.7536872 0.46902880 0.1146667 0.57469219 0.9119628 0.41187954
+[5,] 0.5857720 0.4706038 0.57941103 0.6392034 0.34206086 0.8067344 0.05105839
+[6,] 0.6905151 0.6474653 0.67272288 0.1335317 0.64459616 0.8997121 0.04749461
+          [,8]
+[1,] 0.7533994
+[2,] 0.7098062
+[3,] 0.2107040
+[4,] 0.3593461
+[5,] 0.8707433
+[6,] 0.5308710
 
 , , 3
 
-          [,1]      [,2]      [,3]      [,4]        [,5]      [,6]      [,7]
-[1,] 0.2438949 0.2796387 0.2310013 0.9290695 0.001803675 0.2213203 0.6040062
-[2,] 0.7087626 0.1305958 0.4242381 0.3876229 0.108581930 0.9331994 0.1862334
-[3,] 0.6429835 0.5069839 0.4480698 0.6828141 0.002890128 0.5832875 0.4345271
-[4,] 0.5077407 0.7143151 0.5654522 0.7300830 0.554731011 0.3791544 0.6306387
-[5,] 0.5006290 0.7366096 0.7772436 0.7581558 0.917714417 0.8559392 0.4371825
-[6,] 0.5524286 0.1317367 0.6158218 0.8492355 0.189386442 0.5469928 0.7492338
-           [,8]
-[1,] 0.16166402
-[2,] 0.51010555
-[3,] 0.38010010
-[4,] 0.75959259
-[5,] 0.40291563
-[6,] 0.01315346</code></pre>
+          [,1]      [,2]       [,3]       [,4]       [,5]       [,6]      [,7]
+[1,] 0.2964470 0.3185527 0.02501507 0.78078473 0.88581914 0.35747567 0.2205382
+[2,] 0.5802779 0.5473396 0.72289288 0.42013261 0.06668617 0.14891115 0.9619625
+[3,] 0.4290859 0.6458802 0.32526892 0.07880253 0.67707014 0.78467715 0.5030632
+[4,] 0.1994348 0.2251340 0.16004220 0.44191572 0.28654459 0.14325349 0.4434912
+[5,] 0.5352656 0.8188938 0.03500481 0.88045228 0.45287898 0.06745657 0.7280724
+[6,] 0.9411278 0.2118689 0.13505027 0.91586888 0.94076896 0.79496217 0.8474919
+          [,8]
+[1,] 0.1471476
+[2,] 0.6209607
+[3,] 0.3606857
+[4,] 0.9326360
+[5,] 0.9319638
+[6,] 0.1878635</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve a subset of the variable "T0"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This subset starts at position (1, 1, 1) and has a count of (2, 3, 1) along each dimension</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_get</span>(nc_Test, <span class="st">"T0"</span>, <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">count =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve a subset of the variable "T0"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This subset starts at position (1, 1, 1) and has a count of (2, 3, 1) along each dimension</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_get</span>(nc_Test, <span class="st">"T0"</span>, <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">count =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          [,1]       [,2]      [,3]
-[1,] 0.8732343 0.84079581 0.9281288
-[2,] 0.8456667 0.04471953 0.8753740</code></pre>
+<pre><code>          [,1]      [,2]      [,3]
+[1,] 0.4243155 0.9355373 0.6876228
+[2,] 0.4031014 0.7100455 0.4772366</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve attributes associated with the variable "T0"</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_get</span>(nc_Test, <span class="st">"T0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve attributes associated with the variable "T0"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_get</span>(nc_Test, <span class="st">"T0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$units
 [1] "cel"
@@ -447,40 +546,182 @@ $`_FillValue`
 [1] -9999</code></pre>
 </div>
 </div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<ul>
+<li><code>nc.variables["var_Name"]</code></li>
+<li><code>nc.variables["var_Name"].__dict__</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the entire "T0" variable</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>t0_variable <span class="op">=</span> nc_Test.variables[<span class="st">"T0"</span>][:]</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"T0 variable (whole):"</span>, t0_variable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>T0 variable (whole): [[[0.42431554 0.40310138 0.6261856  0.20511685 0.42028654 0.5832691 ]
+  [0.9355373  0.71004546 0.22161925 0.7212336  0.351912   0.24259308]
+  [0.68762285 0.47723657 0.7574885  0.20524664 0.87728196 0.8981051 ]
+  [0.80022776 0.37840527 0.39981276 0.23714186 0.43234295 0.8781416 ]
+  [0.44087005 0.6279713  0.14625978 0.86158025 0.8802429  0.97017384]
+  [0.47086993 0.9022897  0.28917426 0.96354187 0.7829933  0.7729005 ]
+  [0.59079015 0.89029056 0.34811    0.06449199 0.0240892  0.7407992 ]
+  [0.9606409  0.02331837 0.5995715  0.49539265 0.30605116 0.88251084]]
+
+ [[0.29569626 0.941782   0.97861916 0.6288502  0.585772   0.6905151 ]
+  [0.5266238  0.5029727  0.5408758  0.7536872  0.4706038  0.6474653 ]
+  [0.8026623  0.03080061 0.46791443 0.4690288  0.57941103 0.6727229 ]
+  [0.9940577  0.6261121  0.46802992 0.11466672 0.6392034  0.13353172]
+  [0.2692077  0.3175149  0.05485917 0.5746922  0.34206086 0.64459616]
+  [0.9580371  0.0802093  0.13391963 0.9119628  0.80673444 0.8997121 ]
+  [0.27879658 0.5047661  0.9370349  0.41187954 0.05105839 0.04749461]
+  [0.75339943 0.7098062  0.21070404 0.3593461  0.87074333 0.53087103]]
+
+ [[0.296447   0.5802779  0.42908588 0.19943485 0.53526556 0.94112784]
+  [0.31855267 0.5473396  0.64588016 0.22513399 0.81889385 0.21186887]
+  [0.02501507 0.7228929  0.32526892 0.1600422  0.03500481 0.13505027]
+  [0.7807847  0.4201326  0.07880253 0.44191572 0.8804523  0.9158689 ]
+  [0.88581914 0.06668617 0.67707014 0.2865446  0.45287898 0.94076896]
+  [0.35747567 0.14891115 0.78467715 0.14325349 0.06745657 0.79496217]
+  [0.22053824 0.96196246 0.5030632  0.44349116 0.7280724  0.8474919 ]
+  [0.14714763 0.62096065 0.3606857  0.932636   0.9319638  0.18786351]]]</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve a subset of the "T0" variable</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This subset starts at position (0, 0, 0) and has a count of (2, 3, 1) along each dimension</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t0_variable[<span class="dv">0</span>:<span class="dv">2</span>, <span class="dv">0</span>:<span class="dv">3</span>, <span class="dv">0</span>:<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[[0.42431554]
+  [0.9355373 ]
+  [0.68762285]]
+
+ [[0.29569626]
+  [0.5266238 ]
+  [0.8026623 ]]]</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access attributes associated with the "T0" variable</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nc_Test.variables[<span class="st">"T0"</span>].__dict__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'units': 'cel', '_FillValue': -9999.0}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="close" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="close"><span class="header-section-number">2.4</span> Close</h3>
 <p>When working with NetCDF files in R using the ncdf4 package, it’s crucial to remember that opening a file establishes a connection. This prevents data corruption and conflicts. To finish, always close the file using <code>nc_close()</code> once you’ve completed your operations.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc_Test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the NetCDF file</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc_Test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the NetCDF file</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>nc_Test.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 </section>
 <section id="create-and-export" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="create-and-export"><span class="header-section-number">3</span> Create and Export</h2>
 <p>In this section, we will walk you through the steps to create a NetCDF file with your data. By following these steps, you’ll be able to prepare your data and save it in the NetCDF format for further analysis or sharing.</p>
-<section id="define-the-dimensions" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="define-the-dimensions"><span class="header-section-number">3.1</span> Define the Dimensions</h3>
+<section id="create-new-empty-netcdf-file-python" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="create-new-empty-netcdf-file-python"><span class="header-section-number">3.1</span> Create new empty NetCDF file (Python)</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>In R, you need after defining the dimensions and variables to create the file in the system. See <a href="#sec-createNetCDFR">Section&nbsp;3.4</a>.</p>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>In Python, you first need to create (connect) a new empty file in the system and an object in Python.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a NetCDF file</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>nc_Create <span class="op">=</span> nc.Dataset(<span class="st">"C:</span><span class="ch">\\</span><span class="st">Lei</span><span class="ch">\\</span><span class="st">HS_Web</span><span class="ch">\\</span><span class="st">data_share</span><span class="ch">\\</span><span class="st">minibeispiel_NetCDF_Py.nc"</span>, <span class="st">"w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-the-dimensions" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="define-the-dimensions"><span class="header-section-number">3.2</span> Define the Dimensions</h3>
 <p>The initial step in creating a NetCDF dataset is <strong>dimension</strong> definition:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <ul>
 <li><code>ncdim_def()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dim_lon <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"longitude"</span>, <span class="st">"degrees_east"</span>,</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">seq</span>(<span class="fl">11.72</span>, <span class="fl">11.79</span>, <span class="fl">0.01</span>),</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">longname =</span> <span class="st">"longitude"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>dim_lat <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"latitude"</span>, <span class="st">"degrees_north"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">seq</span>(<span class="fl">50.08</span>, <span class="fl">50.13</span>, <span class="fl">0.01</span>),</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">longname =</span> <span class="st">"latitude"</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>dim_time <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"time"</span>, <span class="st">"day since 1961-01-01 00:00:00 +00"</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">unlim=</span><span class="cn">TRUE</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">longname =</span> <span class="st">"time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define dimension metadata</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>num_Dim_Lon <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">11.72</span>, <span class="fl">11.79</span>, <span class="fl">0.01</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>num_Dim_Lat <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">50.08</span>, <span class="fl">50.13</span>, <span class="fl">0.01</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>num_Dim_Time <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>dim_lon <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"longitude"</span>, <span class="st">"degrees_east"</span>,</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>                     num_Dim_Lon,</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">longname =</span> <span class="st">"longitude"</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>dim_lat <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"latitude"</span>, <span class="st">"degrees_north"</span>,</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                     num_Dim_Lat,</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">longname =</span> <span class="st">"latitude"</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>dim_time <span class="ot">&lt;-</span> <span class="fu">ncdim_def</span>(<span class="st">"time"</span>, <span class="st">"day since 1961-01-01 00:00:00 +00"</span>,</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>                      num_Dim_Time, <span class="at">unlim=</span><span class="cn">TRUE</span>,</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">longname =</span> <span class="st">"time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<ul>
+<li><code>nc.createDimension()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define dimension metadata</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>num_Dim_Lon <span class="op">=</span> np.arange(<span class="fl">11.72</span>, <span class="fl">11.8</span>, <span class="fl">0.01</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>num_Dim_Lat <span class="op">=</span> np.arange(<span class="fl">50.08</span>, <span class="fl">50.14</span>, <span class="fl">0.01</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>num_Dim_Time <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define dimensions</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>nc_Create.createDimension(<span class="st">"longitude"</span>, <span class="bu">len</span>(num_Dim_Lon))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'longitude', size = 9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>nc_Create.createDimension(<span class="st">"latitude"</span>, <span class="bu">len</span>(num_Dim_Lat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'latitude', size = 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>nc_Create.createDimension(<span class="st">"time"</span>, <span class="bu">len</span>(num_Dim_Time))  <span class="co"># Use None for unlimited dimension</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'time', size = 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>dim_lon <span class="op">=</span> nc_Create.createVariable(<span class="st">"longitude"</span>, <span class="st">"f4"</span>, <span class="st">"longitude"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>dim_lat <span class="op">=</span> nc_Create.createVariable(<span class="st">"latitude"</span>, <span class="st">"f4"</span>, <span class="st">"latitude"</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>dim_time <span class="op">=</span> nc_Create.createVariable(<span class="st">"time"</span>, <span class="st">"i"</span>, <span class="st">"time"</span>) </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>dim_lon[:] <span class="op">=</span> num_Dim_Lon</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>dim_lat[:] <span class="op">=</span> num_Dim_Lat</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>dim_time[:] <span class="op">=</span> num_Dim_Time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Compared to R, in Python, you need to create a variable with the same name to store the values of the dimension. In Python, a pure dimension will only consider the dimension’s size and name.</p>
+</div>
+</div>
 </div>
 <p>In this example, we will create a 3D array with latitude, longitude, and time dimensions.</p>
 </section>
-<section id="define-the-variales" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="define-the-variales"><span class="header-section-number">3.2</span> Define the Variales</h3>
+<section id="define-the-variales" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="define-the-variales"><span class="header-section-number">3.3</span> Define the Variales</h3>
 <p>The next step is to <strong>define a variable</strong>, but you don’t need to assign values to it at this stage. There are three common attributes (name, units and dimensions) that are essential for every variable and should always be defined. Other user-defined attributes can be added later as needed.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <ul>
 <li><code>ncvar_def()</code>
 <ul>
@@ -492,62 +733,143 @@ $`_FillValue`
 <p>You also have the option to create a dimension with no data values, effectively making it a null dimension. However, you can still set attributes for this dimension to store non-array information.</p>
 <p>After defining all the variables, it’s necessary to <strong>gather them into a list</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a variable named "T0" with the units "cel" and dimensions dim_lat, dim_lon, and dim_time.</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The missing value for this variable is set to -9999.</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>var_T0 <span class="ot">&lt;-</span> <span class="fu">ncvar_def</span>(<span class="st">"T0"</span>, <span class="st">"cel"</span>, <span class="fu">list</span>(dim_lat, dim_lon, dim_time), <span class="sc">-</span><span class="dv">9999</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a variable named "crs" with no units and no dimensions (empty list).</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This variable is defined as NULL initially.</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>var_crs <span class="ot">&lt;-</span> <span class="fu">ncvar_def</span>(<span class="st">"crs"</span>, <span class="st">""</span>, <span class="fu">list</span>(), <span class="cn">NULL</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine variables into a list</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">list</span>(var_T0, var_crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a variable named "T0" with the units "cel" and dimensions dim_lat, dim_lon, and dim_time.</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The missing value for this variable is set to -9999.</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>var_T0 <span class="ot">&lt;-</span> <span class="fu">ncvar_def</span>(<span class="st">"T0"</span>, <span class="st">"cel"</span>, <span class="fu">list</span>(dim_lat, dim_lon, dim_time), <span class="sc">-</span><span class="dv">9999</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a variable named "crs" with no units and no dimensions (empty list).</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This variable is defined as NULL initially.</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>var_crs <span class="ot">&lt;-</span> <span class="fu">ncvar_def</span>(<span class="st">"crs"</span>, <span class="st">""</span>, <span class="fu">list</span>(), <span class="cn">NULL</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine variables into a list</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">list</span>(var_T0, var_crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<ul>
+<li><code>nc.createVariable()</code>
+<ul>
+<li><code>name</code></li>
+<li><code>units</code></li>
+<li><code>dim</code></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define variables</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>var_T0 <span class="op">=</span> nc_Create.createVariable(<span class="st">"T0"</span>, <span class="st">"f4"</span>, (<span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"time"</span>))</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>var_T0.units <span class="op">=</span> <span class="st">"cel"</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>var_T0.missing_value <span class="op">=</span> <span class="op">-</span><span class="dv">9999</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>var_crs <span class="op">=</span> nc_Create.createVariable(<span class="st">"crs"</span>, <span class="st">"S1"</span>)  <span class="co"># Create an empty variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section id="create-new-empty-netcdf-file" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="create-new-empty-netcdf-file"><span class="header-section-number">3.3</span> Create new empty NetCDF file</h3>
-<p>You can already <strong>create a NetCDF file</strong> with the (list of) variables you have:</p>
+<section id="sec-createNetCDFR" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="sec-createNetCDFR"><span class="header-section-number">3.4</span> Create new empty NetCDF file (R)</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">R</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<p>You can now <strong>create a NetCDF file</strong> with the (list of) variables you have:</p>
 <ul>
 <li><code>nc_create(filename, vars)</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nc_Create <span class="ot">&lt;-</span> <span class="fu">nc_create</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share</span><span class="sc">\\</span><span class="st">minibeispiel_NetCDF.nc"</span>, vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>nc_Create <span class="ot">&lt;-</span> <span class="fu">nc_create</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share</span><span class="sc">\\</span><span class="st">minibeispiel_NetCDF.nc"</span>, vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section id="put-the-data" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="put-the-data"><span class="header-section-number">3.4</span> Put the Data</h3>
+<section id="put-the-data" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="put-the-data"><span class="header-section-number">3.5</span> Put the Data</h3>
 <p>After creating the NetCDF file, it will be an <strong>empty</strong> file in your local folder. The next step is to <strong>populate</strong> the file with data for each of the variables. This involves specifying the values for each variable and writing them to the file.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <ul>
 <li><code>ncvar_put()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_put</span>(nc_Create, var_T0, <span class="fu">runif</span>(<span class="dv">6</span><span class="sc">*</span><span class="dv">8</span><span class="sc">*</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_put</span>(nc_Create, var_T0, <span class="fu">runif</span>(<span class="fu">length</span>(num_Dim_Lat) <span class="sc">*</span> <span class="fu">length</span>(num_Dim_Lon) <span class="sc">*</span> <span class="fu">length</span>(num_Dim_Time)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add data to the "T0" variable (random data)</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>var_T0[:] <span class="op">=</span> np.random.rand(<span class="bu">len</span>(num_Dim_Lat), <span class="bu">len</span>(num_Dim_Lon), <span class="bu">len</span>(num_Dim_Time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section id="put-attributes" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="put-attributes"><span class="header-section-number">3.5</span> Put Attributes</h3>
+<section id="put-attributes" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="put-attributes"><span class="header-section-number">3.6</span> Put Attributes</h3>
 <p>When populating a NetCDF file, it’s essential to not only specify the variable data values but also the <strong>attributes</strong> associated with those variables. Attributes provide crucial metadata that describes the data, such as units, long names, and other relevant information.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <ul>
 <li><code>ncatt_put()</code></li>
 </ul>
 <p>Absolutely, you can set attributes not only for <strong>individual variables</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the "long_name" and "EPSG" attributes to the variable "var_crs"</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, var_crs, <span class="st">"long_name"</span>, <span class="st">"coordinate reference system"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, var_crs, <span class="st">"EPSG"</span>, <span class="st">"EPSG:4236"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the "long_name" and "EPSG" attributes to the variable "var_crs"</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, var_crs, <span class="st">"long_name"</span>, <span class="st">"coordinate reference system"</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, var_crs, <span class="st">"EPSG"</span>, <span class="st">"EPSG:4236"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>var_crs.long_name <span class="op">=</span> <span class="st">"coordinate reference system"</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>var_crs.EPSG <span class="op">=</span> <span class="st">"EPSG:4236"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <p>But also for the entire NetCDF file as <strong>global attributes</strong>. Global attributes provide overarching information about the dataset, such as its title, source, creation date, and any other relevant details.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the "title" and "author" global attributes to the NetCDF file</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, <span class="dv">0</span>, <span class="st">"title"</span>, <span class="st">"Multidimensional data example"</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, <span class="dv">0</span>, <span class="st">"author"</span>, <span class="st">"Kan, Lei, kan.lei@ruhr-uni-bochum.de"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the "title" and "author" global attributes to the NetCDF file</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, <span class="dv">0</span>, <span class="st">"title"</span>, <span class="st">"Multidimensional data example"</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncatt_put</span>(nc_Create, <span class="dv">0</span>, <span class="st">"author"</span>, <span class="st">"Kan, Lei, kan.lei@ruhr-uni-bochum.de"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add global attributes</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>nc_Create.title <span class="op">=</span> <span class="st">"Multidimensional data example"</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>nc_Create.author <span class="op">=</span> <span class="st">"Kan, Lei, kan.lei@ruhr-uni-bochum.de"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section id="close-1" class="level3" data-number="3.6">
-<h3 data-number="3.6" class="anchored" data-anchor-id="close-1"><span class="header-section-number">3.6</span> Close</h3>
+<section id="close-1" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="close-1"><span class="header-section-number">3.7</span> Close</h3>
 <p>At the end, <strong>make sure to close</strong> the connections to your NetCDF files.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc_Create)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_close</span>(nc_Create)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the NetCDF file</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>nc_Create.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <p>Once you’ve gone through these steps, you’ll have a well-maintained NetCDF file that can be easily used for any further processing, transformations, or visualization.</p>
 

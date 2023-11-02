@@ -24,14 +24,38 @@ With these three components, you can efficiently handle the import, creation, an
 
 ## Library
 
+::: {.panel-tabset}
+
+## R
+
+
+
 The `ncdf4` R package is a powerful tool for working with NetCDF data in R, allowing you to **read**, **write**, and **manipulate** datasets in this format with ease and efficiency.
 
 
 ```{r}
 library(ncdf4)
 library(tidyverse)
+
+# Define the NetCDF file path
 fn_NetCDF <- "C:\\Lei\\HS_Web\\data_share\\minibeispiel_NetCDF.nc"
 ```
+
+## Python
+
+The `netCDF4` Python Library is a powerful tool for working with NetCDF data in R, allowing you to **read**, **write**, and **manipulate** datasets in this format with ease and efficiency.
+
+```{python}
+import netCDF4 as nc
+import numpy as np
+
+# Define the NetCDF file path
+fn_NetCDF = "C:\\Lei\\HS_Web\\data_share\\minibeispiel_NetCDF.nc"
+
+```
+
+:::
+
 
 
 The Test data `minibeispiel_NetCDF.nc` is avable from Github, but it can not be direcly read from Git hub so you need download to local.
@@ -42,13 +66,33 @@ The Test data `minibeispiel_NetCDF.nc` is avable from Github, but it can not be 
 
 The first step in working with NetCDF files is to **open** the file using the `nc_open()` function. However, it's important to note that opening the file **doesn't directly load** its contents into the R environment. Instead, it establishes a **connection** between the file and the R session and effectively locks the file for reading or writing operations. 
 
+::: {.panel-tabset}
+
+## R
+
+
 ```{r}
+# Open the NetCDF file
 nc_Test <- nc_open(fn_NetCDF)
 ```
+
+## Python
+
+```{python}
+# Open the NetCDF file
+nc_Test = nc.Dataset(fn_NetCDF, "r")
+```
+
+:::
+
 
 ### Basic Information
 
 After opening a NetCDF file in R, you can access the **basic information** about the dataset, which is contained in a list. This information typically includes details about three components: **dimensions**, **variables**, and **attributes** of the NetCDF file.
+
+::: {.panel-tabset}
+
+## R
 
 
 ```{r}
@@ -66,11 +110,37 @@ nc_Test$var$T0$size
 ncatt_get(nc_Test, 0)
 ```
 
+## Python
+
+```{python}
+
+# Access the dimensions
+print(nc_Test.dimensions)
+
+# Access the variables
+print(nc_Test.variables)
+
+# Get the size of the "T0" variable
+print(nc_Test.variables["T0"].size)
+
+# Access attributes associated with the NetCDF file
+print(nc_Test.__dict__)
+
+```
+
+:::
+
+
 ### Values and Attributes
 
 With the basic information about variables obtained, you can access the **values** and **attributes** of each variable as needed. You can also obtain specific subsets of variables using **start points** and **counts** for each dimension. 
 
 Additionally, dimensions are treated as variables in the NetCDF structure, making it easier to work with them.
+
+::: {.panel-tabset}
+
+## R
+
 
 - `ncvar_get()`
   - `start`: The starting point of every dimension to load variable values
@@ -89,16 +159,57 @@ ncvar_get(nc_Test, "T0", start = c(1, 1, 1), count = c(2, 3, 1))
 ncatt_get(nc_Test, "T0")
 ```
 
+## Python
+
+- `nc.variables["var_Name"]`
+- `nc.variables["var_Name"].__dict__`
+
+
+```{python}
+# Retrieve the entire "T0" variable
+t0_variable = nc_Test.variables["T0"][:]
+print("T0 variable (whole):", t0_variable)
+
+# Retrieve a subset of the "T0" variable
+# This subset starts at position (0, 0, 0) and has a count of (2, 3, 1) along each dimension
+print(t0_variable[0:2, 0:3, 0:1])
+
+# Access attributes associated with the "T0" variable
+print(nc_Test.variables["T0"].__dict__)
+
+```
+
+:::
+
+
+
+
 
 
 ### Close
 
 When working with NetCDF files in R using the ncdf4 package, it's crucial to remember that opening a file establishes a connection. This prevents data corruption and conflicts. To finish, always close the file using `nc_close()` once you've completed your operations.
 
+::: {.panel-tabset}
+
+## R
+
 
 ```{r}
+# Close the NetCDF file
 nc_close(nc_Test)
 ```
+
+## Python
+
+```{python}
+# Close the NetCDF file
+nc_Test.close()
+```
+
+:::
+
+
 
 
 ## Create and Export
@@ -106,25 +217,85 @@ nc_close(nc_Test)
 
 In this section, we will walk you through the steps to create a NetCDF file with your data. By following these steps, you'll be able to prepare your data and save it in the NetCDF format for further analysis or sharing.
 
+### Create new empty NetCDF file (Python)
+
+::: {.panel-tabset}
+
+## R
+
+In R, you need after defining the dimensions and variables to create the file in the system. See @sec-createNetCDFR.
+
+## Python
+
+In Python, you first need to create (connect) a new empty file in the system and an object in Python.
+
+```{python}
+# Create a NetCDF file
+nc_Create = nc.Dataset("C:\\Lei\\HS_Web\\data_share\\minibeispiel_NetCDF_Py.nc", "w")
+
+```
+
+:::
+
 ### Define the Dimensions
 
 
 The initial step in creating a NetCDF dataset is **dimension** definition:
 
+::: {.panel-tabset}
+
+## R
+
+
 - `ncdim_def()`
 
 ```{r}
+# Define dimension metadata
+num_Dim_Lon <- seq(11.72, 11.79, 0.01)
+num_Dim_Lat <- seq(50.08, 50.13, 0.01)
+num_Dim_Time <- 1:3
+
 dim_lon <- ncdim_def("longitude", "degrees_east",
-                     seq(11.72, 11.79, 0.01),
+                     num_Dim_Lon,
                      longname = "longitude")
 dim_lat <- ncdim_def("latitude", "degrees_north",
-                     seq(50.08, 50.13, 0.01),
+                     num_Dim_Lat,
                      longname = "latitude")
 dim_time <- ncdim_def("time", "day since 1961-01-01 00:00:00 +00",
-                      1:3, unlim=TRUE,
+                      num_Dim_Time, unlim=TRUE,
                       longname = "time")
+```
+
+## Python
+
+- `nc.createDimension()`
+
+```{python}
+# Define dimension metadata
+num_Dim_Lon = np.arange(11.72, 11.8, 0.01)
+num_Dim_Lat = np.arange(50.08, 50.14, 0.01)
+num_Dim_Time = np.arange(1, 4)
+
+
+# Define dimensions
+nc_Create.createDimension("longitude", len(num_Dim_Lon))
+nc_Create.createDimension("latitude", len(num_Dim_Lat))
+nc_Create.createDimension("time", len(num_Dim_Time))  # Use None for unlimited dimension
+
+dim_lon = nc_Create.createVariable("longitude", "f4", "longitude")
+dim_lat = nc_Create.createVariable("latitude", "f4", "latitude")
+dim_time = nc_Create.createVariable("time", "i", "time") 
+
+dim_lon[:] = num_Dim_Lon
+dim_lat[:] = num_Dim_Lat
+dim_time[:] = num_Dim_Time
 
 ```
+
+Compared to R, in Python, you need to create a variable with the same name to store the values of the dimension. In Python, a pure dimension will only consider the dimension's size and name.
+
+:::
+
 
 In this example, we will create a 3D array with latitude, longitude, and time dimensions.
 
@@ -132,6 +303,12 @@ In this example, we will create a 3D array with latitude, longitude, and time di
 ### Define the Variales
 
 The next step is to **define a variable**, but you don't need to assign values to it at this stage. There are three common attributes (name, units and dimensions) that are essential for every variable and should always be defined. Other user-defined attributes can be added later as needed.
+
+
+::: {.panel-tabset}
+
+## R
+
 
 - `ncvar_def()`
   - `name`
@@ -157,11 +334,36 @@ vars <- list(var_T0, var_crs)
 
 ```
 
+## Python
+
+- `nc.createVariable()`
+  - `name`
+  - `units`
+  - `dim`
+
+```{python}
+# Define variables
+var_T0 = nc_Create.createVariable("T0", "f4", ("latitude", "longitude", "time"))
+var_T0.units = "cel"
+var_T0.missing_value = -9999
+
+var_crs = nc_Create.createVariable("crs", "S1")  # Create an empty variable
 
 
-### Create new empty NetCDF file
+```
 
-You can already **create a NetCDF file** with the (list of) variables you have:
+:::
+
+
+
+
+### Create new empty NetCDF file (R) {#sec-createNetCDFR}
+
+::: {.panel-tabset}
+
+## R
+
+You can now **create a NetCDF file** with the (list of) variables you have:
 
 - `nc_create(filename, vars)`
 
@@ -171,23 +373,49 @@ nc_Create <- nc_create("C:\\Lei\\HS_Web\\data_share\\minibeispiel_NetCDF.nc", va
 ```
 
 
+:::
+
+
+
+
+
 
 ### Put the Data
 
 After creating the NetCDF file, it will be an **empty** file in your local folder. The next step is to **populate** the file with data for each of the variables. This involves specifying the values for each variable and writing them to the file.
 
+
+::: {.panel-tabset}
+
+## R
+
+
 - `ncvar_put()`
 
 ```{r}
-ncvar_put(nc_Create, var_T0, runif(6*8*3))
+ncvar_put(nc_Create, var_T0, runif(length(num_Dim_Lat) * length(num_Dim_Lon) * length(num_Dim_Time)))
 
 ```
+
+## Python
+
+```{python}
+# Add data to the "T0" variable (random data)
+var_T0[:] = np.random.rand(len(num_Dim_Lat), len(num_Dim_Lon), len(num_Dim_Time))
+
+```
+
+:::
+
 
 
 ### Put Attributes
 
 When populating a NetCDF file, it's essential to not only specify the variable data values but also the **attributes** associated with those variables. Attributes provide crucial metadata that describes the data, such as units, long names, and other relevant information.
 
+::: {.panel-tabset}
+
+## R
 
 - `ncatt_put()`
 
@@ -200,7 +428,22 @@ ncatt_put(nc_Create, var_crs, "long_name", "coordinate reference system")
 ncatt_put(nc_Create, var_crs, "EPSG", "EPSG:4236")
 ```
 
+## Python
+
+```{python}
+var_crs.long_name = "coordinate reference system"
+var_crs.EPSG = "EPSG:4236"
+
+```
+
+:::
+
+
 But also for the entire NetCDF file as **global attributes**. Global attributes provide overarching information about the dataset, such as its title, source, creation date, and any other relevant details.
+
+::: {.panel-tabset}
+
+## R
 
 ```{r}
 # Add the "title" and "author" global attributes to the NetCDF file
@@ -208,14 +451,41 @@ ncatt_put(nc_Create, 0, "title", "Multidimensional data example")
 ncatt_put(nc_Create, 0, "author", "Kan, Lei, kan.lei@ruhr-uni-bochum.de")
 ```
 
+## Python
+
+```{python}
+# Add global attributes
+nc_Create.title = "Multidimensional data example"
+nc_Create.author = "Kan, Lei, kan.lei@ruhr-uni-bochum.de"
+
+```
+
+:::
+
+
 
 ### Close
 
 At the end, **make sure to close** the connections to your NetCDF files. 
 
+::: {.panel-tabset}
+
+## R
+
 ```{r}
 nc_close(nc_Create)
 ```
+
+## Python
+
+```{python}
+# Close the NetCDF file
+nc_Create.close()
+
+```
+
+:::
+
 
 Once you've gone through these steps, you'll have a well-maintained NetCDF file that can be easily used for any further processing, transformations, or visualization.
 
