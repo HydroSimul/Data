@@ -10,6 +10,12 @@ number-sections: true
 
 # Library `terra`
 
+::: {.panel-tabset}
+
+## R
+
+
+
 The `terra` package in R is a powerful and versatile package for working with geospatial data, including **vector** and **raster** data. It provides a wide range of functionality for reading, processing, analyzing, and visualizing spatial data. 
 
 For more in-depth information and resources on the terra package and spatial data science in R, you can explore the original website [Spatial Data Science](https://rspatial.org/spatial/index.html). 
@@ -25,6 +31,35 @@ library(tidyverse)
 
 ```
 
+## Python
+
+The libraries for spatial data in Python are divided into several libraries, unlike the comprehensive 'terra' library in R. For vector data, you can use the 'geopandas' library, and for raster data, 'rasterio' is a good choice, among others.
+
+```{python}
+import os
+import pandas as pd
+import numpy as np
+# Vector
+import geopandas as gpd
+from shapely.geometry import Point, LineString, Polygon, shape
+import fiona
+
+# Rster
+import rasterio
+from rasterio.plot import show as rast_plot
+from rasterio.crs import CRS
+from rasterio.warp import calculate_default_transform, reproject, Resampling
+import rasterio.features
+from rasterio.enums import Resampling
+
+# Plot
+import matplotlib.pyplot as plt
+
+```
+
+:::
+
+
 # Creating spatial data manually
 
 Creating spatial data manually is not a common practice due to the typically large volumes of data required. However, by starting from scratch and creating spatial data manually, you can gain a deeper understanding of the **data's structure** and properties. This manual creation process helps you become more familiar with how spatial data is organized and can be a valuable learning exercise.
@@ -39,6 +74,12 @@ As introduced in the [section](basic_format.qmd#sec-spatialData), spatial vector
 - **Attributes**: Non-spatial properties associated with features.
 - **CRS** (Coordinate Reference System): Defines the spatial reference framework.
 
+::: {.panel-tabset}
+
+## R
+
+
+
 ```{r}
 # Define the coordinate reference system (CRS) with EPSG codes
 crs_31468 <- "EPSG:31468"
@@ -46,19 +87,66 @@ crs_31468 <- "EPSG:31468"
 # Define coordinates for the first polygon
 x_polygon_1 <- c(4484566, 4483922, 4483002, 4481929, 4481222, 4482500, 4483000, 4484666, 4484233)
 y_polygon_1 <- c(5554566, 5554001, 5553233, 5554933, 5550666, 5551555, 5550100, 5551711, 5552767)
-xy_polygon_1 <- cbind(id=1, part=1, x_polygon_1, y_polygon_1)
+geometry_polygon_1 <- cbind(id=1, part=1, x_polygon_1, y_polygon_1)
 # Define coordinates for the second polygon
 x_polygon_2 <- c(4481929, 4481222, 4480500)
 y_polygon_2 <- c(5554933, 5550666, 5552555)
-xy_polygon_2 <- cbind(id=2, part=1, x_polygon_2, y_polygon_2)
+geometry_polygon_2 <- cbind(id=2, part=1, x_polygon_2, y_polygon_2)
 # Combine the two polygons into one data frame
-xy_polygon <- rbind(xy_polygon_1, xy_polygon_2)
+geometry_polygon <- rbind(geometry_polygon_1, geometry_polygon_2)
 
 # Create a vector layer for the polygons, specifying their type, attributes, CRS, and additional attributes
-vect_Test <- vect(xy_polygon, type="polygons", atts = data.frame(ID_region = 1:2, Name = c("a", "b")), crs = crs_31468)
+vect_Test <- vect(geometry_polygon, type="polygons", 
+                  atts = data.frame(ID_region = 1:2, Name = c("a", "b")), 
+                  crs = crs_31468)
 vect_Test$region_area <- expanse(vect_Test)
 
+# Visualize the created polygons
+plot(vect_Test)
+
 ```
+
+## Python
+
+```{python}
+# Define the coordinate reference system (CRS) with EPSG codes
+crs_31468 = "EPSG:31468"
+
+# Define coordinates for the first polygon
+x_polygon_1 = [4484566, 4483922, 4483002, 4481929, 4481222, 4482500, 4483000, 4484666, 4484233]
+y_polygon_1 = [5554566, 5554001, 5553233, 5554933, 5550666, 5551555, 5550100, 5551711, 5552767]
+# Create a list of coordinate pairs for the first polygon
+geometry_polygon_1 = Polygon([(x, y) for x, y in zip(x_polygon_1, y_polygon_1)])
+
+# Define coordinates for the second polygon
+x_polygon_2 = [4481929, 4481222, 4480500]
+y_polygon_2 = [5554933, 5550666, 5552555]
+# Create a list of coordinate pairs for the second polygon
+geometry_polygon_2 = Polygon([(x, y) for x, y in zip(x_polygon_2, y_polygon_2)])
+
+# Construct Shapely polygons using the lists of coordinates
+geometry_polygon = [geometry_polygon_1, geometry_polygon_2]
+
+
+# Create a GeoDataFrame with the polygons, specifying their attributes, CRS, and additional attributes
+vect_Test = gpd.GeoDataFrame({
+    'ID_region': [1, 2],
+    'Name': ['a', 'b'],
+    'geometry': geometry_polygon,
+}, crs=crs_31468)
+
+# Calculate the region area and add it as a new column
+vect_Test['region_area'] = vect_Test.area
+
+# Visualize the created polygons
+vect_Test.plot()
+plt.show()
+plt.close()
+
+```
+
+:::
+
 
 
 
@@ -72,10 +160,54 @@ For raster data, the geometry is relatively simple and can be defined by the fol
 
 One of the most critical aspects of raster data is the values stored within its cells. You can set or modify these values using the `values()<-` function in R.
 
+
+::: {.panel-tabset}
+
+## R
+
 ```{r}
 rast_Test <- rast(ncol=10, nrow=10, xmin=-150, xmax=-80, ymin=20, ymax=60)
 values(rast_Test) <- runif(ncell(rast_Test))
+
+plot(rast_Test)
 ```
+
+## Python
+
+```{python}
+fn_Rster_Test = "C:\\Lei\\HS_Web\\data_share/raster_Py.tif"
+
+# Create a new raster with the specified dimensions and extent
+ncol, nrow = 10, 10
+xmin, xmax, ymin, ymax = -150, -80, 20, 60
+
+# Create the empty raster with random values
+with rasterio.open(
+    fn_Rster_Test,
+    "w",
+    driver="GTiff",
+    dtype=np.float32,
+    count=1,
+    width=ncol,
+    height=nrow,
+    transform=rasterio.transform.from_origin(xmin, ymax, (xmax - xmin) / ncol, (ymax - ymin) / nrow),
+    crs="EPSG:4326"
+) as dst:
+    # Generate random values and assign them to the raster
+    random_values = np.random.rand(nrow, ncol).astype(np.float32)
+    dst.write(random_values, 1)  # Write the values to band 1
+
+# Now you have an empty raster with random values, and you can read and manipulate it as needed
+with rasterio.open(fn_Rster_Test) as src:
+    rast_Test = src.read(1)
+
+
+rast_plot(rast_Test)
+
+```
+
+:::
+
 
 
 Certainly, you can directly create a data file like an ASC (ASCII) file for raster data. 
@@ -89,18 +221,24 @@ Certainly, you can directly create a data file like an ASC (ASCII) file for rast
 
 **Reading** and **writing** data are fundamental processes that precede spatial data manipulation. Spatial data is typically acquired from external sources. 
 
+The test files are available in [Github](https://github.com/HydroSimul/Web/tree/main/data_share)
+
 However, due to the substantial differences between raster and vector data structures, they are often handled separately.
+
+
+::: {.panel-tabset}
+
+## R
 
 | Data Type | Read | Write |
 |-----------|------|-------|
 | Vector    |`vect()`|`writeVect()`|
 | Raster    |`rast()`|`writeRast()`|
 
-The test files are available in [Github](https://github.com/HydroSimul/Web/tree/main/data_share)
-
 ```{r}
 # Read shp-file as a vector layer
 vect_Test <- vect("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_polygon.geojson")
+
 # Read raster file
 rast_Test <- rast("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc")
 
@@ -114,12 +252,62 @@ plot(rast_Test)
 
 ```
 
+Export:
+
 ```{r}
 #| eval: false
-writeVector(vect_Test, "fn_Output_Vector.geojson", "GeoJSON")
+fn_Vect_Out = "fn_Output_Vector.geojson"
+writeVector(vect_Test, fn_Vect_Out, "GeoJSON")
 
-writeRaster(rast_Test, "fn_OutPut_Raster.tif")
+fn_Rast_Out = "fn_OutPut_Raster.tif"
+writeRaster(rast_Test, fn_Rast_Out)
 ```
+
+## Python
+
+| Data Type | Read | Write |
+|-----------|------|-------|
+| Vector    |`geopandas.read_file()`|`geopandas.to_file()`|
+| Raster    |`rastio.open()`|`rastio.open()`|
+
+```{python}
+# Read GeoJSON file as a vector layer
+vect_Test = gpd.read_file("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_polygon.geojson")
+
+# Read raster file
+rast_Test = rasterio.open("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc")
+
+# Info and Plot of the vector layer
+print(vect_Test)
+vect_Test.plot()
+plt.show()
+plt.close()
+
+# Info and Plot of the raster layer
+print(rast_Test.profile)
+rast_plot(rast_Test)
+
+
+```
+
+
+Export:
+
+```{python}
+#| eval: false
+fn_Vect_Out = "fn_Output_Vector.geojson"
+vect_Test.to_file(fn_Vect_Out, driver="GeoJSON")
+
+# Write the raster to a GeoTIFF file
+fn_Rast_Out = "fn_OutPut_Raster.tif"
+with rasterio.open(fn_Rast_Out, 'w', driver='GTiff', dtype=rast_Test.dtype, count=1, width=rast_Test.shape[1], height=rast_Test.shape[0], transform=rast_Test.transform, crs=rast_Test.crs) as dst:
+    dst.write(rast_Test, 1)
+
+```
+
+:::
+
+
 
 
 # Coordinate Reference Systems
@@ -128,11 +316,26 @@ writeRaster(rast_Test, "fn_OutPut_Raster.tif")
 
 In cases where the **Coordinate Reference System (CRS)** information is not included in the data file's content, you can assign it manually using the `crs()` function. This situation often occurs when working with raster data in formats like ASC (Arc/Info ASCII Grid) or other file formats that may not store CRS information.
 
+::: {.panel-tabset}
+
+## R
 
 ```{r}
 crs(rast_Test) <- "EPSG:31468"
 rast_Test
 ```
+
+## Python
+
+```{python}
+rast_Test = rasterio.open("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc", 'r+')
+rast_Test.crs = CRS.from_epsg(31468)
+print(rast_Test.crs)
+```
+
+:::
+
+
 
 
 As the results showed, the CRS information has been filled with the necessary details in line `coord. ref.`. 
@@ -151,6 +354,10 @@ You should not use this approach to change the CRS of a data set from what it is
 
 The **transformation** of vector data is relatively simple, as it involves applying a mathematical formula to the coordinates of each point to obtain their new coordinates. This transformation can be considered as **without loss of precision**. 
 
+::: {.panel-tabset}
+
+## R
+
 The `project()` function can be utilized to **reproject** both vector and raster data. 
 
 
@@ -160,10 +367,25 @@ crs_New <- "EPSG:4326"
 # Reproject
 vect_Test_New <- project(vect_Test, crs_New)
 
-# Info and Plot of vector layer
+# Info of vector layer
 vect_Test_New
 
 ```
+
+## Python
+
+```{python}
+crs_New = "EPSG:4326"
+
+# Reproject the vector layer to the new CRS
+vect_Test_New = vect_Test.to_crs(crs=crs_New)
+
+# Info of vector layer
+print(vect_Test_New)
+```
+
+:::
+
 
 
 ## Transforming raster data
@@ -179,14 +401,21 @@ Because projection of rasters affects the cell values, in most cases you will wa
 
 The simplest approach is to provide a **new CRS**:
 
+::: {.panel-tabset}
+
+## R
+
+
 ```{r}
+
 # New CRS
 crs_New <- "EPSG:4326"
 # Reproject
-rast_Test_New <- project(rast_Test, crs_New)
+rast_Test_New <- project(rast_Test, crs_New, method = 'near')
 
 # Info and Plot of vector layer
 rast_Test_New
+
 
 ```
 
@@ -196,10 +425,49 @@ rast_Test_New
 #| fig-cap: 
 #|   - "Original"
 #|   - "New"
-
 plot(rast_Test)
 plot(rast_Test_New)
+
 ```
+
+## Python
+
+```{python}
+fn_Rast_New = 'C:\\Lei\\HS_Web\\data_share/minibeispiel_raster.tif'
+# Define the new CRS
+new_crs = {'init': 'EPSG:4326'}
+transform, width, height = calculate_default_transform(
+        rast_Test.crs, new_crs, rast_Test.width, rast_Test.height, *rast_Test.bounds)
+kwargs = rast_Test.meta.copy()
+kwargs.update({
+        'crs': new_crs,
+        'transform': transform,
+        'width': width,
+        'height': height
+    })        
+rast_Test_New = rasterio.open(fn_Rast_New, 'w', **kwargs)        
+reproject(
+    source=rasterio.band(rast_Test, 1),
+    destination=rasterio.band(rast_Test_New, 1),
+    #src_transform=rast_Test.transform,
+    src_crs=rast_Test.crs,
+    #dst_transform=transform,
+    dst_crs=new_crs,
+    resampling=Resampling.nearest)
+
+rast_Test_New.close()        
+
+rast_Test = rasterio.open("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc")
+rast_plot(rast_Test)
+
+rast_Test_New = rasterio.open(fn_Rast_New)
+rast_plot(rast_Test_New)
+
+```
+
+
+:::
+
 
 ### With Mask Raster
 
@@ -298,6 +566,11 @@ vect_Test[,"New_Attr"] <- c("n1", "n2")
 
 ### Append new Objects
 
+::: {.panel-tabset}
+
+## R
+
+
 - `rbind()`
 
 ```{r}
@@ -308,10 +581,10 @@ crs_31468 <- "EPSG:31468"
 # Define coordinates for the first polygon
 x_polygon_3 <- c(4480400, 4481222, 4480500)
 y_polygon_3 <- c(5551000, 5550666, 5552555)
-xy_polygon_3 <- cbind(id=3, part=1, x_polygon_3, y_polygon_3)
+geometry_polygon_3 <- cbind(id=3, part=1, x_polygon_3, y_polygon_3)
 
 # Create a vector layer for the polygons, specifying their type, attributes, CRS, and additional attributes
-vect_New <- vect(xy_polygon_3, type="polygons", atts = data.frame(ID_region = 3, Name = c("b")), crs = crs_31468)
+vect_New <- vect(geometry_polygon_3, type="polygons", atts = data.frame(ID_region = 3, Name = c("b")), crs = crs_31468)
 vect_New$region_area <- expanse(vect_New)
 
 # Append the objects
@@ -319,14 +592,51 @@ vect_Append <- rbind(vect_Test, vect_New)
 vect_Append
 ```
 
+## Python
+
+- `pandas.concat()`
+
+```{python}
+# Define the coordinate reference system (CRS) with EPSG code
+crs_31468 = "EPSG:31468"
+
+# Define coordinates for the new polygon
+x_polygon_3 = [4480400, 4481222, 4480500]
+y_polygon_3 = [5551000, 5550666, 5552555]
+
+# Create a Polygon geometry
+geometry_polygon_3 = Polygon(zip(x_polygon_3, y_polygon_3))
+
+# Create a GeoDataFrame for the new polygon
+vect_New = gpd.GeoDataFrame({'ID_region': [3], 'Name': ['b'], 'geometry': [geometry_polygon_3]}, crs=crs_31468)
+
+# Calculate the region area
+vect_New['region_area'] = vect_New['geometry'].area
+
+# Append the new GeoDataFrame to the existing one
+vect_Append = gpd.GeoDataFrame(pd.concat([vect_Test, vect_New], ignore_index=True), crs=crs_31468)
+
+# Now, vect_Append contains the combined data
+print(vect_Append)
+
+```
+
+:::
+
 
 ### Aggregate / Dissolve
 
 It is common to **aggregate (“dissolve”)** polygons that have the same value for an attribute of interest. 
 
+::: {.panel-tabset}
+
+## R
+
+
 - `aggregate()`
 
 ```{r}
+# Aggregate by the "Name"
 vect_Aggregated <- terra::aggregate(vect_Append, by = "Name")
 vect_Aggregated
 ```
@@ -342,9 +652,41 @@ plot(vect_Append, "ID_region")
 plot(vect_Aggregated, "Name")
 ```
 
+## Python
+
+```{python}
+# Aggregate by the "Name"
+vect_Aggregated = vect_Append.dissolve(by="Name", aggfunc="first")
+
+print(vect_Aggregated)
+
+```
+
+```{python}
+vect_Test.plot()
+plt.show()
+plt.close()
+vect_Aggregated.plot()
+plt.show()
+plt.close()
+
+```
+
+:::
+
+
+
+
+
+
 ## Overlap
 
 To perform operations that involve overlap between two vector datasets, we will create a new vector dataset:
+
+
+::: {.panel-tabset}
+
+## R
 
 ```{r}
 vect_Overlap <- as.polygons(rast_Test)[1,]
@@ -353,8 +695,38 @@ names(vect_Overlap) <- "ID_Rast"
 plot(vect_Overlap, "ID_Rast")
 ```
 
+## Python
+
+```{python}
+# Read the raster and get the shapes
+rast_Test = rasterio.open("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc", 'r+')
+rast_Test.crs = CRS.from_epsg(31468)
+transform = rast_Test.transform
+shapes = rasterio.features.shapes(rast_Test.read(1), transform=transform)
+
+# Convert the shapes to a GeoDataFrame
+geometries = [shape(s) for s, v in shapes if v == 1]
+vect_Overlap = gpd.GeoDataFrame({'geometry': geometries})
+
+# Add an "ID_Rast" column to the GeoDataFrame
+vect_Overlap['ID_Rast'] = range(1, len(geometries) + 1)
+vect_Overlap.crs ="EPSG:31468"
+
+# Plot the polygons with "ID_Rast" as the attribute
+vect_Overlap.plot(column='ID_Rast')
+plt.show()
+plt.close()
+```
+
+:::
+
 
 ### Erase
+
+
+::: {.panel-tabset}
+
+## R
 
 - `erase()`
 
@@ -363,8 +735,23 @@ vect_Erase <- erase(vect_Test, vect_Overlap)
 plot(vect_Erase, "ID_region")
 ```
 
+## Python
+
+```{python}
+vect_Erase = gpd.overlay(vect_Test, vect_Overlap, how='difference')
+vect_Erase.plot(column='ID_region', cmap='jet')
+plt.show()
+plt.close()
+```
+
+:::
+
 
 ### Intersect
+
+::: {.panel-tabset}
+
+## R
 
 - `intersect()`
 
@@ -373,9 +760,25 @@ vect_Intersect <- terra::intersect(vect_Test, vect_Overlap)
 plot(vect_Intersect, "ID_region")
 ```
 
+## Python
+
+```{python}
+vect_Intersect = gpd.overlay(vect_Test, vect_Overlap, how='intersection')
+vect_Intersect.plot(column='ID_region', cmap='jet')
+plt.show()
+plt.close()
+```
+
+:::
+
+
 ### Union
 
 Appends the geometries and attributes of the input. 
+
+::: {.panel-tabset}
+
+## R
 
 - `union()`
 
@@ -384,10 +787,28 @@ vect_Union <- terra::union(vect_Test, vect_Overlap)
 plot(vect_Union, "ID_region")
 ```
 
+## Python
+
+```{python}
+vect_Union = gpd.overlay(vect_Test, vect_Overlap, how='union')
+vect_Union.plot(column='ID_region', cmap='jet')
+plt.show()
+plt.close()
+```
+
+:::
+
+
 ### Cover
 
 `cover()` is a combination of `intersect()` and `union()`. intersect returns new (intersected) geometries with the attributes of both input datasets. union appends the geometries and attributes of the input. cover returns the intersection and appends the other geometries and attributes of both datasets.
 
+
+
+
+::: {.panel-tabset}
+
+## R
 
 - `cover()`
 
@@ -396,10 +817,25 @@ vect_Cover <- terra::cover(vect_Test, vect_Overlap)
 plot(vect_Cover, "ID_region")
 ```
 
+## Python
+
+```{python}
+vect_Cover = gpd.overlay(vect_Test, vect_Overlap, how='identity')
+vect_Cover.plot(column='ID_region', cmap='jet')
+plt.show()
+plt.close()
+```
+
+:::
 
 
 
 ### Difference
+
+
+::: {.panel-tabset}
+
+## R
 
 - `symdif()`
 
@@ -408,22 +844,69 @@ vect_Difference <- terra::symdif(vect_Test, vect_Overlap)
 plot(vect_Difference, "ID_region")
 ```
 
+## Python
+
+```{python}
+vect_Difference = gpd.overlay(vect_Test, vect_Overlap, how='symmetric_difference')
+vect_Difference.plot(column='ID_region', cmap='jet')
+plt.show()
+plt.close()
+```
+
+:::
+
+
 # Raster data manipulation
 
 Compared to vector data, raster data stores **continuous numeric** values more, leading to significant differences in manipulation and analysis approaches.
 
+
+::: {.panel-tabset}
+
+In Python, raster data is treated as an array. To work with it, we can create a new variable, 'rast_Test_data':
+
+## Python
+
+```{python}
+rast_Test = rasterio.open("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc", 'r+')
+rast_Test.crs = CRS.from_epsg(31468)
+rast_Test_data = rast_Test.read(1)
+rast_Test_data[rast_Test_data == -9999] = np.nan
+```
+
+:::
 
 ## Raster algebra
 
 Many generic functions that allow for simple and elegant raster **algebra** have been implemented for Raster objects, including the normal algebraic operators such as `+`, `-`, `*`, `/`, logical operators such as `>`, `>=`, `<`, `==`, `!`, and functions like `abs`, `round`, `ceiling`, `floor`, `trunc`, `sqrt`, `log`, `log10`, `exp`, `cos`, `sin`, `atan`, `tan`, `max`, `min`, `range`, `prod`, `sum`, `any`, `all`. In these functions, you can mix raster objects with numbers, as long as the first argument is a raster object. ([Spatial Data Science](https://rspatial.org/spatial/index.html))
 
 
+
+::: {.panel-tabset}
+
+## R
+
 ```{r}
 rast_Add <- rast_Test + 10
 plot(rast_Add)
 ```
 
+## Python
+
+```{python}
+rast_Add = rast_Test_data + 10
+rast_plot(rast_Add)
+```
+
+:::
+
+
 ## Replace with Condition
+
+::: {.panel-tabset}
+
+## R
+
 
 - `rast[condition] <- `
 
@@ -436,34 +919,86 @@ rast_Replace[rast_Replace > 1] <- 10
 plot(rast_Replace)
 ```
 
+## Python
+
+```{python}
+rast_Replace = rast_Test_data
+
+# Replace values greater than 1 with 10
+rast_Replace[rast_Replace > 1] = 10
+rast_plot(rast_Replace)
+
+```
+
+:::
+
+
 ## Summary of multi-layers
+
+
+::: {.panel-tabset}
+
+## R
 
 ```{r}
 rast_Mean <- mean(rast_Test, rast_Replace)
 plot(rast_Mean)
 ```
 
+## Python
+
+```{python}
+rast_Mean = (rast_Test_data + rast_Replace) / 2
+rast_plot(rast_Mean)
+
+```
+
+:::
+
+
 ## Aggregate and disaggregate
+
+
+::: {.panel-tabset}
+
+## R
+
 
 - `aggregate()`
 - `disagg()`
 
 ```{r}
+# Aggregate by factor 2
 rast_Aggregate <- aggregate(rast_Test, 2)
 plot(rast_Aggregate)
-```
 
-
-```{r}
+# Disaggregate by factor 2
 rast_Disagg <- disagg(rast_Test, 2)
 rast_Disagg
 plot(rast_Disagg)
 ```
 
+## Python
+
+```{python}
+# Aggregate by factor 2
+rast_Aggregate = rast_Test_data
+rast_Aggregate = rast_Aggregate[::2, ::2]
+rast_plot(rast_Aggregate)
+
+# Disaggregate by factor 2
+rast_Disagg = rast_Test_data
+rast_Disagg = np.repeat(np.repeat(rast_Disagg, 2, axis=0), 2, axis=1)
+rast_plot(rast_Disagg)
+```
+
+:::
+
 
 ## Crop
 
 The crop function lets you take a geographic **subset** of a larger raster object with an **extent**. But you can also use other spatial object, in them an extent can be extracted.
+
 
 - `crop()`
   - with extention
@@ -475,6 +1010,7 @@ The crop function lets you take a geographic **subset** of a larger raster objec
 rast_Crop <- crop(rast_Test, vect_Test[1,])
 plot(rast_Crop)
 ```
+
 
 
 ## Trim
@@ -504,6 +1040,11 @@ plot(rast_Trim)
 
 ## Mask
 
+::: {.panel-tabset}
+
+## R
+
+
 - `mask()`
 - `crop(mask = TRUE)` = `mask()` + `trim()`
 
@@ -525,5 +1066,23 @@ rast_CropMask <- crop(rast_Disagg, vect_Test[1,], mask = TRUE)
 plot(rast_Mask)
 plot(rast_CropMask)
 ```
+
+## Python
+
+
+```{python}
+
+vect_Mask = vect_Test.iloc[0:1].geometry.values[0]
+
+# Create a mask for the vect_Mask on the raster
+rast_Mask = rasterio.features.geometry_mask([vect_Mask], out_shape=rast_Test.shape, transform=rast_Test.transform, invert=True)
+# Apply the mask to the raster
+rast_Crop = rast_Test_data.copy()
+rast_Crop[~rast_Mask] = rast_Test.nodata  # Set values outside the geometry to nodata
+
+rast_plot(rast_Crop)
+```
+
+:::
 
 

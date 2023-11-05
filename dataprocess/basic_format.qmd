@@ -303,6 +303,17 @@ More Vector file-formats in [GDAL](https://gdal.org/drivers/vector/index.html)
    - One of the most common vector formats used in GIS applications.
    - Consists of multiple files (.shp, .shx, .dbf, etc.) to store point, line, or polygon geometries and associated attributes.
 
+| File extension | Content                       |
+|----------------|-------------------------------|
+| .dbf           | Attribute information         |
+| .shp           | Feature geometry              |
+| .shx           | Feature geometry index        |
+| .aih           | Attribute index               |
+| .ain           | Attribute index               |
+| .prj           | Coordinate system information |
+| .sbn           | Spatial index file            |
+| .sbx           | Spatial index file            |
+
 2. **GeoPackage (GPKG)**:
    - An open, standards-based platform-independent format for spatial data.
    - Can store multiple layers, attributes, and geometries in a single file.
