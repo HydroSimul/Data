@@ -266,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#library-terra" id="toc-library-terra" class="nav-link active" data-scroll-target="#library-terra"><span class="header-section-number">1</span> Library <code>terra</code></a></li>
+  <li><a href="#library" id="toc-library" class="nav-link active" data-scroll-target="#library"><span class="header-section-number">1</span> Library</a></li>
   <li><a href="#creating-spatial-data-manually" id="toc-creating-spatial-data-manually" class="nav-link" data-scroll-target="#creating-spatial-data-manually"><span class="header-section-number">2</span> Creating spatial data manually</a>
   <ul class="collapse">
   <li><a href="#vector" id="toc-vector" class="nav-link" data-scroll-target="#vector"><span class="header-section-number">2.1</span> Vector</a></li>
@@ -340,8 +340,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="library-terra" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Library <code>terra</code></h1>
+<section id="library" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Library</h1>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
@@ -356,7 +356,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>The libraries for spatial data in Python are divided into several libraries, unlike the comprehensive ‘terra’ library in R. For vector data, you can use the ‘geopandas’ library, and for raster data, ‘rasterio’ is a good choice, among others.</p>
+<p>The libraries for spatial data in Python are divided into several libraries, unlike the comprehensive <code>terra</code> library in R. For <strong>vector</strong> data, you can use the <code>geopandas</code> library, and for <strong>raster</strong> data, <code>rasterio</code> is a good choice, among others.</p>
+<p>For more in-depth information and resources on the spatial data science in Python, you can explore the website <a href="https://pygis.io/docs/a_intro.html">Python Open Source Spatial Programming &amp; Remote Sensing</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -628,8 +629,8 @@ name        : minibeispiel_raster </code></pre>
 </tr>
 <tr class="even">
 <td>Raster</td>
-<td><code>rastio.open()</code></td>
-<td><code>rastio.open()</code></td>
+<td><code>rastio.open('r')</code></td>
+<td><code>rastio.open('w')</code></td>
 </tr>
 </tbody>
 </table>
@@ -659,7 +660,7 @@ name        : minibeispiel_raster </code></pre>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Info and Plot of the raster layer</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rast_Test.profile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'driver': 'AAIGrid', 'dtype': 'float32', 'nodata': -9999.0, 'width': 5, 'height': 5, 'count': 1, 'crs': None, 'transform': Affine(1000.0, 0.0, 4480000.0,
+<pre><code>{'driver': 'AAIGrid', 'dtype': 'float32', 'nodata': -9999.0, 'width': 5, 'height': 5, 'count': 1, 'crs': CRS.from_wkt('GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["Degree",0.0174532925199433],AXIS["Longitude",EAST],AXIS["Latitude",NORTH]]'), 'transform': Affine(1000.0, 0.0, 4480000.0,
        0.0, -1000.0, 5555000.0), 'blockysize': 1, 'tiled': False}</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rast_plot(rast_Test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -703,6 +704,7 @@ source      : minibeispiel_raster.asc
 name        : minibeispiel_raster </code></pre>
 </div>
 </div>
+<p>As the results showed, the CRS information has been filled with the necessary details in line <code>coord. ref.</code>.</p>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <div class="cell">
@@ -716,7 +718,6 @@ name        : minibeispiel_raster </code></pre>
 </div>
 </div>
 </div>
-<p>As the results showed, the CRS information has been filled with the necessary details in line <code>coord. ref.</code>.</p>
 <p>The use of <strong>EPSG (European Petroleum Survey Group) codes</strong> is highly recommended for defining Coordinate Reference Systems (CRS) in spatial data. You can obtain information about EPSG codes from the <a href="https://epsg.io/">EPSG</a> website.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -762,14 +763,18 @@ NOTE
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<ul>
+<li><code>geopands.to_crs()</code></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>crs_New <span class="op">=</span> <span class="st">"EPSG:4326"</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject the vector layer to the new CRS</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>vect_Test_New <span class="op">=</span> vect_Test.to_crs(crs<span class="op">=</span>crs_New)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Info of vector layer</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vect_Test_New)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New CRS</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>crs_New <span class="op">=</span> <span class="st">"EPSG:4326"</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject the vector layer to the new CRS</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>vect_Test_New <span class="op">=</span> vect_Test.to_crs(crs<span class="op">=</span>crs_New)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Info of vector layer</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vect_Test_New)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   ID_region  ...                                           geometry
 0          1  ...  MULTIPOLYGON (((11.78268 50.12711, 11.77370 50...
@@ -805,6 +810,9 @@ Note
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<ul>
+<li><code>project()</code></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New CRS</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>crs_New <span class="ot">&lt;-</span> <span class="st">"EPSG:4326"</span></span>
@@ -1189,6 +1197,9 @@ max value   :                   3 </code></pre>
 </div>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<ul>
+<li><code>geopandas.dissolve()</code></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate by the "Name"</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>vect_Aggregated <span class="op">=</span> vect_Append.dissolve(by<span class="op">=</span><span class="st">"Name"</span>, aggfunc<span class="op">=</span><span class="st">"first"</span>)</span>
@@ -1284,6 +1295,9 @@ b     POLYGON ((4480400.000 5551000.000, 4480500.000...  ...  2.208109e+06
 </div>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<ul>
+<li><code>geopandas.overlay(how='difference')</code></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>vect_Erase <span class="op">=</span> gpd.overlay(vect_Test, vect_Overlap, how<span class="op">=</span><span class="st">'difference'</span>)</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>vect_Erase.plot(column<span class="op">=</span><span class="st">'ID_region'</span>, cmap<span class="op">=</span><span class="st">'jet'</span>)</span>
@@ -1315,6 +1329,9 @@ b     POLYGON ((4480400.000 5551000.000, 4480500.000...  ...  2.208109e+06
 </div>
 </div>
 <div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<ul>
+<li><code>geopandas.overlay(how='intersection')</code></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>vect_Intersect <span class="op">=</span> gpd.overlay(vect_Test, vect_Overlap, how<span class="op">=</span><span class="st">'intersection'</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>vect_Intersect.plot(column<span class="op">=</span><span class="st">'ID_region'</span>, cmap<span class="op">=</span><span class="st">'jet'</span>)</span>
@@ -1347,6 +1364,9 @@ b     POLYGON ((4480400.000 5551000.000, 4480500.000...  ...  2.208109e+06
 </div>
 </div>
 <div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<ul>
+<li><code>geopandas.overlay(how='union')</code></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>vect_Union <span class="op">=</span> gpd.overlay(vect_Test, vect_Overlap, how<span class="op">=</span><span class="st">'union'</span>)</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>vect_Union.plot(column<span class="op">=</span><span class="st">'ID_region'</span>, cmap<span class="op">=</span><span class="st">'jet'</span>)</span>
@@ -1379,6 +1399,9 @@ b     POLYGON ((4480400.000 5551000.000, 4480500.000...  ...  2.208109e+06
 </div>
 </div>
 <div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<ul>
+<li><code>geopandas.overlay(how='identity')</code></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>vect_Cover <span class="op">=</span> gpd.overlay(vect_Test, vect_Overlap, how<span class="op">=</span><span class="st">'identity'</span>)</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>vect_Cover.plot(column<span class="op">=</span><span class="st">'ID_region'</span>, cmap<span class="op">=</span><span class="st">'jet'</span>)</span>
@@ -1410,6 +1433,9 @@ b     POLYGON ((4480400.000 5551000.000, 4480500.000...  ...  2.208109e+06
 </div>
 </div>
 <div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+<ul>
+<li><code>geopandas.overlay(how='symmetric_difference')</code></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>vect_Difference <span class="op">=</span> gpd.overlay(vect_Test, vect_Overlap, how<span class="op">=</span><span class="st">'symmetric_difference'</span>)</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>vect_Difference.plot(column<span class="op">=</span><span class="st">'ID_region'</span>, cmap<span class="op">=</span><span class="st">'jet'</span>)</span>
@@ -1432,6 +1458,7 @@ b     POLYGON ((4480400.000 5551000.000, 4480500.000...  ...  2.208109e+06
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
+<p>Data preparation for Python:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>rast_Test <span class="op">=</span> rasterio.<span class="bu">open</span>(<span class="st">"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc"</span>, <span class="st">'r+'</span>)</span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>rast_Test.crs <span class="op">=</span> CRS.from_epsg(<span class="dv">31468</span>)</span>
@@ -1490,6 +1517,9 @@ b     POLYGON ((4480400.000 5551000.000, 4480500.000...  ...  2.208109e+06
 </div>
 </div>
 <div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
+<ul>
+<li><code>rast[condition] =</code></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>rast_Replace <span class="op">=</span> rast_Test_data</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>

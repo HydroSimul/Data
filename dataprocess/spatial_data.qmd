@@ -8,7 +8,7 @@ sidebar:
 number-sections: true
 ---
 
-# Library `terra`
+# Library
 
 ::: {.panel-tabset}
 
@@ -33,7 +33,10 @@ library(tidyverse)
 
 ## Python
 
-The libraries for spatial data in Python are divided into several libraries, unlike the comprehensive 'terra' library in R. For vector data, you can use the 'geopandas' library, and for raster data, 'rasterio' is a good choice, among others.
+The libraries for spatial data in Python are divided into several libraries, unlike the comprehensive `terra` library in R. For **vector** data, you can use the `geopandas` library, and for **raster** data, `rasterio` is a good choice, among others.
+
+For more in-depth information and resources on the spatial data science in Python, you can explore the website [Python Open Source Spatial Programming & Remote Sensing](https://pygis.io/docs/a_intro.html). 
+
 
 ```{python}
 import os
@@ -268,7 +271,7 @@ writeRaster(rast_Test, fn_Rast_Out)
 | Data Type | Read | Write |
 |-----------|------|-------|
 | Vector    |`geopandas.read_file()`|`geopandas.to_file()`|
-| Raster    |`rastio.open()`|`rastio.open()`|
+| Raster    |`rastio.open('r')`|`rastio.open('w')`|
 
 ```{python}
 # Read GeoJSON file as a vector layer
@@ -325,6 +328,8 @@ crs(rast_Test) <- "EPSG:31468"
 rast_Test
 ```
 
+As the results showed, the CRS information has been filled with the necessary details in line `coord. ref.`. 
+
 ## Python
 
 ```{python}
@@ -338,12 +343,12 @@ print(rast_Test.crs)
 
 
 
-As the results showed, the CRS information has been filled with the necessary details in line `coord. ref.`. 
 
 
 The use of **EPSG (European Petroleum Survey Group) codes** is highly recommended for defining Coordinate Reference Systems (CRS) in spatial data. You can obtain information about EPSG codes from the [EPSG](https://epsg.io/) website. 
 
 ::: {.callout-important}
+
 ## NOTE
 
 You should not use this approach to change the CRS of a data set from what it is to what you want it to be. Assigning a CRS is like labeling something.
@@ -374,7 +379,10 @@ vect_Test_New
 
 ## Python
 
+- `geopands.to_crs()`
+
 ```{python}
+# New CRS
 crs_New = "EPSG:4326"
 
 # Reproject the vector layer to the new CRS
@@ -405,6 +413,7 @@ The simplest approach is to provide a **new CRS**:
 
 ## R
 
+- `project()`
 
 ```{r}
 
@@ -654,6 +663,8 @@ plot(vect_Aggregated, "Name")
 
 ## Python
 
+- `geopandas.dissolve()`
+
 ```{python}
 # Aggregate by the "Name"
 vect_Aggregated = vect_Append.dissolve(by="Name", aggfunc="first")
@@ -737,6 +748,8 @@ plot(vect_Erase, "ID_region")
 
 ## Python
 
+- `geopandas.overlay(how='difference')`
+
 ```{python}
 vect_Erase = gpd.overlay(vect_Test, vect_Overlap, how='difference')
 vect_Erase.plot(column='ID_region', cmap='jet')
@@ -761,6 +774,9 @@ plot(vect_Intersect, "ID_region")
 ```
 
 ## Python
+
+- `geopandas.overlay(how='intersection')`
+
 
 ```{python}
 vect_Intersect = gpd.overlay(vect_Test, vect_Overlap, how='intersection')
@@ -788,6 +804,8 @@ plot(vect_Union, "ID_region")
 ```
 
 ## Python
+
+- `geopandas.overlay(how='union')`
 
 ```{python}
 vect_Union = gpd.overlay(vect_Test, vect_Overlap, how='union')
@@ -819,6 +837,8 @@ plot(vect_Cover, "ID_region")
 
 ## Python
 
+- `geopandas.overlay(how='identity')`
+
 ```{python}
 vect_Cover = gpd.overlay(vect_Test, vect_Overlap, how='identity')
 vect_Cover.plot(column='ID_region', cmap='jet')
@@ -846,6 +866,8 @@ plot(vect_Difference, "ID_region")
 
 ## Python
 
+- `geopandas.overlay(how='symmetric_difference')`
+
 ```{python}
 vect_Difference = gpd.overlay(vect_Test, vect_Overlap, how='symmetric_difference')
 vect_Difference.plot(column='ID_region', cmap='jet')
@@ -866,6 +888,8 @@ Compared to vector data, raster data stores **continuous numeric** values more, 
 In Python, raster data is treated as an array. To work with it, we can create a new variable, 'rast_Test_data':
 
 ## Python
+
+Data preparation for Python:
 
 ```{python}
 rast_Test = rasterio.open("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/minibeispiel_raster.asc", 'r+')
@@ -920,6 +944,8 @@ plot(rast_Replace)
 ```
 
 ## Python
+
+- `rast[condition] = `
 
 ```{python}
 rast_Replace = rast_Test_data
