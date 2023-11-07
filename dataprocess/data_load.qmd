@@ -346,6 +346,8 @@ df_Date[1] = pd.to_datetime(df_Date[1], format='%d.%m.%Y')
 
 # Display the DataFrame with the second column converted to date format
 print(df_Date)
+
+print(df_Date.dtypes)
 ```
 
 :::
@@ -439,9 +441,6 @@ Compared to plain text files, Excel data already contains data type information 
 However, there are instances where the data type in Excel is not correctly set, so manual data type conversion may be necessary. For more details, refer to [@sec-datatype].
 
 
-# NetCDF
-
-the process loading of netCDF is seperated in the page
 
 # Text & String {#sec-string}
 

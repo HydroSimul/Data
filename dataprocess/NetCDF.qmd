@@ -58,7 +58,7 @@ fn_NetCDF = "C:\\Lei\\HS_Web\\data_share\\minibeispiel_NetCDF.nc"
 
 
 
-The Test data `minibeispiel_NetCDF.nc` is avable from Github, but it can not be direcly read from Git hub so you need download to local.
+The Test data `minibeispiel_NetCDF.nc` is avable from [Github data_share](https://github.com/HydroSimul/Web/blob/main/data_share/minibeispiel_NetCDF.nc), but it can not be direcly read from Git hub so you need download to local.
 
 ## Import
 

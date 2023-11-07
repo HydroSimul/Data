@@ -178,7 +178,7 @@ plot(rast_Test)
 ## Python
 
 ```{python}
-fn_Rster_Test = "C:\\Lei\\HS_Web\\data_share/raster_Py.tif"
+fn_Rast_Test = "C:\\Lei\\HS_Web\\data_share/raster_Py.tif"
 
 # Create a new raster with the specified dimensions and extent
 ncol, nrow = 10, 10
@@ -186,7 +186,7 @@ xmin, xmax, ymin, ymax = -150, -80, 20, 60
 
 # Create the empty raster with random values
 with rasterio.open(
-    fn_Rster_Test,
+    fn_Rast_Test,
     "w",
     driver="GTiff",
     dtype=np.float32,
@@ -201,7 +201,7 @@ with rasterio.open(
     dst.write(random_values, 1)  # Write the values to band 1
 
 # Now you have an empty raster with random values, and you can read and manipulate it as needed
-with rasterio.open(fn_Rster_Test) as src:
+with rasterio.open(fn_Rast_Test) as src:
     rast_Test = src.read(1)
 
 

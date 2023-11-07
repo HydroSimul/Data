@@ -122,12 +122,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../dataset/index.html" rel="" target="">
- <span class="menu-text">Dataset</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="../dataprocess/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Dataprocess</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../modelling/index.html" rel="" target="">
+ <span class="menu-text">Modelling</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -293,8 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#data-type" id="toc-data-type" class="nav-link" data-scroll-target="#data-type"><span class="header-section-number">2.4</span> Data type</a></li>
   </ul></li>
-  <li><a href="#netcdf" id="toc-netcdf" class="nav-link" data-scroll-target="#netcdf"><span class="header-section-number">3</span> NetCDF</a></li>
-  <li><a href="#sec-string" id="toc-sec-string" class="nav-link" data-scroll-target="#sec-string"><span class="header-section-number">4</span> Text &amp; String</a></li>
+  <li><a href="#sec-string" id="toc-sec-string" class="nav-link" data-scroll-target="#sec-string"><span class="header-section-number">3</span> Text &amp; String</a></li>
   </ul>
 </nav>
     </div>
@@ -382,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are three ways to deal with metadata:</p>
 <ol type="1">
 <li><p><strong>Directly Ignore:</strong> This approach involves ignoring metadata when it’s redundant or readily available from other data sources, such as file names or external references.</p></li>
-<li><p><strong>Extract from Text:</strong> When metadata is crucial but not in table form, you can extract information from text strings. For more information, refer to the section on string manipulation <a href="#sec-string">Section&nbsp;4</a>.</p></li>
+<li><p><strong>Extract from Text:</strong> When metadata is crucial but not in table form, you can extract information from text strings. For more information, refer to the section on string manipulation <a href="#sec-string">Section&nbsp;3</a>.</p></li>
 <li><p><strong>Read as a Second Table:</strong> If metadata is well-organized in a tabular format, it can be read as a separate table to facilitate its use.</p></li>
 </ol>
 <p>In the <code>Bachum_2763190000100.csv</code> file, you will find that there are 10 lines of metadata, which are well-organized in a tabular format. However, it’s important to note that the consistency in values column varies.</p>
@@ -724,6 +723,12 @@ dtype: object</code></pre>
 0  Datum von 1990-01-01
 1  Datum bis 2022-12-31</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_Date.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0            object
+1    datetime64[ns]
+dtype: object</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -802,10 +807,10 @@ dtype: object</code></pre>
 <h2 data-number="2.2" class="anchored" data-anchor-id="r-library-and-functions"><span class="header-section-number">2.2</span> R library and functions</h2>
 <p>To load the necessary library, <code>readxl</code>, and access its help documentation, you can visit <a href="https://readxl.tidyverse.org/">this link</a>. The <code>readxl::read_excel()</code> function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. Additionally, you have the options of using <code>read_xls()</code> for .xls files and <code>read_xlsx()</code> for .xlsx files. More details in the <a href="https://readxl.tidyverse.org/reference/read_excel.html">Page</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>fn_Pegeln <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share/Pegeln_NRW.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>fn_Pegeln <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share/Pegeln_NRW.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="load-tabular-data-1" class="level2" data-number="2.3">
@@ -815,9 +820,9 @@ dtype: object</code></pre>
 <section id="first-try-without-any-setting" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="first-try-without-any-setting"><span class="header-section-number">2.3.1</span> First try without any setting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try without setting</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try without setting</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 277 × 16
    Suchergebnisse Pegel.…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10
@@ -843,9 +848,9 @@ dtype: object</code></pre>
 <section id="give-a-range" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="give-a-range"><span class="header-section-number">2.3.2</span> Give a <code>range</code></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the range argument</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln, <span class="at">range =</span> <span class="st">"Suchergebnisse Pegel!A5:P10"</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the range argument</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln, <span class="at">range =</span> <span class="st">"Suchergebnisse Pegel!A5:P10"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 16
   Name            Pegelnummer   Gewässername Betreiber  `Pegelnullpunkt [müNHN]`
@@ -881,12 +886,8 @@ Warning
 <p>However, there are instances where the data type in Excel is not correctly set, so manual data type conversion may be necessary. For more details, refer to <a href="#sec-datatype">Section&nbsp;1.5</a>.</p>
 </section>
 </section>
-<section id="netcdf" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> NetCDF</h1>
-<p>the process loading of netCDF is seperated in the page</p>
-</section>
-<section id="sec-string" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Text &amp; String</h1>
+<section id="sec-string" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Text &amp; String</h1>
 <p>more details</p>
 
 
