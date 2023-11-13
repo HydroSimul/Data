@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#excel-file" id="toc-excel-file" class="nav-link" data-scroll-target="#excel-file"><span class="header-section-number">2</span> Excel File</a>
   <ul class="collapse">
   <li><a href="#example-file-1" id="toc-example-file-1" class="nav-link" data-scroll-target="#example-file-1"><span class="header-section-number">2.1</span> Example File</a></li>
-  <li><a href="#r-library-and-functions" id="toc-r-library-and-functions" class="nav-link" data-scroll-target="#r-library-and-functions"><span class="header-section-number">2.2</span> R library and functions</a></li>
+  <li><a href="#library-and-functions-1" id="toc-library-and-functions-1" class="nav-link" data-scroll-target="#library-and-functions-1"><span class="header-section-number">2.2</span> Library and functions</a></li>
   <li><a href="#load-tabular-data-1" id="toc-load-tabular-data-1" class="nav-link" data-scroll-target="#load-tabular-data-1"><span class="header-section-number">2.3</span> Load tabular data</a>
   <ul class="collapse">
   <li><a href="#first-try-without-any-setting" id="toc-first-try-without-any-setting" class="nav-link" data-scroll-target="#first-try-without-any-setting"><span class="header-section-number">2.3.1</span> First try without any setting</a></li>
@@ -803,14 +803,30 @@ dtype: object</code></pre>
 <p>Take a look:</p>
 <p><img src="../images/dataload_excel_pegeln.png" class="img-fluid"></p>
 </section>
-<section id="r-library-and-functions" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="r-library-and-functions"><span class="header-section-number">2.2</span> R library and functions</h2>
+<section id="library-and-functions-1" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="library-and-functions-1"><span class="header-section-number">2.2</span> Library and functions</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <p>To load the necessary library, <code>readxl</code>, and access its help documentation, you can visit <a href="https://readxl.tidyverse.org/">this link</a>. The <code>readxl::read_excel()</code> function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. Additionally, you have the options of using <code>read_xls()</code> for .xls files and <code>read_xlsx()</code> for .xlsx files. More details in the <a href="https://readxl.tidyverse.org/reference/read_excel.html">Page</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The Excel file cannot be read directly from GitHub. You will need to download it to your local machine first</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>fn_Pegeln <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Lei</span><span class="sc">\\</span><span class="st">HS_Web</span><span class="sc">\\</span><span class="st">data_share/Pegeln_NRW.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>The <code>pandas.read_excel()</code> function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. More details in the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html">Page</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the path to the Excel file</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>fn_Pegeln <span class="op">=</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Lei</span><span class="ch">\\</span><span class="st">HS_Web</span><span class="ch">\\</span><span class="st">data_share/Pegeln_NRW.xlsx"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="load-tabular-data-1" class="level2" data-number="2.3">
@@ -819,10 +835,14 @@ dtype: object</code></pre>
 <p>Unlike plain text files where we can only select lines to load, Excel allows us to define coordinates to access a specific celles-box wherever they are located.</p>
 <section id="first-try-without-any-setting" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="first-try-without-any-setting"><span class="header-section-number">2.3.1</span> First try without any setting</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try without setting</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try without setting</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 277 × 16
    Suchergebnisse Pegel.…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10
@@ -843,14 +863,46 @@ dtype: object</code></pre>
 #   ...15 &lt;chr&gt;, ...16 &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>When we provide only the file name to the function, we will always retrieve all the content from the first sheet. However, due to the limitations in R tables, every column will be recognized as the same data type, typically character.</p>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Excel file into a pandas DataFrame</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln <span class="op">=</span> pd.read_excel(fn_Pegeln)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tb_Pegeln)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Suchergebnisse Pegel.xlsx 14.09.2023 10:01  ...      Unnamed: 15
+0    Suchkriterien:\n -- \n\n273 von 273 Datensätze...  ...              NaN
+1                                                  NaN  ...              NaN
+2                                                  NaN  ...              NaN
+3                                                 Name  ...  Nordwert in UTM
+4                                                Ahlen  ...       5733198,52
+..                                                 ...  ...              ...
+272                                            Wolbeck  ...      5750912,504
+273                                    Wt-Kluserbrücke  ...          5679856
+274                                         Zeppenfeld  ...      5626270,319
+275                                          Zerkall 1  ...      5618750,896
+276                                          Zerkall 2  ...       5617784,98
+
+[277 rows x 16 columns]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>When we provide only the file name to the function, we will always retrieve all the content from the first sheet. However, due to the limitations in R (and Python) tables, every column will be recognized as the same data type, typically character.</p>
 </section>
 <section id="give-a-range" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="give-a-range"><span class="header-section-number">2.3.2</span> Give a <code>range</code></h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the range argument</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln, <span class="at">range =</span> <span class="st">"Suchergebnisse Pegel!A5:P10"</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the range argument</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(fn_Pegeln, <span class="at">range =</span> <span class="st">"Suchergebnisse Pegel!A5:P10"</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 16
   Name            Pegelnummer   Gewässername Betreiber  `Pegelnullpunkt [müNHN]`
@@ -876,6 +928,35 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>The data type of “Pegelnullpunkt [müNHN]” appears to be incorrect due to improper settings in Excel.</p>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<p>Compared to R, Python doesn’t have a direct equivalent to the “Range”. Instead, you can achieve a similar method like plain text with <code>skiprows</code>. Additionally, you can use <code>usecols</code> to specify the columns you want to include.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the specified range from the Excel file into a pandas DataFrame</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>tb_Pegeln_Range <span class="op">=</span> pd.read_excel(fn_Pegeln, sheet_name<span class="op">=</span><span class="st">"Suchergebnisse Pegel"</span>, skiprows <span class="op">=</span> <span class="dv">4</span>, usecols<span class="op">=</span><span class="st">"A:P"</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tb_Pegeln_Range)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Name    Pegelnummer  ... Ostwert in UTM Nordwert in UTM
+0              Ahlen  3211000000300  ...      425366,05      5733198,52
+1             Ahmsen  4639000000100  ...     479549,678     5771201,838
+2    Ahrhütte-Neuhof  2718193000100  ...     339937,139     5583651,051
+3          Albersloh  3259000000100  ...     412463,351     5748891,345
+4             Altena  2766930000100  ...     407683,712     5682846,836
+..               ...            ...  ...            ...             ...
+268          Wolbeck  3289100000100  ...     416214,865     5750912,504
+269  Wt-Kluserbrücke  2736510000100  ...         371494         5679856
+270       Zeppenfeld  2722590000100  ...     430354,152     5626270,319
+271        Zerkall 1  2823500000100  ...     320063,421     5618750,896
+272        Zerkall 2  2823490000100  ...     319449,788      5617784,98
+
+[273 rows x 16 columns]</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>

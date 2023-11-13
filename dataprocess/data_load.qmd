@@ -390,7 +390,12 @@ Take a look:
 ![](../images/dataload_excel_pegeln.png)
 
 
-## R library and functions
+## Library and functions
+
+
+::: {.panel-tabset}
+
+## R
 
 To load the necessary library, `readxl`, and access its help documentation, you can visit [this link](https://readxl.tidyverse.org/). The `readxl::read_excel()` function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. Additionally, you have the options of using `read_xls()` for .xls files and `read_xlsx()` for .xlsx files. More details in the [Page](https://readxl.tidyverse.org/reference/read_excel.html).
 
@@ -402,6 +407,21 @@ library(readxl)
 fn_Pegeln <- "C:\\Lei\\HS_Web\\data_share/Pegeln_NRW.xlsx"
 ```
 
+## Python
+
+The `pandas.read_excel()` function is versatile, as it can read both .xls and .xlsx files and automatically detects the format based on the file extension. More details in the [Page](https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html).
+
+```{python}
+import pandas as pd
+
+# Specify the path to the Excel file
+fn_Pegeln = "C:\\Lei\\HS_Web\\data_share/Pegeln_NRW.xlsx"
+
+
+```
+
+:::
+
 
 ## Load tabular data
 
@@ -412,16 +432,39 @@ Unlike plain text files where we can only select lines to load, Excel allows us 
 
 ### First try without any setting
 
+
+::: {.panel-tabset}
+
+## R
+
 ```{r}
 # try without setting
 tb_Pegeln <- read_excel(fn_Pegeln)
 tb_Pegeln
 ```
 
+## Python
 
-When we provide only the file name to the function, we will always retrieve all the content from the first sheet. However, due to the limitations in R tables, every column will be recognized as the same data type, typically character.
+```{python}
+# Read the Excel file into a pandas DataFrame
+tb_Pegeln = pd.read_excel(fn_Pegeln)
+
+# Display the DataFrame
+print(tb_Pegeln)
+
+```
+
+:::
+
+
+When we provide only the file name to the function, we will always retrieve all the content from the first sheet. However, due to the limitations in R (and Python) tables, every column will be recognized as the same data type, typically character.
 
 ### Give a `range`
+
+
+::: {.panel-tabset}
+
+## R
 
 ```{r}
 # using the range argument
@@ -432,6 +475,22 @@ tb_Pegeln_Range
 ::: {.callout-warning}
 The data type of "Pegelnullpunkt [müNHN]" appears to be incorrect due to improper settings in Excel.
 :::
+
+## Python
+
+Compared to R, Python doesn't have a direct equivalent to the "Range". Instead, you can achieve a similar method like plain text with `skiprows`. Additionally, you can use `usecols` to specify the columns you want to include.
+
+```{python}
+# Read the specified range from the Excel file into a pandas DataFrame
+tb_Pegeln_Range = pd.read_excel(fn_Pegeln, sheet_name="Suchergebnisse Pegel", skiprows = 4, usecols="A:P")
+
+# Display the DataFrame
+print(tb_Pegeln_Range)
+
+```
+
+:::
+
 
 
 ## Data type
