@@ -73,7 +73,7 @@ In this phase, we will utilize experimental data from a labor experiment. This d
 
 ```{r}
 # Load Labor Data
-df_Labor <- read_delim("L:\\Aktuelle Vorlesungsunterlagen\\MSc Wasserhaushaltsmodellierung\\Einzellinearspeicher Teil 1\\tbl_LaborMess_LinearReservior.txt", delim = "\t")
+df_Labor <- read_delim("https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/tbl_LaborMess_LinearReservior.txt", delim = "\t")
 
 # Rename the data, in order to more flexible Manipulation
 names(df_Labor) <- c("t", "QZ", "QA")
