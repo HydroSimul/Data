@@ -795,7 +795,7 @@
     "href": "modelling/model_caliLinearReser.html#load-experimental-data",
     "title": "Calibration Prozess",
     "section": "4.1 Load Experimental Data",
-    "text": "4.1 Load Experimental Data\nIn this phase, we will utilize experimental data from a labor experiment. This dataset involves the physical simulation of a linear reservoir and provides the measured inflow and outflow data in liters per second (L/s).\n\n# Load Labor Data\ndf_Labor &lt;- read_delim(\"L:\\\\Aktuelle Vorlesungsunterlagen\\\\MSc Wasserhaushaltsmodellierung\\\\Einzellinearspeicher Teil 1\\\\tbl_LaborMess_LinearReservior.txt\", delim = \"\\t\")\n\n# Rename the data, in order to more flexible Manipulation\nnames(df_Labor) &lt;- c(\"t\", \"QZ\", \"QA\")\n\n# The first 10 Line\nhead(df_Labor)\n\n# A tibble: 6 × 3\n      t    QZ    QA\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0     0    30\n2     1     0    30\n3     2     0    29\n4     3     0    29\n5     4     0    29\n6     5     0    29"
+    "text": "4.1 Load Experimental Data\nIn this phase, we will utilize experimental data from a labor experiment. This dataset involves the physical simulation of a linear reservoir and provides the measured inflow and outflow data in liters per second (L/h).\nThe labor data is available on GitHub.\n\n# Load Labor Data\ndf_Labor &lt;- read_delim(\"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/tbl_LaborMess_LinearReservior.txt\", delim = \"\\t\")\n\n# Rename the data, in order to more flexible Manipulation\nnames(df_Labor) &lt;- c(\"t\", \"QZ\", \"QA\")\n\n# The first 10 Line\nhead(df_Labor)\n\n# A tibble: 6 × 3\n      t    QZ    QA\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0     0    30\n2     1     0    30\n3     2     0    29\n4     3     0    29\n5     4     0    29\n6     5     0    29"
   },
   {
     "objectID": "modelling/model_caliLinearReser.html#mapping-from-concept-to-proceeding",
@@ -816,7 +816,7 @@
     "href": "modelling/model_caliLinearReser.html#visual-evaluation",
     "title": "Calibration Prozess",
     "section": "4.4 Visual Evaluation",
-    "text": "4.4 Visual Evaluation\nBefore employing quantitative criteria, it’s beneficial to visually evaluate the simulation results using time series plots, which provide an initial sense of the model’s performance.\n\n# Visual Evaluation\nggLabor &lt;- ggplot(df_Labor) +\n  geom_line(aes(t, QZ, color = \"Inflow\")) +\n  geom_line(aes(t, num_Q_Sim, color = \"Simul1\")) +\n  geom_line(aes(t, num_Q_Sim2, color = \"Simul2\")) +\n  geom_line(aes(t, QA, color = \"Observ\")) +\n  scale_color_manual(values = c(Inflow = \"cyan\", Simul1 = \"red\", Simul2 = \"orange\", Observ = \"blue\"))+\n  labs(x = \"Time [s]\", y = \"In-/Outflow [L/s]\", color = \"Flow\")\nggplotly(ggLabor)"
+    "text": "4.4 Visual Evaluation\nBefore employing quantitative criteria, it’s beneficial to visually evaluate the simulation results using time series plots, which provide an initial sense of the model’s performance.\n\n# Visual Evaluation\nggLabor &lt;- ggplot(df_Labor) +\n  geom_line(aes(t, QZ, color = \"Inflow\")) +\n  geom_line(aes(t, num_Q_Sim, color = \"Simul1\")) +\n  geom_line(aes(t, num_Q_Sim2, color = \"Simul2\")) +\n  geom_line(aes(t, QA, color = \"Observ\")) +\n  scale_color_manual(values = c(Inflow = \"cyan\", Simul1 = \"red\", Simul2 = \"orange\", Observ = \"blue\"))+\n  labs(x = \"Time [s]\", y = \"In-/Outflow [L/h]\", color = \"Flow\")\nggplotly(ggLabor)"
   },
   {
     "objectID": "modelling/model_caliLinearReser.html#quantitative-evaluation",

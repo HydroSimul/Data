@@ -69,7 +69,9 @@ Before proceeding with the calibration, it's essential to evaluate the simulatio
 
 ## Load Experimental Data
 
-In this phase, we will utilize experimental data from a labor experiment. This dataset involves the **physical simulation** of a linear reservoir and provides the measured inflow and outflow data in liters per second (L/s).
+In this phase, we will utilize experimental data from a labor experiment. This dataset involves the **physical simulation** of a linear reservoir and provides the measured inflow and outflow data in liters per second (L/h).
+
+The labor data is available on [GitHub](https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/tbl_LaborMess_LinearReservior.txt).
 
 ```{r}
 # Load Labor Data
@@ -120,7 +122,7 @@ ggLabor <- ggplot(df_Labor) +
   geom_line(aes(t, num_Q_Sim2, color = "Simul2")) +
   geom_line(aes(t, QA, color = "Observ")) +
   scale_color_manual(values = c(Inflow = "cyan", Simul1 = "red", Simul2 = "orange", Observ = "blue"))+
-  labs(x = "Time [s]", y = "In-/Outflow [L/s]", color = "Flow")
+  labs(x = "Time [s]", y = "In-/Outflow [L/h]", color = "Flow")
 ggplotly(ggLabor)
 
 ```
@@ -207,7 +209,7 @@ ggVali <- ggplot(df_Labor) +
   geom_line(aes(t, QZ), color = "cyan") +
   geom_line(aes(t, num_Q_Sim_Cali), color = "tomato") +
   geom_line(aes(t, QA), color = "blue") +
-  labs(x = "Time [s]", y = "In-/Outflow [L/s]")
+  labs(x = "Time [s]", y = "In-/Outflow [L/h]")
 ggplotly(ggVali)
 
 ```
