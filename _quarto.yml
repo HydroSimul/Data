@@ -27,7 +27,7 @@ website:
             - section: "Pre-Processing"
               contents:
                 - dataprocess/data_load.qmd      
-            - dataprocess/NetCDF.qmd      
+                - dataprocess/NetCDF.qmd      
             - section: "Spatial Data"
               contents:
                 - dataprocess/spatial_data.qmd      
