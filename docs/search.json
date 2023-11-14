@@ -396,7 +396,7 @@
     "href": "dataprocess/index.html",
     "title": "Data Processing",
     "section": "",
-    "text": "Data processing is a fundamental step in transforming raw data into valuable insights. In the domain of hydrology, data often involves spatial and temporal aspects, making it complex and voluminous. Effective processing tools and methods are essential to successfully analyze and utilize this data. This page provides valuable technological skills for (pre)processing raw data."
+    "text": "Data processing is a fundamental step in transforming raw data into valuable insights. In the domain of hydrology, data often involves spatial and temporal aspects, making it complex and voluminous. Effective processing tools and methods are essential to successfully analyze and utilize this data. This page provides valuable technological skills for processing raw data."
   },
   {
     "objectID": "dataprocess/spatial_data.html",
