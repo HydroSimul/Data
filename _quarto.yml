@@ -38,6 +38,9 @@ website:
                 - dataprocess/statistic_basic.qmd      
                 - dataprocess/statistic_graphic.qmd      
                 - dataprocess/timeserises_analyse.qmd      
+            - section: "Visualization"
+              contents:
+                - dataprocess/visual_plotElements.qmd      
     - id: modelling
       collapse-level: 1
       contents:
