@@ -270,7 +270,7 @@ gp_Test +
 ```{r}
 #| fig-cap: Aspect ratio in 1
 gp_Test + 
-  theme(aspect.ratio = 1)
+  theme(aspect.ratio = 2)
 
 ```
 
