@@ -41,6 +41,8 @@ website:
             - section: "Visualization"
               contents:
                 - dataprocess/visual_plotElements.qmd      
+                - dataprocess/visual_ggplot2Basic.qmd      
+                
     - id: modelling
       collapse-level: 1
       contents:

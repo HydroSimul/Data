@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HydroSimul - Data Processing</title>
+<title>HydroSimul - ggplot2 Basic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../dataprocess/basic_format.html" rel="next">
+<link href="../dataprocess/visual_plotElements.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataprocess/index.html">Dataprocess</a></li><li class="breadcrumb-item"><a href="../dataprocess/visual_plotElements.html">Visualization</a></li><li class="breadcrumb-item"><a href="../dataprocess/visual_ggplot2Basic.html">ggplot2 Basic</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -119,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../dataprocess/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../dataprocess/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dataprocess</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -221,13 +255,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Visualization</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/visual_plotElements.html" class="sidebar-item-text sidebar-link">
@@ -236,8 +270,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataprocess/visual_ggplot2Basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The elements of a plot</span></a>
+  <a href="../dataprocess/visual_ggplot2Basic.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">ggplot2 Basic</span></a>
   </div>
 </li>
       </ul>
@@ -250,14 +284,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">1</span> Data</a></li>
+  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings"><span class="header-section-number">2</span> Aesthetic Mappings</a></li>
+  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry"><span class="header-section-number">3</span> Geometry</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="header-section-number">4</span> Plot</a>
+  <ul class="collapse">
+  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task"><span class="header-section-number">4.1</span> Task</a></li>
+  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">4.2</span> Syntax</a></li>
+  <li><a href="#first-ggplot" id="toc-first-ggplot" class="nav-link" data-scroll-target="#first-ggplot"><span class="header-section-number">4.3</span> First <code>ggplot()</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Processing</h1>
+<h1 class="title">ggplot2 Basic</h1>
 </div>
 
 
@@ -272,9 +320,96 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Data processing is a fundamental step in transforming raw data into valuable insights. In the domain of hydrology, data often involves spatial and temporal aspects, making it complex and voluminous. Effective processing tools and methods are essential to successfully analyze and utilize this data. This page provides valuable technological skills for processing raw data.</p>
+<p>The work of visualization involves the process of mapping the data into visualized geometry. There are three basic components to this: <strong>data</strong>, <strong>geometry</strong>, and <strong>aesthetic mappings</strong>. In this article, we will step-by-step learn about these three components.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># or: library(ggplot2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Data</h1>
+<p>The data structure in <code>ggplot2</code> is organized in a <code>data.frame</code> or a similar structure like <code>tibble</code>. As an example, we will use the <code>mpg</code> dataset from <code>ggplot2</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 234 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ 224 more rows</code></pre>
+</div>
+</div>
+<p>The dataframe can (should) contain all the information that you want to visualize.</p>
+</section>
+<section id="aesthetic-mappings" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Aesthetic Mappings</h1>
+<p>The aesthetic mappings define the connection (mapping) between variables in the data and visual properties of geometry. The properties of the geometry are derived from the chosen geometry. For example, almost every plot maps a variable to <code>x</code> and <code>y</code> to determine the position, and <code>color</code> or <code>size</code> provides additional details.</p>
+<p>This mapping is established with the <code>aes()</code> function. In the <code>aes()</code> function, you need to use the format <code>property name = variable name</code> to connect the data and geometry, like <code>aes(x = displ, y = hwy)</code>.</p>
+</section>
+<section id="geometry" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Geometry</h1>
+<p>With the same dataset, we can also choose different geometries, such as scatter points, lines, or bars. In <code>ggplot2</code>, all the geometries are defined using the <code>geom_*()</code> functions, like <code>geom_point()</code> and <code>geom_line()</code>. These functions specify how the data should be visually represented.</p>
+</section>
+<section id="plot" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Plot</h1>
+<p>With the above three short introductions, we can now try the first plot with the <code>mpg</code> dataset.</p>
+<section id="task" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="task"><span class="header-section-number">4.1</span> Task</h2>
+<p>The task is as follows:</p>
+<ol type="1">
+<li><strong>Data</strong>: Using the <code>mpg</code> dataset.
+<ul>
+<li>Variables: <code>displ</code>, <code>hwy</code>, <code>class</code></li>
+</ul></li>
+<li><strong>Geometry</strong>:
+<ul>
+<li>Colored scatter plot: <code>geom_point()</code></li>
+<li>Smoothed line: <code>geom_smooth()</code></li>
+</ul></li>
+<li><strong>Aesthetic Mappings</strong>:
+<ul>
+<li>x-dimension with <code>displ</code> (applied to both geoms): <code>x = displ</code></li>
+<li>y-dimension with <code>hwy</code> (applied to both geoms): <code>y = hwy</code></li>
+<li>Colored with <code>class</code> (only for scatter plot): <code>color = class</code></li>
+</ul></li>
+</ol>
+</section>
+<section id="syntax" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="syntax"><span class="header-section-number">4.2</span> Syntax</h2>
+<p>The syntax of <code>ggplot2</code> follows a <strong>layered</strong> approach, where you start with the base layer of data and progressively add additional layers to create a complex plot.</p>
+<p>The basic syntax involves using the <code>ggplot()</code> function to initiate the plot, specifying the data and aesthetics using the <code>aes()</code> function, and then adding (use <code>+</code>) geometric elements with functions like <code>geom_point()</code> or <code>geom_line()</code>. Each added layer enhances the plot, and you can further customize it using various options. The syntax is intuitive and modular, allowing for flexible and expressive visualizations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_Data, <span class="fu">aes</span>(<span class="at">x =</span> my_X, <span class="at">y =</span> my_Y)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In <code>ggplot2</code>, the <code>aes()</code> function (also <code>data</code>), which defines the aesthetic mappings, can be placed either within the <code>ggplot()</code> function for all geoms or inside the specific <code>geom_*()</code> function to apply mappings only to that geometry. This flexibility allows for clear and concise syntax, as aesthetic mappings can be specified globally for the entire plot or tailored for individual geometric layers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> my_Data, <span class="fu">aes</span>(<span class="at">x =</span> my_X, <span class="at">y =</span> my_Y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Not only that, but you can also divide the mapping into several parts, with common mappings in the initial <code>ggplot()</code> function and other specific mappings in the given <code>geom_*()</code> functions. This allows for flexibility and customization in defining aesthetic mappings for different geometries in the same plot.</p>
+</section>
+<section id="first-ggplot" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="first-ggplot"><span class="header-section-number">4.3</span> First <code>ggplot()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))<span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> class)) <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visual_ggplot2Basic_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -512,11 +647,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../dataprocess/visual_plotElements.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">The elements of a plot</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../dataprocess/basic_format.html" class="pagination-link">
-        <span class="nav-page-text">Basic Data &amp; File Format</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

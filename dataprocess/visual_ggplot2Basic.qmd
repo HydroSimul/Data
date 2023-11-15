@@ -1,0 +1,91 @@
+---
+title: "ggplot2 Basic"
+execute:
+  warning: false
+  error: false
+sidebar:
+  contents: auto
+number-sections: true
+bibliography: ../../references.bib
+---
+
+The work of visualization involves the process of mapping the data into visualized geometry. There are three basic components to this: **data**, **geometry**, and **aesthetic mappings**. In this article, we will step-by-step learn about these three components.
+
+```{r}
+library(tidyverse) # or: library(ggplot2)
+```
+
+
+# Data
+
+The data structure in `ggplot2` is organized in a `data.frame` or a similar structure like `tibble`. As an example, we will use the `mpg` dataset from `ggplot2`. 
+
+```{r}
+mpg
+```
+
+
+The dataframe can (should) contain all the information that you want to visualize.
+
+# Aesthetic Mappings
+
+The aesthetic mappings define the connection (mapping) between variables in the data and visual properties of geometry. The properties of the geometry are derived from the chosen geometry. For example, almost every plot maps a variable to `x` and `y` to determine the position, and `color` or `size` provides additional details.
+
+This mapping is established with the `aes()` function. In the `aes()` function, you need to use the format `property name = variable name` to connect the data and geometry, like `aes(x = displ, y = hwy)`.
+
+# Geometry
+
+With the same dataset, we can also choose different geometries, such as scatter points, lines, or bars. In `ggplot2`, all the geometries are defined using the `geom_*()` functions, like `geom_point()` and `geom_line()`. These functions specify how the data should be visually represented.
+
+# Plot
+
+With the above three short introductions, we can now try the first plot with the `mpg` dataset.
+
+## Task
+
+The task is as follows:
+
+1. **Data**: Using the `mpg` dataset.
+    - Variables: `displ`, `hwy`, `class`
+2. **Geometry**: 
+    - Colored scatter plot: `geom_point()`
+    - Smoothed line: `geom_smooth()`
+3. **Aesthetic Mappings**:
+    - x-dimension with `displ` (applied to both geoms): `x = displ`
+    - y-dimension with `hwy` (applied to both geoms): `y = hwy`
+    - Colored with `class` (only for scatter plot): `color = class`
+    
+
+## Syntax
+
+The syntax of `ggplot2` follows a **layered** approach, where you start with the base layer of data and progressively add additional layers to create a complex plot. 
+
+The basic syntax involves using the `ggplot()` function to initiate the plot, specifying the data and aesthetics using the `aes()` function, and then adding (use `+`) geometric elements with functions like `geom_point()` or `geom_line()`. Each added layer enhances the plot, and you can further customize it using various options. The syntax is intuitive and modular, allowing for flexible and expressive visualizations.
+
+```{r}
+#| eval: false
+ggplot(data = my_Data, aes(x = my_X, y = my_Y)) +
+  geom_point()
+```
+
+
+In `ggplot2`, the `aes()` function (also `data`), which defines the aesthetic mappings, can be placed either within the `ggplot()` function for all geoms or inside the specific `geom_*()` function to apply mappings only to that geometry. This flexibility allows for clear and concise syntax, as aesthetic mappings can be specified globally for the entire plot or tailored for individual geometric layers. 
+
+
+```{r}
+#| eval: false
+ggplot() +
+  geom_point(data = my_Data, aes(x = my_X, y = my_Y))
+```
+
+Not only that, but you can also divide the mapping into several parts, with common mappings in the initial `ggplot()` function and other specific mappings in the given `geom_*()` functions. This allows for flexibility and customization in defining aesthetic mappings for different geometries in the same plot.
+
+
+## First `ggplot()`
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy))+
+  geom_point(aes(colour = class)) + 
+  geom_smooth() 
+```
+

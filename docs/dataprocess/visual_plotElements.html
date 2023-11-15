@@ -83,6 +83,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../dataprocess/visual_ggplot2Basic.html" rel="next">
 <link href="../dataprocess/timeserises_analyse.html" rel="prev">
 <link href="../Kan.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -206,14 +207,14 @@ div.csl-indent {
  <span class="menu-text">Data Loading</span></a>
   </div>
 </li>
-      </ul>
-  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataprocess/NetCDF.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NetCDF</span></a>
   </div>
 </li>
+      </ul>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
@@ -287,6 +288,12 @@ div.csl-indent {
  <span class="menu-text">The elements of a plot</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataprocess/visual_ggplot2Basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The elements of a plot</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -331,6 +338,7 @@ div.csl-indent {
 <p>At the beginning of plotting, we can first examine the elements of a plot that provide an overview. These include the background, panel, title, and axes. While they may not be as visually prominent as the main plot elements (points or lines), they are crucial for extracting meaningful information from a plot.</p>
 <p>In this section, we will leverage concepts from <code>ggplot2</code>. These concepts are fundamental not only to <code>ggplot2</code> but also to other plotting engines. This article will primarily focus on the section on <a href="https://ggplot2-book.org/themes#sec-theme-elements">Theme Elements</a> in the book “ggplot2: Elegant Graphics for Data Analysis (3e)” by Hadley Wickham <span class="citation" data-cites="Ggplot2_wickham_2009">(<a href="#ref-Ggplot2_wickham_2009" role="doc-biblioref">2009</a>)</span>.</p>
 <p>Under <code>ggplot2</code>, these elements are divided into five groups: plot, axis, legend, panel, and facet. However, for a single plot, we will not delve into the fifth facet group.</p>
+<p><img src="../images/visual_plotElements.svg" class="img-fluid"></p>
 <p>To <strong>illustrate</strong> these elements, we will use a random dataset to create a scatter plot as an example.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -921,6 +929,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../dataprocess/visual_ggplot2Basic.html" class="pagination-link">
+        <span class="nav-page-text">The elements of a plot</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
