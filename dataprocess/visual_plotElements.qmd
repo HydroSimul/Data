@@ -279,6 +279,80 @@ gp_Test +
 :::
 
 
+# ELEMENTS
+
+In conjunction with the theme system, the element_ functions specify the display of how non-data components of the plot are drawn [@Ggplot2_wickham_2009].
+
+There are four main elements to specify the appearance of elements for the plot, axis, and more (details in [ggplot2 Theme elements](https://ggplot2.tidyverse.org/reference/element.html)):
+
+- `element_blank()`: draws nothing and assigns no space.
+
+- `element_rect()`: used for borders and backgrounds.
+
+- `element_line()`: defines the appearance of lines.
+
+- `element_text()`: controls the appearance of text.
+
+```{r}
+#| eval: false
+element_blank()
+
+element_rect(
+  fill = NULL,
+  colour = NULL,
+  linewidth = NULL,
+  linetype = NULL,
+  color = NULL,
+  inherit.blank = FALSE,
+  size = deprecated()
+)
+
+element_line(
+  colour = NULL,
+  linewidth = NULL,
+  linetype = NULL,
+  lineend = NULL,
+  color = NULL,
+  arrow = NULL,
+  inherit.blank = FALSE,
+  size = deprecated()
+)
+
+element_text(
+  family = NULL,
+  face = NULL,
+  colour = NULL,
+  size = NULL,
+  hjust = NULL,
+  vjust = NULL,
+  angle = NULL,
+  lineheight = NULL,
+  color = NULL,
+  margin = NULL,
+  debug = NULL,
+  inherit.blank = FALSE
+)
+```
+
+
+Some common characters include:
+
+- `fill`: fill color
+- `colour` or `color`: Line/border/text color. `color` is an alias for `colour`.
+- `linewidth`: Line/border size in mm.
+- `size`: Text size in pts.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
