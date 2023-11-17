@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -288,14 +307,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">1</span> Data</a></li>
-  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings"><span class="header-section-number">2</span> Aesthetic Mappings</a></li>
-  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry"><span class="header-section-number">3</span> Geometry</a></li>
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="header-section-number">4</span> Plot</a>
+  <li><a href="#components" id="toc-components" class="nav-link active" data-scroll-target="#components"><span class="header-section-number">1</span> Components</a>
   <ul class="collapse">
-  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task"><span class="header-section-number">4.1</span> Task</a></li>
-  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">4.2</span> Syntax</a></li>
-  <li><a href="#first-ggplot" id="toc-first-ggplot" class="nav-link" data-scroll-target="#first-ggplot"><span class="header-section-number">4.3</span> First <code>ggplot()</code></a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">1.1</span> Data</a></li>
+  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings"><span class="header-section-number">1.2</span> Aesthetic Mappings</a></li>
+  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry"><span class="header-section-number">1.3</span> Geometry</a></li>
+  </ul></li>
+  <li><a href="#geometry-and-theme-customize" id="toc-geometry-and-theme-customize" class="nav-link" data-scroll-target="#geometry-and-theme-customize"><span class="header-section-number">2</span> Geometry and Theme customize</a>
+  <ul class="collapse">
+  <li><a href="#element_" id="toc-element_" class="nav-link" data-scroll-target="#element_"><span class="header-section-number">2.1</span> <code>element_*()</code></a></li>
+  <li><a href="#title-modify" id="toc-title-modify" class="nav-link" data-scroll-target="#title-modify"><span class="header-section-number">2.2</span> Title Modify</a></li>
+  <li><a href="#sec-scale" id="toc-sec-scale" class="nav-link" data-scroll-target="#sec-scale"><span class="header-section-number">2.3</span> <code>scale_*()</code></a>
+  <ul class="collapse">
+  <li><a href="#axis-scale_x_-and-scale_y_" id="toc-axis-scale_x_-and-scale_y_" class="nav-link" data-scroll-target="#axis-scale_x_-and-scale_y_"><span class="header-section-number">2.3.1</span> Axis <code>scale_x_*()</code> and <code>scale_y_*()</code></a></li>
+  <li><a href="#colour-scale_color_-and-scale_fill_" id="toc-colour-scale_color_-and-scale_fill_" class="nav-link" data-scroll-target="#colour-scale_color_-and-scale_fill_"><span class="header-section-number">2.3.2</span> Colour <code>scale_color_*()</code> and <code>scale_fill_*()</code></a></li>
+  <li><a href="#other-scales" id="toc-other-scales" class="nav-link" data-scroll-target="#other-scales"><span class="header-section-number">2.3.3</span> Other scales</a></li>
+  </ul></li>
+  <li><a href="#fixed-elements-for-specific-geometry" id="toc-fixed-elements-for-specific-geometry" class="nav-link" data-scroll-target="#fixed-elements-for-specific-geometry"><span class="header-section-number">2.4</span> Fixed elements for specific geometry</a></li>
+  </ul></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="header-section-number">3</span> Plot</a>
+  <ul class="collapse">
+  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">3.1</span> Syntax</a></li>
+  <li><a href="#first-ggplot" id="toc-first-ggplot" class="nav-link" data-scroll-target="#first-ggplot"><span class="header-section-number">3.2</span> First <code>ggplot()</code></a>
+  <ul class="collapse">
+  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task"><span class="header-section-number">3.2.1</span> Task</a></li>
+  <li><a href="#codes" id="toc-codes" class="nav-link" data-scroll-target="#codes"><span class="header-section-number">3.2.2</span> Codes</a></li>
+  </ul></li>
+  <li><a href="#customize-the-elements" id="toc-customize-the-elements" class="nav-link" data-scroll-target="#customize-the-elements"><span class="header-section-number">3.3</span> Customize the elements</a>
+  <ul class="collapse">
+  <li><a href="#label-and-text" id="toc-label-and-text" class="nav-link" data-scroll-target="#label-and-text"><span class="header-section-number">3.3.1</span> Label and Text</a></li>
+  <li><a href="#axes" id="toc-axes" class="nav-link" data-scroll-target="#axes"><span class="header-section-number">3.3.2</span> Axes</a></li>
+  <li><a href="#colour" id="toc-colour" class="nav-link" data-scroll-target="#colour"><span class="header-section-number">3.3.3</span> Colour</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -320,12 +363,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<section id="components" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Components</h1>
 <p>The work of visualization involves the process of mapping the data into visualized geometry. There are three basic components to this: <strong>data</strong>, <strong>geometry</strong>, and <strong>aesthetic mappings</strong>. In this article, we will step-by-step learn about these three components.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># or: library(ggplot2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="data" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Data</h1>
+<section id="data" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="data"><span class="header-section-number">1.1</span> Data</h2>
 <p>The data structure in <code>ggplot2</code> is organized in a <code>data.frame</code> or a similar structure like <code>tibble</code>. As an example, we will use the <code>mpg</code> dataset from <code>ggplot2</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -348,20 +393,176 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The dataframe can (should) contain all the information that you want to visualize.</p>
 </section>
-<section id="aesthetic-mappings" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Aesthetic Mappings</h1>
+<section id="aesthetic-mappings" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="aesthetic-mappings"><span class="header-section-number">1.2</span> Aesthetic Mappings</h2>
 <p>The aesthetic mappings define the connection (mapping) between variables in the data and visual properties of geometry. The properties of the geometry are derived from the chosen geometry. For example, almost every plot maps a variable to <code>x</code> and <code>y</code> to determine the position, and <code>color</code> or <code>size</code> provides additional details.</p>
 <p>This mapping is established with the <code>aes()</code> function. In the <code>aes()</code> function, you need to use the format <code>property name = variable name</code> to connect the data and geometry, like <code>aes(x = displ, y = hwy)</code>.</p>
+<p>The <code>aes()</code> function simply defines which variable is connected to which aesthetics, but for more detailed modifications of aesthetics, you can use the <code>scale_*()</code> functions. More details are provided in <a href="#sec-scale">Section&nbsp;2.3</a>.</p>
 </section>
-<section id="geometry" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Geometry</h1>
+<section id="geometry" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="geometry"><span class="header-section-number">1.3</span> Geometry</h2>
 <p>With the same dataset, we can also choose different geometries, such as scatter points, lines, or bars. In <code>ggplot2</code>, all the geometries are defined using the <code>geom_*()</code> functions, like <code>geom_point()</code> and <code>geom_line()</code>. These functions specify how the data should be visually represented.</p>
 </section>
-<section id="plot" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Plot</h1>
+</section>
+<section id="geometry-and-theme-customize" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Geometry and Theme customize</h1>
+<section id="element_" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="element_"><span class="header-section-number">2.1</span> <code>element_*()</code></h2>
+<p>In conjunction with the theme system, the element_ functions specify the display of how non-data components of the plot are drawn <span class="citation" data-cites="Ggplot2_wickham_2009">(<a href="#ref-Ggplot2_wickham_2009" role="doc-biblioref">Wickham 2009</a>)</span>.</p>
+<p>There are four main elements to specify the appearance of elements for the plot, axis, and more (details in <a href="https://ggplot2.tidyverse.org/reference/element.html">ggplot2 Theme elements</a>):</p>
+<ul>
+<li><p><code>element_blank()</code>: draws nothing and assigns no space.</p></li>
+<li><p><code>element_rect()</code>: used for borders and backgrounds.</p></li>
+<li><p><code>element_line()</code>: defines the appearance of lines.</p></li>
+<li><p><code>element_text()</code>: controls the appearance of text.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_blank</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">element_rect</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">element_line</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineend =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">arrow =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">element_text</span>(</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">face =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">hjust =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">vjust =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">angle =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineheight =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">margin =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Some common characters include:</p>
+<ul>
+<li><code>fill</code>: fill color</li>
+<li><code>colour</code> or <code>color</code>: Line/border/text color. <code>color</code> is an alias for <code>colour</code>.</li>
+<li><code>linewidth</code>: Line/border size in mm.</li>
+<li><code>size</code>: Text size in pts.</li>
+</ul>
+<p>You can find more scripts and detailed examples in the article <a href="../dataprocess/visual_plotElements.html">The elements of a plot</a>.</p>
+</section>
+<section id="title-modify" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="title-modify"><span class="header-section-number">2.2</span> Title Modify</h2>
+<p>The <code>element_*()</code> functions specifically define the style, but for certain text elements like titles or axis titles, you need to provide specific names. By default, these elements are named after the variables you have mapped them to.</p>
+<ul>
+<li><code>labs()</code>: This function allows you to modify all text related to titles, subtitles, captions, and tags for the plot, as well as aesthetic names (e.g., <code>x</code>, <code>y</code>, <code>color</code>, <code>fill</code>, etc.).</li>
+</ul>
+<p>For individual elements, you can use specific functions:</p>
+<ul>
+<li><code>xlab()</code>: Set the x-axis label.</li>
+<li><code>ylab()</code>: Set the y-axis label.</li>
+<li><code>ggtitle()</code>: Set the main plot title.</li>
+</ul>
+<p>By using these functions, you can precisely control the naming and appearance of text elements in your plot.</p>
+</section>
+<section id="sec-scale" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-scale"><span class="header-section-number">2.3</span> <code>scale_*()</code></h2>
+<p>They take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work, but understanding scales and learning how to manipulate them will give you much more control <span class="citation" data-cites="Ggplot2_wickham_2009">(<a href="#ref-Ggplot2_wickham_2009" role="doc-biblioref">Wickham 2009</a>)</span>.</p>
+<section id="axis-scale_x_-and-scale_y_" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="axis-scale_x_-and-scale_y_"><span class="header-section-number">2.3.1</span> Axis <code>scale_x_*()</code> and <code>scale_y_*()</code></h3>
+<p>There are two main types of axes: discrete, which represents values not in numerical order, and continuous axes.</p>
+<ul>
+<li><code>scale_*_discrete()</code></li>
+<li><code>scale_*_continuous()</code>
+<ul>
+<li><code>scale_*_log10()</code></li>
+<li><code>scale_*_sqrt()</code></li>
+<li><code>scale_*_reverse()</code></li>
+</ul></li>
+</ul>
+<p>Additionally, there are specific axes (based on continuous) for dates (<code>scale_*_date()</code>) and bins (<code>scale_*_binned()</code>), commonly used in histograms.</p>
+<p>The common attributes for axes include:</p>
+<ul>
+<li><code>name</code>: axis title</li>
+<li><code>breaks</code> / <code>minor_breaks</code>: break points for axis ticks and panel grid lines</li>
+<li><code>labels</code>: axis text of break points</li>
+<li><code>limits</code>: axis ranges</li>
+</ul>
+</section>
+<section id="colour-scale_color_-and-scale_fill_" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="colour-scale_color_-and-scale_fill_"><span class="header-section-number">2.3.2</span> Colour <code>scale_color_*()</code> and <code>scale_fill_*()</code></h3>
+<p>Like axes, color mapping also has challenges with discrete and continuous data.</p>
+<p>For continuous color mapping, there are:</p>
+<ul>
+<li>Continuous: <code>scale_colour_continuous()</code>
+<ul>
+<li>type: custom</li>
+</ul></li>
+<li>Gradient:
+<ul>
+<li><code>scale_colour_gradient()</code> for two (<code>low</code> and <code>high</code>) colors</li>
+<li><code>scale_colour_gradient2()</code> for three (<code>low</code>, <code>mid</code>, and <code>high</code>) colors</li>
+<li><code>scale_colour_gradientn()</code> for defined colors</li>
+</ul></li>
+<li>Binned: assigns discrete color bins to the continuous values
+<ul>
+<li><code>scale_colour_binned()</code></li>
+</ul></li>
+</ul>
+<p>For discrete data, use <code>scale_colour_manual()</code> to define the colors for values.</p>
+</section>
+<section id="other-scales" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="other-scales"><span class="header-section-number">2.3.3</span> Other scales</h3>
+<p>Except for axes and color, other aesthetics can be simpler with <code>scale_*_manual()</code> to define:</p>
+<ul>
+<li><code>scale_size_manual()</code></li>
+<li><code>scale_shape_manual()</code></li>
+<li><code>scale_linetype_manual()</code></li>
+<li><code>scale_linewidth_manual()</code></li>
+<li><code>scale_alpha_manual()</code></li>
+</ul>
+</section>
+</section>
+<section id="fixed-elements-for-specific-geometry" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="fixed-elements-for-specific-geometry"><span class="header-section-number">2.4</span> Fixed elements for specific geometry</h2>
+<p>The <code>scale_*()</code> functions primarily control the attributes of elements using data. However, there are situations where you may want to set fixed values for a specific element directly. For example, you can set the linewidth for colored lines: <code>geom_line(aes(color = dis), linewidth = 2)</code>. The settings outside the <code>aes()</code> function will be treated as fixed values for that particular geometry.</p>
+</section>
+</section>
+<section id="plot" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Plot</h1>
+<section id="syntax" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="syntax"><span class="header-section-number">3.1</span> Syntax</h2>
+<p>The syntax of <code>ggplot2</code> follows a <strong>layered</strong> approach, where you start with the base layer of data and progressively add additional layers to create a complex plot.</p>
+<p>The basic syntax involves using the <code>ggplot()</code> function to initiate the plot, specifying the data and aesthetics using the <code>aes()</code> function, and then adding (use <code>+</code>) geometric elements with functions like <code>geom_point()</code> or <code>geom_line()</code>. Each added layer enhances the plot, and you can further customize it using various options. The syntax is intuitive and modular, allowing for flexible and expressive visualizations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_Data, <span class="fu">aes</span>(<span class="at">x =</span> my_X, <span class="at">y =</span> my_Y)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In <code>ggplot2</code>, the <code>aes()</code> function (also <code>data</code>), which defines the aesthetic mappings, can be placed either within the <code>ggplot()</code> function for all geoms or inside the specific <code>geom_*()</code> function to apply mappings only to that geometry. This flexibility allows for clear and concise syntax, as aesthetic mappings can be specified globally for the entire plot or tailored for individual geometric layers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> my_Data, <span class="fu">aes</span>(<span class="at">x =</span> my_X, <span class="at">y =</span> my_Y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Not only that, but you can also divide the mapping into several parts, with common mappings in the initial <code>ggplot()</code> function and other specific mappings in the given <code>geom_*()</code> functions. This allows for flexibility and customization in defining aesthetic mappings for different geometries in the same plot.</p>
+</section>
+<section id="first-ggplot" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="first-ggplot"><span class="header-section-number">3.2</span> First <code>ggplot()</code></h2>
+<section id="task" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="task"><span class="header-section-number">3.2.1</span> Task</h3>
 <p>With the above three short introductions, we can now try the first plot with the <code>mpg</code> dataset.</p>
-<section id="task" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="task"><span class="header-section-number">4.1</span> Task</h2>
 <p>The task is as follows:</p>
 <ol type="1">
 <li><strong>Data</strong>: Using the <code>mpg</code> dataset.
@@ -381,37 +582,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol>
 </section>
-<section id="syntax" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="syntax"><span class="header-section-number">4.2</span> Syntax</h2>
-<p>The syntax of <code>ggplot2</code> follows a <strong>layered</strong> approach, where you start with the base layer of data and progressively add additional layers to create a complex plot.</p>
-<p>The basic syntax involves using the <code>ggplot()</code> function to initiate the plot, specifying the data and aesthetics using the <code>aes()</code> function, and then adding (use <code>+</code>) geometric elements with functions like <code>geom_point()</code> or <code>geom_line()</code>. Each added layer enhances the plot, and you can further customize it using various options. The syntax is intuitive and modular, allowing for flexible and expressive visualizations.</p>
+<section id="codes" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="codes"><span class="header-section-number">3.2.2</span> Codes</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_Data, <span class="fu">aes</span>(<span class="at">x =</span> my_X, <span class="at">y =</span> my_Y)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In <code>ggplot2</code>, the <code>aes()</code> function (also <code>data</code>), which defines the aesthetic mappings, can be placed either within the <code>ggplot()</code> function for all geoms or inside the specific <code>geom_*()</code> function to apply mappings only to that geometry. This flexibility allows for clear and concise syntax, as aesthetic mappings can be specified globally for the entire plot or tailored for individual geometric layers.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> my_Data, <span class="fu">aes</span>(<span class="at">x =</span> my_X, <span class="at">y =</span> my_Y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Not only that, but you can also divide the mapping into several parts, with common mappings in the initial <code>ggplot()</code> function and other specific mappings in the given <code>geom_*()</code> functions. This allows for flexibility and customization in defining aesthetic mappings for different geometries in the same plot.</p>
-</section>
-<section id="first-ggplot" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="first-ggplot"><span class="header-section-number">4.3</span> First <code>ggplot()</code></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))<span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> class)) <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> class)) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="visual_ggplot2Basic_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="visual_ggplot2Basic_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="customize-the-elements" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="customize-the-elements"><span class="header-section-number">3.3</span> Customize the elements</h2>
+<p>For the continuous axis, we will store the default plot in a variable <code>gp_Default</code>, and then we can use <code>+</code> to add future custom settings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gp_Default <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))<span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> class)) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="label-and-text" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="label-and-text"><span class="header-section-number">3.3.1</span> Label and Text</h3>
+<ul>
+<li>X-Axis in <code>"Engine displacement (L)"</code></li>
+<li>Y-Axis in <code>"MPG in highway  (mi / gal)"</code></li>
+<li>Title in <code>"Fuel economy data"</code></li>
+<li>Legend (color) title in <code>"Car type"</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gp_Default <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine displacement (L)"</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"MPG in highway (mi/gal)"</span>, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Car type"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Fuel economy data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visual_ggplot2Basic_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="axes" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="axes"><span class="header-section-number">3.3.2</span> Axes</h3>
+<ul>
+<li>X-limits: 2 to 5</li>
+<li>Y-breaks: from 15 to 45 every 5</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gp_Default <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">15</span>, <span class="dv">45</span>, <span class="dv">5</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visual_ggplot2Basic_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="colour" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="colour"><span class="header-section-number">3.3.3</span> Colour</h3>
+<ul>
+<li>Smooth line in red</li>
+<li>points color in rainbow color</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gp_Default <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rainbow</span>(<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visual_ggplot2Basic_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
 
+
+</section>
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Ggplot2_wickham_2009" class="csl-entry" role="listitem">
+Wickham, Hadley. 2009. <em>Ggplot2: <span>Elegant Graphics</span> for <span>Data Analysis</span></em>. <span>New York, NY</span>: <span>Springer</span>. <a href="https://doi.org/10.1007/978-0-387-98141-3">https://doi.org/10.1007/978-0-387-98141-3</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

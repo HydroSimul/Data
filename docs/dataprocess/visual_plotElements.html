@@ -312,7 +312,6 @@ div.csl-indent {
   <li><a href="#axis-elements" id="toc-axis-elements" class="nav-link" data-scroll-target="#axis-elements"><span class="header-section-number">2</span> Axis elements</a></li>
   <li><a href="#legend-elements" id="toc-legend-elements" class="nav-link" data-scroll-target="#legend-elements"><span class="header-section-number">3</span> Legend elements</a></li>
   <li><a href="#panel-elements" id="toc-panel-elements" class="nav-link" data-scroll-target="#panel-elements"><span class="header-section-number">4</span> Panel elements</a></li>
-  <li><a href="#elements" id="toc-elements" class="nav-link" data-scroll-target="#elements"><span class="header-section-number">5</span> ELEMENTS</a></li>
   </ul>
 </nav>
     </div>
@@ -680,63 +679,6 @@ Important
 </div>
 </div>
 </div>
-</section>
-<section id="elements" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> ELEMENTS</h1>
-<p>In conjunction with the theme system, the element_ functions specify the display of how non-data components of the plot are drawn <span class="citation" data-cites="Ggplot2_wickham_2009">(<a href="#ref-Ggplot2_wickham_2009" role="doc-biblioref">Wickham 2009</a>)</span>.</p>
-<p>There are four main elements to specify the appearance of elements for the plot, axis, and more (details in <a href="https://ggplot2.tidyverse.org/reference/element.html">ggplot2 Theme elements</a>):</p>
-<ul>
-<li><p><code>element_blank()</code>: draws nothing and assigns no space.</p></li>
-<li><p><code>element_rect()</code>: used for borders and backgrounds.</p></li>
-<li><p><code>element_line()</code>: defines the appearance of lines.</p></li>
-<li><p><code>element_text()</code>: controls the appearance of text.</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_blank</span>()</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">element_rect</span>(</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">element_line</span>(</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineend =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">arrow =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="fu">element_text</span>(</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">face =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">hjust =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">vjust =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">angle =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineheight =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">margin =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span></span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Some common characters include:</p>
-<ul>
-<li><code>fill</code>: fill color</li>
-<li><code>colour</code> or <code>color</code>: Line/border/text color. <code>color</code> is an alias for <code>colour</code>.</li>
-<li><code>linewidth</code>: Line/border size in mm.</li>
-<li><code>size</code>: Text size in pts.</li>
-</ul>
 
 
 
