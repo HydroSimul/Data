@@ -22,10 +22,10 @@ website:
         - section: "Dataprocess"
           href: dataprocess/index.qmd
           contents: 
-            - dataprocess/basic_format.qmd      
             - dataprocess/basic_r_python.qmd      
-            - section: "Pre-Processing"
+            - section: "Data-Processing"
               contents:
+                - dataprocess/basic_format.qmd      
                 - dataprocess/data_load.qmd      
                 - dataprocess/NetCDF.qmd      
             - section: "Spatial Data"
@@ -35,9 +35,11 @@ website:
             - section: "Timeserises"
               contents:
                 - dataprocess/timeserises_process.qmd      
+                - dataprocess/timeserises_analyse.qmd      
+            - section: "Statistic"
+              contents:
                 - dataprocess/statistic_basic.qmd      
                 - dataprocess/statistic_graphic.qmd      
-                - dataprocess/timeserises_analyse.qmd      
             - section: "Visualization"
               contents:
                 - dataprocess/visual_plotElements.qmd      
