@@ -1,5 +1,5 @@
 ---
-title: "Time Series Visualization"
+title: "Visualization"
 execute:
   warning: false
   error: false
