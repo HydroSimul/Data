@@ -964,5 +964,96 @@
     "title": "ggplot2 Basic",
     "section": "2.4 Fixed elements for specific geometry",
     "text": "2.4 Fixed elements for specific geometry\nThe scale_*() functions primarily control the attributes of elements using data. However, there are situations where you may want to set fixed values for a specific element directly. For example, you can set the linewidth for colored lines: geom_line(aes(color = dis), linewidth = 2). The settings outside the aes() function will be treated as fixed values for that particular geometry."
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html",
+    "href": "dataprocess/timeserises_visual.html",
+    "title": "Time Series Visualization",
+    "section": "",
+    "text": "Visualizing time series is crucial for identifying patterns, trends, and anomalies in data over time. Here are some key considerations and methods for visualizing time series data.\nIn this Artikel we will use the R package ggplot (tidyverse) for plotig and the results data fro HBV Light as the data:\n\n# Library\nlibrary(tidyverse)\ntheme_set(theme_bw())\nlibrary(ggh4x) # difference area\nlibrary(reshape2)\n\n# File name\nfn_ResultsHBV &lt;- \"https://raw.githubusercontent.com/HydroSimul/Web/main/data_share/tbl_HBV_Results.txt\"\n# Load Data\ndf_ResultHBV &lt;- read_table(fn_ResultsHBV)\n\n# Convert Date column to a Date type\ndf_ResultHBV$Date &lt;- as_date(df_ResultHBV$Date |&gt; as.character(), format = \"%Y%m%d\")\n\nidx_1979 &lt;- which(df_ResultHBV$Date &gt;= as_date(\"1979-01-01\") & df_ResultHBV$Date &lt;= as_date(\"1979-12-31\"))\ndf_Plot &lt;- df_ResultHBV[idx_1979, ]"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#basic-line",
+    "href": "dataprocess/timeserises_visual.html#basic-line",
+    "title": "Time Series Visualization",
+    "section": "2.1 Basic Line",
+    "text": "2.1 Basic Line\n\nggplot(df_Plot, aes(x = Date)) +\n  geom_line(aes(y = Qobs, color = \"Obs.\")) +\n  geom_line(aes(y = Qsim, color = \"Sim.\"))"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#line-with-difference-area",
+    "href": "dataprocess/timeserises_visual.html#line-with-difference-area",
+    "title": "Time Series Visualization",
+    "section": "2.2 Line with difference area",
+    "text": "2.2 Line with difference area\n\nggplot(df_Plot, aes(x = Date)) +\n  geom_line(aes(y = Qobs, color = \"Obs.\")) +\n  geom_line(aes(y = Qsim, color = \"Sim.\")) +\n  stat_difference(aes(ymin = Qsim, ymax = Qobs)) \n\n\n\n\n\nTrend Lines: Adding trend lines to line charts facilitates the identification of long-term trends. This can be achieved through regression techniques or moving averages.\nSeasonal Patterns: For data with seasonal fluctuations, boxplots or heatmaps can help identify seasonal patterns over time.\nHistograms: These can be useful to understand the distribution of values over time, especially when it comes to the frequency of specific events.\nEvent Markers: Placing markers for significant events on the timeline can help understand the impact of specific events on the data.\nInteractive Visualization: Utilizing interactive tools allows users to explore time series data dynamically, zooming in on specific periods or events for a more detailed analysis.\n\nRemember, effective time series visualization can uncover valuable insights and support better decision-making."
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#line-plot-with-shaded-difference-area",
+    "href": "dataprocess/timeserises_visual.html#line-plot-with-shaded-difference-area",
+    "title": "Time Series Visualization",
+    "section": "2.2 Line Plot with Shaded Difference Area",
+    "text": "2.2 Line Plot with Shaded Difference Area\n\nggplot(df_Plot, aes(x = Date)) +\n  geom_line(aes(y = Qobs, color = \"Obs.\")) +\n  geom_line(aes(y = Qsim, color = \"Sim.\")) +\n  stat_difference(aes(ymin = Qsim, ymax = Qobs), alpha = .5)"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#line-cluster",
+    "href": "dataprocess/timeserises_visual.html#line-cluster",
+    "title": "Time Series Visualization",
+    "section": "2.3 Line Cluster",
+    "text": "2.3 Line Cluster\n\n# Melting the data for ggplot\ndf_Plot_Melt &lt;- reshape2::melt(df_Plot[,c(\"Date\", \"Qsim\", \"Precipitation\", \"AET\")], id = \"Date\")\n# Plot\nggplot(df_Plot_Melt, aes(x = Date, y = value, color = variable, group = variable)) +\n  geom_line()"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#basic-bar",
+    "href": "dataprocess/timeserises_visual.html#basic-bar",
+    "title": "Time Series Visualization",
+    "section": "3.1 Basic Bar",
+    "text": "3.1 Basic Bar\n\nggplot(df_Plot, aes(x = Date)) +\n  geom_col(aes(y = Precipitation))"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#stacked-bar",
+    "href": "dataprocess/timeserises_visual.html#stacked-bar",
+    "title": "Time Series Visualization",
+    "section": "3.2 Stacked Bar",
+    "text": "3.2 Stacked Bar\n\n# Snowfall and rain fall caculate\ndf_Plot &lt;- df_Plot |&gt; mutate(Snowfall = pmax(0, c(0, diff(Snow))), \n                             Rainfall = Precipitation - Snowfall) \ndf_Plot_Melt2 &lt;- reshape2::melt(df_Plot[1:120, c(\"Date\", \"Snowfall\", \"Rainfall\")], id = \"Date\")\n# Plot\nggplot(df_Plot_Melt2, aes(x = Date, y = value, fill = variable, group = variable)) +\n  geom_col(position=\"stack\")"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#dodge",
+    "href": "dataprocess/timeserises_visual.html#dodge",
+    "title": "Time Series Visualization",
+    "section": "3.3 Dodge",
+    "text": "3.3 Dodge\n\n# Plot\nggplot(df_Plot_Melt2, aes(x = Date, y = value, fill = variable, group = variable)) +\n  geom_col(position=\"dodge\")"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#stacked-areaplot",
+    "href": "dataprocess/timeserises_visual.html#stacked-areaplot",
+    "title": "Time Series Visualization",
+    "section": "6.1 Stacked Areaplot",
+    "text": "6.1 Stacked Areaplot\nA stacked area plot is a type of data visualization that displays the cumulative contribution of different groups to a total over time or another continuous variable. Each group’s contribution is represented as a colored area, and these areas are stacked on top of each other.\n\n# Data\nmelt_Balance_Q &lt;- df_Plot[,c(\"Date\", \"AET\", \"Q0\", \"Q1\", \"Q2\" )] |&gt; melt(id = \"Date\")\n# Plot\nggplot(melt_Balance_Q, aes(Date, value, fill = variable)) +\n  geom_area()"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#potentixal-areaplot",
+    "href": "dataprocess/timeserises_visual.html#potentixal-areaplot",
+    "title": "Time Series Visualization",
+    "section": "6.2 Potentixal Areaplot",
+    "text": "6.2 Potentixal Areaplot\n\nmelt_Balance_Q &lt;- df_Plot[,c(\"Date\", \"AET\", \"Q0\", \"Q1\", \"Q2\" )] |&gt; melt(id = \"Date\")\nmelt_Balance_Q$perc &lt;- melt_Balance_Q$value / rowSums(df_Plot[,c(\"AET\", \"Q0\", \"Q1\", \"Q2\" )])\nggplot(melt_Balance_Q, aes(Date, perc, fill = variable)) +\n  geom_area() +\n      scale_fill_manual(\"\", values = c(\"palegreen3\", \"lightskyblue\", \"#006ab2\", \"#00a1d9\"))"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#percent-areaplot",
+    "href": "dataprocess/timeserises_visual.html#percent-areaplot",
+    "title": "Time Series Visualization",
+    "section": "6.2 Percent Areaplot",
+    "text": "6.2 Percent Areaplot\nA percent stacked area plot is a variation of the stacked area plot where the y-axis represents percentages, showcasing the proportion of each group relative to the total at each point in time. This type of plot is particularly useful when you want to emphasize the relative distribution of different groups over time.\n\n# Data\nmelt_Balance_Q$perc &lt;- melt_Balance_Q$value / rowSums(df_Plot[,c(\"AET\", \"Q0\", \"Q1\", \"Q2\" )])\n# PLot\nggplot(melt_Balance_Q, aes(Date, perc, fill = variable)) +\n  geom_area()"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#stacked-area",
+    "href": "dataprocess/timeserises_visual.html#stacked-area",
+    "title": "Time Series Visualization",
+    "section": "6.1 Stacked Area",
+    "text": "6.1 Stacked Area\nA stacked area plot is a type of data visualization that displays the cumulative contribution of different groups to a total over time or another continuous variable. Each group’s contribution is represented as a colored area, and these areas are stacked on top of each other.\n\n# Data\nmelt_Balance_Q &lt;- df_Plot[,c(\"Date\", \"AET\", \"Q0\", \"Q1\", \"Q2\" )] |&gt; melt(id = \"Date\")\n# Plot\nggplot(melt_Balance_Q, aes(Date, value, fill = variable)) +\n  geom_area()"
+  },
+  {
+    "objectID": "dataprocess/timeserises_visual.html#percent-area",
+    "href": "dataprocess/timeserises_visual.html#percent-area",
+    "title": "Time Series Visualization",
+    "section": "6.2 Percent Area",
+    "text": "6.2 Percent Area\nA percent stacked area plot is a variation of the stacked area plot where the y-axis represents percentages, showcasing the proportion of each group relative to the total at each point in time. This type of plot is particularly useful when you want to emphasize the relative distribution of different groups over time.\n\n# Data\nmelt_Balance_Q$perc &lt;- melt_Balance_Q$value / rowSums(df_Plot[,c(\"AET\", \"Q0\", \"Q1\", \"Q2\" )])\n# PLot\nggplot(melt_Balance_Q, aes(Date, perc, fill = variable)) +\n  geom_area()"
   }
 ]
